@@ -1,7 +1,7 @@
 import { Controller,Post,Delete,Get,Body,Param,Patch, UseGuards} from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { ObjectId } from "mongoose";
-import { SibasiResponse } from "src/customs/response";
+import { TestResponse } from "src/customs/response";
 import { JwtAuthGuard } from "src/user/auth/auth.guard";
 import { Role } from "src/user/auth/role.decorator";
 import { Roles } from "src/user/models/user.schema";
@@ -20,29 +20,29 @@ export class NhifTierController {
 
   @Post()
   async create(@Body() tier:NhifTier){
-    return new SibasiResponse("Created nhif tier record", await this.nhifTierService.create(tier));
+    return new TestResponse("Created nhif tier record", await this.nhifTierService.create(tier));
     }
 
 
   @Get()
   async findAll() {
-    return new SibasiResponse("Fetched all nhif tier records", await this.nhifTierService.findAll());
+    return new TestResponse("Fetched all nhif tier records", await this.nhifTierService.findAll());
   }
 
   @Get(':id')
   async findOne (@Param('id') id:ObjectId){
-    return new SibasiResponse("Fetched single nhif tier record", await this.nhifTierService.findOne(id));
+    return new TestResponse("Fetched single nhif tier record", await this.nhifTierService.findOne(id));
   }
   
   @Patch(':id')
   async update(@Param('id') id: ObjectId, @Body() data:NhifTier) {
-    return new SibasiResponse("Updated nhif tier record successfully", await this.nhifTierService.update(id, data));
+    return new TestResponse("Updated nhif tier record successfully", await this.nhifTierService.update(id, data));
   } 
 
 
    @Delete(':id')
     async delete(@Param('id') id:ObjectId){
-      return new SibasiResponse("Deleted nhif tier record", await this.nhifTierService.delete(id));
+      return new TestResponse("Deleted nhif tier record", await this.nhifTierService.delete(id));
     }
 
 }

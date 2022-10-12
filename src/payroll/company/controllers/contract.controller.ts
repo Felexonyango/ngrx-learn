@@ -1,7 +1,7 @@
 import { Controller,Post,Delete,Get,Body,Param,Patch, UseGuards} from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { ObjectId } from "mongoose";
-import { SibasiResponse } from "src/customs/response";
+import { TestResponse } from "src/customs/response";
 import { JwtAuthGuard } from "src/user/auth/auth.guard";
 import { Role } from "src/user/auth/role.decorator";
 import { Roles } from "src/user/models/user.schema";
@@ -20,28 +20,28 @@ export class ContractController {
   @Post()
   async create(@Body() data:Contract){
     data.status= Status.VALID;
-    return new SibasiResponse('Created contract successully', await this.contractService.create(data));        
+    return new TestResponse('Created contract successully', await this.contractService.create(data));        
     }
  
   @Get()
   async findAll() {
-    return new SibasiResponse('Fetched all contracts', await this.contractService.findAll());
+    return new TestResponse('Fetched all contracts', await this.contractService.findAll());
   }
 
   @Get(':id')
   async findOne (@Param('id') id:ObjectId){
-    return new SibasiResponse('Fetched single contract', await this.contractService.findOne(id));
+    return new TestResponse('Fetched single contract', await this.contractService.findOne(id));
   }
   
   @Patch(':id')
   async update(@Param('id') id: ObjectId, @Body() data:Contract) {
-    return new SibasiResponse('Updated contract', await this.contractService.update(id, data));
+    return new TestResponse('Updated contract', await this.contractService.update(id, data));
   } 
 
 
    @Delete(':id')
     async delete(@Param('id') id:ObjectId){
-      return new SibasiResponse('Deleted contract', await this.contractService.delete(id));
+      return new TestResponse('Deleted contract', await this.contractService.delete(id));
     }
 
 }

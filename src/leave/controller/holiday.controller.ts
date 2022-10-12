@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, UseGuards } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { ObjectId } from "bson";
-import { SibasiResponse } from "src/customs/response";
+import { TestResponse } from "src/customs/response";
 import { JwtAuthGuard } from "src/user/auth/auth.guard";
 import { Role } from "src/user/auth/role.decorator";
 import { getUser } from "src/user/auth/user.decorator";
@@ -18,32 +18,32 @@ export class HolidayController {
     
     @Get()
     async getHolidays(){
-        return new SibasiResponse('Fetched Holiday records', await this.holidayService.findAllHolidays());
+        return new TestResponse('Fetched Holiday records', await this.holidayService.findAllHolidays());
     }
 
     @Get(':id')
     async getHolidayById(@Param('id') id:ObjectId){
-        return new SibasiResponse("Fetched single holiday by id", await this.holidayService.findSingleHoliday(id));
+        return new TestResponse("Fetched single holiday by id", await this.holidayService.findSingleHoliday(id));
     }
 
     @Post()
     async postHolidayLeave(@Body() data:HolidayDTO, @getUser() user){   
-      return new SibasiResponse('Successfully added Holiday', await this.holidayService.createHoliday(data, user.userId));
+      return new TestResponse('Successfully added Holiday', await this.holidayService.createHoliday(data, user.userId));
     }
 
     @Post('deleteall')
     async deleteAllHolidays(){
-        return new SibasiResponse('Deleted all holiday successfully', await this.holidayService.deleteAll());
+        return new TestResponse('Deleted all holiday successfully', await this.holidayService.deleteAll());
     }
 
     @Post('/:id')
     async updateHolidayLeave(@Body() data:HolidayDTO, @getUser() user, @Param('id') id:ObjectId){
-        return new SibasiResponse('Successfully updated Holiday', await this.holidayService.updateHoliday(id,data,user));
+        return new TestResponse('Successfully updated Holiday', await this.holidayService.updateHoliday(id,data,user));
     }
 
     @Delete('/:id')
     async deleteHolidayLeave(@Param('id') id:ObjectId){
-        return new SibasiResponse('Successfully deleted Holiday', await this.holidayService.deleteHoliday(id));
+        return new TestResponse('Successfully deleted Holiday', await this.holidayService.deleteHoliday(id));
     }
 
     

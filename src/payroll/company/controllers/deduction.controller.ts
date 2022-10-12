@@ -2,7 +2,7 @@ import { Controller,Post,Delete,Get,Body,Param,Patch, UseInterceptors, UploadedF
 import { FileInterceptor } from "@nestjs/platform-express";
 import { ApiTags } from "@nestjs/swagger";
 import { ObjectId } from "mongoose";
-import { SibasiResponse } from "src/customs/response";
+import { TestResponse } from "src/customs/response";
 import { upload } from "src/fileUpload/config/gridfs.config";
 import { FileUploadService } from "src/fileUpload/services/fileUpload.services";
 import { JwtAuthGuard } from "src/user/auth/auth.guard";
@@ -26,28 +26,28 @@ export class DeductionController {
 
   @Post()
   async create(@Body() data:Deduction){
-    return new SibasiResponse('Created deduction successfully', await this.deductionService.create(data));        
+    return new TestResponse('Created deduction successfully', await this.deductionService.create(data));        
     }
  
   @Get()
   async findAll() {
-    return new SibasiResponse('Fetched all deduction records', await this.deductionService.findAll());
+    return new TestResponse('Fetched all deduction records', await this.deductionService.findAll());
   }
 
   @Get(':id')
   async findOne (@Param('id') id:ObjectId){
-    return new SibasiResponse('Fetched records for a single deduction', await this.deductionService.findOne(id));
+    return new TestResponse('Fetched records for a single deduction', await this.deductionService.findOne(id));
   }
   
   @Patch(':id')
   async update(@Param('id') id: ObjectId, @Body() data:Deduction) {
-    return new SibasiResponse('Updated deduction successfully', await this.deductionService.update(id, data));
+    return new TestResponse('Updated deduction successfully', await this.deductionService.update(id, data));
   } 
 
 
    @Delete(':id')
     async delete(@Param('id') id:ObjectId){
-      return new SibasiResponse('Deleted deduction successfully', await this.deductionService.delete(id));
+      return new TestResponse('Deleted deduction successfully', await this.deductionService.delete(id));
     }
 
 }

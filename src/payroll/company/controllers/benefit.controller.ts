@@ -2,7 +2,7 @@ import { Controller,Post,Delete,Get,Body,Param,Patch, UseInterceptors, UploadedF
 import { FileInterceptor } from "@nestjs/platform-express";
 import { ApiTags } from "@nestjs/swagger";
 import { ObjectId } from "mongoose";
-import { SibasiResponse } from "src/customs/response";
+import { TestResponse } from "src/customs/response";
 import { upload } from "src/fileUpload/config/gridfs.config";
 import { FileUploadService } from "src/fileUpload/services/fileUpload.services";
 import { JwtAuthGuard } from "src/user/auth/auth.guard";
@@ -22,28 +22,28 @@ export class BenefitController {
 
   @Post()
   async create(@Body() data:Benefits){
-    return new SibasiResponse("Created benefits record", await this.benefitService.create(data));        
+    return new TestResponse("Created benefits record", await this.benefitService.create(data));        
     }
  
   @Get()
   async findAll() {
-    return new SibasiResponse("Fetched all benefits records", await this.benefitService.findAll());
+    return new TestResponse("Fetched all benefits records", await this.benefitService.findAll());
   }
 
   @Get(':id')
   async findOne (@Param('id') id:ObjectId){
-    return new SibasiResponse("Fetched single benefits record", await this.benefitService.findOne(id));
+    return new TestResponse("Fetched single benefits record", await this.benefitService.findOne(id));
   }
   
   @Patch(':id')
   async update(@Param('id') id: ObjectId, @Body() data:Benefits) {
-    return new SibasiResponse("Updated benefits record successfully", await this.benefitService.update(id, data));
+    return new TestResponse("Updated benefits record successfully", await this.benefitService.update(id, data));
   } 
 
 
    @Delete(':id')
     async delete(@Param('id') id:ObjectId){
-      return new SibasiResponse("Deleted benefits record", await this.benefitService.delete(id));
+      return new TestResponse("Deleted benefits record", await this.benefitService.delete(id));
     }
 
 }

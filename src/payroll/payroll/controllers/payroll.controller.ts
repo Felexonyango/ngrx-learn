@@ -4,7 +4,7 @@
 import { Controller,Post,Delete,Get,Body,Param,Patch, UseGuards} from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { ObjectId } from "mongoose";
-import { SibasiResponse } from "src/customs/response";
+import { TestResponse } from "src/customs/response";
 import { JwtAuthGuard } from "src/user/auth/auth.guard";
 import { Role } from "src/user/auth/role.decorator";
 import { getUser } from "src/user/auth/user.decorator";
@@ -24,29 +24,29 @@ export class PayRollController {
   @Post()
   async create(@Body() data:PayRoll){
     data.status= Status.OPEN;
-    return new SibasiResponse("Created payroll record", await this.payrollService.create(data));
+    return new TestResponse("Created payroll record", await this.payrollService.create(data));
     }
 
 
   @Get()
   async findAll() {
-    return new SibasiResponse("Fetched all payroll records", await this.payrollService.findAll());
+    return new TestResponse("Fetched all payroll records", await this.payrollService.findAll());
   }
 
   @Get(':id')
   async findOne (@Param('id') id:ObjectId){
-    return new SibasiResponse("Fetched single payroll record", await this.payrollService.findOne(id));
+    return new TestResponse("Fetched single payroll record", await this.payrollService.findOne(id));
   }
   
   @Patch(':id')
   async update(@Param('id') id: ObjectId, @Body() data:PayRoll,@getUser()user) {
-    return new SibasiResponse("Updated payroll record successfully", await this.payrollService.update(id, data,user));
+    return new TestResponse("Updated payroll record successfully", await this.payrollService.update(id, data,user));
   } 
 
 
    @Delete(':id')
     async delete(@Param('id') id:ObjectId){
-      return new SibasiResponse("Deleted payroll record", await this.payrollService.delete(id));
+      return new TestResponse("Deleted payroll record", await this.payrollService.delete(id));
     }
 
 }

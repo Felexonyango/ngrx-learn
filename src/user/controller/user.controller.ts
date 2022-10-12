@@ -8,7 +8,7 @@ import { FileInterceptor } from "@nestjs/platform-express";
 import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
 import { ObjectId } from "bson";
 import { Request } from "express";
-import { SibasiResponse } from "src/customs/response";
+import { TestResponse } from "src/customs/response";
 import { upload } from "src/fileUpload/config/gridfs.config";
 import { FileUploadService } from "src/fileUpload/services/fileUpload.services";
 import { JwtAuthGuard } from "../auth/auth.guard";
@@ -35,23 +35,23 @@ export class UserController {
    @Role(Roles.USER)
    @Get()
    async getUserProfile(@getUser() user){
-      return new SibasiResponse('Successfully fetched user profile', await this.userService.findSingleUser(user.userId));
+      return new TestResponse('Successfully fetched user profile', await this.userService.findSingleUser(user.userId));
    }
 
    @Get('all')
    async getUsers(){
-      return new SibasiResponse('Successfully fetched all user details', await this.userService.getUsers());
+      return new TestResponse('Successfully fetched all user details', await this.userService.getUsers());
    }
 
    @Get('summary')
    async getUserSummaryDetails(){
-      return new SibasiResponse('Summary of users per department successfully fetched', await this.userService.userSummaryDetails());
+      return new TestResponse('Summary of users per department successfully fetched', await this.userService.userSummaryDetails());
    }
 
    @Role(Roles.USER)
    @Get('/userprofile')
    async getLoggedInUserProfile(@getUser() user, @Res() res){
-      return new SibasiResponse('Fetched user profile image successfully', await this.uploadService.findUserProfileImg(user.userId, res))
+      return new TestResponse('Fetched user profile image successfully', await this.uploadService.findUserProfileImg(user.userId, res))
    }
 
    @Get('/searchuser')
@@ -66,19 +66,19 @@ export class UserController {
          }
       }
 
-      return new SibasiResponse('Fetched users mathing provided record', await this.userService.findUser(options));
+      return new TestResponse('Fetched users mathing provided record', await this.userService.findUser(options));
    }
 
    @Get(':id')
    async getSingleUser(@Param('id') id:string){
-      return new SibasiResponse('Successfully fetched user details', await this.userService.findSingleUser(id));
+      return new TestResponse('Successfully fetched user details', await this.userService.findSingleUser(id));
    }
 
    @Post()
    async postUser(@Body() data:User){
       console.log(data)
       const userRegister =  await this.authService.register(data);
-      return new SibasiResponse('Successfully added user', userRegister);
+      return new TestResponse('Successfully added user', userRegister);
    }
 
    @Post('/file/:userId')
@@ -86,39 +86,39 @@ export class UserController {
    async postUserImg(@UploadedFile() file, @Param('userId') userId:ObjectId, @getUser() user){
       upload.single('file');
       if(file) await this.uploadService.uploadFile(userId, file, user);
-      return new SibasiResponse('Successfully added user image');
+      return new TestResponse('Successfully added user image');
    }
 
    @Post(':id')
    async updateUser(@Param('id') id:string, @Body() data:User) {
-      return new SibasiResponse('Successfully updated user details', await this.userService.updateUser(id, data));
+      return new TestResponse('Successfully updated user details', await this.userService.updateUser(id, data));
    }
 
    @Role(Roles.SUPERVISOR, Roles.USERADMIN)
    @Post('/role/:userId')
    async updateUserRole(@Param('userId') userId:ObjectId, @Body() data:Object){
-      return new SibasiResponse('Successfully changed user role', await this.userService.changeUserRoles(userId, data));
+      return new TestResponse('Successfully changed user role', await this.userService.changeUserRoles(userId, data));
    }
 
    @Role(Roles.SUPERVISOR, Roles.USERADMIN)
    @Post('/removerole/:userId')
    async removeUserRole(@Param('userId') userId:ObjectId, @Body() data:Object){
-      return new SibasiResponse('Successfully removed user role', await this.userService.removeUserRoles(userId, data));
+      return new TestResponse('Successfully removed user role', await this.userService.removeUserRoles(userId, data));
    }
 
    @Delete(':id')
    async deleteUser(@Param('id') id:string) {
-      return new SibasiResponse('Successfully deleted user details', await this.userService.deleteUser(id));
+      return new TestResponse('Successfully deleted user details', await this.userService.deleteUser(id));
    }
 
    @Role(Roles.HUMANRESOURCE, Roles.SUPERVISOR, Roles.USERADMIN)
    @Get('/profile/:id')
    async getUserProfileImg(@Param('id') id:string, @Res() res){
-      return new SibasiResponse('Successfully fetched users profile image', await this.uploadService.findUserProfileImg(id, res));
+      return new TestResponse('Successfully fetched users profile image', await this.uploadService.findUserProfileImg(id, res));
    }
 
    @Get('/department/:id')
    async findUsersInADepartment(@Param('id') id:ObjectId){
-      return new SibasiResponse('Department users successfully fetched', await this.userService.findUsersInACertainDepartment(id));
+      return new TestResponse('Department users successfully fetched', await this.userService.findUsersInACertainDepartment(id));
    }
 }

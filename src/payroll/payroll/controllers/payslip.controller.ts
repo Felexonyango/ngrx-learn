@@ -4,7 +4,7 @@
 import { Controller,Post,Delete,Get,Body,Param,Patch, UseGuards} from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { ObjectId } from "mongoose";
-import { SibasiResponse } from "src/customs/response";
+import { TestResponse } from "src/customs/response";
 import { JwtAuthGuard } from "src/user/auth/auth.guard";
 import { Role } from "src/user/auth/role.decorator";
 import { RolesGuard } from "src/user/auth/roles.guard";
@@ -23,13 +23,13 @@ export class PaySlipController {
 
   @Get()
   async getAllPaySlips(@getUser() user){  
-    return new SibasiResponse("All Payslips Fetched", await this.paySlipService.findAllpaySlips(user.userId));
+    return new TestResponse("All Payslips Fetched", await this.paySlipService.findAllpaySlips(user.userId));
   }
 
   
   @Get('onepayslip/:payslipID')
   async getOnePaySlip(@getUser() user,@Param('payslipID')payslipID:ObjectId){
-    return new SibasiResponse("Month Payslip Fetched", await this.paySlipService.findOnePaySlip(user.userId,payslipID));
+    return new TestResponse("Month Payslip Fetched", await this.paySlipService.findOnePaySlip(user.userId,payslipID));
   }
 
 /*  @Post()
@@ -62,7 +62,7 @@ export class PaySlipController {
     @Get(':id')
     @Role(Roles.SUPERVISOR)
     async generatePaySlip(@Param('id') userID:ObjectId){
-      return new SibasiResponse("User's Payslip Generated", await this.paySlipService.generatePaySlipForMonth(userID));
+      return new TestResponse("User's Payslip Generated", await this.paySlipService.generatePaySlipForMonth(userID));
     }
 
 }

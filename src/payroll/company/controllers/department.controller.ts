@@ -2,7 +2,7 @@ import { Controller,Post,Delete,Get,Body,Param,Patch, UseInterceptors, UploadedF
 import { FileInterceptor } from "@nestjs/platform-express";
 import { ApiTags } from "@nestjs/swagger";
 import { ObjectId } from "mongoose";
-import { SibasiResponse } from "src/customs/response";
+import { TestResponse } from "src/customs/response";
 import { upload } from "src/fileUpload/config/gridfs.config";
 import { FileUploadService } from "src/fileUpload/services/fileUpload.services";
 import { JwtAuthGuard } from "src/user/auth/auth.guard";
@@ -21,28 +21,28 @@ export class DepartmentController {
 
   @Post()
   async create(@Body() data:DepartmentDTO){
-    return new SibasiResponse('Created department successfully', await this.departmentService.create(data));        
+    return new TestResponse('Created department successfully', await this.departmentService.create(data));        
   }
  
   @Get()
   async findAll() {
-    return new SibasiResponse('Fetched all departments', await this.departmentService.findAll());
+    return new TestResponse('Fetched all departments', await this.departmentService.findAll());
   }
 
   @Get(':id')
   async findOne (@Param('id') id:ObjectId){
-    return new SibasiResponse('Fetched a single department', await this.departmentService.findOne(id));
+    return new TestResponse('Fetched a single department', await this.departmentService.findOne(id));
   }
   
   @Patch(':id')
   async update(@Param('id') id: ObjectId, @Body() data:DepartmentDTO) {
-    return new SibasiResponse('Updated department successfully', await this.departmentService.update(id, data));
+    return new TestResponse('Updated department successfully', await this.departmentService.update(id, data));
   } 
 
 
   @Delete(':id')
   async delete(@Param('id') id:ObjectId){
-    return new SibasiResponse('Deleted department successfully', await this.departmentService.delete(id));
+    return new TestResponse('Deleted department successfully', await this.departmentService.delete(id));
   }
 
 }
