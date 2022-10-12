@@ -1,0 +1,44 @@
+<div class="animated fadeIn">
+  <div class="card">
+    <div class="card-body">
+
+      <div class="grid">
+        <div class="col">
+          <i class="far fa-plus-square fa-2x sibasi-primary"></i>
+          <span class="font-weight-bold h5">
+            {{
+              componentAction === componentActionsEnum.EDITPROFILE ?
+                'Edit Profile' :
+                (componentAction === componentActionsEnum.EDITUSER ?
+                  'Edit User' : 'Add User'
+                )
+            }}
+          </span>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <form [formGroup]="createUserForm">
+          <formly-form [form]="createUserForm" [fields]="userFormlyFields" [model]="userDetailsModel"></formly-form>
+        </form>
+      </div>
+
+
+      <div class="form-actions text-right mt-4">
+        <button class="btn   btn-danger mr-2"
+        (click)="utilService.goBack()">
+          <i class="fas fa-ban"></i>
+          Cancel
+        </button>
+        <button
+          class="btn btn-sibasi-primary  "
+      (click)="createUpdateUser()"
+          [disabled]="createUserForm.invalid"
+        >
+          <i class="far fa-save"></i>
+          {{isEdit ? 'Update' : 'Save'}}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

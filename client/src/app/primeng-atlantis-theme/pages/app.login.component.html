@@ -1,0 +1,39 @@
+<div class="login-body">
+    <div class="login-image">
+        <img [src]="'assets/layout/images/pages/login-'+ (app.colorScheme === 'dark' ? 'ondark' : 'onlight') + '.png'"
+             alt="atlantis">
+    </div>
+    <div class="login-panel p-fluid">
+        <div class="flex flex-column">
+            <div class="flex align-items-center mb-6 logo-container">
+                <img [src]="'assets/layout/images/logo-'+ (app.colorScheme === 'light' ? 'dark' : 'light') + '.png'"
+                     class="login-logo"/>
+                <img [src]="'assets/layout/images/appname-'+ (app.colorScheme === 'light' ? 'dark' : 'light') + '.png'"
+                     class="login-appname"/>
+            </div>
+            <div class="form-container">
+                <span class="p-input-icon-left">
+                    <i class="pi pi-envelope"></i>
+                    <input type="text" autocomplete="off" pInputText placeholder="Email">
+                </span>
+                <span class="p-input-icon-left">
+                    <i class="pi pi-key"></i>
+                    <input type="password" autocomplete="off" pInputText placeholder="Password">
+                </span>
+                <a href="#" class="flex">Forgot your password?</a>
+            </div>
+            <div class="button-container">
+                <button type="button" pButton label="Login" [routerLink]="['/']"></button>
+                <span>Don’t have an account?<a>Sign-up here</a></span>
+            </div>
+        </div>
+
+        <div class="login-footer flex align-items-center">
+            <div class="flex align-items-center login-footer-logo-container">
+                <img src="assets/layout/images/logo-gray.png" class="login-footer-logo"/>
+                <img src="assets/layout/images/appname-gray.png" class="login-footer-appname"/>
+            </div>
+            <span>Copyright 2021</span>
+        </div>
+    </div>
+</div>

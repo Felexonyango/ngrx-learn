@@ -1,0 +1,237 @@
+<div class="grid">
+ 
+</div>
+<div class="grid">
+    <div class="col-7">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between">
+       
+                <p-dialog
+                    header="Title"
+                    [(visible)]="display"
+                    [modal]="true"
+                    [style]="{ width: '50vw' }"
+                >
+                    <ng-template pTemplate="header">
+                        Add a new leave Type
+                    </ng-template>
+                    <form [formGroup]="form" (ngSubmit)="createLeaveType()">
+                        <formly-form
+                            [model]="model"
+                            [fields]="fields"
+                            [form]="form"
+                        ></formly-form>
+                    </form>
+                    <ng-template pTemplate="footer">
+                        <button
+                            pButton
+                            type="button"
+                            class="p-button-raised"
+                            (click)="createLeaveType()"
+                            label="Add Leave type"
+                        ></button>
+                    </ng-template>
+                </p-dialog>
+                <button
+                    pButton
+                    type="button"
+                    icon="pi pi-plus"
+                    (click)="showDialog()"
+                    class="p-button-raised p-button-rounded"
+                ></button>
+            </div>
+            <p-table [value]="leaveType" responsiveLayout="scroll">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Type of Leave</th>
+                        <!-- <th>Number of Days</th> -->
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-leave>
+                    <tr>
+                        <td>{{ leave.leaveType }}</td>
+                        <!-- <td>{{ leave.duration }}</td> -->
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+    <div class="col-5">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between">
+                <h5>Leave Days</h5>
+                <p-dialog
+                header="Title"
+                [(visible)]="displayDays"
+                [modal]="true"
+                [style]="{ width: '50vw' }">
+
+                <ng-template pTemplate="header">
+                   Set Leave Days
+                </ng-template>
+                <form [formGroup]="leaveDaysForm" (ngSubmit)="createDays()">
+                    <formly-form
+                    [model]="leaveDaysModel"
+                    [fields]="leaveDaysFields"
+                    [form]="leaveDaysForm">                    
+                    </formly-form>
+                </form>
+                <ng-template pTemplate="footer">
+                    <button
+                        pButton
+                        type="button"
+                        class="p-button-raised"
+                        (click)="createDays()"
+                        label="Set Leave Days"
+                    ></button>
+                </ng-template>
+                    
+                </p-dialog>
+                <button
+                    pButton
+                    type="button"
+                    icon="pi pi-plus"
+                    (click)="leaveDaysDialog()"
+                    class="p-button-raised p-button-rounded"
+                ></button>
+            </div>
+            <p-table [value]="leaveDays" responsiveLayout="scroll">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Annual Leave Days</th>
+                        <th>Maximum Carry Over Days</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-leave>
+                    <tr>
+                        <td>{{ leave.annualLeaveDays }}</td>
+                        <td>{{ leave.maximumCarryOver }}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+           
+        </div>
+
+    </div>
+</div>
+<div class="grid">
+    <div class="col-7">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between">
+                <h5>Company Holidays</h5>
+                <p-dialog
+                    header="Title"
+                    [(visible)]="displayHoliday"
+                    [modal]="true"
+                    [style]="{ width: '50vw' }"
+                >
+                    <ng-template pTemplate="header">
+                        Add a company holiday
+                    </ng-template>
+                    <form [formGroup]="holidayForm" (ngSubmit)="addHoliday()">
+                        <formly-form
+                            [model]="holidayModel"
+                            [fields]="holidayFields"
+                            [form]="holidayForm"
+                        ></formly-form>
+                    </form>
+                    <ng-template pTemplate="footer">
+                        <button
+                            pButton
+                            type="button"
+                            class="p-button-raised"
+                            (click)="addHoliday()"
+                            label="Add company holiday"
+                        ></button>
+                    </ng-template>
+                </p-dialog>
+                <button
+                    pButton
+                    type="button"
+                    icon="pi pi-plus"
+                    (click)="showDialog2()"
+                    class="p-button-raised p-button-rounded"
+                ></button>
+            </div>
+            <p-table [value]="holidays" responsiveLayout="scroll">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Holiday</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-holiday>
+                    <tr>
+                        <td>{{ holiday.nameOfHoliday }}</td>
+                        <td>{{ holiday.startDate }}</td>
+                        <td>{{ holiday.endDate }}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>
+
+
+<div class="grid">
+    <div class="col-7">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between">
+                <h5>Company Departments</h5>
+                <p-dialog
+                    header="Title"
+                    [(visible)]="displayDepartment"
+                    [modal]="true"
+                    [style]="{ width: '50vw' }"
+                >
+                    <ng-template pTemplate="header">
+                        Add a department
+                    </ng-template>
+                    <form [formGroup]="departmentForm" (ngSubmit)="addDepartment()">
+                        <formly-form
+                            [model]="departmentModel"
+                            [fields]="departmentFields"
+                            [form]="departmentForm"
+                        ></formly-form>
+                    </form>
+                    <ng-template pTemplate="footer">
+                        <button
+                            pButton
+                            type="button"
+                            class="p-button-raised"
+                            (click)="addDepartment()"
+                            label="Add company holiday"
+                        ></button>
+                    </ng-template>
+                </p-dialog>
+                <button
+                    pButton
+                    type="button"
+                    icon="pi pi-plus"
+                    (click)="departmentDialogue()"
+                    class="p-button-raised p-button-rounded"
+                ></button>
+            </div>
+            <p-table [value]="departments" responsiveLayout="scroll">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Department</th>
+                        <th>Employees in Office</th>
+                        <th>Employees on Leave</th>
+                        <th>Minimum Number for Department</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-department>
+                    <tr>
+                        <td>{{ department.departmentName }}</td>
+                        <td>{{ department.activeEmployees }}</td>
+                        <td>{{ department.numOfEmployeesOnLeave }}</td>
+                        <td>{{ department.numOfEmployees }}</td>
+
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>

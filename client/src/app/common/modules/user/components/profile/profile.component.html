@@ -1,0 +1,115 @@
+<div
+    class="layout-rightmenu"
+    [ngClass]="{ 'layout-rightmenu-active': appMain.rightMenuActive }"
+    (click)="appMain.onRightMenuClick($event)"
+>
+    <!-- <div class="flex justify-content-between">
+        <a
+            (click)="appMain.rightMenuActive = false"
+            class="layout-rightmenu-store"
+            [routerLink]="['/store/select']"
+        >
+            <i class="pi pi-building"></i>
+            Switch Store
+        </a>
+        <a
+            href="#"
+            (click)="appMain.rightMenuActive = false"
+            class="layout-rightmenu-close"
+        >
+            <i class="pi pi-times"></i>
+        </a>
+    </div> -->
+
+    <div class="user-detail-wrapper">
+        <div class="user-detail-content">
+            <img
+                src="../../../../../../assets/demo/images/avatar/angel.png"
+                alt="profile"
+                class="user-image"
+                style="width: 103px; height: 104px; border-radius: 50%"
+            />
+            <span class="user-name"
+                >{{ employee?.firstName }}
+                <i
+                    class="pi pi-pencil text-primary"
+                    (click)="isEdit = true"
+                ></i>
+            </span>
+           
+            <!-- <span class="user-name"
+                >{{ user?.fullname }}
+                <i
+                    class="pi pi-pencil text-primary"
+                    (click)="isEdit = true"
+                ></i>
+            </span>
+            <span class="user-number">{{ user?.authItems[0]?.value }}</span>
+        </div>
+        <div class="user-tasks">
+            <p-tag
+                [value]="role"
+                *ngFor="let role of user?.roles"
+                class="mb-1 mr-1"
+            >
+            </p-tag>
+        </div> -->
+        </div>
+        <div class="user-detail-wrapper" *ngIf="isEdit">
+            <span class="user-name"> Edit Profile </span>
+            <div class="mt-4 field-space-btwn">
+                <form [formGroup]="createUserForm">
+                    <formly-form
+                        [form]="createUserForm"
+                        [fields]="userFormlyFields"
+                        [model]="userDetailsModel"
+                    >
+                    </formly-form>
+                </form>
+            </div>
+            <div class="form-actions text-right mt-4">
+                <button
+                    pButton
+                    icon="pi pi-times"
+                    label="Cancel"
+                    (click)="isEdit = false"
+                    class="p-button-outlined mb-2 mr-2"
+                ></button>
+                <button
+                    pButton
+                    icon="pi pi-plus"
+                    label="Save"
+                    (click)="updateUser()"
+                    class="p-button-outlined mb-2 mr-2"
+                    [disabled]="createUserForm.invalid"
+                ></button>
+            </div>
+        </div>
+    </div>
+
+    <p-tabView>
+        <p-tabPanel header="Notifications">
+            <!-- notifcation -->
+            <!-- <app-notification-list></app-notification-list> -->
+
+        </p-tabPanel>
+        <p-tabPanel header="Invites">
+
+
+            
+
+
+
+
+        </p-tabPanel>
+    </p-tabView>
+
+
+        <p-tabView>
+            <p-tabPanel header="Notifications">
+                <!-- <app-notification-list></app-notification-list> -->
+            </p-tabPanel>
+            <p-tabPanel header="Invites"> </p-tabPanel>
+        </p-tabView>
+    </div>
+

@@ -1,0 +1,70 @@
+@media (min-width: $tabletBreakpoint + 1) {
+    .layout-wrapper {
+        &.layout-static {
+            .menu-button {
+                width: 32px;
+                height: 32px;
+                line-height: 35px;
+                margin-left: 30px;
+                text-align: center;
+                border-radius: 6px;
+                background-color: $topbarIconBg;
+                color: $topbarTextColor;
+                @include transition(color .3s);
+
+                &:hover {
+                    color: $topbarTextHoverColor;
+                }
+
+                i {
+                    font-size: 1.25rem;
+                }
+            }
+
+            .layout-menu-wrapper {
+                position: fixed;
+                transition: transform $animationDuration $animationTimingFunction;
+
+                .layout-menu-container {
+                    ul {
+                        .layout-root-menuitem {
+                            > a {
+                                display: none;
+                            }
+                        }
+                    }
+
+                    .layout-menu {
+                        > li {
+                            margin-bottom: 2.25rem;
+                        }
+
+                        li {
+                            a {
+                                border-left: 8px solid transparent;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .layout-main {
+                margin-left: $menuWidth;
+
+                .layout-main-content {
+                    padding-top: 20px;
+                }
+            }
+
+            &.layout-static-inactive {
+                .layout-menu-wrapper {
+                    transform: translateX(-100%);
+                }
+
+                .layout-main {
+                    margin-left: 0;
+                }
+            }
+        }
+    }
+}

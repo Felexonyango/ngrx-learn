@@ -1,0 +1,28 @@
+<div class="animated fadeIn">
+
+  <div class="modal-header">
+    <h4 class="modal-title">{{file?.fileName}}</h4>
+    <button type="button" class="close" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <div *ngIf="!imageToShow">
+      Loading...
+    </div>
+
+    <img
+      [src]="imageToShow"
+      alt="image"
+      style="width: 100%; height: auto;"
+      *ngIf="imageToShow"
+    >
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" >Close</button>
+  </div>
+
+</div>
+

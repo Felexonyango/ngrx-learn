@@ -1,0 +1,107 @@
+<div class="card">
+  <div class="grid">
+    <div class="col-12 md:col-6">
+      <div class="card">
+        <img
+          [src]="getSantizeUrl(imageToShow)"
+          alt="image"
+          style="width: 100%; height: 200px; border-radius: 50%; width: 200px"
+          *ngIf="imageToShow"
+        />
+
+        <p class="text-start">
+          {{ ileave?.appliedBy?.firstName }} {{ ileave?.appliedBy?.lastName }}
+        </p>
+      </div>
+    </div>
+    <div class="col-12 md:col-6">
+      <p-card>
+        <div class="flex justify-content-between">
+          <div class="col-3">
+            <h6>Years with us</h6>
+            <h6
+              class="text-center justify-content-center text-primary text-4xl"
+            >
+              {{ leave?.yearsToDate }}
+            </h6>
+          </div>
+          <div class="col-3">
+            <h6>Leave Balance</h6>
+            <h6
+              class="text-center justify-content-center text-primary text-4xl"
+            >
+              {{ leave?.leaveBalance }}
+            </h6>
+          </div>
+          <div class="col-3">
+            <h6>Leave Consumed</h6>
+            <h6
+              class="text-center justify-content-center text-primary text-4xl"
+            >
+              {{ leave?.leavesConsumed }}
+            </h6>
+          </div>
+        </div>
+      </p-card>
+    </div>
+  </div>
+
+  <div class="flex justify-content-between col-7">
+    <div class="block">
+      <h5 class="text-primary">{{ ileave?.typeOfLeave?.leaveType }}</h5>
+    </div>
+
+    <div class="block">
+      <h5 class="text-primary">{{ ileave?.status }}</h5>
+    </div>
+  </div>
+
+  <div>
+    <div class="flex">
+      <div class="col-5">
+        <p-card
+          [style]="{
+            height: '100px',
+            width: '18rem'
+          }"
+          header="Start Date"
+        >
+          <p class="text-primary">{{ ileave?.startDate | date }}</p>
+        </p-card>
+      </div>
+
+      <div class="col">
+        <p-card
+          [style]="{
+            height: '100px',
+            width: '18rem'
+          }"
+          header="End Date"
+        >
+          <p class="text-primary"></p>
+          <p class="text-primary">{{ ileave?.endDate | date }}</p>
+        </p-card>
+      </div>
+    </div>
+
+    <div class="col-8 mt-5">
+      <p-card header="Description" [style]="{'margin-bottom': '2em'}">
+        <p>{{ ileave?.comment }}</p>
+      </p-card>
+
+      <form [formGroup]="noteForm" (ngSubmit)="submitNote()">
+        <formly-form [model]="model" [fields]="fields" [form]="noteForm">
+        </formly-form>
+      </form>
+
+      <button
+        type="button"
+        pButton
+        label="Add Note"
+        class="md-raised md-primary"
+        (click)="submitNote()"
+        [disabled]="noteForm.invalid"
+      ></button>
+    </div>
+  </div>
+</div>

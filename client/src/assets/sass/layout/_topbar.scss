@@ -1,0 +1,185 @@
+.layout-topbar {
+    z-index: 100;
+    border-radius: 0 0 20px 20px;
+    padding: 0 10px;
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 4em;
+    align-items: center;
+    justify-content: space-between;
+
+    .layout-topbar-left {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+
+        .logo {
+            margin-left: 20px;
+
+            img {
+                height: 2rem;
+            }
+        }
+
+        .app-name {
+            margin-left: 9px;
+            height: 1.714rem;
+        }
+
+        .topbar-menu-button {
+            width: 32px;
+            height: 32px;
+            line-height: 35px;
+            margin-left: 20px;
+            text-align: center;
+            border-radius: 6px;
+            background-color: $topbarIconBg;
+            color: $topbarTextColor;
+            @include transition(color .3s);
+
+            &:hover {
+                color: $topbarTextHoverColor;
+            }
+
+            i {
+                font-size: 1.25rem;
+            }
+        }
+    }
+
+    .layout-topbar-right {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+
+        .layout-topbar-right-items {
+            list-style-type: none;
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: center;
+            height: 100%;
+
+            > li {
+                display: flex;
+                align-items: center;
+                position: relative;
+
+                > a {
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    color: $topbarTextColor;
+                    background-color: $topbarIconBg;
+                    width: 36px;
+                    height: 36px;
+                    margin: 0 0.4rem;
+                    padding: .75rem .5rem;
+                    border-radius: $borderRadius;
+
+                    &:hover {
+                        color: $topbarTextHoverColor;
+                        background-color: $topbarIconHoverBg;
+                    }
+
+                    .topbar-icon {
+                        font-size: 1.5rem;
+                        @include transition(color .3s);
+                    }
+
+                    .topbar-item-name {
+                        display: none;
+                    }
+
+                    .topbar-badge {
+                        position: absolute;
+                        right: 2px;
+                        top: 2px;
+                        background-color: $primaryColor;
+                        color: $primaryTextColor;
+                        padding: 2px 4px;
+                        display: block;
+                        font-size: 11px;
+                        line-height: 10px;
+                        @include border-radius($borderRadius);
+                    }
+                }
+
+                &.profile-item {
+                    margin-right: 20px;
+
+                    > a {
+                        background-color: transparent;
+                        padding: 0;
+
+                        img {
+                            width: 32px;
+                            height: 32px;
+                        }
+                    }
+                }
+
+                > ul {
+                    position: absolute;
+                    top: 56px;
+                    right: 0;
+                    display: none;
+                    min-width: 12rem;
+                    animation-duration: .5s;
+                    list-style-type: none;
+                    margin: 0;
+                    z-index: 1;
+                    padding: 8px 0;
+                    border-radius: 6px;
+                    background: $topbarSubmenuBg;
+
+                    a {
+                        padding: 10px;
+                        display: block;
+                        width: 100%;
+                        box-sizing: border-box;
+                        color: $textSecondaryColor;
+
+                        i {
+                            margin-right: 8px;
+                        }
+
+                        img {
+                            margin-right: 8px;
+                        }
+
+                        i, img, span {
+                            vertical-align: middle;
+                        }
+
+                        &:hover {
+                            color: $textColor;
+                            background-color: $topbarSubmenuItemHoverBgColor;
+                        }
+                    }
+                }
+
+                &.active-topmenuitem {
+                    > ul {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: $tabletBreakpoint) {
+    .layout-wrapper {
+        .layout-topbar {
+            padding: 0;
+
+            .layout-topbar-left {
+                .app-name {
+                    height: 0.714em;
+                }
+            }
+        }
+    }
+}

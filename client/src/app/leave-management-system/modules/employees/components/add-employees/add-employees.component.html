@@ -1,0 +1,53 @@
+<div class="grid">
+  <div class="col-3">
+    <p-fileUpload name="file[]" [customUpload]="true" (uploadHandler)="uploaduserImage()"
+      (onSelect)="selectedFiles($event)">
+    </p-fileUpload>
+  </div>
+ 
+  <div class="col-9">
+    <!-- <p-steps [model]="items" [readonly]="true"></p-steps> -->
+    <div class="card">
+      <p-steps [model]="items" [readonly]="false"></p-steps>
+    </div>
+    <div  *ngIf="activeIndex === 0">
+
+      <div>
+        <h6> Onboarding Info</h6>
+
+      </div>
+
+      <form [formGroup]="addEmployeeForm">
+        <formly-form [model]="model" [fields]="fields" [options]="options" [form]="addEmployeeForm">
+
+        </formly-form>
+
+      </form>
+      <p-button label="Next" (onClick)="nextForm()" icon="pi pi-angle-right" iconPos="right"></p-button>
+    </div>
+    <div  *ngIf="activeIndex === 1">
+      <div>
+        <h6> Bank Info</h6>
+      </div>
+      <form [formGroup]="bankInfoForm">
+        <formly-form [model]="bankInfoModel" [fields]="bankInfoFields" [options]="bankInfoOptions"
+          [form]="bankInfoForm">
+
+        </formly-form>
+
+      </form>
+      <div class="grid">
+        <div class="col-6">
+          <p-button label="Back" (onClick)="backForm()" icon="pi pi-angle-left" iconPos="left"></p-button>
+        </div>
+        <div class="col-6">
+          <button (click)="createEmployee()" label="Add Employee" pButton type="button" icon="pi pi-plus">
+          </button>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,111 @@
+<div class="grid">
+  <div class="col-12">
+    <div class="card widget-visitor-graph">
+      <div class="card-header">
+        <p>
+          <small>{{ errorMessage }}</small>
+        </p>
+        <h5>Company Holidays</h5>
+
+        <p-dialog
+          header="New Holiday"
+          [(visible)]="displayHoliday"
+          [modal]="true"
+          [style]="{width: '50vw'}"
+        >
+          <p class="text-orange-500">{{ errorMessage }}</p>
+          <ng-template pTemplate="header">
+            <p>Add a new company holiday</p>
+          </ng-template>
+          <form [formGroup]="holidayForm">
+            <formly-form
+              [model]="holidayModel"
+              [fields]="holidayFields"
+              [form]="holidayForm"
+            ></formly-form>
+          </form>
+          <ng-template pTemplate="footer">
+            <button
+              pButton
+              type="button"
+              class="p-button-raised"
+              [label]="isEdit ? 'Edit Company Holiday' : 'Add Company Holiday'"
+              (click)="addHoliday()"
+              [disabled]="holidayForm.invalid"
+            ></button>
+          </ng-template>
+        </p-dialog>
+        <button
+          pButton
+          type="button"
+          icon="pi pi-plus"
+          (click)="showDialog2()"
+          class="p-button-raised p-button-rounded"
+          *ngIf="holidays.length !== 0"
+        ></button>
+      </div>
+      <div class="graph-content grid" *ngIf="holidays.length !== 0">
+        <div class="col-8 mx-auto">
+          <div class="card">
+            <p-table
+              [value]="holidays"
+              responsiveLayout="scroll"
+              [rowHover]="true"
+              paginator="true"
+              styleClass="p-datatable-gridlines"
+              [rows]="10"
+            >
+              <ng-template pTemplate="header">
+                <tr>
+                  <th>Holiday</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                  <th>Action</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-holiday>
+                <tr>
+                  <td>{{ holiday.name }}</td>
+                  <td>{{ holiday.startDate | date }}</td>
+                  <td>{{ holiday.endDate | date }}</td>
+                  <td>
+                    <div class="flex">
+                      <button
+                        pButton
+                        type="button"
+                        icon="pi pi-pencil"
+                        class="mr-2 text-xs"
+                        (click)="updateHolidayModal(holiday?._id)"
+                      ></button>
+                      <button
+                        pButton
+                        type="button"
+                        icon="pi pi-trash"
+                        class="p-button-danger"
+                        iconPos="left"
+                        (click)="deleteHoliday(holiday._id)"
+                      ></button>
+                    </div>
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+        </div>
+      </div>
+      <div class="graph-content grid text-center" *ngIf="holidays.length === 0">
+        <div class="col-12">
+          <h5>No company holidays</h5>
+          <button
+            pButton
+            type="button"
+            [label]="isEdit ? 'Edit Company Holiday' : 'New Company Holiday'"
+            icon="pi pi-plus"
+            (click)="showDialog2()"
+            class="p-button-raised"
+          ></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

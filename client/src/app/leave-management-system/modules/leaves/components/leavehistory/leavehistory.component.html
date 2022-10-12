@@ -1,0 +1,135 @@
+<div class="card">
+  <div class="grid">
+    <div class="col-12 md:col-6">
+      <div class="card">
+        <div *ngIf="!imageToShow">
+          {{ initials }}
+        </div>
+        <!-- <p-avatar [label]="initials" styleClass="mr-2" size="xlarge" shape="circle"></p-avatar> -->
+
+        <img
+          [src]="getSantizeUrl(imageToShow)"
+          alt="image"
+          style="width: 100%; height: 200px; border-radius: 50%; width: 200px"
+          *ngIf="imageToShow"
+        />
+
+        <p class="text-start">
+          {{ employee?.firstName }} {{ employee?.lastName }}
+        </p>
+      </div>
+    </div>
+
+    <div class="col-12 md:col-6" *ngIf="Ileaves.length !== 0">
+      <p-card>
+        <div class="flex justify-content-between">
+          <div class="col-3">
+            
+            <h6>Years  with us</h6>
+            <h6
+              class="text-center justify-content-center text-primary text-4xl"
+            >
+              {{ leave?.yearsToDate }}
+            </h6>
+          </div>
+          <div class="col-3">
+            <h6>Leave Balance</h6>
+            <h6
+              class="text-center justify-content-center text-primary text-4xl"
+            >
+              {{ leave?.leaveBalance }}
+            </h6>
+          </div>
+          <div class="col-3">
+            <h6>Leave Consumed</h6>
+            <h6
+              class="text-center justify-content-center text-primary text-4xl">
+              {{ leave?.leavesConsumed }}
+            </h6>
+          </div>
+        </div>
+      </p-card>
+    </div>
+  </div>
+
+  <div *ngIf="Ileaves.length !== 0">
+    <p-card>
+      <p-table
+        [value]="Ileaves"
+        responsiveLayout="scroll"
+        [rowHover]="true"
+        [paginator]="true"
+        styleClass="p-datatable-gridlines"
+        [rows]="5"
+        selectionMode="single"
+      >
+        <ng-template pTemplate="header">
+          <tr class="header">
+            <th>Leave Type</th>
+            <th>Leave Duration</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Leave Status</th>
+            <th>Action</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-leave let-columns="columns">
+          <tr>
+            <td (click)="handleSelect(leave?._id)" >{{ leave?.typeOfLeave?.leaveType }}</td>
+            <td (click)="handleSelect(leave?._id)">{{ leave?.requested }} days</td>
+            <td (click)="handleSelect(leave?._id)">{{ leave?.startDate | date }}</td>
+            <td (click)="handleSelect(leave?._id)">{{ leave?.endDate | date }}</td>
+            <td class="text-primary">{{ leave?.status }}</td>
+            <td class=" ">
+              <div *ngIf="leave?.status == 'PENDING'">
+                <button
+                  pButton
+                  type="button"
+                  label="Update"
+                  (click)="updateLeave(leave?._id)"
+                  class="mr-2"
+                ></button>
+                <button
+                  pButton
+                  type="button"
+                  pRipple
+                  label="Delete"
+                  class="p-button-danger mr-2"
+                  (click)="deleteLeaveDialog(leave?._id)"
+                ></button>
+
+                <p-dialog header="Confirm" [(visible)]="display">
+                  Are you sure you want to delete leave?
+                  <ng-template pTemplate="footer">
+                    <button
+                      pButton
+                      type="button"
+                      pRipple
+                      label="Delete"
+                      class="p-button-danger"
+                      (click)="deleteLeave(leave?._id)"
+                    ></button>
+                    <button
+                      pButton
+                      type="button"
+                      pRipple
+                      label="Cancel"
+                      class="p-button-success"
+                      (click)="cancelDeleteLeaveDialog()"
+                    ></button>
+                  </ng-template>
+                </p-dialog>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-card>
+  </div>
+  <div
+    class="card widget-vistor-graph text-center"
+    *ngIf="Ileaves.length === 0"
+  >
+    <h4>You have no available leaves</h4>
+  </div>
+</div>

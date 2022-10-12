@@ -1,0 +1,58 @@
+<div
+    [ngClass]="{
+        'layout-inline-menu': true,
+        'layout-inline-menu-active': appMain.activeInlineProfile
+    }"
+    *ngIf="
+        !appMain.isMobile() &&
+        (appMain.isStatic() || appMain.isSlim() || appMain.isSidebar())
+    "
+>
+    <a
+        class="layout-inline-menu-action"
+        (click)="appMain.activeInlineProfile = !appMain.activeInlineProfile"
+    >
+        <img
+            src="assets/demo/images/avatar/angel.png"
+            alt="avatar"
+            style="width: 44px; height: 44px"
+        />
+        <span class="layout-inline-menu-text">
+            {{
+                (userProfile?.firstname || "") +
+                    " " +
+                    (userProfile?.lastname || "")
+            }}
+        </span>
+        <i class="layout-inline-menu-icon pi pi-angle-down"></i>
+    </a>
+
+    <ul
+        class="layout-inline-menu-action-panel"
+        [@inline]="
+            appMain.activeInlineProfile ? 'visibleAnimated' : 'hiddenAnimated'
+        "
+    >
+        <!-- <li
+            class="layout-inline-menu-action-item"
+            (click)="appMain.onRightMenuButtonClick()"
+        >
+            <a>
+                <i class="pi pi-user pi-fw"></i>
+                <span>Profile</span>
+            </a>
+        </li>
+        <li class="layout-inline-menu-action-item">
+            <a [routerLink]="['/store/select']">
+                <i class="pi pi-clone pi-fw"></i>
+                <span>My Stores</span>
+            </a>
+        </li> -->
+        <li class="layout-inline-menu-action-item">
+            <a (click)="logout()">
+                <i class="pi pi-power-off pi-fw"></i>
+                <span>Logout</span>
+            </a>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,51 @@
+<div class="animated fadeIn">
+   <p-fileUpload
+        name="demo[]"
+        (onUpload)="uploadFiles()"
+        multiple="multiple"
+        maxFileSize="2000000"
+    >
+        <ng-template pTemplate="content">
+            <ul *ngIf="selectedFiles?.length">
+                <li *ngFor="let file of uploadedFiles">
+                    {{ file.name }} - {{ file.size }} bytes
+                </li>
+            </ul>
+        </ng-template>
+    </p-fileUpload>
+
+</div>
+
+<!-- <ng-template #confirmCloseModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Are you sure?</h4>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
+
+        You have not uploaded all the files, do you wish to cancel the process?
+
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+
+    <button
+      class="btn btn-sibasi-primary btn-sm mr-2"
+      (click)="modal.close()"
+    >
+      <i class="fas fa-ban"></i>
+      Close
+    </button>
+
+    <button
+      class="btn btn-outline-dark btn-sm"
+      (click)="modal.close();activeModal.close()"
+    >
+      <i class="fas fa-backspace"></i>
+      Discard Upload
+    </button>
+
+  </div>
+</ng-template> -->

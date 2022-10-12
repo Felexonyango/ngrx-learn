@@ -1,0 +1,40 @@
+@import './styles.colors.scss';
+
+.p-inputtext {
+  width: 100% !important;
+  padding: 10px;
+  border: 1px solid var(--unnamed-color-e7e7e7);
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border: 1px solid #e7e7e7;
+  opacity: 1;
+}
+
+.p-dropdown {
+  width: 100% !important;
+}
+.p-table {
+  width: 100% !important;
+}
+
+@media print {
+  body * {
+    visibility: visible;
+  }
+}
+
+#circle {
+  background: lightblue;
+  border-radius: 50%;
+  width: fit-content;
+  height: fit-content;
+}
+
+// **********************avatar*****************************
+.p-avatar.p-avatar-xl {
+  width: 10rem !important;
+  height: 10rem !important;
+}
+
+.p-multiselect {
+  width: 100%;
+}

@@ -1,0 +1,127 @@
+<div class="animated fadeIn">
+    <div class="grid">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div>
+                        <div class="mt-4">
+
+                            <p-table [value]="files" #filesTable     responsiveLayout="stack" dataKey="id"
+                            [globalFilterFields]="['fileName']">
+                                <ng-template pTemplate="caption">
+                                    <div class="grid">
+                                        <div class="sm:col-6">
+                                            <button pButton
+
+                                                pButton
+                                                icon="pi pi-plus"
+                                                label="Add"
+                                                (click)="openUploadFileModal()"
+                                                class="p-button-outlined mb-2 mr-2"
+                                            ></button>
+
+
+                                            <button pButton
+                                                pButton
+                                                label="Clear"
+                                                class="p-button-outlined mb-2"
+                                                icon="pi pi-filter-slash"
+                                                (click)="clearSearch()"
+                                                [disabled]="!searchText"
+                                            ></button>
+                                        </div>
+
+                                        <div class="sm:col-6 text-right">
+                                            <span
+                                                class="p-input-icon-left mb-2"
+                                            >
+                                                <i class="pi pi-search"></i>
+                                                <input
+                                                    pInputText
+                                                    class="p-inputtext p-component p-element w-full"
+                                                    #search
+                                                    type="text"
+                                                    placeholder="Search... "
+                                                    [(ngModel)]="searchText"
+                                                    (keyup.enter)="
+                                                        searchOnEnter(
+                                                            search.value
+                                                        )
+                                                    "
+                                                />
+                                            </span>
+
+                                            <button pButton
+                                                pButton
+                                                class="p-button-outlined mb-2"
+                                                icon="pi pi-search"
+                                                (click)="getSearchResults()"
+                                                *ngIf="searchText"
+                                            ></button>
+                                        </div>
+                                    </div>
+                                </ng-template>
+
+                                <ng-template pTemplate="header">
+                                    <tr>
+
+                                        <th
+                                            *ngFor="let column of tableColumns"
+                                            [pSortableColumn]="
+                                                column?.fieldName
+                                            "
+                                        >
+                                            {{ column?.displayName }}
+                                            <p-sortIcon
+                                                [field]="column?.fieldName"
+                                            ></p-sortIcon>
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </ng-template>
+
+                                <ng-template pTemplate="body" let-item>
+                                    <tr
+                                        class="table-row-clickable p-selectable-row"
+                                    >
+                                    <td>
+                                        {{ file?.fileName }}
+                                      </td>
+                                      <td>
+                                        {{ checkIfFileIsImage(file?.fileType) ? "Image" : "Document" }}
+                                      </td>
+                                      <td style="width: 20%">
+                                        <button pButton
+                                          class="btn btn-outline-dark btn-sm"
+                                          (click)="
+                                            checkIfFileIsImage(file?.fileType)
+                                              ? openImageModal(file)
+                                              : openPDFFile(file)
+                                          "
+                                        >
+                                          <i class="far fa-eye"></i>
+                                        </button>
+                                        <button pButton
+                                          class="btn btn-outline-dark btn-sm"
+                                          (click)="downloadFile(file)"
+                                        >
+                                          <i class="fas fa-download"></i>
+                                        </button>
+                                        <button pButton
+                                          class="btn btn-outline-dark btn-sm"
+                                          (click)="openDialog(file)"
+                                          *ngIf="authService.doesHaveRole('SYSADMIN')"
+                                        >
+                                          <i class="far fa-trash-alt"></i>
+                                        </button>
+                                      </td>
+                                    </tr>
+                                </ng-template>
+                            </p-table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

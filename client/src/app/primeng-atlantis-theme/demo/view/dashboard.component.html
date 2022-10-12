@@ -1,0 +1,413 @@
+<div class="layout-dashboard">
+    <div class="grid">
+        <div class="col-12 md:col-4">
+            <div class="card widget-overview-box widget-overview-box-1">
+                <span class="overview-title">
+                    CONVERSATION RATE
+                </span>
+                <div class="flex justify-content-between">
+                    <div class="overview-detail flex justify-content-between">
+                        <div class="overview-badge flex justify-content-center align-items-center">
+                            <i class="pi pi-arrow-down"></i>
+                            <span>0.6%</span>
+                        </div>
+                        <div class="overview-text">
+                            0.81%
+                        </div>
+                    </div>
+                </div>
+                <img src="assets/layout/images/dashboard/rate.svg">
+            </div>
+        </div>
+        <div class="col-12 md:col-4">
+            <div class="card widget-overview-box widget-overview-box-2">
+                <span class="overview-title">
+                    AVG. ORDER VALUE
+                </span>
+                <div class="flex justify-content-between">
+                    <div class="overview-detail flex justify-content-between">
+                        <div class="overview-badge flex justify-content-center align-items-center">
+                            <i class="pi pi-arrow-up"></i>
+                            <span>4,2%</span>
+                        </div>
+                        <div class="overview-text">
+                            $306.2
+                        </div>
+                    </div>
+                </div>
+                <img src="assets/layout/images/dashboard/value.svg">
+            </div>
+        </div>
+        <div class="col-12 md:col-4">
+            <div class="card widget-overview-box widget-overview-box-3">
+                <span class="overview-title">
+                    ORDER QUANTITY
+                </span>
+                <div class="flex justify-content-between">
+                    <div class="overview-detail flex justify-content-between">
+                        <div class="overview-badge flex justify-content-center align-items-center">
+                            <i class="pi pi-minus"></i>
+                            <span>2,1%</span>
+                        </div>
+                        <div class="overview-text">
+                            1,620
+                        </div>
+                    </div>
+                </div>
+                <img src="assets/layout/images/dashboard/quantity.svg">
+            </div>
+        </div>
+
+        <div class="col-12 md:col-8">
+            <div class="card widget-visitor-graph">
+                <div class="card-header">
+                    <span>Unique visitor graph</span>
+                    <p-dropdown [options]="visitorYear" [(ngModel)]="selectedVisitorYear" optionLabel="name" (onChange)="changeVisitorChart($event); visitor.refresh()"></p-dropdown>
+                </div>
+
+                <div class="graph-content grid">
+                    <div class="col-12 md:col-6">
+                        <h2>{{growth}}</h2>
+                        <h6>MRR GROWTH</h6>
+                        <p>Measure how fast you’re growing mothly recurring revenue. <a href="#">Learn more</a></p>
+                    </div>
+                    <div class="col-12 md:col-6">
+                        <h2>{{avgCustomer}}</h2>
+                        <h6>AVG. MRR/CUSTOMER</h6>
+                        <p>The revenue generated per account on a monthly or yearly basis. <a href="#">Learn more</a></p>
+                    </div>
+                </div>
+
+                <div class="graph">
+                    <h6>Revenue</h6>
+
+                    <p-chart #visitor type="bar" [data]="visitorChart" [options]="visitorChartOptions" id="visitor-chart"></p-chart>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 md:col-4">
+            <div class="card widget-timeline">
+                <div class="timeline-header flex justify-content-between align-items-center">
+                    <p>Transaction history</p>
+                    <div class="header-icons">
+                        <i class="pi pi-refresh"></i>
+                        <i class="pi pi-filter"></i>
+                    </div>
+                </div>
+                <div class="timeline-content">
+                    <p-timeline [value]="timelineEvents" styleClass="custimized-timeline">
+                        <ng-template pTemplate="marker" let-event>
+                            <span class="custom-marker" [style.backgroundColor]="event.iconColor">
+                                <i [ngClass]="event.icon"></i>
+                            </span>
+                        </ng-template>
+                        <ng-template pTemplate="content" let-event>
+                            <div class="flex align-items-center justify-content-between">
+                                <p>{{event.transaction}}</p>
+                                <h6 [style.color]="event.amountColor">{{event.amount}}</h6>
+                            </div>
+                            <span>{{event.date}}</span>
+                        </ng-template>
+                    </p-timeline>
+                </div>
+                <div class="timeline-footer flex align-items-center justify-content-center">
+                    <a href="#">View all transactions <i class="pi pi-arrow-down"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 md:col-4">
+            <div class="card widget-country-graph">
+                <div class="country-title">Country distrubutions</div>
+                <div class="country-graph">
+                    <div class="flex justify-content-center">
+                        <p-chart type="doughnut" id="country-chart" [data]="countryChart" [options]="countryChartOptions" [style]="{'width': '75%'}"></p-chart>
+                    </div>
+                </div>
+                <div class="country-content">
+                    <ul>
+                        <li class="flex justify-content-between align-items-center">
+                            <div class="flex justify-content-between align-items-center">
+                                <div class="color" style="background-color: #00D0DE; box-shadow: 0px 0px 10px rgba(0, 208, 222, 0.3);"></div>
+                                <span>United States of America</span>
+                            </div>
+                            <span>25%</span>
+                        </li>
+                        <li class="flex justify-content-between align-items-center">
+                            <div class="flex justify-content-between align-items-center">
+                                <div class="color" style="background-color: #873EFE; box-shadow: 0px 0px 10px rgba(135, 62, 254, 0.3)"></div>
+                                <span>China</span>
+                            </div>
+                            <span>20%</span>
+                        </li>
+                        <li class="flex justify-content-between align-items-center">
+                            <div class="flex justify-content-between align-items-center">
+                                <div class="color" style="background-color: #FC6161; box-shadow: 0px 0px 10px rgba(252, 97, 97, 0.3)"></div>
+                                <span>Japan</span>
+                            </div>
+                            <span>17%</span>
+                        </li>
+                        <li class="flex justify-content-between align-items-center">
+                            <div class="flex justify-content-between align-items-center">
+                                <div class="color" style="background-color: #EEE500; box-shadow: 0px 0px 10px rgba(238, 229, 0, 0.3)"></div>
+                                <span>Australia</span>
+                            </div>
+                            <span>15%</span>
+                        </li>
+                        <li class="flex justify-content-between align-items-center">
+                            <div class="flex justify-content-between align-items-center">
+                                <div class="color" style="background-color: #EC4DBC; box-shadow: 0px 0px 10px rgba(236, 77, 188, 0.3)"></div>
+                                <span>India</span>
+                            </div>
+                            <span>10%</span>
+                        </li>
+                        <li class="flex justify-content-between align-items-center">
+                            <div class="flex justify-content-between align-items-center">
+                                <div class="color" style="background-color: #0F8BFD; box-shadow: 0px 0px 10px rgba(15, 139, 253, 0.3)"></div>
+                                <span>Rusian Federation</span>
+                            </div>
+                            <span>8%</span>
+                        </li>
+                        <li class="flex justify-content-between align-items-center">
+                            <div class="flex justify-content-between align-items-center">
+                                <div class="color" style="background-color: #545C6B"></div>
+                                <span>Others</span>
+                            </div>
+                            <span>5%</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 md:col-8">
+            <div class="card widget-revenue-graph">
+                <div class="card-header">
+                    <span>Montly revenue</span>
+                    <p-dropdown [options]="revenueMonth" [(ngModel)]="selectedRevenueMonth" optionLabel="name" (onChange)="changeRevenueChart($event); revenue.refresh()"></p-dropdown>
+                </div>
+
+                <div class="graph">
+                    <p-chart #revenue type="line" id="revenue-chart" [data]="revenueChart" [options]="revenueChartOptions"></p-chart>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 md:col-8">
+            <div class="card widget-table">
+                <div class="card-header">
+                    <span>Yearly win</span>
+                    <p-dropdown [options]="orderYear" [(ngModel)]="selectedOrderYear" optionLabel="name" (onChange)="recentSales($event)"></p-dropdown>
+                </div>
+                <p-table #dt [value]="customersTable" [(selection)]="selectedCustomers1" dataKey="id"
+                         styleClass="p-datatable-customers" [rowHover]="true" [rows]="10" [paginator]="true">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th pSortableColumn="representative.name">
+                                <div class="flex justify-content-between align-items-center">
+                                    Agent
+                                    <p-sortIcon field="representative.name"></p-sortIcon>
+                                </div>
+                            </th>
+                            <th pSortableColumn="country.name">
+                                <div class="flex justify-content-between align-items-center">
+                                    Country
+                                    <p-sortIcon field="country.name"></p-sortIcon>
+                                </div>
+                            </th>
+                            <th pSortableColumn="date">
+                                <div class="flex justify-content-between align-items-center">
+                                    Date
+                                    <p-sortIcon field="date"></p-sortIcon>
+                                </div>
+                            </th>
+                            <th pSortableColumn="balance">
+                                <div class="flex justify-content-between align-items-center">
+                                    Balance
+                                    <p-sortIcon field="balance"></p-sortIcon>
+                                </div>
+                            </th>
+                            <th></th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-customer>
+                        <tr class="p-selectable-row">
+                            <td>
+                                <span class="p-column-title">Representative</span>
+                                <img [alt]="customer.representative.name"
+                                     src="assets/demo/images/avatar/{{customer.representative.image}}" width="24"
+                                     style="vertical-align: middle"/>
+                                <span class="image-text" style="margin-left: .5em;vertical-align: middle">{{customer.representative.name}}</span>
+                            </td>
+                            <td>
+                                <span class="p-column-title">Country</span>
+                                <span class="image-text" style="margin-left: .5em;vertical-align: middle">{{customer.country.name}}</span>
+                            </td>
+                            <td>
+                                <span class="p-column-title">Date</span>
+                                {{customer.date | date: 'MM/dd/yyyy'}}
+                            </td>
+                            <td>
+                                <span class="p-column-title">Balance</span>
+                                {{customer.balance | currency:'USD':'symbol'}}
+                            </td>
+                            <td style="text-align: center">
+                                <button pButton type="button" class="p-button-text" icon="pi pi-copy"></button>
+                                <button pButton type="button" class="p-button-text" icon="pi pi-pencil"></button>
+                                <button pButton type="button" class="p-button-text" icon="pi pi-ellipsis-h"></button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+
+        <div class="col-12 md:col-4">
+            <div class="card widget-performance">
+                <div class="header">
+                    <span>Quarterly win</span>
+                    <p class="subtitle">Top performances</p>
+                </div>
+                <div class="content">
+                    <ul>
+                        <li class="person-item">
+                            <p-avatar image="assets/layout/images/dashboard/ann.png" pBadge value="1" styleClass="mr-2"></p-avatar>
+                            <div class="person-info">
+                                <div class="amount">$94,815</div>
+                                <div class="name">Ann Vaccaro</div>
+                            </div>
+                        </li>
+                        <li class="person-item">
+                            <p-avatar image="assets/layout/images/dashboard/miracle.png" pBadge value="2" styleClass="mr-2"></p-avatar>
+                            <div class="person-info">
+                                <div class="amount">$78,985</div>
+                                <div class="name">Miracle Aminoff</div>
+                            </div>
+                        </li>
+                        <li class="person-item">
+                            <p-avatar image="assets/layout/images/dashboard/kaylynn.png" pBadge value="3" styleClass="mr-2"></p-avatar>
+                            <div class="person-info">
+                                <div class="amount">$53,611</div>
+                                <div class="name">Kaylynn Geidt</div>
+                            </div>
+                        </li>
+                        <li class="person-item">
+                            <p-avatar image="assets/layout/images/dashboard/angel.png" pBadge value="4" styleClass="mr-2"></p-avatar>
+                            <div class="person-info">
+                                <div class="amount">$25,338</div>
+                                <div class="name">Angel Rosser</div>
+                            </div>
+                        </li>
+                        <li class="person-item">
+                            <p-avatar image="assets/layout/images/dashboard/cristofer.png" pBadge value="5" styleClass="mr-2"></p-avatar>
+                            <div class="person-info">
+                                <div class="amount">$15,989</div>
+                                <div class="name">Cristofer Mango</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 lg:col-8">
+            <div class="card widget-customer-graph">
+                <div class="header">
+                    <div class="title">
+                        <span>Weekly new customers</span>
+                        <p-dropdown [options]="customerYear" [(ngModel)]="selectedCustomerYear" optionLabel="name" (onChange)="changeCustomerChart($event); customer.refresh()"></p-dropdown>
+                    </div>
+                    <p class="subtitle">Number of new customer are listed by weekly</p>
+                </div>
+
+                <div class="content grid p-nogutter">
+                    <div class="col-12 md:col-6 grid">
+                        <div class="col-12 md:col-4 flex align-items-center">
+                            <h2>{{customerMax}}</h2>
+                            <p>MAX</p>
+                        </div>
+                        <div class="col-12 md:col-4 flex align-items-center">
+                            <h2>{{customerMin}}</h2>
+                            <p>MIN</p>
+                        </div>
+                        <div class="col-12 md:col-4 flex align-items-center">
+                            <h2 style="color:#FC6161">{{customerAvg}}</h2>
+                            <p>AVARAGE</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p-chart #customer type="bar" id="customer-chart" [data]="customerChart" [options]="customerChartOptions"></p-chart>
+            </div>
+        </div>
+
+        <div class="col-12 lg:col-4">
+            <div class="card widget-target">
+                <div class="card-header">
+                    <span>Weekly target</span>
+                </div>
+                <div class="content">
+                    <h3>1232 Users</h3>
+                    <span class="rate">%3.5 <i class="pi pi-arrow-up"></i><span>  than last week</span></span>
+                </div>
+                <div class="values">
+                    <div class="item">
+                        <span>51%</span>
+                        <p-progressBar [value]="51" [showValue]="false"></p-progressBar>
+                        <span class="day">Thu</span>
+                    </div>
+                    <div class="item">
+                        <span>68%</span>
+                        <p-progressBar [value]="68" [showValue]="false"></p-progressBar>
+                        <span class="day">Fri</span>
+                    </div>
+                    <div class="item">
+                        <span>74%</span>
+                        <p-progressBar [value]="74" [showValue]="false"></p-progressBar>
+                        <span class="day">Sat</span>
+                    </div>
+                    <div class="item">
+                        <span>61%</span>
+                        <p-progressBar [value]="61" [showValue]="false"></p-progressBar>
+                        <span class="day">Sun</span>
+                    </div>
+                    <div class="item success">
+                        <span>100%</span>
+                        <p-progressBar [value]="100" [showValue]="false"></p-progressBar>
+                        <span class="day">Mon</span>
+                    </div>
+                    <div class="item">
+                        <span>70%</span>
+                        <p-progressBar [value]="70" [showValue]="false"></p-progressBar>
+                        <span class="day">Tue</span>
+                    </div>
+                    <div class="item today">
+                        <span>22%</span>
+                        <p-progressBar [value]="22" [showValue]="false"></p-progressBar>
+                        <span class="day">Today</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 widget-customer-carousel">
+            <h6>Top customers</h6>
+            <p-carousel [value]="customerCarousel" [numVisible]="4" [numScroll]="1" [circular]="true" [responsiveOptions]="carouselResponsiveOptions">
+                <ng-template let-customer pTemplate="item">
+                    <div class="card mr-4">
+                        <div class="customer-item-content">
+                            <div class="mb-6">
+                                <img src="assets/layout/images/dashboard/{{customer.image}}.png" [alt]="customer.image" class="product-image" />
+                            </div>
+                            <div>
+                                <h4>{{customer.user}}</h4>
+                                <h5 class="mt-0 mb-3">{{customer.value}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-carousel>
+        </div>
+    </div>
+</div>

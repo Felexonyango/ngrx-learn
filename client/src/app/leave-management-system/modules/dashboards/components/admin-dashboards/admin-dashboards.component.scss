@@ -1,0 +1,29 @@
+.card {
+    box-shadow:  0px 3px 6px #00000029;
+}
+.leave{
+    box-shadow: 0 0px 0px 0 !important;
+    border: 1px solid #EDEDED;
+opacity: 1;
+//    box-shadow:  0px 3px 6px #00000029;
+}
+.position{
+    font-size: 11px; color: #0099FB;
+}
+.chart{
+    border: 1px solid var(--unnamed-color-e7e7e7);
+background: #FFFFFF 0% 0% no-repeat padding-box;
+border: 1px solid #E7E7E7;
+opacity: 1;
+}
+.bell{
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+.btn{
+    float:right;
+    position:absolute;
+    top:64px ;
+    right:0;
+    
+  }
