@@ -1,0 +1,131 @@
+<!-- <form class="login-form d-flex justify-content-center align-items-center flex-column"
+[formGroup]="loginForm"
+(keyup.enter)="onSubmit()"
+>
+<h2 class="auth-main-heading">Login</h2>
+<p class="text-muted">Sign In to your account</p>
+
+<div class="input-container mb-3">
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">@</span>
+    </div>
+    <input
+      type="email"
+      class="form-control"
+      placeholder="Email"
+      autocomplete="email"
+      formControlName="email"
+    >
+  </div>
+
+
+<div class="input-container mb-4">
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text"><i class="icon-lock"></i></span>
+    </div>
+    <input
+      type="password"
+      class="form-control"
+      placeholder="Password"
+      autocomplete="current-password"
+      formControlName="password"
+
+    >
+  </div>
+
+
+<div class="row w-100">
+  <div class="col-12 p-0">
+    <button
+      type="button"
+      class="btn btn-sibasi-primary px-4 w-100"
+      (click)="onSubmit()"
+    >Login</button>
+  </div>
+  <div class="col-6 p-0">
+    <button
+      type="button"
+      class="btn btn-link px-0"
+      [routerLink]="['../forgot-password']"
+    >Forgot password?</button>
+  </div>
+</div>
+</div>
+</div>
+</form> -->
+
+<div class="bg-light min-vh-100 d-flex flex-row align-items-center">
+    <c-container>
+      <c-row class="justify-content-center">
+        <c-col md="8">
+          <c-card-group>
+            <c-card class="p-4">
+              <c-card-body>
+                <form cForm 
+                 [formGroup]="loginForm"
+                (keyup.enter)="onSubmit()"
+                >
+                  <h1>Login</h1>
+                  <p class="text-medium-emphasis">Sign In to your account</p>
+                  <c-input-group class="mb-3">
+                    <span cInputGroupText>
+                      <svg cIcon name="cilUser"></svg>
+                    </span>
+                    <input
+                    type="email"
+                    class="form-control"
+                    placeholder="Email"
+                    autocomplete="email"
+                    formControlName="email"
+                  >
+                  </c-input-group>
+                  <c-input-group class="mb-4">
+                    <span cInputGroupText>
+                      <svg cIcon name="cilLockLocked"></svg>
+                    </span>
+                    <input
+                    type="password"
+                    class="form-control"
+                    placeholder="Password"
+                    autocomplete="current-password"
+                    formControlName="password"
+              
+                  >
+                  </c-input-group>
+                  <c-row>
+                    <c-col xs="6">
+                      <button cButton class="px-4" color="primary"
+                      (click)="onSubmit()">
+                        Login
+                      </button>
+                    </c-col>
+                    <c-col class="text-right" xs="6">
+                      <button cButton class="px-0" color="link">
+                        Forgot password?
+                      </button>
+                    </c-col>
+                  </c-row>
+                </form>
+              </c-card-body>
+            </c-card>
+            <c-card [ngStyle]="{'width.%': 44}" class="text-white bg-primary py-5">
+              <c-card-body class="text-center">
+                <div>
+                  <h2>Sign up</h2>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua.
+                  </p>
+                  <button [active]="true" cButton class="mt-3" color="primary" routerLink="/register">
+                    Register Now!
+                  </button>
+                </div>
+              </c-card-body>
+            </c-card>
+          </c-card-group>
+        </c-col>
+      </c-row>
+    </c-container>
+  </div>
