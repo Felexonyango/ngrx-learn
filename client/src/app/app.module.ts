@@ -11,8 +11,14 @@ import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardModule } from './pages/dashboard/dashboard.module';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { AuthModule } from './pages/auth/auth.module';
 import { NgxEchartsModule } from 'ngx-echarts';
+ import { StoreModule } from '@ngrx/store';
+import { AuthModule } from './modules/auth/auth.module';
+import { reducers } from './store/state/appState';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './store/authEffects';
+
+
 
 @NgModule({
   declarations: [
@@ -21,8 +27,8 @@ import { NgxEchartsModule } from 'ngx-echarts';
   ],
   imports: [
     BrowserModule,
-    SharedModule,
     AuthModule,
+    SharedModule,
     DashboardModule,
     BrowserAnimationsModule,
     RouterModule,
@@ -32,7 +38,14 @@ import { NgxEchartsModule } from 'ngx-echarts';
     MatButtonModule,
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts')
-    })
+    }),
+    
+    StoreModule.forRoot(reducers, {}),
+    EffectsModule.forRoot([
+      AuthEffects
+    
+    ]),
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

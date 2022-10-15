@@ -2,9 +2,11 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
-import { Email, User } from '../../../../pages/auth/models';
-import { AuthService, EmailService } from '../../../../pages/auth/services';
+
+
 import { routes } from '../../../../consts';
+import { AuthService } from 'src/app/services/auth.service';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-header',
@@ -15,16 +17,16 @@ export class HeaderComponent {
   @Input() isMenuOpened: boolean;
   @Output() isShowSidebar = new EventEmitter<boolean>();
   public user$: Observable<User>
-  public emails$: Observable<Email[]>
+ 
   public routers: typeof routes = routes;
 
   constructor(
     private userService: AuthService,
-    private emailService: EmailService,
+
     private router: Router
   ) {
-    this.user$ = this.userService.getUser();
-    this.emails$ = this.emailService.loadEmails();
+    
+  
   }
 
   public openMenu(): void {

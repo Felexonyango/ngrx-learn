@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-
-import { AuthService } from '../../services';
+import { AuthService } from 'src/app/services/auth.service';
 import { routes } from '../../../../consts';
 
 @Component({
@@ -18,15 +17,10 @@ export class AuthPageComponent {
     private router: Router
   ) { }
 
-  public sendLoginForm(): void {
-    this.service.login();
+  // public sendLoginForm(): void {
+  //   this.service.login();
 
-    this.router.navigate([this.routers.DASHBOARD]).then();
-  }
+  //   this.router.navigate([this.routers.DASHBOARD]).then();
+  // }
 
-  public sendSignForm(): void {
-    this.service.sign();
-
-    this.router.navigate([this.routers.DASHBOARD]).then();
-  }
 }

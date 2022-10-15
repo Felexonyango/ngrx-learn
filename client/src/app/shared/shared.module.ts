@@ -46,4 +46,4 @@ import { LayoutComponent } from './layout/layout.component';
     LayoutComponent
   ]
 })
-export class SharedModule { }
+export class  SharedModule { }
