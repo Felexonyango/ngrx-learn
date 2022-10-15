@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  // server_Url:'http://localhost:3000/'
+  server_Url:'https://khamobileapp.westeurope.cloudapp.azure.com:8080/'
 };
 
 /*

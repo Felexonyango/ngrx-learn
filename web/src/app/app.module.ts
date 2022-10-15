@@ -3,12 +3,14 @@ import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@a
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
-
-import {
+import {AuthEffects} from '../app/store/authEffects'
+import {reducers} from './store/state/appState'
+ import {
   PERFECT_SCROLLBAR_CONFIG,
   PerfectScrollbarConfigInterface,
   PerfectScrollbarModule,
 } from 'ngx-perfect-scrollbar';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 // Import routing module
 import { AppRoutingModule } from './app-routing.module';
@@ -46,6 +48,8 @@ import {
 
 import { IconModule, IconSetService } from '@coreui/icons-angular';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { HttpClientModule } from '@angular/common/http';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -86,7 +90,13 @@ const APP_CONTAINERS = [
     BadgeModule,
     ListGroupModule,
     CardModule,
-    StoreModule.forRoot({}, {}),
+    HttpClientModule,
+    StoreModule.forRoot(reducers, {}),
+    EffectsModule.forRoot([
+      AuthEffects
+    
+    ]),
+    StoreDevtoolsModule.instrument({maxAge: 25}),
   ],
   providers: [
     {
@@ -102,5 +112,5 @@ const APP_CONTAINERS = [
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {
+export class  AppModule {
 }
