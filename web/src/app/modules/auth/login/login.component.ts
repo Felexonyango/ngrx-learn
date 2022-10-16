@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { User } from 'src/app/model/auth';
 import { LogIn } from 'src/app/store/actions/auth.action';
-import { AppState } from 'src/app/store/state/appState';
+import { AppState, selectAuthState } from 'src/app/store/state/appState';
 
 @Component({
   selector: 'app-login',
@@ -13,13 +14,20 @@ import { AppState } from 'src/app/store/state/appState';
 export class LoginComponent implements OnInit {
 
   user:User
-  constructor(  
-    private store: Store<AppState>
-    ) { }
 
-    ngOnInit(): void {
-        
-    }
+  getState: Observable<any>;
+  errorMessage: string | null;
+
+  constructor(   private store: Store<AppState>) {
+      this.getState = this.store.select(selectAuthState);
+     }
+
+     ngOnInit() {
+      this.getState.subscribe((state) => {
+        this.errorMessage = state.errorMessage;
+      });
+    };
+
 
     loginForm = new FormGroup({
       email: new FormControl('', [Validators.required]),

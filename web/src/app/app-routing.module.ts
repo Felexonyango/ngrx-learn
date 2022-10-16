@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './modules/auth/guards/auth/auth.guard';
-
+import { AuthGuard } from './modules/auth/guards/auth.guard';
 import { DefaultLayoutComponent } from './containers';
 import { Page404Component } from './pages/page404/page404.component';
 import { Page500Component } from './pages/page500/page500.component';
-
+import {IsLoggedInGuard} from './modules/auth/isLoggedIn/is-logged-in.guard'
 const routes: Routes = [
   {
     path: '',
@@ -32,6 +31,7 @@ const routes: Routes = [
     path: 'auth',
     loadChildren: () =>
       import('./modules/auth/auth.module').then((m) => m.AuthModule),
+      canActivate: [IsLoggedInGuard]
   },
   {
     path: '',
@@ -41,7 +41,6 @@ const routes: Routes = [
     },
 
     canActivate: [AuthGuard],
-
     children: [
       {
         path: 'dashboard',
@@ -63,9 +62,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
-      scrollPositionRestoration: 'top',
-      anchorScrolling: 'enabled',
-      initialNavigation: 'enabledBlocking',
+   
       relativeLinkResolution: 'legacy'
     }),
   ],

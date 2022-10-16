@@ -13,6 +13,9 @@ export class LogIn implements Action {
     readonly type = AuthActionTypes.LOGIN_FAILURE;
     constructor(public payload: any) {}
   }
+  export class LogOut implements Action {
+    readonly type = AuthActionTypes.LOGOUT;
+  }
   
-  export type All = | LogIn |LogInSuccess | LogInFailure;
+  export type All = | LogIn |LogInSuccess | LogInFailure |LogOut;
   

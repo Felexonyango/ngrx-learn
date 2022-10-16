@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  // server_Url:'http://localhost:3000/'
-   server_Url: 'https://khamobileapp.westeurope.cloudapp.azure.com:8080'
+  server_Url:'http://localhost:3000/'
+  //  server_Url: 'https://khamobileapp.westeurope.cloudapp.azure.com:8080'
 };
 
 /*

@@ -5,6 +5,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import {AuthEffects} from '../app/store/authEffects'
 import {reducers} from './store/state/appState'
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ErrorInterceptor, TokenInterceptor } from './modules/auth/Interceptors/Interceptor';
+
  import {
   PERFECT_SCROLLBAR_CONFIG,
   PerfectScrollbarConfigInterface,
@@ -50,9 +53,17 @@ import { IconModule, IconSetService } from '@coreui/icons-angular';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthGuard } from './modules/auth/guards/auth.guard';
+import { AuthService } from './services/auth.service';
+import { JwtModule } from '@auth0/angular-jwt';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
 };
+
+
+export function tokenGetter() {
+  return localStorage.getItem('jwtToken');
+}
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -96,8 +107,27 @@ const APP_CONTAINERS = [
     
     ]),
     StoreDevtoolsModule.instrument({maxAge: 25}),
+
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter
+      },
+    }),
   ],
   providers: [
+    AuthGuard,
+    AuthService,
+
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true
+    },
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy,
@@ -107,7 +137,8 @@ const APP_CONTAINERS = [
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG,
     },
     IconSetService,
-    Title
+    Title,
+    
   ],
   bootstrap: [AppComponent],
 })

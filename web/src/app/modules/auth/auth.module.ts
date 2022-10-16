@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { IconModule } from '@coreui/icons-angular';
 
 
+
 @NgModule({
   declarations: [
     LoginComponent
@@ -20,7 +21,9 @@ import { IconModule } from '@coreui/icons-angular';
     IconModule,
     FormModule,
     ReactiveFormsModule,
+
     
   ]
+  
 })
 export class AuthModule { }
