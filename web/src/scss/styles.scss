@@ -10,7 +10,10 @@ $enable-rtl: true;
 
 // Import Chart.js custom tooltips styles
 @import "@coreui/chartjs/scss/coreui-chartjs";
-
+@import "~font-awesome/css/font-awesome.min.css";
+@import "../../node_modules/primeicons/primeicons.css";
+@import "../../node_modules/primeng/resources/themes/saga-blue/theme.css";
+@import "../../node_modules/primeng/resources/primeng.min.css";
 // perfect scrollbar theming for use with [perfectScrollbar] directive
 //@import '~perfect-scrollbar/css/perfect-scrollbar.css';
 
