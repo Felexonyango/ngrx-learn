@@ -4,8 +4,9 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ClassToggleService, HeaderComponent } from '@coreui/angular';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 import { LogOut } from 'src/app/store/actions/auth.action';
-import { AppState } from 'src/app/store/state/appState';
+import { AppState, selectAuthState } from 'src/app/store/state/appState';
 
 
 @Component({
@@ -13,13 +14,6 @@ import { AppState } from 'src/app/store/state/appState';
   templateUrl: './default-header.component.html',
 })
 export class DefaultHeaderComponent extends HeaderComponent {
-
-
-  getState: Observable<any>;
-  isAuthenticated: false;
-  user = null;
-  errorMessage = null;
-
 
   @Input() sidebarId: string = "sidebar";
 
@@ -29,19 +23,21 @@ export class DefaultHeaderComponent extends HeaderComponent {
 
   constructor(
     private classToggler: ClassToggleService,
-    private store: Store<AppState>
+    private authService: AuthService
     ) {
       
-    super(
-      
-    );
+    super()
+   
   }
   
   ngOnInit() {
+ 
+    
    
   }
 
-  logOut(): void {
-    this.store.dispatch(new LogOut);
+  logout(): void {
+    this.authService.logout();
   }
+
 }

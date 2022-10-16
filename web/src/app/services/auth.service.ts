@@ -47,5 +47,12 @@ export class AuthService {
       `${environment.server_Url}auth/login`,
       user
     );
+ 
+  }
+
+  logout(): void {
+    localStorage.clear();
+    this.redirectUrl = '/';
+    this.navigateByUrl('/auth/login');
   }
 }

@@ -36,6 +36,7 @@
     "@ngrx/store": "^14.3.2",
     "@ngrx/store-devtools": "^14.3.2",
     "chart.js": "^3.9.1",
+    "font-awesome": "^4.7.0",
     "ngx-perfect-scrollbar": "^10.1.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
