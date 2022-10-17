@@ -18,6 +18,12 @@ export interface State {
 
 export function reducer(state = initialState, action: All): State {
   switch (action.type) {
+  case AuthActionTypes.LOGIN:{
+    return{
+      ...state
+    }
+  }
+
     case AuthActionTypes.LOGIN_SUCCESS: {
       return {
         ...state,

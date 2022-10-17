@@ -5,6 +5,8 @@ import { DefaultLayoutComponent } from './containers';
 import { Page404Component } from './pages/page404/page404.component';
 import { Page500Component } from './pages/page500/page500.component';
 import {IsLoggedInGuard} from './modules/auth/isLoggedIn/is-logged-in.guard'
+
+
 const routes: Routes = [
   {
     path: '',
@@ -46,6 +48,12 @@ const routes: Routes = [
         path: 'dashboard',
         loadChildren: () =>
           import('./modules/dashboard/dashboard.module').then((m) => m.DashboardModule
+          ),
+      },
+      {
+        path: 'Employees',
+        loadChildren: () =>
+          import('./modules/Employees/employees.module').then((m) => m.EmployeesModule
           ),
       },
       {

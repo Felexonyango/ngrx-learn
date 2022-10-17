@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, map, mergeMap, switchMap, tap } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
 import { AuthActionTypes } from './actions/actionTypes';
 import { LogIn, LogInFailure, LogInSuccess } from './actions/auth.action';
@@ -15,12 +15,12 @@ export class AuthEffects {
     private router: Router,
   
   ) {}
-  
+
   login$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActionTypes.LOGIN),
       map((action: LogIn) => action.payload),
-      switchMap((user:User) => {
+      mergeMap((user:User) => {
         return this.authService.login(user).pipe(
           map((res: any) => {
             const token = res.result.jwtToken;
