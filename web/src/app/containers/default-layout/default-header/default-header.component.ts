@@ -6,7 +6,6 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { LogOut } from 'src/app/store/actions/auth.action';
-import { AppState, selectAuthState } from 'src/app/store/state/appState';
 
 
 @Component({

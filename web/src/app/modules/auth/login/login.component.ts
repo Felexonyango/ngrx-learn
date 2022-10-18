@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/model/auth';
 import { LogIn } from 'src/app/store/actions/auth.action';
-import { AppState, selectAuthState } from 'src/app/store/state/appState';
+import { AuthState, selectAuthState } from 'src/app/store/state/appState';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   getState: Observable<any>;
   errorMessage: string | null;
 
-  constructor(   private store: Store<AppState>) {
+  constructor(   private store: Store<AuthState>) {
       this.getState = this.store.select(selectAuthState);
      }
 

@@ -1,5 +1,5 @@
 export interface IEmployee {
-    _id?: string
+    id: number
     bankAccNumber: number
     bankName: string
     department: {

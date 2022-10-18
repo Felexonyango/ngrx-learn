@@ -1,22 +1,22 @@
 
 import { User } from '../../model/auth';
 import { AuthActionTypes } from '../actions/actionTypes';
-import { All } from '../actions/auth.action';
+import { AuthAction } from '../actions/auth.action';
 
 
-export const initialState: State = {
+export const initialState: AuthState = {
     isAuthenticated: false,
     user: null,
     errorMessage: null
   };
   
-export interface State {    
+export interface AuthState {    
   isAuthenticated: boolean;
   user: User 
   errorMessage: string | null;
 }
 
-export function reducer(state = initialState, action: All): State {
+export function authreducer(state = initialState, action:AuthAction): AuthState {
   switch (action.type) {
   case AuthActionTypes.LOGIN:{
     return{

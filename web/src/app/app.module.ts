@@ -3,7 +3,7 @@ import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@a
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
-import {AuthEffects} from '../app/store/authEffects'
+import {AuthEffects} from './store/Effects/authEffects'
 import {reducers} from './store/state/appState'
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor, TokenInterceptor } from './modules/auth/Interceptors/Interceptor';
