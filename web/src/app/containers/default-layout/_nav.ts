@@ -7,6 +7,15 @@ export const navItems: INavData[] = [
     iconComponent: { name: 'cil-speedometer' },
   
   },
+  {
+    name: 'Employees',
+    url: '/employees',
+    iconComponent: { name: 'cil-speedometer' },
+  
+  },
+
+
+
  
   
 ];

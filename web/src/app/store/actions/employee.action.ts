@@ -4,6 +4,7 @@ import { IEmployee } from '../../model/employees';
 import { Update } from '@ngrx/entity';
 export class Loademployees implements Action {
   readonly type = EmployeeActionTypes.LOAD_EMPLOYEES;
+  
 }
 export class LoademployeesSuccess implements Action {
   readonly type = EmployeeActionTypes.LOAD_EMPLOYEES_SUCCESS;

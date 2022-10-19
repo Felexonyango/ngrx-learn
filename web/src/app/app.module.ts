@@ -3,7 +3,6 @@ import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@a
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
-import {AuthEffects} from './store/Effects/authEffects'
 import {reducers} from './store/state/appState'
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor, TokenInterceptor } from './modules/auth/Interceptors/Interceptor';
@@ -51,11 +50,14 @@ import {
 
 import { IconModule, IconSetService } from '@coreui/icons-angular';
 import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
+import {AuthEffects} from './store/Effects/authEffects'
+import  {EmployeeEffect } from './store/Effects/employeEffects'
 import { HttpClientModule } from '@angular/common/http';
 import { AuthGuard } from './modules/auth/guards/auth.guard';
 import { AuthService } from './services/auth.service';
+import {EmployeeService} from './services/employees.service'
 import { JwtModule } from '@auth0/angular-jwt';
+import { EffectsModule } from '@ngrx/effects';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
 };
@@ -103,9 +105,11 @@ const APP_CONTAINERS = [
     HttpClientModule,
     StoreModule.forRoot(reducers, {}),
     EffectsModule.forRoot([
-      AuthEffects
+      AuthEffects,
+      EmployeeEffect
     
     ]),
+
     StoreDevtoolsModule.instrument({maxAge: 25}),
 
     JwtModule.forRoot({
@@ -117,6 +121,7 @@ const APP_CONTAINERS = [
   providers: [
     AuthGuard,
     AuthService,
+    EmployeeService,
 
     {
       provide: HTTP_INTERCEPTORS,

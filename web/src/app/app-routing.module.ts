@@ -51,7 +51,7 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'Employees',
+        path: 'employees',
         loadChildren: () =>
           import('./modules/Employees/employees.module').then((m) => m.EmployeesModule
           ),

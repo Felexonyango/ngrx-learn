@@ -1,6 +1,7 @@
 import * as auth from '../reducer/authReducer';
  import * as employee  from '../reducer/employeeReducer'
 import { createFeatureSelector } from '@ngrx/store';
+
 export interface AuthState {
   authState: auth.AuthState;
 }
