@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { act, Actions, createEffect, ofType } from '@ngrx/effects';
-import { Action } from '@ngrx/store';
-import { Observable, of } from 'rxjs';
-import { mergeMap, map, catchError} from 'rxjs/operators';
+import {  of } from 'rxjs';
+import { mergeMap, map, catchError, switchMap} from 'rxjs/operators';
 import {EmployeeService} from '../../services/employees.service'
 import {EmployeeActionTypes} from '../../store/actions/actionTypes'
 import { IEmployee} from '../../model/employees';
@@ -16,18 +15,18 @@ export class EmployeeEffect {
   
   loadEmployes$=createEffect(()=>this.actions$.pipe(
     ofType(EmployeeActionTypes.LOAD_EMPLOYEES),
-    mergeMap((action: EmployeeAction.Loademployees) =>
+    switchMap((action: EmployeeAction.Loademployees) =>
       this.EmployeeService.getAllEmployees().pipe(
         map((employees:IEmployee[]) =>
             new EmployeeAction.LoademployeesSuccess(employees)),
-        catchError(err => of(new EmployeeAction.Loademployeefail(err)))
+        catchError(err => of(new EmployeeAction.LoademployeesFail(err)))
       )
     )
   ))
 
   loadEmployee$= createEffect(() =>this.actions$.pipe(
     ofType(EmployeeActionTypes.LOAD_EMPLOYEE),
-    mergeMap((action:EmployeeAction.LoadEmployee)=>
+    switchMap((action:EmployeeAction.LoadEmployee)=>
     this.EmployeeService.getEmployeeByID(action.payload).pipe(
       map((employee:IEmployee) => new EmployeeAction.Loademployeesucess(employee)),
     )
@@ -38,11 +37,20 @@ export class EmployeeEffect {
    createEmployee$= createEffect(() =>this.actions$.pipe(
     ofType(EmployeeActionTypes.CREATE_EMPLOYEE),
     map((action:EmployeeAction.createemployee) =>action.payload),
-    mergeMap((employee:IEmployee) =>this.EmployeeService.createEmployee(employee).pipe(
+    switchMap((employee:IEmployee) =>this.EmployeeService.createEmployee(employee).pipe(
       map((employee:IEmployee) => new EmployeeAction.createemployeesucess(employee)),
       catchError(err => of(new EmployeeAction.createemployeefail(err)))
     ))
    ))
+
+  //  updateEmployee$= createEffect(() =>this.actions$.pipe(
+  //   ofType(EmployeeActionTypes.UPDATE_EMPLOYEE),
+  //   map((action:EmployeeAction.UpdateEmployee) =>action.payload),
+  //   switchMap((employee:IEmployee) =>this.EmployeeService.updateEmployee(employee,id).pipe(
+  //     map((employee:IEmployee) => new EmployeeAction.createemployeesucess(employee)),
+  //     catchError(err => of(new EmployeeAction.createemployeefail(err)))
+  //   ))
+  //  ))
 
 
 

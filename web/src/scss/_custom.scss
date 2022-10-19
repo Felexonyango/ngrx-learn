@@ -1,2 +1,458 @@
-// Here you can add other styles
+@import './styles.colors.scss';
 
+/******************* GENERAL SYSTEM STYLES ***********************/
+
+.btn {
+  border-radius: 0;
+}
+
+.btn-sibasi-primary {
+  color: #fff;
+  background-color: $sibasi-primary;
+  border-color: $sibasi-primary;
+
+  &.btn:hover {
+    // background-color: $sibasi-primary;
+    // border-color: $sibasi-primary;
+    filter: brightness(0.85);
+    color: #fff;
+  }
+}
+
+.btn-sibasi-secondary {
+  color: #fff;
+  background-color: $sibasi-secondary;
+  border-color: $sibasi-secondary;
+
+  &.btn:hover {
+    // background-color: $sibasi-primary;
+    // border-color: $sibasi-primary;
+    filter: brightness(0.85);
+    color: #fff;
+  }
+}
+
+.sibasi-primary {
+  color: $sibasi-primary;
+}
+
+.sibasi-secondary {
+  color: $sibasi-secondary;
+}
+
+.bg-sibasi-primary {
+  background-color: $sibasi-primary;
+  color: #fff;
+}
+
+.bg-sibasi-secondary {
+  background-color: $sibasi-secondary;
+  color: #fff;
+}
+
+.avatar {
+  border-radius: 50%;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  background: #c5cee0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 2.5rem;
+  height: 2.5rem;
+  text-align: center;
+  line-height: 2.5rem;
+  font-size: 0.875rem;
+  color: white;
+}
+
+/******************* LOGIN PAGE ***********************/
+
+@media only screen and (max-width: 600px) {
+  .card-login {
+    width: 100% !important;
+  }
+
+  .login-form {
+    width: 90% !important;
+  }
+}
+
+.card-login {
+  width: 80%;
+
+  .card {
+    margin-bottom: 0;
+  }
+
+  .card-login-message {
+    border-right: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    background: $sibasi-primary;
+
+    p {
+      width: 85%;
+    }
+  }
+
+  .auth-main-heading {
+    font-weight: 900;
+    font-size: 2em;
+  }
+
+  .card-login-form {
+    border-left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+
+    .login-form {
+      width: 70%;
+    }
+  }
+}
+
+.input-container {
+  width: 100%;
+}
+
+.bg-danger-light {
+  background-color: #dc3d4514;
+  color: #000;
+}
+
+.border-left-danger {
+  border-left: 4px solid #dc3d45 !important;
+}
+
+.bg-success-light {
+  background-color: #41a84620;
+  color: #000;
+}
+
+.border-left-success {
+  border-left: 4px solid #41A846 !important;
+}
+
+/******************* TABLE CSS *******************/
+
+.table {
+
+  th, td {
+    padding: 0.75rem;
+    font-size: 0.85em !important;
+    color: #000;
+    background: #fff;
+  }
+}
+
+body {
+
+  .p-multiselect {
+    width: 100%;
+
+    .p-multiselect-label {
+        font-size: 0.875rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #5c6873;
+    }
+  }
+
+  .p-datatable .p-datatable-header {
+    border: 0 !important;
+  }
+
+  .table-row-clickable {
+
+    &:hover {
+      cursor: pointer;
+      background: #000 !important;
+    }
+  }
+
+  .p-paginator {
+    justify-content: end;
+    font-size: 1em;
+  }
+
+  .-paginator-page {
+    font-size: 1em;
+  }
+
+  .p-datatable .p-datatable-thead > tr > th {
+    text-transform: capitalize;
+  }
+
+  .p-datatable .p-datatable-thead > tr > th, .p-datatable .p-datatable-tbody > tr > td {
+    padding: 0.75rem;
+    font-size: 0.85em !important;
+    color: #000;
+    background: #fff;
+  }
+
+  .p-datatable .p-datatable-header {
+    background: #fff !important;
+  }
+  .p-datatable .p-datatable-header .p-input-icon-left {
+    width: 100% !important;
+  }
+
+  .p-column-filter .p-inputtext {
+    padding: 0;
+  }
+
+  .p-datatable-header .p-inputtext {
+    padding-top: .3em;
+    padding-bottom: .3em;
+    font-size: .9em;
+    width: 100% !important;
+  }
+
+  .table-header {
+      display: flex;
+      justify-content: space-between;
+  }
+
+  .p-calendar .p-datepicker {
+      min-width: 25rem;
+
+      td {
+          font-weight: 400;
+      }
+  }
+
+  .p-datatable.p-datatable-customers {
+      .p-datatable-header {
+          padding: 1rem;
+          text-align: left;
+          font-size: 1.5rem;
+      }
+
+      .p-paginator {
+          padding: 1rem;
+      }
+
+      .p-datatable-thead > tr > th {
+          text-align: left;
+      }
+
+      .p-datatable-tbody > tr > td {
+          cursor: auto;
+      }
+
+      .p-dropdown-label:not(.p-placeholder) {
+          text-transform: uppercase;
+      }
+  }
+
+  .p-w-100 {
+      width: 100%;
+  }
+
+  /* Responsive */
+  .p-datatable-customers .p-datatable-tbody > tr > td .p-column-title {
+      display: none;
+  }
+
+  .p-calendar {
+    width: 100%;
+
+    input.p-inputtext, .p-datepicker-trigger {
+      padding: .3em;
+      font-size: 1em;
+    }
+
+    .p-datepicker td, .p-datepicker th {
+      padding: 0;
+      font-size: .9em;
+    }
+
+    .p-datepicker th {
+      padding-left: 1em;
+    }
+
+    .p-timepicker {
+      padding: 0;
+
+      span {
+        font-size: 1em;
+      }
+    }
+  }
+
+  // ****************************TAGS STYLE*****************************
+  .p-multiselect.p-multiselect-chip .p-multiselect-token {
+    padding: 0.25rem 0.5rem;
+    margin-right: 0.5rem;
+    background: RGB(0, 112, 192);
+    color: #fff;
+    border-radius: 0;
+}
+.p-multiselect-panel .p-multiselect-items .p-multiselect-item.p-highlight {
+  background: #fff;
+}
+.p-multiselect-panel .p-multiselect-header {
+  background: #fff;
+
+}
+
+// .nav-tabs .nav-link.active {
+//   border-color: #fff;
+//   border-bottom-color: blue;
+
+
+// }
+// .nav-tabs .nav-link {
+//   border-color: #fff;
+//   border-width: thin thin medium;
+// }
+// .nav-tabs {
+//   border-bottom: 1px solid #fff;
+// }
+// .nav-tabs:hover {
+//   border-bottom: 1px solid #fff;
+// }
+// .tab-content {
+//  border: 1px solid #fff;
+// }
+}
+
+@media screen and (max-width: 960px) {
+  body {
+      .p-datatable {
+          &.p-datatable-customers {
+              .p-datatable-thead > tr > th,
+              .p-datatable-tfoot > tr > td {
+                  display: none !important;
+              }
+
+              .p-datatable-tbody > tr {
+                  border-bottom: 1px solid var(--layer-2);
+
+                  > td {
+                      text-align: left;
+                      width: 100%;
+                      display: flex;
+                      align-items: center;
+                      border: 0 none;
+
+                      .p-column-title {
+                          min-width: 30%;
+                          display: inline-block;
+                          font-weight: bold;
+                      }
+
+                      p-progressbar {
+                          width: 100%;
+                      }
+
+                      &:last-child {
+                          border-bottom: 1px solid var(--surface-d);
+                      }
+                  }
+              }
+          }
+      }
+  }
+
+}
+
+// Form links
+.form-link {
+  font-size: 0.875rem !important;
+  font-weight: 400 !important;
+  line-height: 1.5 !important;
+  color: #23282c !important;
+
+  &:hover {
+    text-decoration: none !important;
+  }
+
+  &.active {
+    font-weight: 600 !important;
+    color: #6d6d6d !important;
+    border-top: 3px solid $sibasi-primary !important;
+  }
+}
+
+
+// Icon box
+
+.icon-dashboard-container {
+  display: flex;
+  justify-content: end;
+
+  .icon-dashboard {
+    color: #fff;
+    width: 50px;
+    height: 50px;
+    // padding: 12px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+// CLAMP TEXT
+
+.clamp-text-1 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.clamp-text-2 {
+  overflow: hidden !important;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.clamp-text-3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.table-row-clickable {
+  &:hover {
+    .name {
+      color: blue;
+      text-decoration: underline;
+    }
+  }
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+// MENU CSS
+
+.list-menu-items {
+
+  ul {
+    list-style: none;
+    padding: 0;
+    li {
+      display: inline;
+      padding: 1em;
+      font-weight: 600;
+      margin-right: 1em;
+      cursor: pointer;
+
+      &.active {
+        border-bottom: 2px solid $sibasi-primary;
+      }
+
+      &:hover {
+        border-bottom: 2px solid $sibasi-primary;
+      }
+    }
+  }
+
+}

@@ -7,6 +7,7 @@ import { CardModule,  SharedModule, TableModule } from '@coreui/angular';
 import {FormlyModule} from '@ngx-formly/core'
 import {ButtonModule} from 'primeng/button';
 import { AllEmployeesComponent } from './components/all-employees/all-employees.component'
+import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 
 @NgModule({
   declarations: [
@@ -22,13 +23,14 @@ import { AllEmployeesComponent } from './components/all-employees/all-employees.
     FormsModule,
     TableModule,
     SharedModule,
+    FormlyBootstrapModule ,
  
     FormlyModule.forRoot({
       validationMessages: [
         {name: 'required', message: 'This field is required'},
       ],
     }),
-   
+  
   
   ]
 })

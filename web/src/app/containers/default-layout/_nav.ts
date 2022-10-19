@@ -9,8 +9,18 @@ export const navItems: INavData[] = [
   },
   {
     name: 'Employees',
-    url: '/employees',
     iconComponent: { name: 'cil-speedometer' },
+    children:[
+      {
+        name: 'Create Employee',
+        url: 'employees/create',
+      },
+      {
+        name: 'All Employees',
+        url: 'employees/all-employees',
+      }
+    ]
+    
   
   },
 

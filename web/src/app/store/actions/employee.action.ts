@@ -22,7 +22,7 @@ export class Loademployeesucess implements Action {
   readonly type = EmployeeActionTypes.LOAD_EMPLOYEE_SUCCESS;
   constructor(public payload: IEmployee) {}
 }
-export class Loademployeefail implements Action {
+export class LoademployeeFail implements Action {
   readonly type = EmployeeActionTypes.LOAD_EMPLOYEE_FAIL;
   constructor(public payload: any) {}
 }
@@ -72,7 +72,7 @@ Loademployees|
 LoademployeesFail|
 LoademployeesSuccess|
 LoadEmployee|
-Loademployeefail|
+LoademployeeFail|
 Loademployeesucess|
 createemployee|
 createemployeefail|

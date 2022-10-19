@@ -1,38 +1,41 @@
-<div class="col-9">
-  <!-- <p-steps [model]="items" [readonly]="true"></p-steps> -->
-
-  <h6>Onboarding Info</h6>
-
-  <form [formGroup]="addEmployeeForm">
-    <formly-form
-      [model]="model"
-      [fields]="fields"
-      [options]="options"
-      [form]="addEmployeeForm"
-    >
-    </formly-form>
-  </form>
-</div>
-
-<div>
-  <h6>Bank Info</h6>
-</div>
-<form [formGroup]="bankInfoForm">
-  <formly-form
-    [model]="bankInfoModel"
-    [fields]="bankInfoFields"
-    [options]="bankInfoOptions"
-    [form]="bankInfoForm"
-  >
-  </formly-form>
-</form>
-  <div class="col-6">
-    <button
-      (click)="createEmployee()"
-      label="Add Employee"
-      pButton
-      type="button"
-      icon="pi pi-plus"
-    ></button>
+<div class="animated fadeIn">
+    <div class="card">
+      <div class="card-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-auto">
+             
+              <i
+                class="cilUser"
+                [ngClass]="isEdit ? 'fa-edit' : 'fa-plus-circle'"
+              ></i>
+              <b class="h5 font-weight-bold">
+                {{ isEdit ? "Edit" : "Create" }} Employee
+              </b>
+            </div>
+          </div>
+          <br />
+              <form [formGroup]="addEmployeeForm">
+                <formly-form
+                  [model]="employeeModel"
+                  [fields]="fields"
+                  [options]="options"
+                  [form]="addEmployeeForm"
+                ></formly-form>
+              </form>
+          <div class="text-end">
+              <button type="button" class="btn btn-primary"
+              (click)=" createEmployee()"
+              [disabled]="!addEmployeeForm.valid"
+              >
+                
+                {{ isEdit ? "Update" : "Create" }}
+              </button>
+              </div>
+           
+          </div>
+        </div>
+      </div>
+    
   </div>
-
+  
