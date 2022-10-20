@@ -1,42 +1,59 @@
-import * as EmployeeActions from '../actions/employee.action'
+import * as EmployeeActions from '../actions/employee.action';
 import { EmployeeActionTypes } from '../actions/actionTypes';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-import {createFeatureSelector, createSelector} from '@ngrx/store';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { IEmployee } from '../../model/employees';
-// import the app state
-// import * as fromRoot from '../../../state/app-state';
 
 export interface EmployeeState extends EntityState<IEmployee> {
-  selectedEmployeeId: number | null;
+  selectedEmployeeId: string | null;
   loading: boolean;
   error: string;
 }
-// export the app state
-// export interface AppState extends fromRoot.AppState {
-//   types: ProposalState;
-// }
-export const employeeAdapter: EntityAdapter<IEmployee> = createEntityAdapter<IEmployee>();
+
+export const employeeAdapter: EntityAdapter<IEmployee> =
+  createEntityAdapter<IEmployee>();
 
 export const defaultState: EmployeeState = {
   ids: [],
   entities: {},
   selectedEmployeeId: null,
   loading: false,
-  error: ''
+  error: '',
 };
-
 
 export const initialState = employeeAdapter.getInitialState(defaultState);
 
-export function employeeReducer( state = initialState, action: EmployeeActions.Actions): EmployeeState {
+export function employeeReducer(
+  state = initialState,
+  action: EmployeeActions.Actions
+): EmployeeState {
+  switch (action.type) {
+    case EmployeeActionTypes.LOAD_EMPLOYEES: {
+      return {
+        ...state,
+        loading: true,
+      };
+    }
+    case EmployeeActionTypes.LOAD_EMPLOYEES_SUCCESS: {
+      return {
+        ...state,
+        entities:{},
+        loading:true
 
-    switch (action.type) {
-   
-    case EmployeeActionTypes.LOAD_EMPLOYEES_SUCCESS:{
+      }
+    }
+    case EmployeeActionTypes.LOAD_EMPLOYEES_FAIL: {
+      return {
+        ...state,
+        entities: {},
+        error: action.payload,
+      };
+    }
+
+    case EmployeeActionTypes.LOAD_EMPLOYEES_SUCCESS: {
       return employeeAdapter.addMany(action.payload, {
         ...state,
         loading: true,
-        
       });
     }
     case EmployeeActionTypes.LOAD_EMPLOYEES_FAIL: {
@@ -44,23 +61,8 @@ export function employeeReducer( state = initialState, action: EmployeeActions.A
         ...state,
         entities: {},
         loading: false,
-      
-        error: action.payload
-      };
-    }
 
-    
-    case EmployeeActionTypes.LOAD_EMPLOYEE_SUCCESS: {
-      return employeeAdapter.addOne(action.payload, {
-        ...state,
-        selectedEmployeeId: action.payload.id
-      });
-    }
-    case EmployeeActionTypes.LOAD_EMPLOYEE_FAIL: {
-      return {
-        ...state,
-        entities: {},
-        error: action.payload
+        error: action.payload,
       };
     }
 
@@ -72,12 +74,11 @@ export function employeeReducer( state = initialState, action: EmployeeActions.A
         ...state,
         entities: {},
         loading: false,
-        
-        error: action.payload
+
+        error: action.payload,
       };
     }
 
-   
     case EmployeeActionTypes.UPDATE_EMPLOYEE_SUCESS: {
       return employeeAdapter.updateOne(action.payload, state);
     }
@@ -85,11 +86,10 @@ export function employeeReducer( state = initialState, action: EmployeeActions.A
       return {
         ...state,
         entities: {},
-        error: action.payload
+        error: action.payload,
       };
     }
 
-    
     case EmployeeActionTypes.DELETE_EMPLOYEE_SUCCESS: {
       return employeeAdapter.removeOne(action.payload, state);
     }
@@ -97,38 +97,37 @@ export function employeeReducer( state = initialState, action: EmployeeActions.A
       return {
         ...state,
         entities: {},
-        error: action.payload
+        error: action.payload,
       };
     }
 
     default: {
       return state;
     }
-    }
   }
-  const getEmployeeFeatureState = createFeatureSelector<EmployeeState>('employee');
+}
+const getEmployeeFeatureState =
+  createFeatureSelector<EmployeeState>('employee');
 
-  export const getEmployees = createSelector(
-    getEmployeeFeatureState,
-    employeeAdapter.getSelectors().selectAll
-  );
+export const getEmployees = createSelector(
+  getEmployeeFeatureState,
+  employeeAdapter.getSelectors().selectAll
+);
 
+export const getEmplyeesLoaded = createSelector(
+  getEmployeeFeatureState,
+  (state: EmployeeState) => state.loading
+);
 
+export const getError = createSelector(
+  getEmployeeFeatureState,
+  (state: EmployeeState) => state.error
+);
 
-  export const getEmplyeesLoaded = createSelector(
-    getEmployeeFeatureState,
-    (state: EmployeeState) => state.loading
-  );
-
-  export const getError = createSelector(
-    getEmployeeFeatureState,
-    (state: EmployeeState) => state.error
-  );
-
-  export const getCurrentEmployeeId = createSelector(
-    getEmployeeFeatureState,
-    (state:EmployeeState) => state.selectedEmployeeId
-  );
+export const getCurrentEmployeeId = createSelector(
+  getEmployeeFeatureState,
+  (state: EmployeeState) => state.selectedEmployeeId
+);
 
 //   export const getCurrentProposal = createSelector(
 //     getEmployeeFeatureState,

@@ -37,8 +37,8 @@ export class EmployeeService {
     )
   }
   updateEmployee(
-    employeeId: any,
-    employee: any
+    employeeId: string,
+    employee: IEmployee
   ): Observable<IEmployee> {
     return this.http.post<IEmployee>(
       `${environment.server_Url}leave/${employeeId}`,

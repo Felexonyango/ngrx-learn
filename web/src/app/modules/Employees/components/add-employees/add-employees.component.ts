@@ -50,14 +50,11 @@ export class AddEmployeesComponent implements OnInit {
   createEmployee() {
  
     this.employee = this.addEmployeeForm.value
-      
-    
-
  
-    //const id = this.route.snapshot.paramMap.get('id')
+    const id = this.route.snapshot.paramMap.get('id')
    
 // this.store.dispatch(new EmployeeAction.UpdateEmployee(id)):
-this.store.dispatch(new EmployeeAction.createemployee(this.employee))
+this.store.dispatch(new EmployeeAction.createEmployee(this.employee))
     
     // const submitUrl = this.isEdit ?
     //   this.employeesService.updateEmployee(id, this.employee)
@@ -73,5 +70,8 @@ this.store.dispatch(new EmployeeAction.createemployee(this.employee))
 
 
   }
+  // updatePost(post: IEmployee){
+  //   this.store.dispatch(new EmployeeAction.UpdateEmployee(id,post));
+  // }
 
 }

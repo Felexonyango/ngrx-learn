@@ -3,12 +3,13 @@ import { CommonModule } from '@angular/common';
 import {AddEmployeesComponent} from './components/add-employees/add-employees.component'
 import { EmployeesRoutingModule } from './employees-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CardModule,  SharedModule, TableModule } from '@coreui/angular';
+import { CardModule,    SharedModule } from '@coreui/angular';
 import {FormlyModule} from '@ngx-formly/core'
+import { TableModule } from 'primeng/table';
 import {ButtonModule} from 'primeng/button';
 import { AllEmployeesComponent } from './components/all-employees/all-employees.component'
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
-
+import { PaginatorModule } from 'primeng/paginator';
 @NgModule({
   declarations: [
     AddEmployeesComponent,
@@ -23,6 +24,8 @@ import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
     FormsModule,
     TableModule,
     SharedModule,
+    PaginatorModule,
+  
     FormlyBootstrapModule ,
  
     FormlyModule.forRoot({

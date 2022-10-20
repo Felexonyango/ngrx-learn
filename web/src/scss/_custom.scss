@@ -32,6 +32,13 @@
   }
 }
 
+.clickable {
+  &:hover {
+    color: blue !important;
+    text-decoration: underline;
+  }
+}
+
 .sibasi-primary {
   color: $sibasi-primary;
 }
@@ -138,7 +145,8 @@
 
 .table {
 
-  th, td {
+  th,
+  td {
     padding: 0.75rem;
     font-size: 0.85em !important;
     color: #000;
@@ -148,17 +156,6 @@
 
 body {
 
-  .p-multiselect {
-    width: 100%;
-
-    .p-multiselect-label {
-        font-size: 0.875rem;
-        font-weight: 400;
-        line-height: 1.5;
-        color: #5c6873;
-    }
-  }
-
   .p-datatable .p-datatable-header {
     border: 0 !important;
   }
@@ -167,7 +164,6 @@ body {
 
     &:hover {
       cursor: pointer;
-      background: #000 !important;
     }
   }
 
@@ -176,15 +172,23 @@ body {
     font-size: 1em;
   }
 
-  .-paginator-page {
+  .-paginator-page,
+  .p-paginator-current,
+  .p-paginator-pages,
+  .p-paginator-first,
+  .p-paginator-prev,
+  .p-paginator-next,
+  .p-paginator-last,
+  .p-paginator-element {
     font-size: 1em;
   }
 
-  .p-datatable .p-datatable-thead > tr > th {
+  .p-datatable .p-datatable-thead>tr>th {
     text-transform: capitalize;
   }
 
-  .p-datatable .p-datatable-thead > tr > th, .p-datatable .p-datatable-tbody > tr > td {
+  .p-datatable .p-datatable-thead>tr>th,
+  .p-datatable .p-datatable-tbody>tr>td {
     padding: 0.75rem;
     font-size: 0.85em !important;
     color: #000;
@@ -193,9 +197,6 @@ body {
 
   .p-datatable .p-datatable-header {
     background: #fff !important;
-  }
-  .p-datatable .p-datatable-header .p-input-icon-left {
-    width: 100% !important;
   }
 
   .p-column-filter .p-inputtext {
@@ -206,64 +207,79 @@ body {
     padding-top: .3em;
     padding-bottom: .3em;
     font-size: .9em;
+  }
+
+  .p-inputtext,
+  .p-autocomplete {
     width: 100% !important;
+    font-size: 0.875rem !important;
+  }
+
+  input.p-component {
+    padding: 0.375rem 0.75rem;
+  }
+
+  .p-chips .p-chips-multiple-container .p-chips-input-token input {
+    font-size: 0.875rem !important;
   }
 
   .table-header {
-      display: flex;
-      justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
   }
 
   .p-calendar .p-datepicker {
-      min-width: 25rem;
+    min-width: 25rem;
 
-      td {
-          font-weight: 400;
-      }
+    td {
+      font-weight: 400;
+    }
   }
 
   .p-datatable.p-datatable-customers {
-      .p-datatable-header {
-          padding: 1rem;
-          text-align: left;
-          font-size: 1.5rem;
-      }
+    .p-datatable-header {
+      padding: 1rem;
+      text-align: left;
+      font-size: 1.5rem;
+    }
 
-      .p-paginator {
-          padding: 1rem;
-      }
+    .p-paginator {
+      padding: 1rem;
+    }
 
-      .p-datatable-thead > tr > th {
-          text-align: left;
-      }
+    .p-datatable-thead>tr>th {
+      text-align: left;
+    }
 
-      .p-datatable-tbody > tr > td {
-          cursor: auto;
-      }
+    .p-datatable-tbody>tr>td {
+      cursor: auto;
+    }
 
-      .p-dropdown-label:not(.p-placeholder) {
-          text-transform: uppercase;
-      }
+    .p-dropdown-label:not(.p-placeholder) {
+      text-transform: uppercase;
+    }
   }
 
   .p-w-100 {
-      width: 100%;
+    width: 100%;
   }
 
   /* Responsive */
-  .p-datatable-customers .p-datatable-tbody > tr > td .p-column-title {
-      display: none;
+  .p-datatable-customers .p-datatable-tbody>tr>td .p-column-title {
+    display: none;
   }
 
   .p-calendar {
     width: 100%;
 
-    input.p-inputtext, .p-datepicker-trigger {
+    input.p-inputtext,
+    .p-datepicker-trigger {
       padding: .3em;
       font-size: 1em;
     }
 
-    .p-datepicker td, .p-datepicker th {
+    .p-datepicker td,
+    .p-datepicker th {
       padding: 0;
       font-size: .9em;
     }
@@ -280,80 +296,55 @@ body {
       }
     }
   }
-
-  // ****************************TAGS STYLE*****************************
-  .p-multiselect.p-multiselect-chip .p-multiselect-token {
-    padding: 0.25rem 0.5rem;
-    margin-right: 0.5rem;
-    background: RGB(0, 112, 192);
-    color: #fff;
-    border-radius: 0;
-}
-.p-multiselect-panel .p-multiselect-items .p-multiselect-item.p-highlight {
-  background: #fff;
-}
-.p-multiselect-panel .p-multiselect-header {
-  background: #fff;
-
-}
-
-// .nav-tabs .nav-link.active {
-//   border-color: #fff;
-//   border-bottom-color: blue;
-
-
-// }
-// .nav-tabs .nav-link {
-//   border-color: #fff;
-//   border-width: thin thin medium;
-// }
-// .nav-tabs {
-//   border-bottom: 1px solid #fff;
-// }
-// .nav-tabs:hover {
-//   border-bottom: 1px solid #fff;
-// }
-// .tab-content {
-//  border: 1px solid #fff;
-// }
+  /* ########################## Search results message CSS ########################## */
+  .noSearchResults {
+    background: #ffffff;
+    color: #495057;
+    border: 0 none;
+    border-radius: 3px;
+    box-shadow: 0 2px 4px -1px rgb(0 0 0 / 20%),
+      0 4px 5px 0 rgb(0 0 0 / 14%),
+      0 1px 10px 0 rgb(0 0 0 / 12%);
+  }
 }
 
 @media screen and (max-width: 960px) {
   body {
-      .p-datatable {
-          &.p-datatable-customers {
-              .p-datatable-thead > tr > th,
-              .p-datatable-tfoot > tr > td {
-                  display: none !important;
-              }
+    .p-datatable {
+      &.p-datatable-customers {
 
-              .p-datatable-tbody > tr {
-                  border-bottom: 1px solid var(--layer-2);
+        .p-datatable-thead>tr>th,
+        .p-datatable-tfoot>tr>td {
+          display: none !important;
+        }
 
-                  > td {
-                      text-align: left;
-                      width: 100%;
-                      display: flex;
-                      align-items: center;
-                      border: 0 none;
+        .p-datatable-tbody>tr {
+          border-bottom: 1px solid var(--layer-2);
 
-                      .p-column-title {
-                          min-width: 30%;
-                          display: inline-block;
-                          font-weight: bold;
-                      }
+          >td {
+            text-align: left;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            border: 0 none;
 
-                      p-progressbar {
-                          width: 100%;
-                      }
+            .p-column-title {
+              min-width: 30%;
+              display: inline-block;
+              font-weight: bold;
+            }
 
-                      &:last-child {
-                          border-bottom: 1px solid var(--surface-d);
-                      }
-                  }
-              }
+            p-progressbar {
+              width: 100%;
+            }
+
+            &:last-child {
+              border-bottom: 1px solid var(--surface-d);
+            }
           }
+        }
       }
+    }
   }
 
 }
@@ -372,7 +363,7 @@ body {
   &.active {
     font-weight: 600 !important;
     color: #6d6d6d !important;
-    border-top: 3px solid $sibasi-primary !important;
+    border-top: 3px solid $sibasi-primary  !important;
   }
 }
 
@@ -405,7 +396,7 @@ body {
 }
 
 .clamp-text-2 {
-  overflow: hidden !important;
+  overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -420,39 +411,34 @@ body {
 
 .table-row-clickable {
   &:hover {
-    .name {
+    .patient {
       color: blue;
       text-decoration: underline;
     }
   }
 }
 
-.clickable {
-  cursor: pointer;
+/* ########################## BUTTON CSS ########################## */
+
+.btn-filter {
+  border: 2px solid #fff;
+  border-left: 1px solid #ededed;
+  font-weight: bolder;
 }
 
-// MENU CSS
-
-.list-menu-items {
-
-  ul {
-    list-style: none;
-    padding: 0;
-    li {
-      display: inline;
-      padding: 1em;
-      font-weight: 600;
-      margin-right: 1em;
-      cursor: pointer;
-
-      &.active {
-        border-bottom: 2px solid $sibasi-primary;
-      }
-
-      &:hover {
-        border-bottom: 2px solid $sibasi-primary;
-      }
-    }
+.clickable {
+  &:hover {
+    cursor: pointer;
   }
+}
+
+/* ########################## BARCODE CSS ########################## */
+.barcode {
+  svg {
+    width: 3rem !important;
+    // height: auto !important;
+    height: 1.8em !important;
+  }
+
 
 }

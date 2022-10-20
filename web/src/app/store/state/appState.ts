@@ -6,8 +6,6 @@ export interface AuthState {
   authState: auth.AuthState;
 }
 
-
-
 export const reducers = {
   auth: auth.authreducer,
   employee:employee.employeeReducer

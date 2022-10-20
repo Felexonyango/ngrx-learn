@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { select, Store } from '@ngrx/store';
+import { Paginator } from 'primeng/paginator';
 import { Observable } from 'rxjs';
 import { IEmployee } from 'src/app/model/employees';
 import { EmployeeState, getEmployees } from 'src/app/store/reducer/employeeReducer';
@@ -11,21 +12,32 @@ import * as EmployeeAction from '../../../../store/actions/employee.action'
 })
 export class AllEmployeesComponent implements OnInit {
 
-  public employes$: Observable<IEmployee[]>;
-  constructor(private store: Store<EmployeeState>) {}
+   employees$: Observable<IEmployee[]>;
 
+  constructor(private store: Store<EmployeeState>) {
+    this.store.dispatch(new EmployeeAction.Loademployees());
+   
+  }
+  
+  @ViewChild('paginator', { static: true }) paginator: Paginator;
+
+  EmployeesTableColumns: string[] = [
+    'firstName',
+    'lastName',
+    'email',
+    'department',
+    'phoneNumber',
+    'startDate',
+    'status'
+  ];
 
   ngOnInit(): void {
-  this.initializeValues()
-    this.store.dispatch(new EmployeeAction.Loademployees());
+ 
+    this.employees$ = this.store.pipe(select(getEmployees  ))
+    
+    
   }
 
-  private initializeValues(): void {
   
-    this.store.pipe(select(getEmployees)).subscribe((data)=>{
-      console.log(data)
-    }) 
-   
   
-  }
 }

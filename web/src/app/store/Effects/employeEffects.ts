@@ -24,22 +24,22 @@ export class EmployeeEffect {
     )
   ))
 
-  loadEmployee$= createEffect(() =>this.actions$.pipe(
-    ofType(EmployeeActionTypes.LOAD_EMPLOYEE),
-    switchMap((action:EmployeeAction.LoadEmployee)=>
-    this.EmployeeService.getEmployeeByID(action.payload).pipe(
-      map((employee:IEmployee) => new EmployeeAction.Loademployeesucess(employee)),
-    )
-  ))
-  )
+  // loadEmployee$= createEffect(() =>this.actions$.pipe(
+  //   ofType(EmployeeActionTypes.LOAD_EMPLOYEE),
+  //   switchMap((action:EmployeeAction.LoadEmployee)=>
+  //   this.EmployeeService.getEmployeeByID(action.payload).pipe(
+  //     map((employee:IEmployee) => new EmployeeAction.Loademployeesucess(employee)),
+  //   )
+  // ))
+  // )
 
   
    createEmployee$= createEffect(() =>this.actions$.pipe(
     ofType(EmployeeActionTypes.CREATE_EMPLOYEE),
-    map((action:EmployeeAction.createemployee) =>action.payload),
+    map((action:EmployeeAction.createEmployee) =>action.payload),
     switchMap((employee:IEmployee) =>this.EmployeeService.createEmployee(employee).pipe(
-      map((employee:IEmployee) => new EmployeeAction.createemployeesucess(employee)),
-      catchError(err => of(new EmployeeAction.createemployeefail(err)))
+      map((employee:IEmployee) => new EmployeeAction.createEmployeesucess(employee)),
+      catchError(err => of(new EmployeeAction.createEmployeefail(err)))
     ))
    ))
 

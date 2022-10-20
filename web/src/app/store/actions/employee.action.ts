@@ -14,28 +14,18 @@ export class LoademployeesFail implements Action {
   readonly type = EmployeeActionTypes.LOAD_EMPLOYEES_FAIL;
   constructor(public payload: string) {}
 }
-export class LoadEmployee implements Action {
-  readonly type = EmployeeActionTypes.LOAD_EMPLOYEE;
-  constructor(public payload: any) {}
-}
-export class Loademployeesucess implements Action {
-  readonly type = EmployeeActionTypes.LOAD_EMPLOYEE_SUCCESS;
-  constructor(public payload: IEmployee) {}
-}
-export class LoademployeeFail implements Action {
-  readonly type = EmployeeActionTypes.LOAD_EMPLOYEE_FAIL;
-  constructor(public payload: any) {}
-}
-export class createemployee implements Action {
+
+
+export class createEmployee implements Action {
   readonly type = EmployeeActionTypes.CREATE_EMPLOYEE;
   constructor(public payload: IEmployee) {}
 }
 
-export class createemployeesucess implements Action {
+export class createEmployeesucess implements Action {
   readonly type = EmployeeActionTypes.CREATE_EMPLOYEE_SUCCESS;
   constructor(public payload: IEmployee) {}
 }
-export class createemployeefail implements Action {
+export class createEmployeefail implements Action {
   readonly type = EmployeeActionTypes.CREATE_EMPLOYEE_FAIL;
   constructor(public payload: any) {}
 }
@@ -46,7 +36,10 @@ export class UpdateEmployee implements Action {
 }
 export class UpdateEmployeeSuccess implements Action {
   readonly type = EmployeeActionTypes.UPDATE_EMPLOYEE_SUCESS;
-  constructor(public payload: Update<IEmployee>) {}
+  constructor(
+    public id:string,
+    public payload: Update<IEmployee>
+    ) {}
 }
 export class UpdateEmployeeFail implements Action {
   readonly type = EmployeeActionTypes.UPDATE_EMPLOYEE_FAIL;
@@ -71,12 +64,9 @@ export type Actions =
 Loademployees|
 LoademployeesFail|
 LoademployeesSuccess|
-LoadEmployee|
-LoademployeeFail|
-Loademployeesucess|
-createemployee|
-createemployeefail|
-createemployeesucess|
+createEmployee|
+createEmployeefail|
+createEmployeesucess|
 UpdateEmployee|
 UpdateEmployeeFail|
 UpdateEmployeeSuccess|
