@@ -29,15 +29,15 @@ export class EmployeeEffect {
   
   )
   
-//   create$ = createEffect(()=>this.actions$.pipe(
-//     ofType(EmployeeActionTypes.createEmployee),
-//     switchMap(({employee})=>this.EmployeeService.createEmployee(employee).pipe(
-//       map((result)=>EmployeeActionTypes.createEmployeeSuccess({employee:result})),
-//       catchError((error)=>of(EmployeeActionTypes.createEmployeeFailure({error})))
-//     ))
+  create$ = createEffect(()=>this.actions$.pipe(
+    ofType(EmployeeActionTypes.createEmployee),
+    switchMap(({employee})=>this.EmployeeService.createEmployee(employee).pipe(
+      map((result)=>EmployeeActionTypes.createEmployeeSuccess({employee:result})),
+      catchError((error)=>of(EmployeeActionTypes.createEmployeeFailure({error})))
+    ))
   
-// )
-// )
+)
+)
 
 
 // loadEmployee$ = createEffect(()=>this.actions$.pipe(

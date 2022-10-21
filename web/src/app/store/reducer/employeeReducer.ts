@@ -10,8 +10,6 @@ export const adapter = createEntityAdapter<IEmployee>();
   
 export const intialState:State=adapter.getInitialState()
 
- 
- 
  export const employeeReducer =createReducer(
   intialState,
       on(EmployeeActionTypes.LoadEmployees, (state) => ({ ...state, loading: true })),

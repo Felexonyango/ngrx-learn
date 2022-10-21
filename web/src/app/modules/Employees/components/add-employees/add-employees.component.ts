@@ -6,10 +6,9 @@ import { Subscription } from 'rxjs';
 import { createEmployeeFormlyFields } from './create-employees.formly';
 import { IEmployee } from '../../../../model/employees';
 import { IDepartment } from '../../../../model/department';
-import { MenuItem } from 'primeng/api';
 import { State } from 'src/app/store/reducer/employeeReducer';
 import { Store } from '@ngrx/store';
-import * as EmployeeAction from '../../../../store/actions/employee.action'
+import {EmployeeActionTypes} from '../../../../store/actions/employee.action'
 @Component({
   selector: 'app-add-employees',
   templateUrl: './add-employees.component.html',
@@ -41,46 +40,18 @@ export class AddEmployeesComponent implements OnInit {
 
   ngOnInit(): void {
     this.fields = createEmployeeFormlyFields;
-   
+    
+  }
+
+
+  createEmployee(){
+    this.employee=this.addEmployeeForm.value
   
+ const employee:IEmployee={...this.addEmployeeForm.value}
+    this.store.dispatch(EmployeeActionTypes.createEmployee({employee}));
+    this.addEmployeeForm.reset()
     
   }
+}
 
 
-  // createEmployee(){
-  //   this.employee = {
-  //     ...this.addEmployeeForm.value
-  //   }
- 
-  //   this.store.dispatch(EmployeeAction.createEmployee());
-  //   this.addEmployeeForm.reset()
-    
-  // }
-
-
- // createEmployee() {
- 
-   
-   // const id = this.route.snapshot.paramMap.get('id')
-   
-// this.store.dispatch(new EmployeeAction.UpdateEmployee(id)):
-//this.store.dispatch(EmployeeAction.createEmployee(employee))
-    
-    // const submitUrl = this.isEdit ?
-    //   this.employeesService.updateEmployee(id, this.employee)
-    //   : this.employeesService.createEmployee(this.employee)
-    // this.subscription.add(submitUrl.subscribe((data) => {
-    //   this.employee = data.result
-    //   console.log(this.employee)
-    // })
-    // )
-    
-   // this.router.navigate(['/employees/all-employees'])
-
-
-  }
-  // updatePost(post: IEmployee){
-  //   this.store.dispatch(new EmployeeAction.UpdateEmployee(id,post));
-  // }
-
-//}
