@@ -7,7 +7,7 @@ import { createEmployeeFormlyFields } from './create-employees.formly';
 import { IEmployee } from '../../../../model/employees';
 import { IDepartment } from '../../../../model/department';
 import { MenuItem } from 'primeng/api';
-import { EmployeeState } from 'src/app/store/reducer/employeeReducer';
+import { State } from 'src/app/store/reducer/employeeReducer';
 import { Store } from '@ngrx/store';
 import * as EmployeeAction from '../../../../store/actions/employee.action'
 @Component({
@@ -31,10 +31,9 @@ export class AddEmployeesComponent implements OnInit {
 
  
  
-  employeesService: any;
 
   constructor(
-    private store: Store<EmployeeState>,
+    private store: Store<State>,
     private route: ActivatedRoute,
     private router: Router,
     
@@ -47,14 +46,25 @@ export class AddEmployeesComponent implements OnInit {
     
   }
 
-  createEmployee() {
+
+  // createEmployee(){
+  //   this.employee = {
+  //     ...this.addEmployeeForm.value
+  //   }
  
-    this.employee = this.addEmployeeForm.value
+  //   this.store.dispatch(EmployeeAction.createEmployee());
+  //   this.addEmployeeForm.reset()
+    
+  // }
+
+
+ // createEmployee() {
  
-    const id = this.route.snapshot.paramMap.get('id')
+   
+   // const id = this.route.snapshot.paramMap.get('id')
    
 // this.store.dispatch(new EmployeeAction.UpdateEmployee(id)):
-this.store.dispatch(new EmployeeAction.createEmployee(this.employee))
+//this.store.dispatch(EmployeeAction.createEmployee(employee))
     
     // const submitUrl = this.isEdit ?
     //   this.employeesService.updateEmployee(id, this.employee)
@@ -64,9 +74,8 @@ this.store.dispatch(new EmployeeAction.createEmployee(this.employee))
     //   console.log(this.employee)
     // })
     // )
-    this.addEmployeeForm.reset()
     
-    this.router.navigate(['/employees/all-employees'])
+   // this.router.navigate(['/employees/all-employees'])
 
 
   }
@@ -74,4 +83,4 @@ this.store.dispatch(new EmployeeAction.createEmployee(this.employee))
   //   this.store.dispatch(new EmployeeAction.UpdateEmployee(id,post));
   // }
 
-}
+//}

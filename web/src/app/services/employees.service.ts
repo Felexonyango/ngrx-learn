@@ -1,6 +1,6 @@
 import {HttpClient, HttpEvent, HttpRequest} from '@angular/common/http'
 import {Injectable} from '@angular/core'
-import {Observable, of} from 'rxjs'
+import {map, Observable, of} from 'rxjs'
 
 
 import {environment} from '../../environments/environment'
@@ -26,9 +26,15 @@ export class EmployeeService {
     )
   }
   getAllEmployees(): Observable<IEmployee[]> {
-    return this.http.get<IEmployee[]>(
-      `${environment.server_Url}user/all`
-    )
+    return this.http.get<IEmployee[]>(`${environment.server_Url}user/all`)
+    .pipe(map((data)=>{
+          const employees:IEmployee[]=[];
+        for(let key in data ){
+          employees.push({...data[key],id:key}  );
+        }
+        return employees
+    }))
+ 
   }
 
   getEmployee(): Observable<IEmployee> {

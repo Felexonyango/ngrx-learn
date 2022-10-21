@@ -1,76 +1,78 @@
-import { Action } from '@ngrx/store';
-import { EmployeeActionTypes } from '../actions/actionTypes';
+
 import { IEmployee } from '../../model/employees';
 import { Update } from '@ngrx/entity';
-export class Loademployees implements Action {
-  readonly type = EmployeeActionTypes.LOAD_EMPLOYEES;
+
+import { createAction, props } from '@ngrx/store';
+export const LoadEmployees = createAction('[Employees] Load All employees');
+
+export const loadEmployeesSuccess = createAction(
+  '[Employees] Load All employees Success',
+  props<{ employees:IEmployee[]}>()
+);
+
+export const loadEmployeesFailure = createAction(
+  '[Employees] Load  employees Failure',
+  props<{ error: unknown }>()
+);
+
+export const loadEmployee = createAction(
+  '[Employee] Load employee ',
+  props<{ id: string }>()
+);
+
+export const loadEmployeeSuccess = createAction(
+  '[Employee] Load  employee Success',
+  props<{ employee: IEmployee }>()
+);
+
+export const loadEmployeeFailure = createAction(
+  '[Employee] Load employee Failure',
+  props<{ error: unknown }>()
+);
+
+export const createEmployee = createAction(
+  '[Employee] Create employee',
+  props<{ employee: IEmployee }>()
+);
+
+export const createEmployeeSuccess = createAction(
+  '[Employee] Create  employee Success',
+  props<{ employee: IEmployee }>()
+);
+
+export const createEmployeeFailure = createAction(
+  '[Employee] Create employee Failure',
+  props<{ error: unknown }>()
+);
+
+export const updateEmployee = createAction(
+  '[Employee] Update employee',
+  props<{ updates: Update<IEmployee>[] }>());
+
+
+export const updateEmployeeSuccess = createAction(
+  '[Employee] Update  employee Success',
+  props<{employee:IEmployee}>());
+
+
+
+export const updateEmployeeFailure = createAction(
+  '[Employee] Update employee Failure',
+  props<{ error: unknown }>()
+);
+
+export const EmployeeActionTypes = {
+  loadEmployee,
+  loadEmployeeSuccess,
+  loadEmployeeFailure,
+  LoadEmployees,
+  loadEmployeesSuccess,
+  loadEmployeesFailure,
+  createEmployee,
+  createEmployeeSuccess,
+  createEmployeeFailure,
+  updateEmployee,
+  updateEmployeeFailure,
+  updateEmployeeSuccess
   
-}
-export class LoademployeesSuccess implements Action {
-  readonly type = EmployeeActionTypes.LOAD_EMPLOYEES_SUCCESS;
-  constructor(public payload: IEmployee[]) {}
-}
-export class LoademployeesFail implements Action {
-  readonly type = EmployeeActionTypes.LOAD_EMPLOYEES_FAIL;
-  constructor(public payload: string) {}
-}
-
-
-export class createEmployee implements Action {
-  readonly type = EmployeeActionTypes.CREATE_EMPLOYEE;
-  constructor(public payload: IEmployee) {}
-}
-
-export class createEmployeesucess implements Action {
-  readonly type = EmployeeActionTypes.CREATE_EMPLOYEE_SUCCESS;
-  constructor(public payload: IEmployee) {}
-}
-export class createEmployeefail implements Action {
-  readonly type = EmployeeActionTypes.CREATE_EMPLOYEE_FAIL;
-  constructor(public payload: any) {}
-}
-
-export class UpdateEmployee implements Action {
-  readonly type = EmployeeActionTypes.UPDATE_EMPLOYEE;
-  constructor(public payload: IEmployee) {}
-}
-export class UpdateEmployeeSuccess implements Action {
-  readonly type = EmployeeActionTypes.UPDATE_EMPLOYEE_SUCESS;
-  constructor(
-    public id:string,
-    public payload: Update<IEmployee>
-    ) {}
-}
-export class UpdateEmployeeFail implements Action {
-  readonly type = EmployeeActionTypes.UPDATE_EMPLOYEE_FAIL;
-  constructor(public payload: string) {}
-}
-
-export class DeleteEmployee implements Action {
-  readonly type = EmployeeActionTypes.DELETE_EMPLOYEE;
-  constructor(public payload: any) {}
-}
-export class DeleteEmployeeSuccess implements Action {
-  readonly type = EmployeeActionTypes.DELETE_EMPLOYEE_SUCCESS;
-  constructor(public payload: any) {}
-}
-export class DeleteEmployeeFail implements Action {
-  readonly type = EmployeeActionTypes.DELETE_EMPLOYEE_FAIL;
-  constructor(public payload: string) {}
-}
-
-
-export type Actions =
-Loademployees|
-LoademployeesFail|
-LoademployeesSuccess|
-createEmployee|
-createEmployeefail|
-createEmployeesucess|
-UpdateEmployee|
-UpdateEmployeeFail|
-UpdateEmployeeSuccess|
-DeleteEmployee|
-DeleteEmployeeFail|
-DeleteEmployeeSuccess
-  
+};
