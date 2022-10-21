@@ -17,22 +17,18 @@ export class EmployeeEffect {
   loadEmployee$ = createEffect(() =>{
     return this.actions$.pipe(ofType(EmployeeActionTypes.LoadEmployees),
     mergeMap((action)=>{
-      return this.EmployeeService.getAllEmployees().pipe(map(employees=>{
-        
-        return EmployeeActionTypes.loadEmployeesSuccess({employees})
-        
-      }))
+      return this.EmployeeService.getAllEmployees()
+      .pipe(map(employees=> EmployeeActionTypes.loadEmployeesSuccess({employees})),
+      
+      catchError((error)=>of(EmployeeActionTypes.loadEmployeesFailure({error})))
   
     })
-    )
-  },
-  
-  )
+  })
   
   create$ = createEffect(()=>this.actions$.pipe(
     ofType(EmployeeActionTypes.createEmployee),
-    switchMap(({employee})=>this.EmployeeService.createEmployee(employee).pipe(
-      map((result)=>EmployeeActionTypes.createEmployeeSuccess({employee:result})),
+    switchMap(({employee})=>this.EmployeeService.createEmployee(employee)
+    .pipe(map((result)=>EmployeeActionTypes.createEmployeeSuccess({employee:result})),
       catchError((error)=>of(EmployeeActionTypes.createEmployeeFailure({error})))
     ))
   
