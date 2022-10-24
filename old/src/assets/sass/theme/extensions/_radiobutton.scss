@@ -1,8 +1,0 @@
-//radiobutton
-.p-radiobutton {
-    .p-radiobutton-box {
-        &:not(.p-disabled):not(.p-highlight):hover {
-            border-color: $radiobuttonHoverBorderColor;
-        }
-    }
-}

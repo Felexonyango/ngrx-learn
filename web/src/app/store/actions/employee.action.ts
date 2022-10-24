@@ -47,7 +47,7 @@ export const createEmployeeFailure = createAction(
 
 export const updateEmployee = createAction(
   '[Employee] Update employee',
-  props<{ updates: Update<IEmployee>[] }>());
+  props<{ updates: Update<IEmployee> }>());
 
 
 export const updateEmployeeSuccess = createAction(
@@ -61,6 +61,20 @@ export const updateEmployeeFailure = createAction(
   props<{ error: unknown }>()
 );
 
+export const deleteEmployess = createAction(
+  '[Employee] Delete employee',
+  props<{ id: string }>()
+);
+export const deleteEmployeeSuccess = createAction(
+  '[ Employee] Delete Employee Success',
+  props<{ id: string }>()
+);
+
+export const deleEmployeeFailure = createAction(
+  '[Employee] Delete Employee Failure',
+  props<{error:unknown}>()
+)
+
 export const EmployeeActionTypes = {
   loadEmployee,
   loadEmployeeSuccess,
@@ -73,6 +87,9 @@ export const EmployeeActionTypes = {
   createEmployeeFailure,
   updateEmployee,
   updateEmployeeFailure,
-  updateEmployeeSuccess
+  updateEmployeeSuccess,
+  deleEmployeeFailure,
+  deleteEmployeeSuccess,
+  deleteEmployess
   
 };

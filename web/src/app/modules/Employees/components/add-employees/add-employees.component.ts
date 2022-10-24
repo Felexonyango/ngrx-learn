@@ -25,11 +25,7 @@ export class AddEmployeesComponent implements OnInit {
   options: FormlyFormOptions = {};
   fields: FormlyFieldConfig[] = [];
 
-
   isEdit: boolean;
-
- 
- 
 
   constructor(
     private store: Store<State>,
@@ -43,11 +39,17 @@ export class AddEmployeesComponent implements OnInit {
     
   }
 
+  ngOnDestroy() {
+   
+      this.subscription.unsubscribe();
+    
+  }
+
 
   createEmployee(){
     this.employee=this.addEmployeeForm.value
   
- const employee:IEmployee={...this.addEmployeeForm.value}
+    const employee:IEmployee={...this.addEmployeeForm.value}
     this.store.dispatch(EmployeeActionTypes.createEmployee({employee}));
     this.addEmployeeForm.reset()
     

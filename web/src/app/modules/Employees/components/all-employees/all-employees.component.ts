@@ -3,23 +3,18 @@ import { select, Store } from '@ngrx/store';
 import { Paginator } from 'primeng/paginator';
 import { Observable } from 'rxjs';
 import { IEmployee } from 'src/app/model/employees';
-// import { getEmployees } from 'src/app/store/reducer/employeeReducer';
 import { EmployeeActionTypes } from 'src/app/store/actions/employee.action';
-import { getEmployees, State } from 'src/app/store/reducer/employeeReducer';
+import {getEmployees } from '../../../../store/selector/employee.selector'
+import {  State } from 'src/app/store/reducer/employeeReducer';
 @Component({
   selector: 'app-all-employees',
   templateUrl: './all-employees.component.html',
   styleUrls: ['./all-employees.component.scss']
 })
 export class AllEmployeesComponent implements OnInit {
-
    employees$: Observable<IEmployee[]>;
-
   constructor(
-    private store: Store<State>
-    ) {
-  
-  }
+    private store: Store<State>) {}
   
   @ViewChild('paginator', { static: true }) paginator: Paginator;
 

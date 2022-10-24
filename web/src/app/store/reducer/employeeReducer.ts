@@ -26,12 +26,12 @@ export const intialState:State=adapter.getInitialState()
     )
 
    
- const getEmployeeFeatureState =createFeatureSelector<State>('employee');
+//  const getEmployeeFeatureState =createFeatureSelector<State>('employee');
 
-export const getEmployees = createSelector(
-  getEmployeeFeatureState,
-  adapter.getSelectors().selectAll
-);
+// export const getEmployees = createSelector(
+//   getEmployeeFeatureState,
+//   adapter.getSelectors().selectAll
+// );
 
 // export const getEmplyeesLoaded = createSelector(
 //   getEmployeeFeatureState,
