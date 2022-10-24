@@ -6,7 +6,7 @@ import { MailService } from "./mail.service";
     imports:[
         MailgunModule.forRoot({
             username: 'api',
-            key: '406ace48c5c817567d9548f87f0920ddfa-7005f37e-468bfac0'
+            key: '406ac817567d9548f87f0920ddfa-7005f37e-468bfac0'
         })
     ],
     exports:[MailService],
