@@ -17,8 +17,10 @@ export class EmployeeEffect {
       ofType(EmployeeActionTypes.LoadEmployees),
       mergeMap((action) =>
         this.EmployeeService.getAllEmployees().pipe(
-          map((employees) =>
-            EmployeeActionTypes.loadEmployeesSuccess({ employees })
+          map((res) =>
+            EmployeeActionTypes.loadEmployeesSuccess({
+              employees: res.result
+            })
           ),
 
           catchError((error) =>
@@ -45,34 +47,5 @@ export class EmployeeEffect {
     )
   );
 
-  // updateEmployee$ = createEffect(() => {
-  //   return this.actions$.pipe(
-  //     ofType(EmployeeActionTypes.updateEmployee),
-  //     switchMap(({employee}) => this.EmployeeService.updateEmployee(employee,id).pipe(
-  //         map((data) => {
-  //           const employeeUpdated: Update<IEmployee> = {
-  //             id: employee.id,
-  //             changes: {
-  //               ...employee,
-  //             },
-  //           };
-  //           return EmployeeActionTypes.updateEmployeeSuccess({ employee:employeeUpdated });
-  //         )
-  //       );
-  //     )
-  //   );
-  // });
 
-  // deleteEmployee$ = createEffect(() => this.actions$.pipe(
-  //     ofType(EmployeeActionTypes.deleteEmployess),
-  //     switchMap(({ id }) =>this.EmployeeService.deleteEmployee(id).pipe(
-  //         map((result) => EmployeeActionTypes.deleteEmployeeSuccess({ id }))) ),
-  //     catchError((error) =>
-  //       of(EmployeeActionTypes.deleEmployeeFailure({ error }))
-  //     )
-  //   )
-  // );
-  // getEmployeeById$=createEffect(()=>this.actions$.pipe(
-    
-  // ))
 }

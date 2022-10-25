@@ -1,5 +1,5 @@
 export interface IEmployee {
-    id?:string,
+    _id?:string,
     bankAccNumber?: number
     bankName?: string
     department?: {

@@ -1,9 +1,6 @@
 <div class="animated fadeIn">
-  {{employees$|async|json}}
     <div class="card">
       <div class="card-body">
-      
-
         <div class="row m-0">
           <div class="col-auto">
             <i class="fas fa-hospital-user fa-2x sibasi-primary"></i>
@@ -25,8 +22,7 @@
               <tr>
                 <th
                   *ngFor="let column of EmployeesTableColumns"
-                  [pSortableColumn]="column"
-                >
+                  [pSortableColumn]="column">
                   {{ column }}
                   <p-sortIcon [field]="column"></p-sortIcon>
                 </th>
@@ -35,16 +31,14 @@
             </ng-template>
             <ng-template pTemplate="body" let-employee>
               <tr class="p-selectable-row">
-                <td>{{employee.employees?.firstName}} </td>
+                <td>{{employee?.firstName}} </td>
                 <td>{{employee?.lastName}} </td>
                 <td>{{employee?.email}} </td>
-                 <td>{{employee?.department}} </td>
                 <td>{{employee?.phoneNumber}} </td>
                 <td>{{employee?.startDate}}</td>
-                <td>{{employee?.status}}</td>
-  
+
                 <td>
-             
+
                 </td>
               </tr></ng-template
             >

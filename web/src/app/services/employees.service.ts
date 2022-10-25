@@ -6,6 +6,7 @@ import {map, Observable, of} from 'rxjs'
 import {environment} from '../../environments/environment'
 
 import {IEmployee} from '../model/employees'
+import { HTTPResponse } from '../model/HTTPResponse'
 
 @Injectable({
   providedIn: 'root',
@@ -15,9 +16,7 @@ export class EmployeeService {
 
   constructor(private http: HttpClient) {}
 
-  // getEmployee(): Observable<any>{
-  //   return of(this.employee)
-  // }
+
 
   createEmployee(employee: IEmployee): Observable<IEmployee> {
     return this.http.post<IEmployee>(
@@ -25,28 +24,17 @@ export class EmployeeService {
       employee
     )
   }
-  getAllEmployees(): Observable<IEmployee[]> {
-    return this.http.get<IEmployee[]>(`${environment.server_Url}user/all`)
-    .pipe(map((data)=>{
-          const employees:IEmployee[]=[];
-        for(let key in data ){
-          employees.push({...data[key],id:key}  );
-        }
-        return employees
-    }))
- 
+  getAllEmployees(): Observable<HTTPResponse<IEmployee[]>> {
+    return this.http.get<HTTPResponse<IEmployee[]>>(`${environment.server_Url}user/all`)
   }
 
-  getEmployee(): Observable<IEmployee> {
-    return this.http.get<IEmployee>(
+  getEmployee(): Observable<HTTPResponse<IEmployee>> {
+    return this.http.get<HTTPResponse<IEmployee>>(
       `${environment.server_Url}user`
     )
   }
-  updateEmployee(
-    employeeId: string,
-    employee: IEmployee
-  ): Observable<IEmployee> {
-    return this.http.post<IEmployee>(
+  updateEmployee(employeeId: string,employee: IEmployee):Observable<HTTPResponse<IEmployee>> {
+    return this.http.post<HTTPResponse<IEmployee>>(
       `${environment.server_Url}leave/${employeeId}`,
       employee
     )

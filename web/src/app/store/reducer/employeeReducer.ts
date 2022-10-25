@@ -5,8 +5,15 @@ import {EmployeeActionTypes } from '../actions/employee.action';
 import { IEmployee } from 'src/app/model/employees';
  
 export interface State extends EntityState<IEmployee>{}
+
+export function selectEmployeeId(a: IEmployee): string {
+    //In this case this would be optional since primary key is id
+    return a._id;
+}
  
-export const adapter = createEntityAdapter<IEmployee>();
+export const adapter = createEntityAdapter<IEmployee>({
+    selectId: selectEmployeeId
+});
   
 export const intialState:State=adapter.getInitialState()
 
@@ -25,25 +32,4 @@ export const intialState:State=adapter.getInitialState()
  
     )
 
-   
-//  const getEmployeeFeatureState =createFeatureSelector<State>('employee');
-
-// export const getEmployees = createSelector(
-//   getEmployeeFeatureState,
-//   adapter.getSelectors().selectAll
-// );
-
-// export const getEmplyeesLoaded = createSelector(
-//   getEmployeeFeatureState,
-//   (state: State) => state.loading
-// );
-
-// export const getError = createSelector(
-//   getEmployeeFeatureState,
-//   (state: State) => state.error
-// );
-
-// export const getCurrentEmployeeId = createSelector(
-//   getEmployeeFeatureState,
-//   (state:State) => state.selectedId
-// );
+ 

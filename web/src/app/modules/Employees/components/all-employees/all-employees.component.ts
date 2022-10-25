@@ -22,10 +22,9 @@ export class AllEmployeesComponent implements OnInit {
     'firstName',
     'lastName',
     'email',
-    'department',
     'phoneNumber',
     'startDate',
-    'status'
+    
   ];
 
   ngOnInit(): void {
