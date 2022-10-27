@@ -35,6 +35,7 @@
     "@ng-bootstrap/ng-bootstrap": "^13.1.0",
     "@ngrx/effects": "^14.3.2",
     "@ngrx/entity": "^14.3.2",
+    "@ngrx/router-store": "^14.3.2",
     "@ngrx/store": "^14.3.2",
     "@ngrx/store-devtools": "^14.3.2",
     "@ngx-formly/bootstrap": "^6.0.1",

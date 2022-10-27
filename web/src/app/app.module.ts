@@ -58,7 +58,11 @@ import { AuthService } from './services/auth.service';
 import {EmployeeService} from './services/employees.service'
 import { JwtModule } from '@auth0/angular-jwt';
 import { EffectsModule } from '@ngrx/effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CustomSerializer } from './store/router/custom-serializer';
+
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
 };
@@ -111,8 +115,14 @@ const APP_CONTAINERS = [
     
     ]),
 
-    StoreDevtoolsModule.instrument({maxAge: 25}),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: true
+    }),
 
+    StoreRouterConnectingModule.forRoot({
+      serializer: CustomSerializer,
+    }),
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter

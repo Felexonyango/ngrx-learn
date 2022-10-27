@@ -10,10 +10,12 @@ import {ButtonModule} from 'primeng/button';
 import { AllEmployeesComponent } from './components/all-employees/all-employees.component'
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { PaginatorModule } from 'primeng/paginator';
+import { EmployeeDetailsComponent } from './components/employee-details/employee-details.component';
 @NgModule({
   declarations: [
     AddEmployeesComponent,
-    AllEmployeesComponent
+    AllEmployeesComponent,
+    EmployeeDetailsComponent
   ],
   imports: [
     CommonModule,

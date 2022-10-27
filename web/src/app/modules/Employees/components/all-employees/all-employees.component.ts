@@ -6,6 +6,8 @@ import { IEmployee } from 'src/app/model/employees';
 import { EmployeeActionTypes } from 'src/app/store/actions/employee.action';
 import {getEmployees } from '../../../../store/selector/employee.selector'
 import {  State } from 'src/app/store/reducer/employeeReducer';
+import { routerCancelAction } from '@ngrx/router-store';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-all-employees',
   templateUrl: './all-employees.component.html',
@@ -14,7 +16,9 @@ import {  State } from 'src/app/store/reducer/employeeReducer';
 export class AllEmployeesComponent implements OnInit {
    employees$: Observable<IEmployee[]>;
   constructor(
-    private store: Store<State>) {}
+    private store: Store<State>,
+    private router: Router
+    ) {}
   
   @ViewChild('paginator', { static: true }) paginator: Paginator;
 
@@ -24,12 +28,18 @@ export class AllEmployeesComponent implements OnInit {
     'email',
     'phoneNumber',
     'startDate',
+    'Action'
     
   ];
 
   ngOnInit(): void {
     this.employees$ = this.store.pipe(select(getEmployees))
     this.store.dispatch(EmployeeActionTypes.LoadEmployees())
+  }
+
+  onView(id:string){
+     this.router.navigate([ '/employees/employee',id])
+
   }
 
   

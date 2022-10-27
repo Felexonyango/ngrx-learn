@@ -7,7 +7,7 @@ export class LogIn implements Action {
   }
   export class LogInSuccess implements Action {
     readonly type = AuthActionTypes.LOGIN_SUCCESS;
-    constructor(public paylo  ad: any) {}
+    constructor(public payload: any) {}
   }
   export class LogInFailure implements Action {
     readonly type = AuthActionTypes.LOGIN_FAILURE;

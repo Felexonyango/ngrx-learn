@@ -6,13 +6,9 @@ import { IEmployee } from 'src/app/model/employees';
  
 export interface State extends EntityState<IEmployee>{}
 
-export function selectEmployeeId(a: IEmployee): string {
-    //In this case this would be optional since primary key is id
-    return a._id;
-}
- 
+
 export const adapter = createEntityAdapter<IEmployee>({
-    selectId: selectEmployeeId
+    selectId:employee=>employee._id
 });
   
 export const intialState:State=adapter.getInitialState()

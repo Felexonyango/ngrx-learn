@@ -1,14 +1,16 @@
-import * as auth from '../reducer/authReducer';
- import * as employee  from '../reducer/employeeReducer'
 import { createFeatureSelector } from '@ngrx/store';
+import { routerReducer } from '@ngrx/router-store';
+import { employeeReducer } from '../reducer/employeeReducer';
+import { authreducer } from '../reducer/authReducer';
 
 export interface AuthState {
-  authState: auth.AuthState;
+  authState:AuthState;
 }
 
 export const reducers = {
-  auth: auth.authreducer,
-  employee:employee.employeeReducer
+  auth:authreducer,
+  employee:employeeReducer,
+  router: routerReducer,
 };
 
 export const selectAuthState = createFeatureSelector<AuthState>('auth');
