@@ -17,7 +17,6 @@ export class LogIn implements Action {
     readonly type = AuthActionTypes.LOGOUT;
   }
   
-  export const dummyAction = createAction('[dummy action]');
-
+ 
   export type AuthAction = | LogIn |LogInSuccess | LogInFailure |LogOut;
   

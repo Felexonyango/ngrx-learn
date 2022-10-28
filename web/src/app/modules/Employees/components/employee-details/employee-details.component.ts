@@ -19,7 +19,16 @@ export class EmployeeDetailsComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.employee$=this.store.select( getEmployeeById)
+    this.getEmployeeById()
+  }
+
+
+
+  getEmployeeById(){
+    this.store.select( getEmployeeById).subscribe((res)=>{
+    this.employee$=res.result
+    console.log(this.employee$)
+    })
   }
 
  

@@ -8,7 +8,7 @@ import { EmployeeService } from '../../services/employees.service';
 import {  State } from 'src/app/store/reducer/employeeReducer'
 import { EmployeeActionTypes, updateEmployeeSuccess } from '../actions/employee.action';
 import { getEmployees } from '../selector/employee.selector';
-import { dummyAction } from '../actions/auth.action';
+import { dummyAction } from '../actions/employee.action';
 import { Update } from '@ngrx/entity';
 import { IEmployee } from 'src/app/model/employees';
 @Injectable()
@@ -81,9 +81,10 @@ export class EmployeeEffect {
       switchMap(([id, employees]) => {
         if (!employees.length) {
           return this.EmployeeService.getEmployeeByID(id).pipe(
-            map((employee) => {
-              const EmployeeData = [{ ...employee, id }];
-              return EmployeeActionTypes.loadEmployeesSuccess({ employees:EmployeeData });
+            map((res) => {
+            return EmployeeActionTypes.loadEmployeeSuccess({
+                employee: res.result
+              });
             })
           );
         }
