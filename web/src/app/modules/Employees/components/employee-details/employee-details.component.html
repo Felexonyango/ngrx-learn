@@ -1,6 +1,8 @@
-<div>PostDetails</div>
-<div *ngIf="employee$ | async as postData">
-  <div>Id: {{ postData._id }}</div>
-  <div>Title: {{ postData.bankName }}</div>
-  <div>Description: {{ postData.email }}</div>
-</div>
+
+<!-- <div *ngIf="employee$ | async  ">
+  
+  <div>fname: {{ employee$?.firstName}}</div>
+  <div>lname: {{ employeeData?.lastName }}</div>
+</div> -->
+
+<p>name:{{employee$?.firstName}}</p>

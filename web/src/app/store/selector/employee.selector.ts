@@ -2,23 +2,42 @@ import {createFeatureSelector, createSelector} from '@ngrx/store';
 import {adapter, State} from '../reducer/employeeReducer'
 import { RouterStateUrl } from '../router/custom-serializer'
 import { getCurrentRoute } from '../router/router.selector'
+
 const getEmployeeFeatureState =createFeatureSelector<State>('employee');
 
- const { selectEntities, selectAll } = adapter.getSelectors();
- 
+export const EmployeeSelectors = adapter.getSelectors();
+
  export const getEmployeeEntities = createSelector(
     getEmployeeFeatureState,
-    selectEntities
+    EmployeeSelectors.selectEntities
   );
    
-  export const getEmployees = createSelector(getEmployeeFeatureState,selectAll);
+  export const getEmployees = createSelector(
+    getEmployeeFeatureState,
+    EmployeeSelectors.selectAll);
 
  
+    //export const getSelectedEmployeeId = (state: State) =>state.
+    
+   
+  
+    const {selectEntities} = adapter.getSelectors();
+     
+     export const selectUserEntities = selectEntities;
+    
+    //export const getSelectedEmployeeId = (state: State) => state.selectedEmployeeId
+  
 
-  export const getEmployeeById = createSelector(
+    // export const selectCurrentEmployee = createSelector(
+    //   getEmployeeEntities,
+    //   getSelectedEmployeeId,
+    //   (employeeEntities, employeeId) => employeeEntities[employeeId]
+    // );
+   export const getEmployeeById = createSelector(
     getEmployeeEntities,
-    getCurrentRoute, (employees, route: RouterStateUrl) => {
-      return employees ? [route.params['id']] : null;
+    getCurrentRoute, (employee, route: RouterStateUrl) => {
+      return employee ? route.params['id'] : null;
     }
   );
+
   

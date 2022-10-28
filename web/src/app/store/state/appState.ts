@@ -1,16 +1,20 @@
-import { createFeatureSelector } from '@ngrx/store';
-import { routerReducer } from '@ngrx/router-store';
-import { employeeReducer } from '../reducer/employeeReducer';
-import { authreducer } from '../reducer/authReducer';
+import { ActionReducerMap } from '@ngrx/store';
+import { routerReducer, RouterState } from '@ngrx/router-store';
+import { employeeReducer, State } from '../reducer/employeeReducer';
+import { authreducer, AuthState } from '../reducer/authReducer';
 
-export interface AuthState {
-  authState:AuthState;
+
+export interface AppState {
+  router: RouterState,
+  employee: State,
+  authState: AuthState,
+  
 }
 
-export const reducers = {
-  auth:authreducer,
-  employee:employeeReducer,
+export const reducers: ActionReducerMap<AppState> = {
   router: routerReducer,
+  employee:employeeReducer,
+  authState:authreducer
 };
 
-export const selectAuthState = createFeatureSelector<AuthState>('auth');
+

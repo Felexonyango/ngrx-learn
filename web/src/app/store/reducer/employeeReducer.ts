@@ -1,20 +1,23 @@
 import { createFeature, createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
-import { EntityState, createEntityAdapter } from '@ngrx/entity';
+import { EntityState, createEntityAdapter, EntityAdapter } from '@ngrx/entity';
 import {EmployeeActionTypes } from '../actions/employee.action';
 
 import { IEmployee } from 'src/app/model/employees';
  
 export interface State extends EntityState<IEmployee>{}
 
+export function selectUserId(employee: IEmployee): string {
+  return employee?._id
+}
 
-export const adapter = createEntityAdapter<IEmployee>({
-    selectId:employee=>employee._id
-});
+export const adapter: EntityAdapter<IEmployee> = createEntityAdapter<IEmployee>({
+  selectId: selectUserId,
   
-export const intialState:State=adapter.getInitialState()
+});
 
+export const initialState: State = adapter.getInitialState();
  export const employeeReducer =createReducer(
-  intialState,
+ initialState,
       on(EmployeeActionTypes.LoadEmployees, (state) => ({ ...state, loading: true })),
 
        on(EmployeeActionTypes.loadEmployeesSuccess,(state,{employees})=>{
@@ -22,10 +25,21 @@ export const intialState:State=adapter.getInitialState()
        }),
        on(EmployeeActionTypes.createEmployee,(state,{employee})=>{
         return adapter.addOne(employee,state)
-       })
+       }),
 
+       on(EmployeeActionTypes.deleteEmployeeSuccess, (state, { id }) => {
+        return adapter.removeOne(id, state);
+      }),
 
- 
+       on(EmployeeActionTypes.updateEmployee, (state) => ({ ...state, loading: true })),
+       on(EmployeeActionTypes.updateEmployeeSuccess, (state, { employee }) =>
+         adapter.updateOne(employee, state)
+       ),
+       on(EmployeeActionTypes.updateEmployeeFailure, (state, { error }) => ({
+         ...state,
+         loading: false,
+         error,
+       })),
     )
 
  

@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/model/auth';
 import { LogIn } from 'src/app/store/actions/auth.action';
-import { AuthState, selectAuthState } from 'src/app/store/state/appState';
+import { AuthState, selectAuthState } from 'src/app/store/selector/auth.selector';
 
 @Component({
   selector: 'app-login',

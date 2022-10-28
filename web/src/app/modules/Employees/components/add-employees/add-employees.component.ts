@@ -21,7 +21,7 @@ export class AddEmployeesComponent implements OnInit {
   addEmployeeForm = new FormGroup({});
   model: any = {};
   employeeModel: any = {};
-
+  subscriptions = new Subscription();
   options: FormlyFormOptions = {};
   fields: FormlyFieldConfig[] = [];
 
@@ -48,9 +48,11 @@ export class AddEmployeesComponent implements OnInit {
 
   createEmployee(){
     this.employee=this.addEmployeeForm.value
-  
     const employee:IEmployee={...this.addEmployeeForm.value}
-    this.store.dispatch(EmployeeActionTypes.createEmployee({employee}));
+    // this.isEdit ?  this.store.dispatch(EmployeeActionTypes.updateEmployee({employee}))
+
+    this.store.dispatch(EmployeeActionTypes.createEmployee({employee}))
+     this.router.navigateByUrl('/employees/all-employees')
     this.addEmployeeForm.reset()
     
   }

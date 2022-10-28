@@ -8,6 +8,7 @@ import {getEmployees } from '../../../../store/selector/employee.selector'
 import {  State } from 'src/app/store/reducer/employeeReducer';
 import { routerCancelAction } from '@ngrx/router-store';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-all-employees',
   templateUrl: './all-employees.component.html',
@@ -40,6 +41,12 @@ export class AllEmployeesComponent implements OnInit {
   onView(id:string){
      this.router.navigate([ '/employees/employee',id])
 
+  }
+  onDeleteEmployee(id: string) {
+  
+      this.store.dispatch(EmployeeActionTypes.deleteEmployee({ id }));
+      
+    
   }
 
   

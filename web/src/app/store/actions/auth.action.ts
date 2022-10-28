@@ -1,4 +1,4 @@
-import { Action } from "@ngrx/store";
+import { Action, createAction } from "@ngrx/store";
 import { AuthActionTypes } from "./actionTypes";
 
 export class LogIn implements Action {
@@ -17,5 +17,7 @@ export class LogIn implements Action {
     readonly type = AuthActionTypes.LOGOUT;
   }
   
+  export const dummyAction = createAction('[dummy action]');
+
   export type AuthAction = | LogIn |LogInSuccess | LogInFailure |LogOut;
   

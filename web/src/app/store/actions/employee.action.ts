@@ -47,21 +47,21 @@ export const createEmployeeFailure = createAction(
 
 export const updateEmployee = createAction(
   '[Employee] Update employee',
-  props<{ updates: Update<IEmployee> }>());
+  props<{ employee:IEmployee}>  ());
 
 
 export const updateEmployeeSuccess = createAction(
   '[Employee] Update  employee Success',
-  props<{employee:IEmployee}>());
+  props<{employee:Update<IEmployee>}>());
 
-
+  
 
 export const updateEmployeeFailure = createAction(
   '[Employee] Update employee Failure',
   props<{ error: unknown }>()
 );
 
-export const deleteEmployess = createAction(
+export const deleteEmployee= createAction(
   '[Employee] Delete employee',
   props<{ id: string }>()
 );
@@ -90,6 +90,6 @@ export const EmployeeActionTypes = {
   updateEmployeeSuccess,
   deleEmployeeFailure,
   deleteEmployeeSuccess,
-  deleteEmployess
+  deleteEmployee
   
 };

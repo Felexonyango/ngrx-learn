@@ -33,24 +33,12 @@ export class EmployeeService {
       `${environment.server_Url}user`
     )
   }
-  updateEmployee(employeeId: string,employee: IEmployee):Observable<HTTPResponse<IEmployee>> {
-    return this.http.post<HTTPResponse<IEmployee>>(
-      `${environment.server_Url}leave/${employeeId}`,
-      employee
-    )
+  updateEmployee(employee: IEmployee):Observable<HTTPResponse<IEmployee>> {
+    const url = `${environment.server_Url}leave/${employee._id}`;
+    return this.http.post<HTTPResponse<IEmployee>>(url,employee)
   }
 
-  uploadphoto(
-    empId: string,
-    file: File
-  ): Observable<IEmployee> {
-    const formData = new FormData()
-    formData.append('file', file, file.name)
-    return this.http.post<IEmployee>(
-      `${environment.server_Url}user/file/${empId}`,
-      formData
-    )
-  }
+
   getEmployeeByID(employeeId: any): Observable<IEmployee> {
     return this.http.get<IEmployee>(
       `${environment.server_Url}user/${employeeId}`
@@ -58,19 +46,13 @@ export class EmployeeService {
   }
 
   getMenu(): Observable<IEmployee> {
-    return this.http.get<IEmployee>(
+    return this.http.get< IEmployee>(
       `${environment.server_Url}menu/allMenuItems`
     )
   }
-  getEmployeeImage(
-    employeeId: string
-  ): Observable<IEmployee> {
-    return this.http.get<IEmployee>(
-      `${environment.server_Url}user/profile/${employeeId}`
-    )
-  }
-  deleteEmployee(id: string): Observable<IEmployee> {
-    return this.http.delete<IEmployee>(
+
+  deleteEmployee(id: string): Observable<HTTPResponse<IEmployee>> {
+    return this.http.delete<HTTPResponse<IEmployee>>(
       `${environment.server_Url}user/${id}`
     )
   }
