@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Store} from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IEmployee } from 'src/app/model/employees';
-import {  State } from 'src/app/store/reducer/employeeReducer';
-
 import { getEmployeeById } from 'src/app/store/selector/employee.selector';
+import { State } from 'src/app/store/reducer/employeeReducer';
 @Component({
   selector: 'app-employee-details',
   templateUrl: './employee-details.component.html',
@@ -12,26 +11,18 @@ import { getEmployeeById } from 'src/app/store/selector/employee.selector';
 })
 export class EmployeeDetailsComponent implements OnInit {
 
-   employee$:IEmployee
+   employee$:Observable<IEmployee>
 
-   
-   
+  
   constructor(
     private store: Store<State>
     ) { }
 
   ngOnInit(): void {
-     //this.getEmployeeById()
+    this.employee$=this.store.select( getEmployeeById)
   }
 
-  // getEmployeeById(){
-  //   this.store.select(getEmployeeById).subscribe((data)=>{
-  //     this.employee$ = data;
-  //     console.log(this.employee$)
-    
-  //    })
-  // }
-  
+ 
 
  
 }

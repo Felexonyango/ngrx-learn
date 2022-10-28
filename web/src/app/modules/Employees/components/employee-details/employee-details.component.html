@@ -1,8 +1,1 @@
-
-<!-- <div *ngIf="employee$ | async  ">
-  
-  <div>fname: {{ employee$?.firstName}}</div>
-  <div>lname: {{ employeeData?.lastName }}</div>
-</div> -->
-
-<p>name:{{employee$?.firstName}}</p>
+<p>{{employee$| async |json}}</p>
