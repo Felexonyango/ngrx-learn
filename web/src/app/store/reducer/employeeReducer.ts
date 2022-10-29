@@ -4,18 +4,24 @@ import {EmployeeActionTypes } from '../actions/employee.action';
 
 import { IEmployee } from 'src/app/model/employees';
  
-export interface State extends EntityState<IEmployee>{}
+export interface State extends EntityState<IEmployee>{
+  loaded: boolean;
+}
+
 
 export function selectUserId(employee: IEmployee): string {
   return employee?._id
 }
 
-export const adapter: EntityAdapter<IEmployee> = createEntityAdapter<IEmployee>({
+export const adapter= createEntityAdapter<IEmployee>({
   selectId: selectUserId,
   
 });
 
-export const initialState: State = adapter.getInitialState();
+export const initialState= adapter.getInitialState({
+  loaded: false
+});
+
  export const employeeReducer =createReducer(
  initialState,
       on(EmployeeActionTypes.LoadEmployees, (state) => ({ ...state, loading: true })),

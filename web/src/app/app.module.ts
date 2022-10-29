@@ -61,7 +61,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { CustomSerializer } from './store/router/custom-serializer';
+import { RouterSerializer } from './store/router/custom-serializer';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -121,7 +121,7 @@ const APP_CONTAINERS = [
     }),
 
     StoreRouterConnectingModule.forRoot({
-      serializer: CustomSerializer,
+      serializer: RouterSerializer,
     }),
     JwtModule.forRoot({
       config: {

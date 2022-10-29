@@ -7,37 +7,32 @@ const getEmployeeFeatureState =createFeatureSelector<State>('employee');
 
 export const EmployeeSelectors = adapter.getSelectors();
 
+
  export const getEmployeeEntities = createSelector(
     getEmployeeFeatureState,
     EmployeeSelectors.selectEntities
   );
    
   export const getEmployees = createSelector(
-    getEmployeeFeatureState,
-    EmployeeSelectors.selectAll);
+   getEmployeeFeatureState,
+    EmployeeSelectors.selectAll
+    );
 
- 
-    //export const getSelectedEmployeeId = (state: State) =>state.
+    
+    export const getProductById = createSelector(
+      getEmployeeEntities,
+      getCurrentRoute,
+      (employeeId, route: RouterStateUrl) => {
+        return employeeId ? employeeId[route?.params['id']] : null;
+      }
+    );
+
     
    
   
-    const {selectEntities} = adapter.getSelectors();
-     
-     export const selectUserEntities = selectEntities;
     
-    //export const getSelectedEmployeeId = (state: State) => state.selectedEmployeeId
-  
 
-    // export const selectCurrentEmployee = createSelector(
-    //   getEmployeeEntities,
-    //   getSelectedEmployeeId,
-    //   (employeeEntities, employeeId) => employeeEntities[employeeId]
-    // );
-   export const getEmployeeById = createSelector(
-    getEmployeeEntities,
-    getCurrentRoute, (employee, route: RouterStateUrl) => {
-      return employee ? route.params['id'] : null;
-    }
-  );
-
+    
+    
+ 
   

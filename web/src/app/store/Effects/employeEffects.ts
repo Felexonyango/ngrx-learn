@@ -63,7 +63,10 @@ export class EmployeeEffect {
             return  EmployeeActionTypes.deleteEmployeeSuccess({ id:id });
           })
         );
-      })
+      }),
+      catchError((error) =>
+      of(EmployeeActionTypes.deleEmployeeFailure({ error }))
+    )
     );
   });
 
@@ -81,11 +84,13 @@ export class EmployeeEffect {
       switchMap(([id, employees]) => {
         if (!employees.length) {
           return this.EmployeeService.getEmployeeByID(id).pipe(
-            map((res) => {
-            return EmployeeActionTypes.loadEmployeeSuccess({
-                employee: res.result
-              });
-            })
+            map((employee) => {
+              const employeeData = [{ ...employee, id }];
+            return EmployeeActionTypes.loadEmployeesSuccess({employees: employeeData});
+            }),
+            catchError((error) =>
+            of(EmployeeActionTypes.loadEmployeeFailure({ error }))
+          )
           );
         }
         return of(dummyAction());
@@ -109,7 +114,10 @@ export class EmployeeEffect {
             return updateEmployeeSuccess({ employee: updateEmployee});
           })
         );
-      })
+      }),
+      catchError((error) =>
+      of(EmployeeActionTypes.updateEmployeeFailure({ error }))
+    )
     );
   });
 

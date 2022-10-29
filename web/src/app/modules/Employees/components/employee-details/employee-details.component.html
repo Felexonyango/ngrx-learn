@@ -1,7 +1,9 @@
 
-<p>{{employee$| async |json}}</p>
+<p> {{employee |async |json}}</p>
 
-<div *ngIf="employee$ | async as postData">
-  <div>email: {{ postData?.email }}</div>
- 
+<div>Employee Details</div>
+<div *ngIf="employee | async as empData">
+  
+  <div>email: {{ empData?.email}}</div>
+  
 </div>

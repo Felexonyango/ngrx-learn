@@ -6,6 +6,10 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 export const getRouterState = createFeatureSelector<
 RouterReducerState<RouterStateUrl>>('router');
 
+
+export const ROUTER_STATE_NAME = 'router';
+
+  
 export const getCurrentRoute = createSelector(getRouterState, (router) => {
-  return router.state;
-});
+    return router.state
+})
