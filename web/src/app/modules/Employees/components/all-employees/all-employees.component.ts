@@ -49,6 +49,9 @@ export class AllEmployeesComponent implements OnInit {
     
   }
 
+  onEditBtnClick(id:string) {
+    this.router.navigate(['/employees/employee-edit',id]);
+  }
   
   
 }

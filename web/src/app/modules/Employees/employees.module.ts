@@ -11,11 +11,13 @@ import { AllEmployeesComponent } from './components/all-employees/all-employees.
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { PaginatorModule } from 'primeng/paginator';
 import { EmployeeDetailsComponent } from './components/employee-details/employee-details.component';
+import { EditEmployeeComponent } from './components/edit-employee/edit-employee.component';
 @NgModule({
   declarations: [
     AddEmployeesComponent,
     AllEmployeesComponent,
-    EmployeeDetailsComponent
+    EmployeeDetailsComponent,
+    EditEmployeeComponent
   ],
   imports: [
     CommonModule,

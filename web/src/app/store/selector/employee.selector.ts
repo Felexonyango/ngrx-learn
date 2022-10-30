@@ -19,7 +19,7 @@ export const EmployeeSelectors = adapter.getSelectors();
     );
 
     
-    export const getProductById = createSelector(
+    export const getEmployeeById = createSelector(
       getEmployeeEntities,
       getCurrentRoute,
       (employeeId, route: RouterStateUrl) => {

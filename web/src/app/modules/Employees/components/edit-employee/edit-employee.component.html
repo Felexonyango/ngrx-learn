@@ -1,0 +1,39 @@
+<div class="animated fadeIn">
+    <div class="card">
+      <div class="card-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-auto">
+             
+              <i
+                class="cilUser"
+               
+              ></i>
+              <b class="h5 font-weight-bold">
+            
+              </b>
+            </div>
+          </div>
+          <br />
+              <form [formGroup]="addEmployeeForm">
+                <formly-form
+                  [model]="employeeModel"
+                  [fields]="fields"
+                  [options]="options"
+                  [form]="addEmployeeForm"
+                ></formly-form>
+              </form>
+          <div class="text-end">
+              <button type="button" class="btn btn-primary"
+             (click)="onsubmit()">
+                
+            Update
+              </button>
+              </div>
+           
+          </div>
+        </div>
+      </div>
+    
+  </div>
+  

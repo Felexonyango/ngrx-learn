@@ -57,6 +57,12 @@ const routes: Routes = [
           ),
       },
       {
+        path:'leave',
+        loadChildren:()=>import('./modules/leave/leave.module').then((m)=>m.LeaveModule)
+
+      },
+
+      {
         path: 'pages',
         loadChildren: () =>
           import('./pages/pages.module').then((m) => m.PagesModule)
