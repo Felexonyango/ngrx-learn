@@ -14,11 +14,13 @@ import { FormlyModule } from '@ngx-formly/core';
 import { CreateLeaveComponent } from './components/create-leave/create-leave.component';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { PaginatorModule } from 'primeng/paginator';
+import { DepartmentSettingComponent } from './components/department-setting/department-setting.component';
 @NgModule({
   declarations: [
     LeaveSettingsComponent,
     LeaveTypeComponent,
-    CreateLeaveComponent
+    CreateLeaveComponent,
+    DepartmentSettingComponent
   ],
   imports: [
     CommonModule,

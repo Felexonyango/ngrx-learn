@@ -76,7 +76,7 @@ export class LeaveTypeComponent implements OnInit {
   }
   UpdateLeaveType() {
 
-    
+
   }
   updateLeavetypeModal(leave_id: string) {
     this.display = true;
@@ -91,5 +91,6 @@ export class LeaveTypeComponent implements OnInit {
 
   getLeavetypeById() {
     this.selectleavetype = this.store.select(getleaveTypeById);
+    console.log(this.selectleavetype)
   }
 }

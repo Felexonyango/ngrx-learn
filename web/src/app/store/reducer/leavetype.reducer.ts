@@ -22,7 +22,7 @@ export const initialState = adapter.getInitialState({
 
 export const leaveTypeReducer = createReducer(
   initialState,
-  on(LeaveTypes.LoadleaveTypes, (state) => ({ ...state, loading: true })),
+  on(LeaveTypes.LoadleaveTypes, (state) => ({ ...state, loaded: true })),
 
   on(LeaveTypes.loadLeaveTypesSuccess, (state, { leaveType }) => {
     return adapter.setAll(leaveType, state);
@@ -44,7 +44,7 @@ export const leaveTypeReducer = createReducer(
 
   on(LeaveTypes.updateLeaveTypeFailure, (state, { error }) => ({
     ...state,
-    loading: false,
+    loaded: false,
     error,
   }))
 );

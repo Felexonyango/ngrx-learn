@@ -2,6 +2,7 @@ import { HttpClient, HttpResponseBase } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { IDepartment } from '../model/department';
 import { HTTPResponse } from '../model/HTTPResponse';
 import { ILeaveType } from '../model/leave';
 @Injectable({
@@ -48,4 +49,48 @@ export class LeaveTypeService {
     const url = `${environment.server_Url}leavetype/${leaveType._id}`;
     return this.http.post<HTTPResponse<ILeaveType>>(url,leaveType);
   }
+
+  //department
+
+  getAllDepartments(): Observable<IDepartment[]> {
+    return this.http
+      .get<IDepartment[]>(`${environment.server_Url}department`)
+  
+  }
+
+  createDepartments(
+    departments: IDepartment
+  ): Observable<HTTPResponse<IDepartment>> {
+    return this.http.post<HTTPResponse<IDepartment>>(
+      `${environment.server_Url}department`,
+      departments
+    )
+  }
+  updateDepartment(departmentId:string,department:IDepartment){
+    return this.http.patch<HTTPResponse<IDepartment>>(
+      `${environment.server_Url}department/${departmentId}`,
+      department
+    )
+  }
+  deleteDepartment(
+    departmentId: any
+  ): Observable<HTTPResponse<IDepartment>> {
+    return this.http.delete<HTTPResponse<IDepartment>>(
+      `${environment.server_Url}department/${departmentId}`
+    )
+  }
+
+
+  getDepartmentById(departmentId: string): Observable<HTTPResponse<{
+    department: IDepartment
+    users: any 
+  head:any}>> {
+  return this.http.get<HTTPResponse<{
+      department: IDepartment
+      users: any
+      head:any
+    }>>(`${environment.server_Url}department/${departmentId}`)
+}
+
+
 }
