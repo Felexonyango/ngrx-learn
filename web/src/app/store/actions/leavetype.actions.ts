@@ -7,7 +7,7 @@ export const LoadleaveTypes = createAction('[LeaveType] Load All leaveType');
 
 export const loadLeaveTypesSuccess = createAction(
   '[LeaveType] Load All leaveType Success',
-  props<{ ileaveType:ILeaveType[]}>()
+  props<{ leaveType:ILeaveType[]}>()
 )
 
 export const loadLeaveTypesFailure = createAction(
@@ -17,12 +17,12 @@ export const loadLeaveTypesFailure = createAction(
 
 export const createLeaveType = createAction(
   '[LeaveType] Create leaveType',
-  props<{ ileaveType: ILeaveType}>()
+  props<{ leaveType: ILeaveType}>()
 );
 
 export const createLeaveTypeSuccess = createAction(
   '[LeaveType] Create  leaveType Success',
-  props<{ ileaveType: ILeaveType}>()
+  props<{ leaveType: ILeaveType}>()
 );
 
 export const createLeaveTypeFailure = createAction(
@@ -32,12 +32,12 @@ export const createLeaveTypeFailure = createAction(
 
 export const updateLeaveType = createAction(
   '[LeaveType] Update leavetype',
-  props<{ ileaveType:ILeaveType}>());
+  props<{ leaveType:ILeaveType}>());
 
 
 export const updateLeaveTypeSuccess = createAction(
   '[LeaveType] Update  leaveType Success',
-  props<{ileaveType:Update<ILeaveType>}>());
+  props<{leaveType:Update<ILeaveType>}>());
 
   
 
@@ -69,7 +69,10 @@ createLeaveTypeSuccess,
 createLeaveTypeFailure,
 updateLeaveType,
 updateLeaveTypeSuccess,
-updateLeaveTypeFailure
+updateLeaveTypeFailure,
+deleteLeaveTypeSuccess,
+deleteLeaveType,
+deleLeaveTypeFailure
 
   
 };

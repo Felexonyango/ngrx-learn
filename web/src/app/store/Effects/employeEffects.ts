@@ -102,7 +102,7 @@ export class EmployeeEffect {
   updatePost$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(EmployeeActionTypes.updateEmployee),
-      concatMap(({employee}) => {
+      switchMap(({employee}) => {
         return this.EmployeeService.updateEmployee(employee).pipe(
           map((data) => {
             const updateEmployee: Update<IEmployee> = {

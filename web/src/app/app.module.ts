@@ -6,7 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {reducers} from './store/state/appState'
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor, TokenInterceptor } from './modules/auth/Interceptors/Interceptor';
-
+import {LeaveTypeService } from 'src/app/services/leave-type.service'
  import {
   PERFECT_SCROLLBAR_CONFIG,
   PerfectScrollbarConfigInterface,
@@ -53,6 +53,7 @@ import { StoreModule } from '@ngrx/store';
 import {AuthEffects} from './store/Effects/authEffects'
 import  {EmployeeEffect } from './store/Effects/employeEffects'
 import { HttpClientModule } from '@angular/common/http';
+import {LeaveTypeEFfect} from './store/Effects/leaveTypeEFfect'
 import { AuthGuard } from './modules/auth/guards/auth.guard';
 import { AuthService } from './services/auth.service';
 import {EmployeeService} from './services/employees.service'
@@ -112,7 +113,8 @@ const APP_CONTAINERS = [
     StoreModule.forRoot(reducers, {}),
     EffectsModule.forRoot([
       AuthEffects,
-      EmployeeEffect
+      EmployeeEffect,
+      LeaveTypeEFfect
     
     ]),
 
@@ -135,6 +137,7 @@ const APP_CONTAINERS = [
     AuthGuard,
     AuthService,
     EmployeeService,
+    LeaveTypeService,
 
     {
       provide: HTTP_INTERCEPTORS,
