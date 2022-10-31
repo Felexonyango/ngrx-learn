@@ -50,7 +50,13 @@ id:string
   ngOnInit(): void {
   }
 
-  createLeavetype(){
+
+  showDialog() {
+    this.display = true
+    this.errorMessage = ''
+    this.form.reset()
+  }
+  createLeaveType(){
    this.leaveType = this.form.value
 
    const leaveType:ILeaveType={...this.form.value}
@@ -58,4 +64,21 @@ id:string
    this.form.reset()
 
   } 
+  UpdateLeaveType(){
+
+  }
+  updateLeavetypeModal(leave_id:string){
+    this.display=true
+    this.isEdit = true
+    this.id =leave_id
+    this.getLeavetypeById()
+ 
+  }
+
+  deleteLeaveType(id:string){
+
+  }
+
+  getLeavetypeById(){}
+
 }

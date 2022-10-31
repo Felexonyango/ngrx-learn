@@ -1,1 +1,126 @@
-<p>leave-type works!</p>
+<div class="grid">
+    <div class="col-12">
+      <div class="card widget-visitor-graph">
+        <div class="card-header">
+          <h5>Leave Types</h5>
+          <p>
+            <small>{{ errorMessage }}</small>
+          </p>
+        
+          <p-dialog
+            header="New Leave type"
+            [(visible)]="display"   
+            [modal]="true"
+            [style]="{width: '50vw'}"
+          >
+            <p class="text-orange-500">{{ errorMessage }}</p>
+            <ng-template pTemplate="header">
+              <p>Add a new leave type</p>
+            </ng-template>
+            <form [formGroup]="form" (ngSubmit)="createLeaveType()">
+              <formly-form
+                [model]="model"
+                [fields]="fields"
+                [form]="form"
+              ></formly-form>
+            </form>
+            <ng-template pTemplate="footer">
+              <button
+                pButton
+                *ngIf="!isEdit"
+                type="button"
+                class="p-button-raised"
+                label="Add Leave Type"
+                (click)="createLeaveType()"
+                [disabled]="form.invalid"
+              ></button>
+              <button
+              pButton
+              *ngIf="isEdit"
+              type="button"
+              class="p-button-raised"
+              label="Edit Leave Type"
+              (click)="UpdateLeaveType()"
+              [disabled]="form.invalid"
+            ></button>
+            </ng-template>
+          </p-dialog>
+          <button
+            pButton
+            type="button"
+            icon="pi pi-plus"
+            (click)="showDialog()"
+            class="p-button-raised p-button-rounded"
+            *ngIf="(leaveTypes$| async)?.length!==0"
+          ></button>
+        </div>
+        <div class="graph-content grid" *ngIf="(leaveTypes$ |async)?.length!==0">
+          <div class="col-8 mx-auto">
+            <div class="card">
+                
+              <p-table [value]="leaveTypes$ | async"
+               responsiveLayout="scroll"
+              
+               styleClass="p-datatable-gridlines"
+               [rows]="10">
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th>Type of Leave</th>
+                    <th>Number of Days</th>
+                    <th>Action</th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-leave>
+                  <tr>
+                    <td>{{ leave?.leaveType }}</td>
+                    <td>{{ leave?.numberOfDays }}</td>
+  
+                    <td>
+                      <div class=" flex">
+                        <button
+                        pButton
+                        type="button"
+                        icon="pi pi-pencil"
+                        class="mr-2 text-xs"
+                        (click)="updateLeavetypeModal(leave?._id)"
+                      ></button>
+                      <button
+                      pButton
+                      type="button"
+                      icon="pi pi-trash"
+                      class="p-button-danger"
+                      iconPos="left"
+                      (click)="deleteLeaveType(leave?._id)"
+                    ></button>
+                      </div>
+                   
+                    </td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </div>
+          </div>
+        </div> 
+        <div
+          class="graph-content grid text-center"
+          *ngIf="(leaveTypes$ |async)?.length!==0"
+        >
+          <div class="col-12">
+            <h5>No leaves currently</h5>
+            <button
+              pButton
+              type="button"
+              label="New Leave Type"
+              icon="pi pi-plus"
+              (click)="showDialog()"
+              class="p-button-raised"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+
+  

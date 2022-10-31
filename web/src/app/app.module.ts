@@ -47,7 +47,7 @@ import {
   TabsModule,
   UtilitiesModule,
 } from '@coreui/angular';
-
+import {DialogModule} from 'primeng/dialog'
 import { IconModule, IconSetService } from '@coreui/icons-angular';
 import { StoreModule } from '@ngrx/store';
 import {AuthEffects} from './store/Effects/authEffects'
@@ -110,6 +110,7 @@ const APP_CONTAINERS = [
     ListGroupModule,
     CardModule,
     HttpClientModule,
+    DialogModule,
     StoreModule.forRoot(reducers, {}),
     EffectsModule.forRoot([
       AuthEffects,

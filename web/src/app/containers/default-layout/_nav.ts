@@ -23,6 +23,11 @@ export const navItems: INavData[] = [
     
   
   },
+  {
+    name:'settings',
+    iconComponent: { name: 'cil-settings' },
+    url: 'leave/leave-setting'
+  }
 
 
 

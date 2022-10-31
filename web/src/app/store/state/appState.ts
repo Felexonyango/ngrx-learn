@@ -9,7 +9,7 @@ export interface AppState {
   [ROUTER_STATE_NAME ]: RouterStateSerializer
   employee: State,
   authState: AuthState,
-  LeaveTypeState:LeaveTypeState
+  leaveType:LeaveTypeState
   
 }
 
@@ -17,7 +17,7 @@ export const reducers: ActionReducerMap<AppState> = {
   [ROUTER_STATE_NAME ] : routerReducer,
   employee:employeeReducer,
   authState:authreducer,
-  LeaveTypeState:leaveTypeReducer
+  leaveType:leaveTypeReducer
 
 };
 

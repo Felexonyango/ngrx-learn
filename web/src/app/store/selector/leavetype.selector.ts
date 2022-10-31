@@ -15,7 +15,7 @@ export const LeaveTypeSelectors = adapter.getSelectors();
    
   export const getleaveTypes = createSelector(
    getLeaveTypeFeatureState,
-    LeaveTypeSelectors  .selectAll
+    LeaveTypeSelectors.selectAll
     );
 
     
