@@ -8,6 +8,8 @@ import {
   map,
   catchError,
   switchMap,
+  filter,
+  withLatestFrom,
  
 } from 'rxjs/operators';
 import { LeaveTypeService } from '../../services/leave-type.service';
@@ -17,6 +19,7 @@ import { Update } from '@ngrx/entity';
 import { LeaveTypes } from '../actions/leavetype.actions';
 import { ILeaveType } from 'src/app/model/leave';
 import { updateEmployee } from '../actions/employee.action';
+import { getleaveTypes } from '../selector/leavetype.selector';
 
 @Injectable()
 export class LeaveTypeEFfect {
@@ -96,32 +99,32 @@ export class LeaveTypeEFfect {
     );
   });
 
-  //   getSingleEmployee$ = createEffect(() => {
-  //     return this.actions$.pipe(
-  //       ofType(ROUTER_NAVIGATION),
-  //       filter((r: RouterNavigatedAction) => {
-  //         return r.payload.routerState.url.startsWith('/employees/employee');
-  //       }),
-  //       map((r: RouterNavigatedAction) => {
-  //         return r.payload.routerState['params']['id'];
-  //       }),
-  //       withLatestFrom(this.store.select(getEmployees)),
-  //       switchMap(([id, employees]) => {
-  //         if (!employees.length) {
-  //           return this.EmployeeService.getEmployeeByID(id).pipe(
-  //             map((employee) => {
-  //               const employeeData = [{ ...employee, id }];
-  //             return EmployeeActionTypes.loadEmployeesSuccess({employees: employeeData});
-  //             }),
-  //             catchError((error) =>
-  //             of(EmployeeActionTypes.loadEmployeeFailure({ error }))
-  //           )
-  //           );
-  //         }
-  //         return of(dummyAction());
-  //       })
-  //     );
-  //   });
+    getSingleEmployee$ = createEffect(() => {
+      return this.actions$.pipe(
+        ofType(ROUTER_NAVIGATION),
+        filter((r: RouterNavigatedAction) => {
+          return r.payload.routerState.url.startsWith('/employees/employee');
+        }),
+        map((r: RouterNavigatedAction) => {
+          return r.payload.routerState['params']['id'];
+        }),
+        withLatestFrom(this.store.select(getleaveTypes)),
+        switchMap(([id, leaveType]) => {
+          if (!leaveType.length) {
+            return this.leaveTypeService.getLeavetypeByID(id).pipe(
+              map((ileaveType) => {
+                const leaveTypeData = [{ ...ileaveType, id }];
+              return LeaveTypes.loadLeaveTypesSuccess({leaveType:leaveTypeData});
+              }),
+              catchError((error) =>
+              of(LeaveTypes.loadLeaveTypesFailure({ error }))
+            )
+            );
+          }
+          return of(dummyAction());
+        })
+      );
+    });
 
   //   updatePost$ = createEffect(() => {
   //     return this.actions$.pipe(

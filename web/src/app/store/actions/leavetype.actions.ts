@@ -7,7 +7,7 @@ export const LoadleaveTypes = createAction('[LeaveType] Load All leaveType');
 
 export const loadLeaveTypesSuccess = createAction(
   '[LeaveType] Load All leaveType Success',
-  props<{ leaveType:ILeaveType[]}>()
+  props<{leaveType:ILeaveType[]}>()
 )
 
 export const loadLeaveTypesFailure = createAction(

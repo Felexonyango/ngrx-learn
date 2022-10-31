@@ -34,8 +34,8 @@ export class LeaveTypeService {
     );
   }
 
-  getLeavetypeByID(id: string) {
-    return this.http.get<HTTPResponse<ILeaveType>>(
+  getLeavetypeByID(id: string):Observable<ILeaveType> {
+    return this.http.get<ILeaveType>(
       `${environment.server_Url}leavetype/${id}`
     );
   }
