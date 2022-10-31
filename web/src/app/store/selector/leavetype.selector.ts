@@ -7,7 +7,6 @@ const getLeaveTypeFeatureState =createFeatureSelector<LeaveTypeState>('leaveType
 
 export const LeaveTypeSelectors = adapter.getSelectors();
 
-
  export const getLeaveTypeEntities = createSelector(
     getLeaveTypeFeatureState,
     LeaveTypeSelectors.selectEntities

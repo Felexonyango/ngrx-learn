@@ -103,7 +103,7 @@
         </div> 
         <div
           class="graph-content grid text-center"
-          *ngIf="(leaveTypes$ |async)?.length!==0"
+          *ngIf="(leaveTypes$ |async)?.length ==0"
         >
           <div class="col-12">
             <h5>No leaves currently</h5>
