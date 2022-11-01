@@ -9,6 +9,7 @@ import { IDepartment } from '../../../../model/department';
 import { State } from 'src/app/store/reducer/employeeReducer';
 import { Store } from '@ngrx/store';
 import {EmployeeActionTypes} from '../../../../store/actions/employee.action'
+import { LeaveTypeService } from 'src/app/services/leave-type.service';
 @Component({
   selector: 'app-add-employees',
   templateUrl: './add-employees.component.html',
@@ -31,17 +32,18 @@ export class AddEmployeesComponent implements OnInit {
     private store: Store<State>,
     private route: ActivatedRoute,
     private router: Router,
+    private  leaveService: LeaveTypeService
     
     ) {}
 
   ngOnInit(): void {
     this.fields = createEmployeeFormlyFields;
     
+    this.updateOptions()
   }
 
   ngOnDestroy() {
-   
-      this.subscription.unsubscribe();
+   this.subscription.unsubscribe();
     
   }
 
@@ -56,6 +58,13 @@ export class AddEmployeesComponent implements OnInit {
     this.addEmployeeForm.reset()
     
   }
+  updateOptions() {
+    this.fields = createEmployeeFormlyFields
+    this.fields[1].fieldGroup[1].templateOptions.options=this.leaveService.getAllDepartments()
+    
+    console.log(this.fields[1].fieldGroup[1])
+  }
+  
 }
 
 

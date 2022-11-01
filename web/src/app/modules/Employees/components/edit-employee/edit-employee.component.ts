@@ -37,35 +37,30 @@ export class EditEmployeeComponent implements OnInit {
 
   ngOnInit(): void {
     this.fields = createEmployeeFormlyFields;
-    this.getEmployeeById()
+    const id = this.activatedRoute.snapshot.params['id'];
+if(id){
+  this.store.select(getEmployeeById)
+  .subscribe(data=>{
+    this.employee=data
+    this.addEmployeeForm.patchValue
+  })
+}
+
  
   }
  
 
-  getEmployeeById(){
-    this.store.select(getEmployeeById).pipe(
-      takeWhile(()=>this.isAlive))
-      .subscribe(data=>{
-        this.employee=data
-        this.employeeModel=data
-      })
-    
-  }
 
   onsubmit(){
     
 
     this.employee=this.addEmployeeForm.value
-    const employee:IEmployee={...this.addEmployeeForm.value}
+    const employee:IEmployee={
+      ...this.addEmployeeForm.value
     
-    const formData = this.addEmployeeForm.value;
-    const newFormData = { ...this.employee };
+    }
     
-    Object.keys(formData).map(key => {
-      if (newFormData[key] !== formData[key]) {
-        newFormData[key] = formData[key];
-      }
-    });
+  
     this.store.dispatch(EmployeeActionTypes.updateEmployee({employee: employee}))
   }
 

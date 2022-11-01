@@ -45,6 +45,7 @@ export const createEmployeeFailure = createAction(
   props<{ error: unknown }>()
 );
 
+
 export const updateEmployee = createAction(
   '[Employee] Update employee',
   props<{ employee:IEmployee}>());
@@ -52,7 +53,7 @@ export const updateEmployee = createAction(
 
 export const updateEmployeeSuccess = createAction(
   '[Employee] Update  employee Success',
-  props<{employee:Update<IEmployee>}>());
+  props<{ update: Update<IEmployee> }>());
 
   
 

@@ -111,7 +111,7 @@ export class EmployeeEffect {
                 ...employee,
               },
             };
-            return updateEmployeeSuccess({ employee: updateEmployee});
+            return updateEmployeeSuccess({ update: updateEmployee});
           })
         );
       }),

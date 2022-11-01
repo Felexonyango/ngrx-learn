@@ -34,7 +34,7 @@ export class EmployeeService {
     )
   }
   updateEmployee(employee: IEmployee):Observable<HTTPResponse<IEmployee>> {
-    const url = `${environment.server_Url}leave/${employee._id}`;
+    const url = `${environment.server_Url}leave/${employee._id}`
     return this.http.post<HTTPResponse<IEmployee>>(url,employee)
   }
 

@@ -38,8 +38,12 @@ export const initialState= adapter.getInitialState({
       }),
 
        on(EmployeeActionTypes.updateEmployee, (state) => ({ ...state, loading: true })),
-       on(EmployeeActionTypes.updateEmployeeSuccess, (state, { employee }) =>
-         adapter.updateOne(employee, state)
+
+       on(EmployeeActionTypes.updateEmployeeSuccess, (state, {update}) =>{
+        return adapter.updateOne(update, state);
+            
+       }
+         
        ),
        on(EmployeeActionTypes.updateEmployeeFailure, (state, { error }) => ({
          ...state,

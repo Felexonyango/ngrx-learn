@@ -34,7 +34,7 @@ export class DepartmentEFfect {
         this.leaveTypeService.getAllDepartments().pipe(
           map((res) =>
             DepartmentActionTypes.loadDepartmentsSuccess({
-              departments: res.result,
+              departments: res
             })
           ),
           catchError((error) => of(DepartmentActionTypes.loadDepartmentsFailure({ error })))

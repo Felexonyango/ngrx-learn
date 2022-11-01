@@ -1,6 +1,6 @@
 import { HttpClient, HttpResponseBase } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { IDepartment } from '../model/department';
 import { HTTPResponse } from '../model/HTTPResponse';
@@ -52,11 +52,24 @@ export class LeaveTypeService {
 
   //department
 
-  getAllDepartments(): Observable<HTTPResponse <IDepartment[]>> {
-    return this.http
-      .get<HTTPResponse<IDepartment[]>>(`${environment.server_Url}department`)
+  // getAllDepartments(): Observable<HTTPResponse <IDepartment[]>> {
+  //   return this.http
+  //     .get<HTTPResponse<IDepartment[]>>(`${environment.server_Url}department`)
   
+  // }
+
+  getAllDepartments(): Observable<IDepartment[]> {
+    return this.http
+      .get<HTTPResponse<IDepartment[]>>(
+        `${environment.server_Url}department`
+      )
+      .pipe(
+        map((res) => {
+          return res.result
+        })
+      )
   }
+
 
   createDepartments(
     department: IDepartment
