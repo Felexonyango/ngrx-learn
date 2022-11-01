@@ -1,0 +1,128 @@
+<!-- <div class="grid">
+    <div class="col-12">
+      <div class="card widget-visitor-graph">
+        <div class="card-header">
+          <h5>Departments</h5>
+          <p-dialog
+            header="Title"
+            [(visible)]="displayDepartment"
+            [modal]="true"
+            [style]="{width: '50vw'}"
+          >
+            <ng-template pTemplate="header">
+              <p>{{ errorMessage }}</p>
+              <p>Add a department</p>
+            </ng-template>
+            <form [formGroup]="departmentForm" (ngSubmit)="addDepartment()">
+              <formly-form
+                [model]="departmentModel"
+                [fields]="departmentFields"
+                [form]="departmentForm"
+              ></formly-form>
+            </form>
+            <ng-template pTemplate="footer">
+              <button
+                pButton
+                *ngIf="!isEdit"
+                type="button"
+                class="p-button-raised"
+                (click)="addDepartment()"
+                [disabled]="departmentForm.invalid"
+                label="Add department"
+              ></button>
+              <button
+                pButton
+                *ngIf="isEdit"
+                type="button"
+                class="p-button-raised"
+                (click)="updateDepartment()"
+                [disabled]="departmentForm.invalid"
+                label="Edit department"
+              ></button>
+            </ng-template>
+          </p-dialog>
+          <button
+            pButton
+            type="button"
+            icon="pi pi-plus"
+            (click)="departmentDialogue()"
+            class="p-button-raised p-button-rounded"
+            *ngIf="departments.length !== 0"
+          ></button>
+        </div>
+        <div class="graph-content grid" *ngIf="departments.length !== 0">
+          <div class="col-12 col-md-12">
+            <div class="card">
+              <p-table
+                [value]="departments"
+                paginator="true"
+                [rowHover]="true"
+                styleClass="p-datatable-gridlines"
+                [rows]="10"
+              >
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th>Department</th>
+                    <th>Employees on Leave</th>
+                    <th>Number of Employees</th>
+                    <th>Action</th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-department>
+                  <tr>
+                    <td
+                      (click)="handleSelect(department?._id)"
+                    >
+                      {{ department.departmentName }}
+                    </td>
+                  
+                    <td (click)="handleSelect(department?._id)">
+                      {{ department.numOfEmployeesOnLeave }}
+                    </td>
+                    <td (click)="handleSelect(department?._id)">
+                      {{ department.activeEmployees }}
+                    </td>
+                    <td class="flex">
+                      <button
+                        pButton
+                        type="button"
+                        icon="pi pi-pencil"
+                        class="mr-2 text-xs"
+                        (click)="updateDepartmentModal(department?._id)"
+                      ></button>
+                      <button
+                        pButton
+                        type="button"
+                        pRipple
+                        iconPos="left"
+                        icon="pi pi-trash"
+                        class="p-button-danger"
+                        (click)="deleteDepartment(department._id)"
+                      ></button>
+                    </td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </div>
+          </div>
+        </div>
+        <div
+          class="graph-content grid text-center"
+          *ngIf="departments.length === 0"
+        >
+          <div class="col-12">
+            <h5>No departments currently</h5>
+            <button
+              pButton
+              type="button"
+              [label]="isEdit ? 'Edit Department' : 'New Department'"
+              icon="pi pi-plus"
+              (click)="departmentDialogue()"
+              class="p-button-raised"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+   -->

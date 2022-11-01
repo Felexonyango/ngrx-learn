@@ -1,5 +1,5 @@
 export interface IDepartment {
-    _id?: string;
+    _id: string;
     departmentName: string;
     numOfEmployees?: number;
     employeesInOffice?: number;

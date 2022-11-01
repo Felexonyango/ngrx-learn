@@ -3,7 +3,7 @@ import { IDepartment } from '../../model/department';
 import { Update } from '@ngrx/entity';
 import { createAction, props } from '@ngrx/store';
 
-export const LoadDepartment = createAction(
+export const LoadDepartments = createAction(
   '[Department] Load All departments'
   );
 export const loadDepartmentsSuccess = createAction(
@@ -75,11 +75,12 @@ export const deleteDepartmentFailure = createAction(
 )
 
 export const DepartmentActionTypes = {
-  loadDepartment,
-  loadDepartmentFailure,
-  loadDepartmentSuccess,
-  loadDepartmentsFailure,
+  LoadDepartments,
   loadDepartmentsSuccess,
+  loadDepartmentsFailure,
+  loadDepartment,
+  loadDepartmentSuccess,
+  loadDepartmentFailure,
   createDepartment,
   createDepartmentSuccess,
   createDepartmentFailure,

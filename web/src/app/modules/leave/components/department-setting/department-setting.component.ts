@@ -38,6 +38,7 @@ export class DepartmentSettingComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }
