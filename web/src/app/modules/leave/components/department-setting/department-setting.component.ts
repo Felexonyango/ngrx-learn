@@ -41,4 +41,22 @@ export class DepartmentSettingComponent implements OnInit {
     
   }
 
+  addDepartment(){
+
+  }
+  updateDepartment(){
+
+  }
+  departmentDialogue(){
+
+  }
+  handleSelect(id:string){
+
+  }
+  updateDepartmentModal(id:string){
+
+  }
+  deleteDepartment(id:string){
+    
+  }
 }
