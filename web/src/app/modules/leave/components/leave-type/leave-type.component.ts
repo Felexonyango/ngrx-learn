@@ -65,8 +65,10 @@ export class LeaveTypeComponent implements OnInit {
     this.leaveType = this.form.value;
     const leaveType: ILeaveType = { ...this.form.value };
     this.store.dispatch(LeaveTypes.createLeaveType({ leaveType }));
+    this.display = false
     this.form.reset();
   }
+
 
   getLeaveTypes() {
     this.leaveTypes$ = this.store.pipe(select(getleaveTypes));

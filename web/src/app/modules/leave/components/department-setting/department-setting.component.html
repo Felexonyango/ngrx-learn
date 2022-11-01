@@ -47,14 +47,14 @@
             icon="pi pi-plus"
             (click)="departmentDialogue()"
             class="p-button-raised p-button-rounded"
-            *ngIf="departments.length !== 0"
+            *ngIf="(departments |async)?.length !== 0"
           ></button>
         </div>
-        <div class="graph-content grid" *ngIf="departments.length !== 0">
+        <div class="graph-content grid" *ngIf="(departments |async)?.length !== 0">
           <div class="col-12 col-md-12">
             <div class="card">
               <p-table
-                [value]="departments"
+                [value]="departments |async"
               
                 [rowHover]="true"
                 styleClass="p-datatable-gridlines"
@@ -108,7 +108,7 @@
         </div>
         <div
           class="graph-content grid text-center"
-          *ngIf="departments.length === 0"
+          *ngIf="(departments |async)?.length == 0"
         >
           <div class="col-12">
             <h5>No departments currently</h5>

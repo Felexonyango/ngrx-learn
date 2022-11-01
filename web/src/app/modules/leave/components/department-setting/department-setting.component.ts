@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Store } from '@ngrx/store';
 import { FormlyFormOptions, FormlyFieldConfig } from '@ngx-formly/core';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { IDepartment } from 'src/app/model/department';
+import { DepartmentActionTypes } from 'src/app/store/actions/department.actions';
+import { DepartmentState } from 'src/app/store/reducer/departmentReducer';
 
 @Component({
   selector: 'app-department-setting',
@@ -11,7 +14,7 @@ import { IDepartment } from 'src/app/model/department';
 })
 export class DepartmentSettingComponent implements OnInit {
 
-  departments: IDepartment[] = []
+  departments:Observable<IDepartment[]> 
   department: IDepartment
   errorMessage: string
   subscription: Subscription = new Subscription()
@@ -35,21 +38,32 @@ export class DepartmentSettingComponent implements OnInit {
   ]
   departmentId:string=""
 
-  constructor() { }
+  constructor(
+    private store: Store<DepartmentState>
+  ) { }
 
   ngOnInit(): void {
     
   }
 
   addDepartment(){
+    this.department = this.departmentForm.value
+    const  department: IDepartment = { 
+      ...this.departmentForm.value
+     };
+    this.store.dispatch( DepartmentActionTypes.createDepartment({department }));
+    console.log(this.department)
+    this.displayDepartment = false
+    this.departmentForm.reset();
 
   }
   updateDepartment(){
 
   }
-  departmentDialogue(){
-
+  departmentDialogue() {
+    this.displayDepartment = true
   }
+
   handleSelect(id:string){
 
   }
@@ -57,6 +71,6 @@ export class DepartmentSettingComponent implements OnInit {
 
   }
   deleteDepartment(id:string){
-    
+
   }
 }
