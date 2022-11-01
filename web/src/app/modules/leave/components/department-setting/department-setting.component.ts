@@ -74,7 +74,10 @@ export class DepartmentSettingComponent implements OnInit {
 
   }
   updateDepartmentModal(id:string){
-
+   this.displayDepartment = true
+    // this.departmentId=department_Id
+    this.isEdit = true
+    // this.getDepartmentById(this.departmentId)
   }
   deleteDepartment(id:string){
 this.store.dispatch(DepartmentActionTypes.deleteDepartment({id:id}))
