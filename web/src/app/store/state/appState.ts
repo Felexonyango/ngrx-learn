@@ -4,12 +4,14 @@ import { employeeReducer, State } from '../reducer/employeeReducer';
 import { authreducer, AuthState } from '../reducer/authReducer';
 import { ROUTER_STATE_NAME } from '../router/router.selector';
 import {leaveTypeReducer, LeaveTypeState} from 'src/app/store/reducer/leavetype.reducer'
+import {departmentReducer,DepartmentState} from 'src/app/store/reducer/departmentReducer'
 
 export interface AppState {
   [ROUTER_STATE_NAME ]: RouterStateSerializer
   employee: State,
   authState: AuthState,
   leaveType:LeaveTypeState
+  department: DepartmentState
   
 }
 
@@ -17,7 +19,8 @@ export const reducers: ActionReducerMap<AppState> = {
   [ROUTER_STATE_NAME ] : routerReducer,
   employee:employeeReducer,
   authState:authreducer,
-  leaveType:leaveTypeReducer
+  leaveType:leaveTypeReducer,
+  department:departmentReducer
 
 };
 
