@@ -52,25 +52,23 @@ export class LeaveTypeService {
 
   //department
 
-  getAllDepartments(): Observable<IDepartment[]> {
+  getAllDepartments(): Observable<HTTPResponse <IDepartment[]>> {
     return this.http
-      .get<IDepartment[]>(`${environment.server_Url}department`)
+      .get<HTTPResponse<IDepartment[]>>(`${environment.server_Url}department`)
   
   }
 
   createDepartments(
-    departments: IDepartment
+    department: IDepartment
   ): Observable<HTTPResponse<IDepartment>> {
     return this.http.post<HTTPResponse<IDepartment>>(
       `${environment.server_Url}department`,
-      departments
-    )
-  }
-  updateDepartment(departmentId:string,department:IDepartment){
-    return this.http.patch<HTTPResponse<IDepartment>>(
-      `${environment.server_Url}department/${departmentId}`,
       department
     )
+  }
+  updateDepartment(department:IDepartment){
+    const url = `${environment.server_Url}department/${department._id}`;
+    return this.http.patch<HTTPResponse<IDepartment>>( url,department)
   }
   deleteDepartment(
     departmentId: any

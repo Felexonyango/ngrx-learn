@@ -13,6 +13,7 @@ import {LeaveTypeService } from 'src/app/services/leave-type.service'
   PerfectScrollbarModule,
 } from 'ngx-perfect-scrollbar';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import {DepartmentEFfect} from 'src/app/store/Effects/departmentEffect'
 
 // Import routing module
 import { AppRoutingModule } from './app-routing.module';
@@ -115,7 +116,8 @@ const APP_CONTAINERS = [
     EffectsModule.forRoot([
       AuthEffects,
       EmployeeEffect,
-      LeaveTypeEFfect
+      LeaveTypeEFfect,
+      DepartmentEFfect
     
     ]),
 
