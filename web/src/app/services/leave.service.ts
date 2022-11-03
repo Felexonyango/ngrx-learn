@@ -132,11 +132,7 @@ getAllNewLeaveRequest(): Observable<HTTPResponse<ILeaves[]>> {
       .get<HTTPResponse<ILeaves[]>>(
         `${environment.server_Url}supervisor/allleaves`
       )
-      .pipe<HTTPResponse<ILeaves[]>>(
-        map((res) => {
-          return res
-        })
-      )
+     
   }
   createLeaveRequest(leave: ILeaves): Observable<HTTPResponse<ILeaves>> {
     return this.http.post<HTTPResponse<any>>(
@@ -167,119 +163,11 @@ getAllNewLeaveRequest(): Observable<HTTPResponse<ILeaves[]>> {
   MakeRole(departmentId: string, head:any): Observable<HTTPResponse<[]>> {
     return this.http.patch<HTTPResponse<[]>>(
       `${environment.server_Url}department/${departmentId}`,
- head
-    )
-  }
-
-  //Leave types
-  createLeavetype(
-    ileavetype: ILeaveType
-  ): Observable<HTTPResponse<ILeaveType>> {
-    return this.http.post<HTTPResponse<any>>(
-      `${environment.server_Url}leavetype`,
-      ileavetype
-    )
-  }
-  getLeaveType(): Observable<HTTPResponse<ILeaveType>> {
-    return this.http.get<HTTPResponse<any>>(
-      `${environment.server_Url}leavetype`
-    )
-  }
-  getLeaveTypes(): Observable<ILeaveType[]> {
-    return this.http
-      .get<HTTPResponse<any>>(`${environment.server_Url}leavetype`)
-      .pipe(
-        map((res) => {
-          return res.result
-        })
-      )
-  }
-
-  getAllLeaveTypes(): Observable<HTTPResponse<ILeaveType[]>> {
-    return this.http.get<HTTPResponse<ILeaveType[]>>(
-      `${environment.server_Url}leavetype`
-    )
-  }
-
-  getLeavetypeByID(id: string) {
-    return this.http.get<HTTPResponse<ILeaveType>>(
-      `${environment.server_Url}leavetype/${id}`
-    )
-  }
-  deleteLeavetype(id: string): Observable<HTTPResponse<ILeaveType>> {
-    return this.http.delete<HTTPResponse<ILeaveType>>(
-      `${environment.server_Url}leavetype/${id}`
-    )
-  }
-  updateLeavetype(
-    id: string,
-    ileavetype: ILeaveType
-  ): Observable<HTTPResponse<ILeaveType>> {
-    return this.http.post<HTTPResponse<ILeaveType>>(
-      `${environment.server_Url}leavetype/${id}`,
-      ileavetype
-    )
-  }
-
-  // getLeaveTypes() {
-  //     return leaveTypes;
-  // }
-
-  // getHolidays() {
-  //     return companyHolidays;
-  // }
-  // getDepartments() {
-  //     return Departments;
-  // }
- 
-  getAllDepartments(): Observable<IDepartment[]> {
-    return this.http
-      .get<HTTPResponse<IDepartment[]>>(
-        `${environment.server_Url}department`
-      )
-      .pipe(
-        map((res) => {
-          return res.result
-        })
-      )
-  }
-
-  createDepartments(
-    departments: IDepartment
-  ): Observable<HTTPResponse<IDepartment>> {
-    return this.http.post<HTTPResponse<IDepartment>>(
-      `${environment.server_Url}department`,
-      departments
-    )
-  }
-  updateDepartment(departmentId:string,department:IDepartment){
-    return this.http.patch<HTTPResponse<IDepartment>>(
-      `${environment.server_Url}department/${departmentId}`,
-      department
-    )
-  }
-  deleteDepartment(
-    departmentId: any
-  ): Observable<HTTPResponse<IDepartment>> {
-    return this.http.delete<HTTPResponse<IDepartment>>(
-      `${environment.server_Url}department/${departmentId}`
+       head
     )
   }
 
  
-  getHolidays(): Observable<HTTPResponse<IHoliday[]>> {
-    return this.http.get<HTTPResponse<IHoliday[]>>(
-      `${environment.server_Url}holiday`
-    )
-  }
-
-  createHolidays(holidays: any): Observable<HTTPResponse<any>> {
-    return this.http.post<HTTPResponse<any>>(
-      `${environment.server_Url}holiday`,
-      holidays
-    )
-  }
-
   getLeaveSummary(): Observable<HTTPResponse<ILeaves>> {
     return this.http.get<HTTPResponse<ILeaves>>(
       `${environment.server_Url}leave/summary`
@@ -298,49 +186,4 @@ getAllNewLeaveRequest(): Observable<HTTPResponse<ILeaves[]>> {
     )
   }
 
-  getProfileImage(): Observable<Blob> {
-    return this.http.get(`${environment.server_Url}user/userprofile`, {
-      responseType: 'blob',
-    })
-  }
-  getProfileById(employeeId: string): Observable<Blob> {
-    return this.http.get(
-      `${environment.server_Url}user/profile/${employeeId}`,
-      {
-        responseType: 'blob',
-      }
-    )
-  }
-  getDepartmentById(departmentId: string): Observable<HTTPResponse<{
-      department: IDepartment
-      users: any 
-    head:any}>> {
-    return this.http.get<
-      HTTPResponse<{
-        department: IDepartment
-        users: any
-        head:any
-      }>>(`${environment.server_Url}department/${departmentId}`)
-  }
-
-
-  getHolidayById(holidayId:string): Observable<HTTPResponse<IHoliday>> {
-    return this.http.get<HTTPResponse<IHoliday>>(
-      `${environment.server_Url}holiday/${holidayId}`
-    )
-  }
-
-  updateHoliday(holidayId:string, holiday:IHoliday): Observable<HTTPResponse<IHoliday>> {
-    return this.http.post<HTTPResponse<IHoliday>>(
-      `${environment.server_Url}holiday/${holidayId}`,
-      holiday
-    )
-  }
-
 }
-
-
-
-
-
-
