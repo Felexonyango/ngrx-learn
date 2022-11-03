@@ -12,7 +12,7 @@ export interface ILeaveType {
   }
 
   export interface ILeaves {
-    _id?: string
+    _id: string
     typeOfLeave: {
       leaveType: string
       id: string
