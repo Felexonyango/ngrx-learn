@@ -20,7 +20,7 @@ export const initialState = adapter.getInitialState({
   loaded: false,
 });
 
-export const leaveTypeReducer = createReducer(
+export const leaveReducer = createReducer(
   initialState,
   on(leaveActionType.Loadleaves, (state) => ({ ...state, loaded: true })),
 
