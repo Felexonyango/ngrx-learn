@@ -9,7 +9,7 @@ export const navItems: INavData[] = [
   },
   {
     name: 'Leave',
-    iconComponent: { name: ' cil-Save'},
+    iconComponent: { name: 'cil-Save'},
     children:[
       {
         name: 'Apply Leave',
