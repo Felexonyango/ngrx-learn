@@ -90,7 +90,7 @@ export class CreateLeaveComponent implements OnInit {
   updateOptions() {
     this.fields = applyLeaveFormlyFields;
     this.fields[0].fieldGroup[0].templateOptions.options = this.leaveService.getLeaveTypes()
-    // console.log(this.fields[0].fieldGroup[0].templateOptions.options)
+   
   }
   getLeaveTypes() {
     this.subscription.add(this.leaveService.getLeaveTypes().subscribe((res) => {

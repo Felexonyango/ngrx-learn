@@ -17,13 +17,15 @@ import { PaginatorModule } from 'primeng/paginator';
 import { DepartmentSettingComponent } from './components/department-setting/department-setting.component';
 import { AllLeavesComponent } from './components/all-leaves/all-leaves.component';
 import { CalendarModule } from 'primeng/calendar';
+import { LeaveHistoryComponent } from './components/leave-history/leave-history.component';
 @NgModule({
   declarations: [
     LeaveSettingsComponent,
     LeaveTypeComponent,
     CreateLeaveComponent,
     DepartmentSettingComponent,
-    AllLeavesComponent
+    AllLeavesComponent,
+    LeaveHistoryComponent
   ],
   imports: [
     CommonModule,
