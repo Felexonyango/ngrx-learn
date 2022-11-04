@@ -23,6 +23,10 @@ const routes: Routes = [
     component: AllLeaveRequestsComponent
   },
   {
+    path:'all-request/history',
+    component:AllLeavesComponent
+  },
+  {
     path: 'apply-leave',
     component: CreateLeaveComponent
   },

@@ -22,7 +22,11 @@ export const navItems: INavData[] = [
     {
       name:'New leave Requests',
       url:'leave/all-leave-requests',
-    }
+    },
+    {
+      name:'All leave history',
+      url:'leave/all-request/history',
+    },
     
   ]
   

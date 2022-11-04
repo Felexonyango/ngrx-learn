@@ -95,6 +95,20 @@ export const loadnewleavesFailure = createAction(
   '[new leaves] get new leaves failure',
   props<{error:unknown}>()
 )
+export const loadadminleavehistory = createAction(
+  'admin leaves], get admin leave history'
+)
+export const loadadminleavehistorySucces = createAction(
+  'admin leaves], get admin leave history succes',
+  props<{leaves:ILeaves[]}>()
+)
+export const loadadminleavehistoryFailure = createAction(
+  'admin leaves], get admin leave history failure',
+  props<{error:unknown}>()
+)
+
+
+
 
 export const leaveActionType = {
   Loadleaves,
@@ -116,6 +130,9 @@ export const leaveActionType = {
   loadleavesByuserSuccess,
   loadnewleaves,
   loadnewleavesFailure,
-  loadnewleavesSuccess
+  loadnewleavesSuccess,
+  loadadminleavehistory,
+  loadadminleavehistoryFailure,
+  loadadminleavehistorySucces
 };
 export const dummyAction = createAction('[dummy action]');

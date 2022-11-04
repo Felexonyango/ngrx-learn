@@ -10,7 +10,6 @@ import {
   switchMap,
   filter,
   withLatestFrom,
- 
 } from 'rxjs/operators';
 import { LeaveTypeService } from '../../services/leave-type.service';
 import { LeaveTypeState } from '../reducer/leavetype.reducer';
@@ -22,76 +21,97 @@ import { LeaveService } from '../../services/leave.service';
 
 @Injectable()
 export class LeaveEFfect {
-  constructor(
-    private actions$: Actions,
-    private leaveService: LeaveService,
-    
-  ) {}
-
-
+  constructor(private actions$: Actions, private leaveService: LeaveService) {}
 
   loadLeaveService$ = createEffect(() =>
-  this.actions$.pipe(ofType(leaveActionType.Loadleaves),
-  mergeMap((action)=>this.leaveService.getAllLeaves().pipe(
-    map((res)=>leaveActionType.loadleavesSuccess({
-        leaves:res.result
-
-    })
+    this.actions$.pipe(
+      ofType(leaveActionType.Loadleaves),
+      mergeMap((action) =>
+        this.leaveService.getAllLeaves().pipe(
+          map((res) =>
+            leaveActionType.loadleavesSuccess({
+              leaves: res.result,
+            })
+          )
+        )
+      ),
+      catchError((error) => of(leaveActionType.loadleavessFailure({ error })))
     )
-  )),
-  catchError((error) => of(leaveActionType.loadleavessFailure({ error })))
-
-  ))
+  );
 
   loadleavesByUser$ = createEffect(() =>
-  this.actions$.pipe(ofType(leaveActionType.loadleavesByuser),
-  mergeMap((action)=>this.leaveService.getLeaveRequestsByUser().pipe(
-    map((res)=>leaveActionType.loadleavesByuserSuccess({
-        leaves:res.result
-
-    })
+    this.actions$.pipe(
+      ofType(leaveActionType.loadleavesByuser),
+      mergeMap((action) =>
+        this.leaveService.getLeaveRequestsByUser().pipe(
+          map((res) =>
+            leaveActionType.loadleavesByuserSuccess({
+              leaves: res.result,
+            })
+          )
+        )
+      )
     )
-  ))
- 
-  ))
+  );
   loadallRequest$ = createEffect(() =>
-  this.actions$.pipe(ofType(leaveActionType.loadnewleaves),
-  mergeMap((action)=>this.leaveService.getAllNewLeaveRequests().pipe(
-    map((res)=>leaveActionType.loadnewleavesSuccess({
-        leaves:res.result
-
-    })
+    this.actions$.pipe(
+      ofType(leaveActionType.loadnewleaves),
+      mergeMap((action) =>
+        this.leaveService.getAllNewLeaveRequests().pipe(
+          map((res) =>
+            leaveActionType.loadnewleavesSuccess({
+              leaves: res.result,
+            })
+          )
+        )
+      )
     )
-  ))
- 
-  ))
-
-
-
-  createleave$ = createEffect(() =>this.actions$.pipe(
-    ofType(leaveActionType.createleave),
-    mergeMap(({leaves})=>this.leaveService.createLeaveRequest(leaves).pipe((
-        map((res)=>leaveActionType.createleaveSuccess({leaves:res.result})))
-    )),
-    catchError((error) => of(leaveActionType.createleaveFailure({ error })))
+  );
+  loadadminleavehistory$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(leaveActionType.loadadminleavehistory),
+    mergeMap((action) =>
+      this.leaveService.getAllLeaves().pipe(
+        map((res) =>
+          leaveActionType.loadadminleavehistorySucces({
+            leaves: res.result,
+          })
+        )
+      )
+    )
   )
-  
-  )
-//   createleavetype$ = createEffect(() =>
-//     this.actions$.pipe(
-//       ofType(LeaveTypes.createLeaveType),
-//       mergeMap(({ leaveType }) =>
-//         this.leaveTypeService
-//           .createLeavetype(leaveType)
-//           .pipe(
-//             map((res) =>
-//               LeaveTypes.createLeaveTypeSuccess({ leaveType: res.result })
-//             )
-//           )
-//       ),
-//       catchError((error) => of(LeaveTypes.createLeaveTypeFailure({ error })))
-//     )
-//   );
+);
+
+  createleave$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(leaveActionType.createleave),
+      mergeMap(({ leaves }) =>
+        this.leaveService
+          .createLeaveRequest(leaves)
+          .pipe(
+            map((res) =>
+              leaveActionType.createleaveSuccess({ leaves: res.result })
+            )
+          )
+      ),
+      catchError((error) => of(leaveActionType.createleaveFailure({ error })))
+    )
+  );
+  //   createleavetype$ = createEffect(() =>
+  //     this.actions$.pipe(
+  //       ofType(LeaveTypes.createLeaveType),
+  //       mergeMap(({ leaveType }) =>
+  //         this.leaveTypeService
+  //           .createLeavetype(leaveType)
+  //           .pipe(
+  //             map((res) =>
+  //               LeaveTypes.createLeaveTypeSuccess({ leaveType: res.result })
+  //             )
+  //           )
+  //       ),
+  //       catchError((error) => of(LeaveTypes.createLeaveTypeFailure({ error })))
+  //     )
+  //   );
 
   deleteleaveType$ = createEffect(() => {
     return this.actions$.pipe(
@@ -107,31 +127,29 @@ export class LeaveEFfect {
     );
   });
 
-//   update$ = createEffect(() => {
-//     return this.actions$.pipe(
-//       ofType(LeaveTypes.updateLeaveType),
-//       mergeMap(({ leaveType }) =>
-//         this.leaveTypeService.updateLeavetype(leaveType).pipe(
-//           map((data) => {
-//             const updateLeaveType: Update<ILeaveType> = {
-//               id: leaveType._id,
-//               changes: {
-//                 ...leaveType,
-//               },
-//             };
-//             return LeaveTypes.updateLeaveTypeSuccess({
-//               leaveType: updateLeaveType,
-//             });
-//           }),
-//           catchError((error) =>
-//             of(LeaveTypes.updateLeaveTypeFailure({ error }))
-//           )
-//         )
-//       )
-//     );
-//   });
-
-   
+  //   update$ = createEffect(() => {
+  //     return this.actions$.pipe(
+  //       ofType(LeaveTypes.updateLeaveType),
+  //       mergeMap(({ leaveType }) =>
+  //         this.leaveTypeService.updateLeavetype(leaveType).pipe(
+  //           map((data) => {
+  //             const updateLeaveType: Update<ILeaveType> = {
+  //               id: leaveType._id,
+  //               changes: {
+  //                 ...leaveType,
+  //               },
+  //             };
+  //             return LeaveTypes.updateLeaveTypeSuccess({
+  //               leaveType: updateLeaveType,
+  //             });
+  //           }),
+  //           catchError((error) =>
+  //             of(LeaveTypes.updateLeaveTypeFailure({ error }))
+  //           )
+  //         )
+  //       )
+  //     );
+  //   });
 
   //   updatePost$ = createEffect(() => {
   //     return this.actions$.pipe(

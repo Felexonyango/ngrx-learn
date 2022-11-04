@@ -38,6 +38,9 @@ export const leaveReducer = createReducer(
     return adapter.setAll(leaves,state)
   }),
 
+  on(leaveActionType.loadadminleavehistorySucces,(state,{leaves})=>{
+    return adapter.setAll(leaves,state)
+  }),
   on(leaveActionType.deleteleaveSuccess, (state, { id }) => {
     return adapter.removeOne(id, state);
   }),
