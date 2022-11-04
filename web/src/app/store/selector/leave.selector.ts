@@ -12,13 +12,13 @@ export const LeaveSelectors = adapter.getSelectors();
     LeaveSelectors.selectEntities
   );
    
-  export const getleaveTypes = createSelector(
+  export const getleaves = createSelector(
    getLeaveFeatureState,
     LeaveSelectors.selectAll
     );
 
     
-    export const getleaveTypeById = createSelector(
+    export const getleaveById = createSelector(
       getLeaveEntities,
       getCurrentRoute,
       (leaveId, route: RouterStateUrl) => {

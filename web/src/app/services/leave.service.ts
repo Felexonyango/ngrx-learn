@@ -45,13 +45,8 @@ export class LeaveService {
     )
   }
   getLeaveRequestsByUser(): Observable<HTTPResponse<ILeaves[]>> {
-    return this.http
-      .get<HTTPResponse<ILeaves[]>>(`${environment.server_Url}leave`)
-      .pipe<HTTPResponse<ILeaves[]>>(
-        map((res) => {
-          return res
-        })
-      )
+    return this.http.get<HTTPResponse<ILeaves[]>>(`${environment.server_Url}leave`)
+     
   }
   getleaveRequests(
     employeeId: string

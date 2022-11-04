@@ -28,6 +28,8 @@ export class LeaveEFfect {
     
   ) {}
 
+
+
   loadLeaveService$ = createEffect(() =>
   this.actions$.pipe(ofType(leaveActionType.Loadleaves),
   mergeMap((action)=>this.leaveService.getAllLeaves().pipe(
@@ -40,6 +42,19 @@ export class LeaveEFfect {
   catchError((error) => of(leaveActionType.loadleavessFailure({ error })))
 
   ))
+
+  loadleavesByUser$ = createEffect(() =>
+  this.actions$.pipe(ofType(leaveActionType.loadleavesByuser),
+  mergeMap((action)=>this.leaveService.getLeaveRequestsByUser().pipe(
+    map((res)=>leaveActionType.loadleavesByuserSuccess({
+        leaves:res.result
+
+    })
+    )
+  ))
+ 
+  ))
+
 
 
   createleave$ = createEffect(() =>this.actions$.pipe(

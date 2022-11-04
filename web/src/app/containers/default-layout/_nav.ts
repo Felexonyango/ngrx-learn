@@ -17,7 +17,7 @@ export const navItems: INavData[] = [
     },
     {
       name:'leave history',
-      url:'leave/leave-history',
+      url:'leave/request/history',
     }
     
   ]
