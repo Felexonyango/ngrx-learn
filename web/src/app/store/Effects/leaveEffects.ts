@@ -54,6 +54,17 @@ export class LeaveEFfect {
   ))
  
   ))
+  loadallRequest$ = createEffect(() =>
+  this.actions$.pipe(ofType(leaveActionType.loadnewleaves),
+  mergeMap((action)=>this.leaveService.getAllNewLeaveRequests().pipe(
+    map((res)=>leaveActionType.loadnewleavesSuccess({
+        leaves:res.result
+
+    })
+    )
+  ))
+ 
+  ))
 
 
 

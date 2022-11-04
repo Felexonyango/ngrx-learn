@@ -84,6 +84,18 @@ export const loadleavesByuserFailure = createAction(
   props<{ error: unknown }>()
 );
 
+export const loadnewleaves = createAction(
+  '[new leaves] get new leaves'
+)
+export const loadnewleavesSuccess = createAction(
+  '[new leaves] get new leaves success',
+  props<{leaves: ILeaves[]}>()
+);
+export const loadnewleavesFailure = createAction(
+  '[new leaves] get new leaves failure',
+  props<{error:unknown}>()
+)
+
 export const leaveActionType = {
   Loadleaves,
   loadleavesSuccess,
@@ -102,5 +114,8 @@ export const leaveActionType = {
   updateleaveFailure,
   loadleavesByuser,
   loadleavesByuserSuccess,
+  loadnewleaves,
+  loadnewleavesFailure,
+  loadnewleavesSuccess
 };
 export const dummyAction = createAction('[dummy action]');

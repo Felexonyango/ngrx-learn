@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AllLeaveRequestsComponent } from './components/all-leave-requests/all-leave-requests.component';
 import { AllLeavesComponent } from './components/all-leaves/all-leaves.component';
 import { CreateLeaveComponent } from './components/create-leave/create-leave.component';
 import { LeaveHistoryComponent } from './components/leave-history/leave-history.component';
@@ -18,8 +19,8 @@ const routes: Routes = [
 
   },
   {
-    path: 'all-leaves',
-    component: AllLeavesComponent
+    path: 'all-leave-requests',
+    component: AllLeaveRequestsComponent
   },
   {
     path: 'apply-leave',

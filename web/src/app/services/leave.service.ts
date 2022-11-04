@@ -108,14 +108,9 @@ export class LeaveService {
   }
 
  
-getAllNewLeaveRequest(): Observable<HTTPResponse<ILeaves[]>> {
-    return this.http
-      .get<HTTPResponse<ILeaves[]>>(`${environment.server_Url}supervisor/alldepartments`)
-      .pipe<HTTPResponse<ILeaves[]>>(
-        map((res) => {
-          return res
-        })
-      )
+getAllNewLeaveRequests(): Observable<HTTPResponse<ILeaves[]>> {
+    return this.http.get<HTTPResponse<ILeaves[]>>(`${environment.server_Url}supervisor/alldepartments`)
+   
   }
   getDepartmentLeaveRequests(): Observable<HTTPResponse<ILeaves[]>> {
     return this.http
