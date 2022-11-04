@@ -16,6 +16,16 @@ export class LeaveService {
 
   constructor(private http: HttpClient) { }
 
+
+  getLeaveTypes(): Observable<ILeaveType[]> {
+    return this.http
+      .get<HTTPResponse<any>>(`${environment.server_Url}leavetype`)
+      .pipe(
+        map((res) => {
+          return res.result
+        })
+      )
+  }
   approveLeaveRequest(leaveId: any): Observable<HTTPResponse<ILeaves>> {
     return this.http.post<HTTPResponse<ILeaves>>(
       `${environment.server_Url}supervisor/approveleave/${leaveId}`,
@@ -93,11 +103,7 @@ export class LeaveService {
       .get<HTTPResponse<ILeaves[]>>(
         `${environment.server_Url}leave/pending`
       )
-      .pipe<HTTPResponse<ILeaves[]>>(
-        map((res) => {
-          return res
-        })
-      )
+      
   }
 
   deleteLeaveRequest(id: string): Observable<HTTPResponse<ILeaves>> {
@@ -135,7 +141,7 @@ getAllNewLeaveRequest(): Observable<HTTPResponse<ILeaves[]>> {
      
   }
   createLeaveRequest(leave: ILeaves): Observable<HTTPResponse<ILeaves>> {
-    return this.http.post<HTTPResponse<any>>(
+    return this.http.post<HTTPResponse<ILeaves>>(
       `${environment.server_Url}leave`,
       leave
     )

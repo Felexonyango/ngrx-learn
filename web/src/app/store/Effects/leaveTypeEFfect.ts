@@ -36,7 +36,7 @@ export class LeaveTypeEFfect {
         this.leaveTypeService.getAllLeaveTypes().pipe(
           map((res) =>
             LeaveTypes.loadLeaveTypesSuccess({
-              leaveType: res.result,
+              leaveType: res.result
             })
           ),
           catchError((error) => of(LeaveTypes.loadLeaveTypesFailure({ error })))

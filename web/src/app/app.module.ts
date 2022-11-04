@@ -53,6 +53,7 @@ import { IconModule, IconSetService } from '@coreui/icons-angular';
 import { StoreModule } from '@ngrx/store';
 import {AuthEffects} from './store/Effects/authEffects'
 import  {EmployeeEffect } from './store/Effects/employeEffects'
+import {LeaveEFfect} from './store/Effects/leaveEffects'
 import { HttpClientModule } from '@angular/common/http';
 import {LeaveTypeEFfect} from './store/Effects/leaveTypeEFfect'
 import { AuthGuard } from './modules/auth/guards/auth.guard';
@@ -117,7 +118,8 @@ const APP_CONTAINERS = [
       AuthEffects,
       EmployeeEffect,
       LeaveTypeEFfect,
-      DepartmentEFfect
+      DepartmentEFfect,
+      LeaveEFfect
     
     ]),
 

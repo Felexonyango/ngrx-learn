@@ -8,6 +8,11 @@ export const navItems: INavData[] = [
   
   },
   {
+    name: 'Leave',
+    url: 'leave/apply-leave',
+    iconComponent: { name: 'cil-speedometer' },
+  },
+  {
     name: 'Employees',
     iconComponent: { name: 'cil-speedometer' },
     children:[

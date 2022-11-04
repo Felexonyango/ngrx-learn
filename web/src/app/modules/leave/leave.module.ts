@@ -16,6 +16,7 @@ import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { PaginatorModule } from 'primeng/paginator';
 import { DepartmentSettingComponent } from './components/department-setting/department-setting.component';
 import { AllLeavesComponent } from './components/all-leaves/all-leaves.component';
+import { CalendarModule } from 'primeng/calendar';
 @NgModule({
   declarations: [
     LeaveSettingsComponent,
@@ -35,7 +36,7 @@ import { AllLeavesComponent } from './components/all-leaves/all-leaves.component
     ReactiveFormsModule,
     FormsModule,
     PaginatorModule,
-  
+    CalendarModule,
     FormlyBootstrapModule ,
  
     FormlyModule.forRoot({
