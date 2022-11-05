@@ -4,7 +4,7 @@ export const navItems: INavData[] = [
   {
     name: 'Dashboard',
     url: '/dashboard',
-    iconComponent: { name: 'cil-speedometer' },
+    iconComponent: { name: 'cil-home' },
   
   },
   {
@@ -33,7 +33,7 @@ export const navItems: INavData[] = [
   },
   {
     name: 'Employees',
-    iconComponent: { name: 'cil-speedometer' },
+    iconComponent: { name: 'cil-user' },
     children:[
       {
         name: 'Create Employee',

@@ -49,7 +49,7 @@ leaves:Observable<ILeaves[]>
 
 
   }
-  onDeleteleave(id:string){
-
+  onDeleteleave(id: any) {
+    this.store.dispatch(leaveActionType.deleteleave({ id}))
   }
 }

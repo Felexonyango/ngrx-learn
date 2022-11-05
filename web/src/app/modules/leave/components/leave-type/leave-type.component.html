@@ -1,21 +1,17 @@
-<div class="grid">
+   <div class="grid">
     <div class="col-12">
       <div class="card widget-visitor-graph">
         <div class="card-header">
-          <h5>Leave Types</h5>
-          <p>
-            <small>{{ errorMessage }}</small>
-          </p>
-        
+          <h5>Departments</h5>
           <p-dialog
-            header="New Leave type"
-            [(visible)]="display"   
+            header="Title"
+            [(visible)]="display"  
             [modal]="true"
             [style]="{width: '50vw'}"
           >
-            <p class="text-orange-500">{{ errorMessage }}</p>
             <ng-template pTemplate="header">
-              <p>Add a new leave type</p>
+              <p>{{ errorMessage }}</p>
+              <p>Add leave type</p>
             </ng-template>
             <form [formGroup]="form" (ngSubmit)="createLeaveType()">
               <formly-form
@@ -26,23 +22,23 @@
             </form>
             <ng-template pTemplate="footer">
               <button
-                pButton
-                *ngIf="!isEdit"
-                type="button"
-                class="p-button-raised"
-                label="Add Leave Type"
-                (click)="createLeaveType()"
-                [disabled]="form.invalid"
-              ></button>
-              <button
               pButton
-              *ngIf="isEdit"
+              *ngIf="!isEdit"
               type="button"
               class="p-button-raised"
-              label="Edit Leave Type"
-              (click)="UpdateLeaveType()"
+              label="Add Leave Type"
+              (click)="createLeaveType()"
               [disabled]="form.invalid"
             ></button>
+              <button
+                pButton
+                *ngIf="isEdit"
+                type="button"
+                class="p-button-raised"
+                (click)="createLeaveType()"
+                [disabled]="form.invalid"
+                label="Edit department"
+              ></button>
             </ng-template>
           </p-dialog>
           <button
@@ -51,18 +47,19 @@
             icon="pi pi-plus"
             (click)="showDialog()"
             class="p-button-raised p-button-rounded"
-            *ngIf="(leaveTypes$| async)?.length!==0"
+            *ngIf="(leaveTypes$|async)?.length!== 0"
           ></button>
         </div>
-        <div class="graph-content grid" *ngIf="(leaveTypes$ |async)?.length!==0">
-          <div class="col-8 mx-auto">
+        <div class="graph-content grid" *ngIf="(leaveTypes$ |async)?.length !== 0">
+          <div class="col-12 col-md-12">
             <div class="card">
-                
-              <p-table [value]="leaveTypes$ | async"
-               responsiveLayout="scroll"
+              <p-table
+                [value]="leaveTypes$ | async"
               
-               styleClass="p-datatable-gridlines"
-               [rows]="10">
+                [rowHover]="true"
+                styleClass="p-datatable-gridlines"
+                [rows]="10"
+              >
                 <ng-template pTemplate="header">
                   <tr>
                     <th>Type of Leave</th>
@@ -70,47 +67,45 @@
                     <th>Action</th>
                   </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-leave>
+                <ng-template pTemplate="body" let-leavetype>
                   <tr>
-                    <td>{{ leave?.leaveType }}</td>
-                    <td>{{ leave?.numberOfDays }}</td>
+                    <td>{{ leavetype?.leaveType }}</td>
+                    <td>{{ leavetype?.numberOfDays }}</td>
   
-                    <td>
-                      <div class=" flex">
-                        <button
+                    <td class="flex">
+                      <button
                         pButton
                         type="button"
                         icon="pi pi-pencil"
                         class="mr-2 text-xs"
-                        (click)="updateLeavetypeModal(leave?._id)"
+                        (click)="UpdateLeaveType()"
                       ></button>
                       <button
-                      pButton
-                      type="button"
-                      icon="pi pi-trash"
-                      class="p-button-danger"
-                      iconPos="left"
-                      (click)="deleteLeaveType(leave?._id)"
-                    ></button>
-                      </div>
-                   
+                        pButton
+                        type="button"
+                        pRipple
+                        iconPos="left"
+                        icon="pi pi-trash"
+                        class="p-button-danger"
+                        (click)="deleteLeaveType(leavetype._id)"
+                      ></button>
                     </td>
                   </tr>
                 </ng-template>
               </p-table>
             </div>
           </div>
-        </div> 
+        </div>
         <div
           class="graph-content grid text-center"
-          *ngIf="(leaveTypes$ |async)?.length ==0"
+          *ngIf="(leaveTypes$ |async)?.length == 0"
         >
           <div class="col-12">
-            <h5>No leaves currently</h5>
+            <h5>No departments currently</h5>
             <button
               pButton
               type="button"
-              label="New Leave Type"
+              [label]="isEdit ? 'Edit leavetype' : 'New leavetype'"
               icon="pi pi-plus"
               (click)="showDialog()"
               class="p-button-raised"
@@ -120,7 +115,4 @@
       </div>
     </div>
   </div>
-  
-
-
   

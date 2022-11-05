@@ -47,7 +47,7 @@ export class AllLeavesComponent implements OnInit {
 
 
   }
-  onDeleteleave(id:string){
-
+  onDeleteleave(id: any) {
+    this.store.dispatch(leaveActionType.deleteleave({ id}))
   }
 }
