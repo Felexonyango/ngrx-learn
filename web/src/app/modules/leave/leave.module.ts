@@ -19,6 +19,7 @@ import { AllLeavesComponent } from './components/all-leaves/all-leaves.component
 import { CalendarModule } from 'primeng/calendar';
 import { LeaveHistoryComponent } from './components/leave-history/leave-history.component';
 import { AllLeaveRequestsComponent } from './components/all-leave-requests/all-leave-requests.component';
+import { LeaveDetailsComponent } from './components/leave-details/leave-details.component';
 @NgModule({
   declarations: [
     LeaveSettingsComponent,
@@ -27,7 +28,8 @@ import { AllLeaveRequestsComponent } from './components/all-leave-requests/all-l
     DepartmentSettingComponent,
     AllLeavesComponent,
     LeaveHistoryComponent,
-    AllLeaveRequestsComponent
+    AllLeaveRequestsComponent,
+    LeaveDetailsComponent
   ],
   imports: [
     CommonModule,

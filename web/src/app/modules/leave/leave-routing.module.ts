@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AllLeaveRequestsComponent } from './components/all-leave-requests/all-leave-requests.component';
 import { AllLeavesComponent } from './components/all-leaves/all-leaves.component';
 import { CreateLeaveComponent } from './components/create-leave/create-leave.component';
+import { LeaveDetailsComponent } from './components/leave-details/leave-details.component';
 import { LeaveHistoryComponent } from './components/leave-history/leave-history.component';
 import { LeaveSettingsComponent } from './components/leave-settings/leave-settings.component';
 
@@ -17,6 +18,11 @@ const routes: Routes = [
     path: 'request/history',
     component: LeaveHistoryComponent
 
+  },
+  {
+
+    path:'leave-details/:id',
+    component:LeaveDetailsComponent
   },
   {
     path: 'all-leave-requests',

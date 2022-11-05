@@ -58,7 +58,7 @@ export class LeaveHistoryComponent implements OnInit {
     );
   }
 
-  getLeaveHistroy() {
+   getLeaveHistroy() {
     this.Ileaves = this.store.pipe(select(getleaves));
     this.store.dispatch(leaveActionType.loadleavesByuser());
   }
@@ -82,5 +82,8 @@ export class LeaveHistoryComponent implements OnInit {
     this.store.dispatch(leaveActionType.deleteleave({ id}))
   }
   onEditBtnClick(id: any) {}
-  onView(id: any) {}
+
+  onView(id: any) {
+    this.router.navigate([`/leave/leave-details/${id}`]);
+  }
 }
