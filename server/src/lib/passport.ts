@@ -38,7 +38,21 @@ passport.use(
     },
     async (req, email, password, done) => {
       try {
-        const { name } = req.body;
+        const { 
+          name,    
+          startDate,
+          nextOfKin,
+         idNumber,
+        kraPin,
+        bankAccountNumber,
+        bankName,
+        phoneNumber,
+        employeeIdNumber,
+        taxRegNO,
+        swiftCode,
+        branchName, 
+        bankCode
+      } = req.body;
 
         let user = await User.findOne({ email: email.toLowerCase() });
 
@@ -50,7 +64,18 @@ passport.use(
           password,
           name,
           role: Role.User,
-          carts: [],
+          startDate,
+          nextOfKin,
+       idNumber,
+        kraPin,
+        bankAccountNumber,
+        bankName,
+        phoneNumber,
+        employeeIdNumber,
+        taxRegNO,
+        swiftCode,
+        branchName, 
+        bankCode
         });
         //Send the user information to the next middleware
         return done(null, user);
