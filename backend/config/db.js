@@ -4,7 +4,7 @@ import mongose from 'mongoose'
 const connectDB = async () => {
     try{
        
-        const conn = await mongose.connect("mongodb+srv://DevConnector:DevConnector@cluster0.p8gpj.mongodb.net/myFirstDatabase?retryWrites=true",{
+        const conn = await mongose.connect("mongodb://localhost:27017/leave",{
             useUnifiedTopology: true,
             useNewUrlParser: true,
            

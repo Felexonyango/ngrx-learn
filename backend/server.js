@@ -14,6 +14,7 @@ dotenv.config();
 
 connectDB();
 
+importData()
 destroyData()
 
 const app = express();
