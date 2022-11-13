@@ -3,7 +3,6 @@ import {
   login,
   signUp,
   getMe,
-  loginViaGoogle,
   changePassword,
 } from "../controller/authController"
 import { authorize, protect } from "../middleware/auth"
@@ -16,13 +15,14 @@ import {
 
 const router = Router();
 
-router.route('/signup').post(signUpValidation(), validate, signUp);
+
+router.route('/create-employees').post(signUpValidation(), validate, protect, authorize("admin"), signUp);
 router.route('/login').post(loginValidation(), validate, login);
 
 
-router.use(protect);
 
-router.route('/me').get(authorize("admin"),  getMe);
+//route  admin routes
+router.route('/getAllEmployees').get(protect, authorize("admin"),  getMe);
 
 router
   .route('/change-password')

@@ -5,7 +5,7 @@ export interface Iuser extends Document{
   name: string;
   email: string;
   password: string;
-  role: Role;
+ 
   startDate:String
 nextOfKin:String
 idNumber:Number
@@ -19,6 +19,7 @@ taxRegNO:String
 swiftCode:String
 branchName:String
 bankCode:String
+role: Role;
 
   comparePassword(candidatepassword: string): Promise<boolean>;
 }
@@ -45,11 +46,7 @@ const UserSchema :Schema= new Schema(
         required:true
 
     },
-    role:{
-        type:String
-       
-
-    },
+ 
 
     startDate:{
       type:String,
@@ -123,10 +120,11 @@ const UserSchema :Schema= new Schema(
       type:String,
       required:true
   },
+  role:{
+    type:String
+   
 
- 
-  
- 
+}, 
   },
   {
     timestamps: true,
