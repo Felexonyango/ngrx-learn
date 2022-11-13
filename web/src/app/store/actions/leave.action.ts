@@ -7,12 +7,12 @@ export const Loadleaves = createAction('[leaves] Load All leaves');
 export const loadleavesSuccess = createAction(
   '[leave] Load All leaves Success',
   props<{ leaves: ILeaves[] }>()
-);
+)
 
 export const loadleavessFailure = createAction(
   '[leave] Load  leaves Failure',
   props<{ error: unknown }>()
-);
+)
 
 export const Loadleave = createAction('[leave] Load  leave');
 
@@ -96,18 +96,52 @@ export const loadnewleavesFailure = createAction(
   props<{error:unknown}>()
 )
 export const loadadminleavehistory = createAction(
-  'admin leaves], get admin leave history'
+  'admin leaves] get admin leave history'
 )
 export const loadadminleavehistorySucces = createAction(
-  'admin leaves], get admin leave history succes',
+  'admin leaves] get admin leave history succes',
   props<{leaves:ILeaves[]}>()
 )
 export const loadadminleavehistoryFailure = createAction(
-  'admin leaves], get admin leave history failure',
+  'admin leaves] get admin leave history failure',
   props<{error:unknown}>()
 )
 
+export const loadpendingleaves=createAction(
+  '[pending leaves] get pending leaves'
+)
+export const loadpendingleavesSuccess = createAction(
+  '[pending leaves] get pending leaves success',
+  props<{leaves:ILeaves[]}>()
+)
+export const loadpendingleavesFailure = createAction(
+  '[pending leaves] get pending leaves failure',
+  props<{error:unknown}>()
+)
+export const loadapprovedleaves = createAction(
+  '[approved leaves] get approved leaves'
+)
 
+export const loadapprovedleavesSucces =createAction(
+  '[approved leaves] get approved leaves success',
+  props<{leaves:ILeaves[]}>()
+)
+export const loadapprovedleavesFailure = createAction(
+  '[approved leaves] get approved leaves Failure',
+  props<{error:unknown}>()
+)
+
+export const loadEndingleaves=createAction(
+  '[ending leaves] get endingleaves Failure',
+)
+export const loadEndingleavesSuccess=createAction(
+  '[ending leaves] get ending leaves success',
+  props<{leaves: ILeaves[]}>()
+)
+export const loadEndingleavesFailure= createAction(
+  '[ending leaves] get ending leaves failure',
+  props<{errorr:unknown}>()
+)
 
 
 export const leaveActionType = {
@@ -133,6 +167,15 @@ export const leaveActionType = {
   loadnewleavesSuccess,
   loadadminleavehistory,
   loadadminleavehistoryFailure,
-  loadadminleavehistorySucces
+  loadadminleavehistorySucces,
+  loadpendingleaves,
+  loadpendingleavesSuccess,
+  loadpendingleavesFailure,
+  loadapprovedleaves,
+  loadapprovedleavesSucces,
+  loadapprovedleavesFailure,
+  loadEndingleaves,
+  loadEndingleavesSuccess,
+  loadEndingleavesFailure
 };
 export const dummyAction = createAction('[dummy action]');

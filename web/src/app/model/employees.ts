@@ -28,3 +28,11 @@ export interface IEmployee {
       workingHours: string
     }
   }
+
+  export interface IEmployeeSummary {
+    _id?: string
+    numOfEmployees: number
+    employeesInOffice: number
+    employeesOnLeave: number
+  }
+  

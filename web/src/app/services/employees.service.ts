@@ -5,7 +5,7 @@ import {map, Observable, of} from 'rxjs'
 
 import {environment} from '../../environments/environment'
 
-import {IEmployee} from '../model/employees'
+import {IEmployee, IEmployeeSummary} from '../model/employees'
 import { HTTPResponse } from '../model/HTTPResponse'
 
 @Injectable({
@@ -56,6 +56,14 @@ export class EmployeeService {
       `${environment.server_Url}user/${id}`
     )
   }
+
+    
+  getEmployeeSummary(): Observable<HTTPResponse<IEmployeeSummary>> {
+    return this.http.get<HTTPResponse<IEmployeeSummary>>(
+      `${environment.server_Url}department`
+    )
+  }
+
  
 
 

@@ -1,15 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
-import { DashboardComponent } from './dashboard.component';
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { EmployeeDashboardComponent } from './components/employee-dashboard/employee-dashboard.component';
 
 const routes: Routes = [
+
   {
     path: '',
-    component: DashboardComponent,
-    data: {
-      title: $localize`Dashboard`
-    }
+    redirectTo: 'employee-dashboard',
+    pathMatch: 'full',
+  },
+  {
+    path:'admin-dashboard',
+    component:AdminDashboardComponent
+  },
+  {
+    path:'employee-dashboard',
+    component:EmployeeDashboardComponent
+
   }
 ];
 
@@ -17,5 +25,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class DashboardRoutingModule {
-}
+export class DashboardRoutingModule { }

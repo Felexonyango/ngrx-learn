@@ -68,19 +68,19 @@ export class LeaveEFfect {
     )
   );
   loadadminleavehistory$ = createEffect(() =>
-  this.actions$.pipe(
-    ofType(leaveActionType.loadadminleavehistory),
-    mergeMap((action) =>
-      this.leaveService.getAllLeaves().pipe(
-        map((res) =>
-          leaveActionType.loadadminleavehistorySucces({
-            leaves: res.result,
-          })
+    this.actions$.pipe(
+      ofType(leaveActionType.loadadminleavehistory),
+      mergeMap((action) =>
+        this.leaveService.getAllLeaves().pipe(
+          map((res) =>
+            leaveActionType.loadadminleavehistorySucces({
+              leaves: res.result,
+            })
+          )
         )
       )
     )
-  )
-);
+  );
 
   createleave$ = createEffect(() =>
     this.actions$.pipe(
@@ -97,21 +97,6 @@ export class LeaveEFfect {
       catchError((error) => of(leaveActionType.createleaveFailure({ error })))
     )
   );
-  //   createleavetype$ = createEffect(() =>
-  //     this.actions$.pipe(
-  //       ofType(LeaveTypes.createLeaveType),
-  //       mergeMap(({ leaveType }) =>
-  //         this.leaveTypeService
-  //           .createLeavetype(leaveType)
-  //           .pipe(
-  //             map((res) =>
-  //               LeaveTypes.createLeaveTypeSuccess({ leaveType: res.result })
-  //             )
-  //           )
-  //       ),
-  //       catchError((error) => of(LeaveTypes.createLeaveTypeFailure({ error })))
-  //     )
-  //   );
 
   deleteleaveType$ = createEffect(() => {
     return this.actions$.pipe(
@@ -127,51 +112,32 @@ export class LeaveEFfect {
     );
   });
 
-  //   update$ = createEffect(() => {
-  //     return this.actions$.pipe(
-  //       ofType(LeaveTypes.updateLeaveType),
-  //       mergeMap(({ leaveType }) =>
-  //         this.leaveTypeService.updateLeavetype(leaveType).pipe(
-  //           map((data) => {
-  //             const updateLeaveType: Update<ILeaveType> = {
-  //               id: leaveType._id,
-  //               changes: {
-  //                 ...leaveType,
-  //               },
-  //             };
-  //             return LeaveTypes.updateLeaveTypeSuccess({
-  //               leaveType: updateLeaveType,
-  //             });
-  //           }),
-  //           catchError((error) =>
-  //             of(LeaveTypes.updateLeaveTypeFailure({ error }))
-  //           )
-  //         )
-  //       )
-  //     );
-  //   });
-
-  //   updatePost$ = createEffect(() => {
-  //     return this.actions$.pipe(
-  //       ofType(EmployeeActionTypes.updateEmployee),
-  //       concatMap(({employee}) => {
-  //         return this.EmployeeService.updateEmployee(employee).pipe(
-  //           map((data) => {
-  //             const updateEmployee: Update<IEmployee> = {
-  //               id: employee._id,
-  //               changes: {
-  //                 ...employee,
-  //               },
-  //             };
-  //             return updateEmployeeSuccess({ employee: updateEmployee});
-  //           })
-  //         );
-  //       }),
-  //       catchError((error) =>
-  //       of(EmployeeActionTypes.updateEmployeeFailure({ error }))
-  //     )
-  //     );
-  //   });
-
-  // }
+  loadpending$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(leaveActionType.loadpendingleaves),
+      mergeMap((action) =>
+        this.leaveService.pendingLeaveRequests().pipe(
+          map((res) =>
+            leaveActionType.loadpendingleavesSuccess({
+              leaves: res.result,
+            })
+          )
+        )
+      )
+    )
+  );
+  loadapprovedleaves$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(leaveActionType.loadapprovedleaves),
+      mergeMap((action) =>
+        this.leaveService.AdminApprovedLeaveRequest().pipe(
+          map((res) =>
+            leaveActionType.loadapprovedleavesSucces({
+              leaves: res.result,
+            })
+          )
+        )
+      )
+    )
+  );
 }

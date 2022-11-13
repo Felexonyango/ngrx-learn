@@ -1,47 +1,34 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
-
-import {
-  AvatarModule,
-  ButtonGroupModule,
-  ButtonModule,
-  CardModule,
-  FormModule,
-  GridModule,
-  NavModule,
-  ProgressModule,
-  TableModule,
-  TabsModule
-} from '@coreui/angular';
-import { IconModule } from '@coreui/icons-angular';
-import { ChartjsModule } from '@coreui/angular-chartjs';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
-import { DashboardComponent } from './dashboard.component';
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { EmployeeDashboardComponent } from './components/employee-dashboard/employee-dashboard.component';
+import { ButtonModule } from 'primeng/button';
+import { TableModule } from 'primeng/table';
+import { DialogModule } from 'primeng/dialog';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { CardModule } from '@coreui/angular';
+import { FormlyModule } from '@ngx-formly/core';
+import { PaginatorModule } from 'primeng/paginator';
 
 
 @NgModule({
-  imports: [
-    DashboardRoutingModule,
-    CardModule,
-    NavModule,
-    IconModule,
-    TabsModule,
-    CommonModule,
-    GridModule,
-    ProgressModule,
-    ReactiveFormsModule,
-    ButtonModule,
-    FormModule,
-    ButtonModule,
-    ButtonGroupModule,
-    ChartjsModule,
-    AvatarModule,
-    TableModule,
- 
+  declarations: [
+    AdminDashboardComponent,
+    EmployeeDashboardComponent
   ],
-  declarations: [DashboardComponent]
+  imports: [
+    CommonModule,
+    DashboardRoutingModule,
+    TableModule,
+    CardModule,
+    ButtonModule,
+    DialogModule,
+    FormlyModule,
+    ReactiveFormsModule,
+    FormsModule,
+    PaginatorModule,
+  ]
 })
-export class DashboardModule {
-}
+export class DashboardModule { }

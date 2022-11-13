@@ -14,11 +14,11 @@
        <div class="card-body"> 
         <div class="table-responsive">
          
-          <p-paginator
-            #paginator>
-          </p-paginator>
-  
-          <p-table [value]="leaves | async ">
+      
+          <p-table [value]="leaves | async"
+          [paginator]="true"
+          [rows]="10"
+          >
             <ng-template pTemplate="header">
               <tr>
                 <th

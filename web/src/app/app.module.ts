@@ -65,7 +65,6 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterSerializer } from './store/router/custom-serializer';
-import { CreateLeaveComponent } from './modules/leave/components/create-leave/create-leave.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,

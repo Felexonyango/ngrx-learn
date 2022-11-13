@@ -55,10 +55,11 @@
             <div class="card">
               <p-table
                 [value]="departments$ | async"
-              
+                [paginator]="true"
+               
                 [rowHover]="true"
                 styleClass="p-datatable-gridlines"
-                [rows]="10"
+                [rows]="5"
               >
                 <ng-template pTemplate="header">
                   <tr>

@@ -14,12 +14,12 @@
        <div class="card-body"> 
         <div class="table-responsive">
          
-          <p-paginator
-            #paginator>
-          </p-paginator>
-  
-          <p-table [value]="leaves | async ">
-            <ng-template pTemplate="header">
+       
+          <p-table [value]="leaves | async "
+          [paginator]="true"
+          [rows]="10"
+          >
+            <ng-template pTemplate="header" >
               <tr>
                 <th
                   *ngFor="let column of leaveTableColumns"
@@ -40,7 +40,6 @@
                 <td>{{leave?.status}} </td>
                
                 <td class=" ">
-  
                   <div *ngIf="leave?.status == 'PENDING'">
                <div class="d-flex  pt-1">
                     <button

@@ -8,8 +8,8 @@ export interface LeaveState extends EntityState<ILeaves> {
   loaded: boolean;
 }
 
-export function selectleaveId(leave: ILeaves):string{
-  return leave?._id
+export function selectleaveId(leave: ILeaves): string {
+  return leave?._id;
 }
 
 export const adapter = createEntityAdapter<ILeaves>({
@@ -34,19 +34,32 @@ export const leaveReducer = createReducer(
   on(leaveActionType.createleaveSuccess, (state, { leaves }) => {
     return adapter.addOne(leaves, state);
   }),
-  on(leaveActionType.loadnewleavesSuccess,(state,{leaves})=>{
-    return adapter.setAll(leaves,state)
+  on(leaveActionType.loadnewleavesSuccess, (state, { leaves }) => {
+    return adapter.setAll(leaves, state);
   }),
 
-  on(leaveActionType.loadadminleavehistorySucces,(state,{leaves})=>{
-    return adapter.setAll(leaves,state)
+  on(leaveActionType.loadadminleavehistorySucces, (state, { leaves }) => {
+    return adapter.setAll(leaves, state);
   }),
+  on(leaveActionType.loadpendingleavesSuccess, (state, { leaves }) => {
+    return adapter.setAll(leaves, state);
+  }),
+  on(leaveActionType.loadapprovedleavesSucces, (state, { leaves }) => {
+    return adapter.setAll(leaves, state);
+  }),
+  on(leaveActionType.loadEndingleavesSuccess, (state, { leaves })=>{
+ return adapter.setAll(leaves,state)
+  }),
+ 
   on(leaveActionType.deleteleaveSuccess, (state, { id }) => {
     return adapter.removeOne(id, state);
   }),
 
-  on(leaveActionType.updateleaveSuccess, (state) => ({ ...state, loaded: true })),
-  
+  on(leaveActionType.updateleaveSuccess, (state) => ({
+    ...state,
+    loaded: true,
+  })),
+
   on(leaveActionType.updateleaveSuccess, (state, { leaves }) => {
     return adapter.updateOne(leaves, state);
   }),

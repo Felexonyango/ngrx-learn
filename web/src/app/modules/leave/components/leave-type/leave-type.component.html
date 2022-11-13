@@ -2,7 +2,7 @@
     <div class="col-12">
       <div class="card widget-visitor-graph">
         <div class="card-header">
-          <h5>Departments</h5>
+          <h5>Leave Types</h5>
           <p-dialog
             header="Title"
             [(visible)]="display"  
@@ -55,7 +55,8 @@
             <div class="card">
               <p-table
                 [value]="leaveTypes$ | async"
-              
+                [paginator]="true"
+                [rows]="5"
                 [rowHover]="true"
                 styleClass="p-datatable-gridlines"
                 [rows]="10"

@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Paginator } from 'primeng/paginator';
 import { Observable } from 'rxjs';
@@ -17,7 +18,8 @@ export class AllLeavesComponent implements OnInit {
   leaves:Observable<ILeaves[]>
   constructor(
     private leaveService: LeaveService,
-    private store:Store<LeaveState>
+    private store:Store<LeaveState>,
+    private router:Router
   ) { }
 
   ngOnInit(): void {
@@ -40,13 +42,11 @@ export class AllLeavesComponent implements OnInit {
     this.leaves = this.store.pipe(select(getleaves));
     this.store.dispatch( leaveActionType.loadadminleavehistory() )
   }
-  onView(id:string){
-
+  onView(id: any) {
+    this.router.navigate([`/leave/leave-details/${id}`]);
   }
-  onEditBtnClick(id:string){
-
-
-  }
+  onEditBtnClick(id:string){}
+  
   onDeleteleave(id: any) {
     this.store.dispatch(leaveActionType.deleteleave({ id}))
   }

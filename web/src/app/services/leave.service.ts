@@ -74,11 +74,7 @@ export class LeaveService {
       .get<HTTPResponse<ILeaves[]>>(
         `${environment.server_Url}supervisor/leaves/upcoming`
       )
-      .pipe<HTTPResponse<ILeaves[]>>(
-        map((res) => {
-          return res
-        })
-      )
+    
   }
   EmployeeApprovedLeaveRequest(): Observable<HTTPResponse<ILeaves[]>> {
     return this.http.get<HTTPResponse<ILeaves[]>>(
@@ -145,23 +141,6 @@ getAllNewLeaveRequests(): Observable<HTTPResponse<ILeaves[]>> {
       ileavetype
     )
   }
-  addNote(leaveId: string, note: INote): Observable<HTTPResponse<INote>> {
-    return this.http.post<HTTPResponse<INote>>(
-      `${environment.server_Url}note/${leaveId}`,
-      note
-    )
-  }
-  getNote(leaveId: string): Observable<HTTPResponse<INote[]>> {
-    return this.http.get<HTTPResponse<INote[]>>(
-      `${environment.server_Url}note/${leaveId}`
-    )
-  }
-  MakeRole(departmentId: string, head:any): Observable<HTTPResponse<[]>> {
-    return this.http.patch<HTTPResponse<[]>>(
-      `${environment.server_Url}department/${departmentId}`,
-       head
-    )
-  }
 
  
   getLeaveSummary(): Observable<HTTPResponse<ILeaves>> {
@@ -176,10 +155,14 @@ getAllNewLeaveRequests(): Observable<HTTPResponse<ILeaves[]>> {
       `${environment.server_Url}supervisor/usersummary/${employeeId}`
     )
   }
-  deleteHoliday(holidayId: string): Observable<HTTPResponse<IHoliday>> {
-    return this.http.delete<HTTPResponse<IDepartment>>(
-      `${environment.server_Url}holiday/${holidayId}`
-    )
+
+
+  EndingLeaveRequest(): Observable<HTTPResponse<ILeaves[]>> {
+    return this.http
+      .get<HTTPResponse<ILeaves[]>>(
+        `${environment.server_Url}supervisor/leaves/ending`)
+     
   }
+
 
 }
