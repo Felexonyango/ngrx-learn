@@ -89,6 +89,7 @@ export const update = async (req: Request, res: Response) => {
 
     res.status(200).json({ data: { product } });
   } catch (error) {
+    
     res.status(500).json({ message: "Error in creating product" });
   }
 };

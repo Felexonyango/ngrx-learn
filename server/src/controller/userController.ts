@@ -3,32 +3,66 @@ import {User}  from "../model/user"
 
 
 export const getAllUsers = async (req: Request, res: Response) => {
-  const data =await User.find({})
-  res.status(200).json({data: data});
+  try{
+    const user =await User.find({})
+  if(!user) return res.status(404).json({ message: " Users not found"})
 
-};
+  return res.status(200).json(user)
+
+  }
+  catch(err){
+    res.status(500).json({error: err})
+
+
+}
+}
 
 export const getUserById = async (req: Request, res: Response) => {
-  const {id} = req.params;   
-  const user = await User.findById(id);
-  res.status(200).json({data: user});
+  try{
+    const {id} = req.params;   
+    const user = await User.findById({_id:id});
 
+    if(!user) return res.status(404).json({ message: " User not found"})
+    res.status(200).json({data: user});
+  
+  }
+  catch(err){
+    res.status(500).json({error: err})
+
+}
 }
 
 export const deleteUserById = async (req: Request, res: Response) => {
-  const {id} = req.params;
-  const user = await User.findByIdAndRemove(id);
-  if(user) res.status(200).json({message:"User deleted successfully"})
+  try{
+    const {id} = req.params;
+    const user = await User.findByIdAndRemove({_id:id});
+    if(user) res.status(200).json({message:"User deleted successfully"})
+  
+  }
+  catch(err){
+    res.status(500).json({error: err})
+  }
 
 
 
 }
 
 export const UpdateUser =async(req: Request, res: Response)=>{
-  const {id} = req.params;
 
-  const user = await User.findByIdAndUpdate(id, req.body);
-  if(user) res.status(200).json({message:"User updated successfully", user});
+  try{
+    const {id} = req.params;
 
- 
+    const user = await User.findByIdAndUpdate(id, req.body,{
+      new: true,
+      runValidators: true
+  
+    });
+    if(!user) return res.status(404).json({ message: "User not found"})
+     res.status(200).json({message:"User updated successfully", user});
+  
+  }
+catch(error){
+  res.status(500).json({ message: "Error in updating user product" });
+
+}
 }
