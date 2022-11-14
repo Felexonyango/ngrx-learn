@@ -69,11 +69,7 @@ export const signUp = async (
   })(req, res, next);
 };
 
-export const getMe = async (req: Request, res: Response) => {
-  const data =await User.find({})
-  res.status(200).json({data: data});
-  // res.status(200).json({ data: { user: req.user } });
-};
+
 
 export const changePassword = async (req: Request, res: Response) => {
   try {

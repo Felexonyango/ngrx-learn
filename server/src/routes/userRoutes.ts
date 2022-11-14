@@ -1,13 +1,19 @@
 import { Router } from 'express';
-import { update } from '../controller/userController';
-// import { update } from "../controller/userController"
-import { protect } from "../middleware/auth"
-import { updateProfileValidation, validate } from '../validation';
+import { deleteUserById, getAllUsers, getUserById, UpdateUser } from '../controller/userController';
+
+import { authorize, protect } from "../middleware/auth"
 
 const router = Router();
 
-router.use(protect);
 
-router.route('/:id').patch(updateProfileValidation(), validate, update);
+//route  admin routes
+router.route('/getUsers').get(protect, authorize("admin"),  getAllUsers);
+
+router.route('/user/:id').get(protect, authorize("admin"),  getUserById);
+router.route('/user/:id').delete(protect, authorize("admin"), deleteUserById);
+router.route('/updateUser/:id').patch(protect, authorize("admin"), UpdateUser);
+
+
+
 
 export { router as userRoutes };
