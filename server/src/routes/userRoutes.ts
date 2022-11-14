@@ -7,11 +7,11 @@ const router = Router();
 
 
 //route  admin routes
-router.route('/getUsers').get(protect, authorize("admin"),  getAllUsers);
+router.route('/all').get(protect, authorize("admin"),  getAllUsers);
 
-router.route('/user/:id').get(protect, authorize("admin"),  getUserById);
-router.route('/user/:id').delete(protect, authorize("admin"), deleteUserById);
-router.route('/updateUser/:id').patch(protect, authorize("admin"), UpdateUser);
+router.route('/:id').get(protect, authorize("admin"),  getUserById);
+router.route('/:id').delete(protect, authorize("admin"), deleteUserById);
+router.route('/:id').patch(protect, authorize("admin"), UpdateUser);
 
 
 

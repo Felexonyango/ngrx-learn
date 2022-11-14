@@ -6,6 +6,7 @@ export const connectDb = async () => {
     await mongoose.connect("mongodb://localhost:27017/leave",{
         useUnifiedTopology: true,
         useNewUrlParser: true,
+        useFindAndModify:false
        
     })
     console.log(`MongoDB Connected `)

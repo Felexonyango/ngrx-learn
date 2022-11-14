@@ -18,7 +18,7 @@ export const getUserById = async (req: Request, res: Response) => {
 export const deleteUserById = async (req: Request, res: Response) => {
   const {id} = req.params;
   const user = await User.findByIdAndRemove(id);
-  res.status(200).json({data: user});
+  if(user) res.status(200).json({message:"User deleted successfully"})
 
 
 
@@ -28,6 +28,7 @@ export const UpdateUser =async(req: Request, res: Response)=>{
   const {id} = req.params;
 
   const user = await User.findByIdAndUpdate(id, req.body);
+  if(user) res.status(200).json({message:"User updated successfully", user});
 
-  res.status(200).json({data: user});
+ 
 }
