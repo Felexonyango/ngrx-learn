@@ -108,7 +108,7 @@ export const adminupdateleave = async (req: Request, res: Response) => {
 };
 export const getleaveByIdByAdmin = async (req: Request, res: Response) => {
   try {
-    const user = req.user as UserTypes;
+    // const user = req.user as UserTypes;
     const leaves = await Leave.findOne().populate("user");
     if (!leaves) return res.status(500).json({ msg: "You dont have leave" });
     return res.status(200).json({ msg: leaves });

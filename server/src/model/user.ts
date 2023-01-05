@@ -29,6 +29,8 @@ export interface UserModel extends Model<Iuser> {
   
 }
 
+const { ObjectId } = Schema.Types;
+
 const UserSchema :Schema= new Schema(
   {
     name:{
@@ -53,6 +55,10 @@ const UserSchema :Schema= new Schema(
       required:true
   },
 
+  department: {
+    type: ObjectId,
+    ref: 'Department',
+  },
 
   nextOfKin:{
       type:String

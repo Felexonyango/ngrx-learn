@@ -10,7 +10,8 @@ require("./lib/passport")(passport);
 //importing routes
 import { authRoutes } from "./routes/authRoutes";
 import { userRoutes } from "./routes/userRoutes";
-import {leaveRoutes} from './routes/leaveRoute'
+import {leaveRoutes} from './routes/leaveRoute';
+import {departmentRoutes} from "./routes/departmentRoute"
 
 
 import { connectDb } from "./database";
@@ -41,6 +42,7 @@ app.use(cors());
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/leave",leaveRoutes)
+app.use("/api/department",departmentRoutes)
 
 //updated body-parser for ts node
 app.use(express.json());
