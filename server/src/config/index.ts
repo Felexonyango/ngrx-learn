@@ -1,5 +1,5 @@
 export const IS_PROD = process.env.NODE_ENV === "production";
-export const PORT = process.env.PORT || 5000;
+export const PORT = process.env.PORT || 3000;
 export const JWT_SECRET_KEY = `${process.env.JWT_SECRET}`;
 export const Access_Key =`${process.env.Access_Key }`;
 export const Secret_Access=`${process.env.Secret_Access}`;
