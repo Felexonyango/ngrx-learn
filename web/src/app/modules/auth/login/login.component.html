@@ -6,54 +6,25 @@
             <c-card class="p-4">
               <c-card-body>
 
-                <div *ngIf="errorMessage">
-                  <div class="alert alert-danger" role="alert">
-                    {{errorMessage}}
-                  </div>
-                </div>
-                <form cForm 
-                 [formGroup]="loginForm"
-                (keyup.enter)="onSubmit()"
-                >
-                  <h1>Login</h1>
-                  <p class="text-medium-emphasis">Sign In to your account</p>
-                  <c-input-group class="mb-3">
-                    <span cInputGroupText>
-                      <svg cIcon name="cilUser"></svg>
-                    </span>
-                    <input
-                    type="email"
-                    class="form-control"
-                    placeholder="Email"
-                    autocomplete="email"
-                    formControlName="email"
-                  >
-                  </c-input-group>
-                  <c-input-group class="mb-4">
-                    <span cInputGroupText>
-                      <svg cIcon name="cilLockLocked"></svg>
-                    </span>
-                    <input
-                    type="password"
-                    class="form-control"
-                    placeholder="Password"
-                    autocomplete="current-password"
-                    formControlName="password"
-              
-                  >
-                  </c-input-group>
-                  <c-row>
-                    <c-col xs="6">
-                      <button cButton class="px-4" color="primary"
-                      (click)="onSubmit()">
-                        Login
-                      </button>
-                    </c-col>
-                    <c-col class="text-right" xs="6">
-                     
-                    </c-col>
-                  </c-row>
+                <form [formGroup]="loginForm">
+                  <formly-form
+                  [model]="userModel"
+                  [fields]="fields"
+                  [options]="options"
+                  [form]="loginForm">
+                  </formly-form>
                 </form>
+                <button
+                pButton
+                type="button"
+                label="Login"
+                class="bg-primary"
+                (click)="login()"
+                 [disabled]="!loginForm.valid"
+                 >
+           
+                 </button>
+        
               </c-card-body>
             </c-card>
             <c-card [ngStyle]="{'width.%': 44}" class="text-white bg-primary py-5">

@@ -1,46 +1,41 @@
-
+import { createReducer, on } from '@ngrx/store';
+import { EntityState, createEntityAdapter, EntityAdapter } from '@ngrx/entity';
 import { User } from '../../model/auth';
-import { AuthActionTypes } from '../actions/actionTypes';
-import { AuthAction } from '../actions/auth.action';
+import { AuthTypes } from '../actions/auth.action';
 
-
-export const initialState: AuthState = {
-    isAuthenticated: false,
-    user: null,
-    errorMessage: null
-  };
-  
-export interface AuthState {    
+export interface AuthtState extends EntityState<User> {
   isAuthenticated: boolean;
-  user: User 
-  errorMessage: string | null;
 }
 
-export function authreducer(state = initialState, action:AuthAction): AuthState {
-  switch (action.type) {
-  case AuthActionTypes.LOGIN:{
-    return{
-      ...state
-    }
-  }
-
-    case AuthActionTypes.LOGIN_SUCCESS: {
-      return {
-        ...state,
-        isAuthenticated: true,
-        user: {
-        
-          email: action.payload.email
-        },
-        errorMessage: null
-      };
-    }
-    case AuthActionTypes.LOGOUT: {
-      return initialState;
-    }
-    
-    default: {
-      return state;
-    }
-  }
+export function selectuserId(user: User): string {
+  return user._id;
 }
+
+export const adapter = createEntityAdapter<User>({
+  selectId: selectuserId,
+});
+
+export const initialState = adapter.getInitialState({
+  isAuthenticated: false,
+});
+
+export const authReducer = createReducer(
+  initialState,
+  on(AuthTypes.loginSuccess, (state) => ({ ...state, isAuthenticated: true })),
+
+  on(AuthTypes.loginFailure, (state, { error }) => ({
+    ...state,
+    isAuthenticated: false,
+    error,
+  })),
+  on(AuthTypes.logoutSuccess, (state) => ({
+    ...state,
+    isAuthenticated: false,
+  })),
+  on(AuthTypes.logoutFailure, (state, { error }) => ({
+    ...state,
+    error,
+  }))
+);
+
+

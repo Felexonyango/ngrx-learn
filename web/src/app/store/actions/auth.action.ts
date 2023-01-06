@@ -1,22 +1,34 @@
-import { Action, createAction } from "@ngrx/store";
-import { AuthActionTypes } from "./actionTypes";
+import { createAction, props } from "@ngrx/store";
+import { User } from "src/app/model/auth";
 
-export class LogIn implements Action {
-    readonly type = AuthActionTypes.LOGIN;
-    constructor(public payload: any) {}
-  }
-  export class LogInSuccess implements Action {
-    readonly type = AuthActionTypes.LOGIN_SUCCESS;
-    constructor(public payload: any) {}
-  }
-  export class LogInFailure implements Action {
-    readonly type = AuthActionTypes.LOGIN_FAILURE;
-    constructor(public payload: any) {}
-  }
-  export class LogOut implements Action {
-    readonly type = AuthActionTypes.LOGOUT;
-  }
+export const loginSuccess = createAction(
+  '[Auth] Login Success',
+  props<{user:User}>()
+)
+
+export const loginFailure = createAction(
+  '[Auth] Login Failure',
+  props<{ error: unknown }>()
+);
+
+export const logoutSuccess = createAction(
+  '[Auth] Logout Success',
+  props<{ user:User}>()
+);
+
+export const logoutFailure = createAction(
+  '[Auth] Logout Failure',
+  props<{error:unknown}>()
+);
+
+export const AuthTypes = {
+loginFailure,
+loginSuccess,
+logoutFailure,
+logoutSuccess
   
- 
-  export type AuthAction = | LogIn |LogInSuccess | LogInFailure |LogOut;
+};
+
+export const dummyAction = createAction('[dummy action]');
+
   

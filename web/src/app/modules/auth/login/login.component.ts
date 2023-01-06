@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { User } from 'src/app/model/auth';
-import { LogIn } from 'src/app/store/actions/auth.action';
+// import { LogIn } from 'src/app/store/actions/auth.action';
+import { AuthTypes } from '../../../store/actions/auth.action'
+import {loginFormlyFields} from './login-user.formly'
 import { AuthState, selectAuthState } from 'src/app/store/selector/auth.selector';
+import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,30 +16,42 @@ import { AuthState, selectAuthState } from 'src/app/store/selector/auth.selector
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
+  subscriptions = new Subscription()
+  loginForm = new FormGroup({});
+  model: any = {};
+  userModel: any = {};
+  options: FormlyFormOptions = {};
+  fields: FormlyFieldConfig[] = [];
   user:User
 
   getState: Observable<any>;
   errorMessage: string | null;
 
-  constructor(   private store: Store<AuthState>) {
-      this.getState = this.store.select(selectAuthState);
-     }
+  constructor(
+     private store: Store<AuthState>,
+    private router: Router,
+    ) {}
 
      ngOnInit() {
-      this.getState.subscribe((state) => {
-        this.errorMessage = state.errorMessage;
-      });
+      this.fields =loginFormlyFields
+
+     
     };
 
+    ngOnDestroy() {
+      this.subscriptions.unsubscribe();
+       
+     }
 
-    loginForm = new FormGroup({
-      email: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required]),
-    });
-
-    onSubmit(): void {
-      console.log(this.loginForm.value)
-      this.store.dispatch(new LogIn(this.loginForm.value));
+    login(){
+      this.user =this.loginForm.value
+      const user:User={...this.loginForm.value}
+      this.store.dispatch(AuthTypes.loginSuccess({user}));
+      this.router.navigateByUrl('/dashboard')
+      this.loginForm.reset()
+      console.log(user)
+      
     }
+
+   
 }

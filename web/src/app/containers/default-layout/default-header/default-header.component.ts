@@ -5,8 +5,7 @@ import { ClassToggleService, HeaderComponent } from '@coreui/angular';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
-import { LogOut } from 'src/app/store/actions/auth.action';
-
+import { AuthTypes } from 'src/app/store/actions/auth.action';
 
 @Component({
   selector: 'app-default-header',
