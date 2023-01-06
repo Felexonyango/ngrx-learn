@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { Leave } from "../model/leave";
 import { User as UserTypes } from "../types";
-import mongoose from "mongoose";
 
 // const { ObjectId } = mongoose.Types;
 

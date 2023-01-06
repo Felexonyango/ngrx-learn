@@ -4,7 +4,7 @@ import {User}  from "../model/user"
 
 export const getAllUsers = async (req: Request, res: Response) => {
   try{
-    const user =await User.find({})
+    const user =await User.find({}).populate('departmentId')
   if(!user) return res.status(404).json({ message: " Users not found"})
 
   return res.status(200).json(user)

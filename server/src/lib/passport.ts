@@ -77,7 +77,7 @@ module.exports = function (passport: any) {
             swiftCode,
             branchName,
             bankCode,
-            department:department?._id
+            department:department._id
           });
           //Send the user information to the next middleware
           return done(null, user);

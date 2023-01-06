@@ -18,6 +18,7 @@ export type User = {
   swiftCode:String
   branchName:String  
   bankCode:String
+  department?:String
   role: Role;
  
 };
