@@ -72,7 +72,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 
 
 export function tokenGetter() {
-  return localStorage.getItem('jwtToken');
+  return localStorage.getItem('token');
 }
 
 const APP_CONTAINERS = [

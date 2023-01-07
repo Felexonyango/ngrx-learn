@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { User } from 'src/app/model/auth';
-import { AuthTypes } from '../../../store/actions/auth.action'
+import { AuthActionTypes, LogIn } from '../../../store/actions/auth.action'
 import {loginFormlyFields} from './login-user.formly'
 import { AuthState, selectAuthState } from 'src/app/store/selector/auth.selector';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
     login(){
       this.user =this.loginForm.value
       const user:User={...this.loginForm.value}
-      this.store.dispatch(AuthTypes.loginSuccess({user}));
+      this.store.dispatch(new LogIn(user));
       this.router.navigateByUrl('/dashboard')
       this.loginForm.reset()
       console.log(user)

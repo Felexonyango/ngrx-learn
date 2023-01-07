@@ -31,7 +31,7 @@ export class ErrorInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(tap(
       (err: any) => {
         if (err instanceof HttpErrorResponse && err.status === 401) {
-          localStorage.removeItem('jwtToken');
+          localStorage.removeItem('token');
           this.router.navigateByUrl('/auth/login');
         }
         }))

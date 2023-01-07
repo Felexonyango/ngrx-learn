@@ -16,16 +16,17 @@ export class AuthService {
     private tokenDecoder: JwtHelperService
   ) {}
 
-  TOKEN_KEY = 'jwtToken';
+  TOKEN_KEY = 'token';
   redirectUrl: string;
 
+
+  
   setAuthToken(token: string): void {
     localStorage.setItem(this.TOKEN_KEY, token);
   }
 
   getAuthToken(): string {
-    const token = localStorage.getItem(this.TOKEN_KEY);
-    return token;
+    return localStorage.getItem('token');
   }
 
   isLoggedIn(): boolean {
@@ -36,15 +37,17 @@ export class AuthService {
     }
     return false;
   }
-  
-  login(user: User): Observable<HTTPResponse<{ jwtToken: string }>> {
-    return this.httpClient.post<HTTPResponse<{ jwtToken: string }>>(
+
+
+
+  login(email: string, password: string): Observable<any> {
+    return this.httpClient.post<User>(
       `${environment.server_Url}auth/login`,
-      user
+      {email, password}
     );
  
   }
-
+ 
   navigateByUrl(url: string): void {
     this.router.navigateByUrl(url);
   }
