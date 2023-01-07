@@ -5,6 +5,7 @@ import { AuthTypes } from '../actions/auth.action';
 
 export interface AuthtState extends EntityState<User> {
   isAuthenticated: boolean;
+
 }
 
 export function selectuserId(user: User): string {
@@ -17,6 +18,7 @@ export const adapter = createEntityAdapter<User>({
 
 export const initialState = adapter.getInitialState({
   isAuthenticated: false,
+  
 });
 
 export const authReducer = createReducer(

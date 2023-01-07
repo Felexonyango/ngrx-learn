@@ -26,9 +26,11 @@ export class AuthEffects {
             const redirectUrl = this. authService.redirectUrl || '/'
             this.authService.navigateByUrl(redirectUrl);
             return res;
+            
           }),
           catchError((error: any) => {
-            return of(AuthTypes.loginFailure({ error: error }));
+            return of(AuthTypes.loginFailure({ error: error }))
+            
           })
         );
       })

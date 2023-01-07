@@ -3,7 +3,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { User } from 'src/app/model/auth';
-// import { LogIn } from 'src/app/store/actions/auth.action';
 import { AuthTypes } from '../../../store/actions/auth.action'
 import {loginFormlyFields} from './login-user.formly'
 import { AuthState, selectAuthState } from 'src/app/store/selector/auth.selector';
@@ -50,7 +49,7 @@ export class LoginComponent implements OnInit {
       this.router.navigateByUrl('/dashboard')
       this.loginForm.reset()
       console.log(user)
-      
+
     }
 
    

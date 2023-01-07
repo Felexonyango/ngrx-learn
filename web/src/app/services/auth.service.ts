@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
-
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { User } from '../model/auth';
@@ -37,17 +36,17 @@ export class AuthService {
     }
     return false;
   }
-
-  navigateByUrl(url: string): void {
-    this.router.navigateByUrl(url);
-  }
-
+  
   login(user: User): Observable<HTTPResponse<{ jwtToken: string }>> {
     return this.httpClient.post<HTTPResponse<{ jwtToken: string }>>(
       `${environment.server_Url}auth/login`,
       user
     );
  
+  }
+
+  navigateByUrl(url: string): void {
+    this.router.navigateByUrl(url);
   }
 
   logout(): void {
