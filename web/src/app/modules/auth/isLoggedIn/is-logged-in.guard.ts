@@ -12,13 +12,15 @@ export class IsLoggedInGuard implements CanActivate {
     private authService: AuthService
   ) {}
 
-  canActivate(  
+  canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+
+
       const isLoggedIn = this.authService.isLoggedIn();
 
       if (isLoggedIn) {
-        const redirectUrl = (state?.url && !state?.url?.includes('auth')) ? state?.url : '/dashboard';
+        const redirectUrl = (state?.url && !state?.url?.includes('auth')) ? state?.url : '/';
         this.authService.navigateByUrl(redirectUrl);
         return false;
       }

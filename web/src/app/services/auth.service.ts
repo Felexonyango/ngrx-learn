@@ -26,7 +26,7 @@ export class AuthService {
   }
 
   getAuthToken(): string {
-    return localStorage.getItem('token');
+    return localStorage.getItem(this.TOKEN_KEY);
   }
 
   isLoggedIn(): boolean {
@@ -47,6 +47,24 @@ export class AuthService {
     );
  
   }
+
+  
+  // login(user: User): Observable<HTTPResponse<{ token }>> {
+  //   return this.httpClient
+  //     .post<HTTPResponse<{ token }>>(
+  //       `${environment.server_Url}auth/login`,
+  //       user
+  //     )
+  //     .pipe(
+  //       map((res) => {
+  //         const token = res.result.token;
+  //         this.setAuthToken(token);
+  //         const redirectUrl = this.redirectUrl || '/';
+  //         this.navigateByUrl(redirectUrl);
+  //         return res;
+  //       })
+  //     );
+  // }
  
   navigateByUrl(url: string): void {
     this.router.navigateByUrl(url);

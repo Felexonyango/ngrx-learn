@@ -4,8 +4,9 @@ import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import {reducers} from './store/state/appState'
+import {metaReducers} from './store/reducer/metaReducer'
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ErrorInterceptor, TokenInterceptor } from './modules/auth/Interceptors/Interceptor';
+import { AuthInterceptor } from './modules/auth/Interceptors/Interceptor';
 import {LeaveTypeService } from 'src/app/services/leave-type.service'
  import {
   PERFECT_SCROLLBAR_CONFIG,
@@ -112,7 +113,7 @@ const APP_CONTAINERS = [
     CardModule,
     HttpClientModule,
     DialogModule,
-    StoreModule.forRoot(reducers, {}),
+    StoreModule.forRoot(reducers, {metaReducers}),
     EffectsModule.forRoot([
       AuthEffects,
       EmployeeEffect,
@@ -145,14 +146,10 @@ const APP_CONTAINERS = [
 
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
-      multi: true
+      useClass: AuthInterceptor,
+      multi: true,
     },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ErrorInterceptor,
-      multi: true
-    },
+   
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy,

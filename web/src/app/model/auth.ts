@@ -5,3 +5,7 @@ export class User {
   token?: string;
     
   }
+  export enum HTTPResponseStatus {
+    SUCCESS = 'SUCCESS',
+    ERROR = 'ERROR'
+  }
