@@ -12,19 +12,19 @@ export class AuthEffects {
     private actions$: Actions,
     private authService: AuthService,
     private router: Router,
-    
   
   ) {}
 
-
+  
   login$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActionTypes.LOGIN),
       map((action:LogIn)=>action.payload),
-        switchMap(payload=>{
-        return this.authService.login(payload.email,payload.password)
+        switchMap((user:User)=>{
+        return this.authService.login(user)
         .pipe(map((user)=>{
-          return new LogInSuccess({token: user.token, email: payload.email});
+       
+          return new LogInSuccess({user});
         }))
         
       }),

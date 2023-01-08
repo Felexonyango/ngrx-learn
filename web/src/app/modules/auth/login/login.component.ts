@@ -55,6 +55,8 @@ export class LoginComponent implements OnInit {
     this.user = this.loginForm.value;
     const user = {...this.loginForm.value};
      this.store.dispatch(new LogIn(user));
+
+     
     // this.authservice.login(user).subscribe({
     //   next: (res) => {
     //     this.submitting = false;

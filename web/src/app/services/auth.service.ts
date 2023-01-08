@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, map, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -16,17 +16,16 @@ export class AuthService {
     private tokenDecoder: JwtHelperService
   ) {}
 
-  TOKEN_KEY = 'token';
+  token_KEY = 'token';
   redirectUrl: string;
-
-
   
   setAuthToken(token: string): void {
-    localStorage.setItem(this.TOKEN_KEY, token);
+    localStorage.setItem(this.token_KEY, token);
   }
 
   getAuthToken(): string {
-    return localStorage.getItem(this.TOKEN_KEY);
+    const token = localStorage.getItem(this.token_KEY);
+    return token;
   }
 
   isLoggedIn(): boolean {
@@ -39,32 +38,11 @@ export class AuthService {
   }
 
 
-
-  login(email: string, password: string): Observable<any> {
-    return this.httpClient.post<User>(
-      `${environment.server_Url}auth/login`,
-      {email, password}
-    );
- 
+  login(user:User): Observable<HTTPResponse<{token:string}>> {
+    return this.httpClient.post<HTTPResponse<{token:string}>>(
+      `${environment.server_Url}auth/login`,user)
+   
   }
-
-  
-  // login(user: User): Observable<HTTPResponse<{ token }>> {
-  //   return this.httpClient
-  //     .post<HTTPResponse<{ token }>>(
-  //       `${environment.server_Url}auth/login`,
-  //       user
-  //     )
-  //     .pipe(
-  //       map((res) => {
-  //         const token = res.result.token;
-  //         this.setAuthToken(token);
-  //         const redirectUrl = this.redirectUrl || '/';
-  //         this.navigateByUrl(redirectUrl);
-  //         return res;
-  //       })
-  //     );
-  // }
  
   navigateByUrl(url: string): void {
     this.router.navigateByUrl(url);
