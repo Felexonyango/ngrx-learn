@@ -30,8 +30,10 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     const token = this.getAuthToken();
+  
     if (token) {
       const isTokenExpired = this.tokenDecoder.isTokenExpired(token);
+     
       return isTokenExpired ? false : true;
     }
     return false;
@@ -41,6 +43,7 @@ export class AuthService {
   login(user:User): Observable<HTTPResponse<{token:string}>> {
     return this.httpClient.post<HTTPResponse<{token:string}>>(
       `${environment.server_Url}auth/login`,user)
+      
    
   }
  

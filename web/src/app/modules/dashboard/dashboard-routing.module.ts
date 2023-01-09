@@ -7,7 +7,7 @@ const routes: Routes = [
 
   {
     path: '',
-    redirectTo: 'employee-dashboard',
+    redirectTo: 'dashboard',
     pathMatch: 'full',
   },
   {

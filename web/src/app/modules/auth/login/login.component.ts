@@ -55,28 +55,6 @@ export class LoginComponent implements OnInit {
     this.user = this.loginForm.value;
     const user = {...this.loginForm.value};
      this.store.dispatch(new LogIn(user));
-
-     
-    // this.authservice.login(user).subscribe({
-    //   next: (res) => {
-    //     this.submitting = false;
-    //     this.HTTPResponseMessage = {
-    //       type: HTTPResponseStatus.SUCCESS,
-    //       title: 'Success',
-    //       message:
-    //         'You have successfully logged in, please wait as we redirect you',
-    //     };
-    //   },
-    //   error: (err) => {
-    //     this.submitting = false;
-    //     this.HTTPResponseMessage = {
-    //       type: HTTPResponseStatus.ERROR,
-    //       title: `We couldn't sign you in`,
-    //       message: err?.error?.message ? err?.error?.message : 'There was an error when trying to log you in, please try again'
-    //     };
-    //   } 
-    // });
-  
     this.loginForm.reset();
     console.log(user);
   }

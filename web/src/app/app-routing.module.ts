@@ -42,7 +42,7 @@ const routes: Routes = [
       title: 'Home',
     },
 
-    canActivate: [AuthGuard],
+   canActivate: [AuthGuard],
     children: [
       {
         path: 'dashboard',

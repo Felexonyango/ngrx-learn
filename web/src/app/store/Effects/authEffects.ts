@@ -15,24 +15,29 @@ export class AuthEffects {
   
   ) {}
 
-  
+  redirectUrl:string
+
   login$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActionTypes.LOGIN),
       map((action:LogIn)=>action.payload),
         switchMap((user:User)=>{
         return this.authService.login(user)
-        .pipe(map((user)=>{
-       
-          return new LogInSuccess({user});
-        }))
-        
-      }),
+        .pipe(map((res)=>(new LogInSuccess(res))),
+        tap((res) =>{
+          const token = res.payload.data.token
+         const redirectUrl = this.redirectUrl || '/'
+          this.authService.navigateByUrl(redirectUrl);
+          this.authService.setAuthToken(token)}))
+        }),
       catchError((error) => of(new LogInFailure({ error })))
       
         
     )
   );
+
+
+
 
 
 
