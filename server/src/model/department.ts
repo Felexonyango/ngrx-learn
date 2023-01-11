@@ -14,5 +14,5 @@ const departmentSchema = new Schema(
       timestamps: true,
     }
   );
-  export const Department = model<DepartmentDocument>("Department ", departmentSchema);
+  export const Department = model<DepartmentDocument>("Department", departmentSchema);
   

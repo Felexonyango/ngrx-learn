@@ -12,6 +12,7 @@ import { authRoutes } from "./routes/authRoutes";
 import { userRoutes } from "./routes/userRoutes";
 import {leaveRoutes} from './routes/leaveRoute';
 import {departmentRoutes} from "./routes/departmentRoute"
+import { leaveTypeRoutes } from "./routes/leaveType";
 
 
 import { connectDb } from "./database";
@@ -43,6 +44,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/leave",leaveRoutes)
 app.use("/api/department",departmentRoutes)
+app.use("/api/leaveType",leaveTypeRoutes)
 
 //updated body-parser for ts node
 app.use(express.json());

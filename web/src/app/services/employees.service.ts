@@ -20,7 +20,7 @@ export class EmployeeService {
 
   createEmployee(employee: IEmployee): Observable<IEmployee> {
     return this.http.post<IEmployee>(
-      `${environment.server_Url}user`,
+      `${environment.server_Url}auth/create-user`,
       employee
     )
   }
@@ -34,7 +34,7 @@ export class EmployeeService {
     )
   }
   updateEmployee(employee: IEmployee):Observable<HTTPResponse<IEmployee>> {
-    const url = `${environment.server_Url}leave/${employee._id}`
+    const url = `${environment.server_Url}user/${employee._id}`
     return this.http.post<HTTPResponse<IEmployee>>(url,employee)
   }
 

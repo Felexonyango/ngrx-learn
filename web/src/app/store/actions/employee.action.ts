@@ -3,7 +3,11 @@ import { IEmployee } from '../../model/employees';
 import { Update } from '@ngrx/entity';
 
 import { createAction, props } from '@ngrx/store';
-export const LoadEmployees = createAction('[Employees] Load All employees');
+
+
+export const LoadEmployees = createAction(
+  '[Employees] Load All employees'
+  );
 
 export const loadEmployeesSuccess = createAction(
   '[Employees] Load All employees Success',

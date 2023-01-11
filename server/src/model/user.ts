@@ -51,11 +51,16 @@ const UserSchema: Schema = new Schema(
 
     department: {
       type: ObjectId,
-      ref: "Department",
+      ref: "Department"
     },
 
     nextOfKin: {
       type: String,
+    },
+    leave:{
+      type: ObjectId,
+      ref: "Leave"
+
     },
 
     idNumber: {

@@ -48,13 +48,7 @@ export class LeaveService {
     return this.http.get<HTTPResponse<ILeaves[]>>(`${environment.server_Url}leave`)
      
   }
-  getleaveRequests(
-    employeeId: string
-  ): Observable<HTTPResponse<ILeaves[]>> {
-    return this.http.get<HTTPResponse<ILeaves[]>>(
-      `${environment.server_Url}supervisor/${employeeId}`
-    )
-  }
+
 
 
   getLeaveRequestDetail(leaveId: any): Observable<HTTPResponse<ILeaves>> {
@@ -119,6 +113,8 @@ getAllNewLeaveRequests(): Observable<HTTPResponse<ILeaves[]>> {
   }
 
 
+
+
   getAllLeaves(): Observable<HTTPResponse<ILeaves[]>> {
     return this.http
       .get<HTTPResponse<ILeaves[]>>(
@@ -126,9 +122,17 @@ getAllNewLeaveRequests(): Observable<HTTPResponse<ILeaves[]>> {
       )
      
   }
+  getleaveRequests(
+    employeeId: string
+  ): Observable<HTTPResponse<ILeaves[]>> {
+    return this.http.get<HTTPResponse<ILeaves[]>>(
+      `${environment.server_Url}supervisor/${employeeId}`
+    )
+  }
+
   createLeaveRequest(leave: ILeaves): Observable<HTTPResponse<ILeaves>> {
     return this.http.post<HTTPResponse<ILeaves>>(
-      `${environment.server_Url}leave`,
+      `${environment.server_Url}leave/create`,
       leave
     )
   }

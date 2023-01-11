@@ -61,8 +61,7 @@ export class LeaveTypeService {
   getAllDepartments(): Observable<IDepartment[]> {
     return this.http
       .get<HTTPResponse<IDepartment[]>>(
-        `${environment.server_Url}department`
-      )
+        `${environment.server_Url}department`)
       .pipe(
         map((res) => {
           return res.result

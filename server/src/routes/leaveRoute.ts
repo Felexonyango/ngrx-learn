@@ -3,9 +3,10 @@ import {admindeleteleave, adminupdateleave, allleaveHistory, create, deleteleave
 import { authorize, protect } from "../middleware/auth"
 const router = Router();
 //user routes
+
 router.route('/create').post(protect,  create);
 router.route("/getall").get(protect, userleaves)
-router.route('/getleave/:id').get(protect, getleaveById)
+router.route('/:id').get(protect, getleaveById)
 router.route('/:id').delete(protect,deleteleave)
 router.route('/:id').patch(protect, updateleave)
 //admin routes

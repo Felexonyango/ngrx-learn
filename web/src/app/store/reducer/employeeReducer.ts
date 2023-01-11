@@ -19,6 +19,7 @@ export const adapter= createEntityAdapter<IEmployee>({
 });
 
 export const initialState= adapter.getInitialState({
+  
   loaded: false
 });
 

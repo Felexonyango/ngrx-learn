@@ -4,7 +4,7 @@ import {User}  from "../model/user"
 
 export const getAllUsers = async (req: Request, res: Response) => {
   try{
-    const user =await User.find({}).populate('departmentId')
+    const user =await User.find({}).populate('department').populate('leave')
   if(!user) return res.status(404).json({ message: " Users not found"})
 
   return res.status(200).json(user)
@@ -12,7 +12,7 @@ export const getAllUsers = async (req: Request, res: Response) => {
   }
   catch(err){
     res.status(500).json({error: err})
-
+    console.log(err)
 
 }
 }

@@ -44,7 +44,6 @@ export class AuthService {
     return this.httpClient.post<HTTPResponse<{token:string}>>(
       `${environment.server_Url}auth/login`,user)
       
-   
   }
  
   navigateByUrl(url: string): void {
