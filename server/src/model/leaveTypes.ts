@@ -15,4 +15,4 @@ const leavetypeSchema = new Schema(
     timestamps: true,
   }
 );
-export const LeaveType = model<LeaveTypeDocument>("Leavetype", leavetypeSchema);
+export const LeaveType = model<LeaveTypeDocument>("LeaveType", leavetypeSchema);

@@ -57,11 +57,7 @@ const UserSchema: Schema = new Schema(
     nextOfKin: {
       type: String,
     },
-    leave:{
-      type: ObjectId,
-      ref: "Leave"
-
-    },
+  
 
     idNumber: {
       type: Number,

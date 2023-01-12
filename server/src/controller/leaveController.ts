@@ -1,19 +1,21 @@
 import { Request, Response } from "express";
 import { Leave } from "../model/leave";
-import { User as UserTypes } from "../types";
+import {  User as UserTypes } from "../types/user";
+import {LeaveType as LeaveTypes} from '../types/leaveType'
 
 // const { ObjectId } = mongoose.Types;
 
 export const create = async (req: Request, res: Response) => {
   try {
+    const leavetype = req.leavetype as LeaveTypes;
     const user = req.user as UserTypes;
-    const { type, comment, startDate, endDate } = req.body;
+    const {comment, startDate, endDate } = req.body;
     const leave = await Leave.create({
-      type,
       comment,
       startDate,
       endDate,
       user: user._id,
+      leavetype:leavetype._id,
     });
     await leave.save();
     return res.status(200).json({ msg: "created", leave });
@@ -26,7 +28,7 @@ export const create = async (req: Request, res: Response) => {
 export const userleaves = async (req: Request, res: Response) => {
   try {
     const user = req.user as UserTypes;
-    const leaves = await Leave.find({user:user._id}).populate("user");
+    const leaves = await Leave.find({user:user._id}).populate("user").populate('leavetype')
     if (!leaves) return res.status(500).json({ msg: "You don't have leaves " });
     return res.status(200).json({ msg: leaves });
   } catch (err) {
@@ -38,7 +40,7 @@ export const userleaves = async (req: Request, res: Response) => {
 export const getleaveById = async (req: Request, res: Response) => {
   try {
     const user = req.user as UserTypes;
-    const leaves = await Leave.findOne({ user: user._id }).populate("user");
+    const leaves = await Leave.findOne({ user: user._id }).populate("user").populate('leavetype')
     if (!leaves) return res.status(500).json({ msg: "You dont have leave" });
     return res.status(200).json({ msg: leaves });
   } catch (err) {
@@ -77,7 +79,7 @@ export const updateleave = async (req: Request, res: Response) => {
 export const allleaveHistory = async (req: Request, res: Response) => {
   try {
    
-    const leaves = await Leave.find().populate("user");
+    const leaves = await Leave.find().populate("user").populate('leavetype')
     if (!leaves) return res.status(500).json({ msg: " There is no leaves " });
     return res.status(200).json({ msg: leaves });
   } catch (err) {
@@ -94,7 +96,7 @@ export const adminupdateleave = async (req: Request, res: Response) => {
   if(!leave) return res.status(500).json({ msg: "There is no leave" })
   const result = await Leave.findOneAndUpdate(
       {_id:leave._id},
-      {$set:{type,comment,startDate,endDate}},
+      {$set:{comment,startDate,endDate}},
        { returnOriginal: false }
       )
       if(result){
@@ -108,7 +110,7 @@ export const adminupdateleave = async (req: Request, res: Response) => {
 export const getleaveByIdByAdmin = async (req: Request, res: Response) => {
   try {
     // const user = req.user as UserTypes;
-    const leaves = await Leave.findOne().populate("user");
+    const leaves = await Leave.findOne().populate("user").populate('leavetype')
     if (!leaves) return res.status(500).json({ msg: "You dont have leave" });
     return res.status(200).json({ msg: leaves });
   } catch (err) {
