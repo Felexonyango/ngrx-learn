@@ -1,6 +1,6 @@
-import { String } from "aws-sdk/clients/acm";
-import { Schema, model, Document } from "mongoose";
 
+import { Schema, model, Document } from "mongoose";
+const { ObjectId } = Schema.Types;
 export enum Status {
   PENDING = "PENDING",
   CANCELLED = "CANCELLED",
@@ -12,7 +12,7 @@ export interface LeaveDocument extends Document {
   startDate: string;
   endDate: string;
 }
-const { ObjectId } = Schema.Types;
+
 
 const leaveSchema = new Schema(
   {
@@ -23,11 +23,11 @@ const leaveSchema = new Schema(
     user: {
       type: ObjectId,
       ref: "User",
-    }
-    // leavetype: {
-    //   type: ObjectId,
-    //   ref: "LeaveType",
-    // },
+    },
+    leavetypes: {
+      type: ObjectId,
+      ref: "LeaveType",
+    },
   },
 
   {

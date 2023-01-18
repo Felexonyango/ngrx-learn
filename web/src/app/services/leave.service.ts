@@ -51,6 +51,7 @@ export class LeaveService {
 
 
 
+
   getLeaveRequestDetail(leaveId: any): Observable<HTTPResponse<ILeaves>> {
     return this.http
       .get<HTTPResponse<ILeaves>>(
@@ -99,9 +100,10 @@ export class LeaveService {
 
  
 getAllNewLeaveRequests(): Observable<HTTPResponse<ILeaves[]>> {
-    return this.http.get<HTTPResponse<ILeaves[]>>(`${environment.server_Url}supervisor/alldepartments`)
+    return this.http.get<HTTPResponse<ILeaves[]>>(`${environment.server_Url}leave/admin/all`)
    
   }
+
   getDepartmentLeaveRequests(): Observable<HTTPResponse<ILeaves[]>> {
     return this.http
       .get<HTTPResponse<ILeaves[]>>(`${environment.server_Url}supervisor`)
