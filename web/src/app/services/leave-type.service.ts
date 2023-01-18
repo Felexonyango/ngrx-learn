@@ -15,7 +15,7 @@ export class LeaveTypeService {
     leavetype: ILeaveType
   ): Observable<HTTPResponse<ILeaveType>> {
     return this.http.post<HTTPResponse<any>>(
-      `${environment.server_Url}leavetype`,
+      `${environment.server_Url}leavetype/create`,
       leavetype
     );
   }

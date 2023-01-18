@@ -1,6 +1,6 @@
 export interface ILeaveType {
     _id?: string
-    leaveType?: string,
+    leavetype?: string,
     numberOfDays?:number
   }
   export interface IHoliday {

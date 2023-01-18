@@ -64,8 +64,7 @@
                 <ng-template pTemplate="header">
                   <tr>
                     <th>Department</th>
-                    <th>Employees on Leave</th>
-                    <th>Number of Employees</th>
+               
                     <th>Action</th>
                   </tr>
                 </ng-template>
@@ -74,7 +73,7 @@
                     <td
                       (click)="handleSelect(department?._id)"
                     >
-                      {{ department.departmentName }}
+                      {{ department.department }}
                     </td>
                   
                     <td (click)="handleSelect(department?._id)">
