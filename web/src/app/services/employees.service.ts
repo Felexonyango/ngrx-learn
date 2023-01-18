@@ -26,6 +26,7 @@ export class EmployeeService {
   }
   getAllEmployees(): Observable<HTTPResponse<IEmployee[]>> {
     return this.http.get<HTTPResponse<IEmployee[]>>(`${environment.server_Url}user/all`)
+    
   }
 
   getEmployee(): Observable<HTTPResponse<IEmployee>> {

@@ -1,13 +1,15 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Paginator } from 'primeng/paginator';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { IEmployee } from 'src/app/model/employees';
 import { EmployeeActionTypes } from 'src/app/store/actions/employee.action';
 import { getEmployees } from '../../../../store/selector/employee.selector';
 import { State } from 'src/app/store/reducer/employeeReducer';
 import { routerCancelAction } from '@ngrx/router-store';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
+import { EmployeeService } from 'src/app/services/employees.service';
 
 @Component({
   selector: 'app-all-employees',
@@ -16,13 +18,19 @@ import { Router } from '@angular/router';
 })
 export class AllEmployeesComponent implements OnInit {
   employees$: Observable<IEmployee[]>;
-  constructor(private store: Store<State>, private router: Router) {}
+  employees: IEmployee[];
+  subscription=new  Subscription()
+  
+  constructor(
+    private store: Store<State>, 
+    private router: Router,
+    private employeeservice:EmployeeService
+    ) {}
 
   @ViewChild('paginator', { static: true }) paginator: Paginator;
 
   EmployeesTableColumns: string[] = [
-    'firstName',
-    'lastName',
+    'name',
     'email',
     'phoneNumber',
     'startDate',
@@ -44,4 +52,6 @@ export class AllEmployeesComponent implements OnInit {
   onEditBtnClick(id: string) {
     this.router.navigate(['/employees/employee-edit', id]);
   }
+
+
 }

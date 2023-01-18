@@ -4,10 +4,10 @@ import {User}  from "../model/user"
 
 export const getAllUsers = async (req: Request, res: Response) => {
   try{
-    const user =await User.find({}).populate('department').populate('leave')
-  if(!user) return res.status(404).json({ message: " Users not found"})
+    const result =await User.find({}).populate('department').populate('leave')
+  if(!result) return res.status(404).json({ message: " Users not found"})
 
-  return res.status(200).json(user)
+  return res.status(200).json({message:"succesfully retrived user", result})
 
   }
   catch(err){

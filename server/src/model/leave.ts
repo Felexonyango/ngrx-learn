@@ -23,7 +23,7 @@ const leaveSchema = new Schema(
     user: {
       type: ObjectId,
       ref: "User",
-    },
+    }
     // leavetype: {
     //   type: ObjectId,
     //   ref: "LeaveType",

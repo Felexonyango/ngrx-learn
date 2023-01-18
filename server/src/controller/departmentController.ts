@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { Department } from "../model/department";
-import { Department as DepartmentTypes } from "../types";
-import mongoose from "mongoose";
+//import { Department as DepartmentTypes } from "../types";
+//import mongoose from "mongoose";
 
 // const { ObjectId } = mongoose.Types;
 

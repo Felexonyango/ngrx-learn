@@ -8,10 +8,9 @@ export interface IEmployee {
     }
     email?: string
     employeeIdNumber?: string
-    firstName?: string
     idNumber?: number
     taxRegNO?: string
-    lastName?: string
+    name?: string
     nextOfKin?: string
     phoneNumber?: number
     startDate?: string
