@@ -10,6 +10,7 @@ import {
   switchMap,
   filter,
   withLatestFrom,
+  tap,
  
 } from 'rxjs/operators';
 import { LeaveTypeService } from '../../services/leave-type.service';
@@ -32,9 +33,10 @@ export class DepartmentEFfect {
       ofType(DepartmentActionTypes.LoadDepartments),
       mergeMap((action) =>
         this.leaveTypeService.getAllDepartments().pipe(
+          tap((obj)=>console.log(obj)),
           map((res) =>
             DepartmentActionTypes.loadDepartmentsSuccess({
-              departments: res
+              departments: res.result
             })
           ),
           catchError((error) => of(DepartmentActionTypes.loadDepartmentsFailure({ error })))

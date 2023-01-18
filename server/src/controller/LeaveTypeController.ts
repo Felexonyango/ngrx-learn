@@ -9,6 +9,7 @@ export const create = async (req: Request, res: Response) => {
     const { leavetype,numberOfDays} = req.body;
     const leaveTypes = await LeaveType.create({
         leavetype,
+        numberOfDays,
       
       
     });
@@ -23,9 +24,9 @@ export const create = async (req: Request, res: Response) => {
 export const getLeaveTypes= async (req: Request, res: Response) => {
   try {
     
-    const leaveTypes = await LeaveType.find({})
-    if (!leaveTypes) return res.status(500).json({ msg: "There is no leavetypes " });
-    return res.status(200).json({ msg: leaveTypes });
+    const result = await LeaveType.find({})
+    if (!result) return res.status(500).json({ msg: "There is no leavetypes " });
+    return res.status(200).json({ msg:'Leavetype fetched successfully',result });
   } catch (err) {
     console.log(err);
     res.status(500).json({ msg: err });
@@ -35,9 +36,9 @@ export const getLeaveTypes= async (req: Request, res: Response) => {
 export const getLeaveTypeById = async (req: Request, res: Response) => {
   try {
   const {id}=req.params
-    const leavetypes= await LeaveType.findById(id)
-    if (!leavetypes) return res.status(500).json({ msg: "There is no leavetype" });
-    return res.status(200).json({ msg: leavetypes });
+    const result= await LeaveType.findById(id)
+    if (!result) return res.status(500).json({ msg: "There is no leavetype" });
+    return res.status(200).json({ msg: "Leave type fetched succesfully",result });
   } catch (err) {
     console.log(err);
     res.status(500).json({ msg: err });
@@ -74,9 +75,9 @@ export const updateLeaveTypesTypes = async (req: Request, res: Response) => {
 export const getLeaveTypesUser= async (req: Request, res: Response) => {
     try {
       
-      const leaveTypes = await LeaveType.find({})
-      if (!leaveTypes) return res.status(500).json({ msg: "There is no leavetypes " });
-      return res.status(200).json({ msg: leaveTypes });
+      const result = await LeaveType.find({})
+      if (!result) return res.status(500).json({ msg: "There is no leavetypes " });
+      return res.status(200).json({ msg:'retrived leavetype by user',result });
     } catch (err) {
       console.log(err);
       res.status(500).json({ msg: err });

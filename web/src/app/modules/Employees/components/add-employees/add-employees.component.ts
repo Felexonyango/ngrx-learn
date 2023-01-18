@@ -39,7 +39,7 @@ export class AddEmployeesComponent implements OnInit {
   ngOnInit(): void {
     this.fields = createEmployeeFormlyFields;
     
-    this.updateOptions()
+    // this.updateOptions()
   }
 
   ngOnDestroy() {
@@ -58,12 +58,12 @@ export class AddEmployeesComponent implements OnInit {
     this.addEmployeeForm.reset()
     
   }
-  updateOptions() {
-    this.fields = createEmployeeFormlyFields
-    this.fields[1].fieldGroup[1].templateOptions.options=this.leaveService.getAllDepartments()
+  // updateOptions() {
+  //   this.fields = createEmployeeFormlyFields
+  //   this.fields[1].fieldGroup[1].templateOptions.options=this.leaveService.getAllDepartments()
     
-    console.log(this.fields[1].fieldGroup[1])
-  }
+  //   console.log(this.fields[1].fieldGroup[1])
+  // }
   
 }
 

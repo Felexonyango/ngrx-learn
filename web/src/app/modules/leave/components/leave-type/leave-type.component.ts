@@ -30,7 +30,7 @@ export class LeaveTypeComponent implements OnInit {
   fields: FormlyFieldConfig[] = [
     {
       className: 'col-6',
-      key: 'leaveType',
+      key: 'leavetype',
       type: 'input',
       templateOptions: {
         label: 'Leave Type Name',

@@ -44,7 +44,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/leave",leaveRoutes)
 app.use("/api/department",departmentRoutes)
-app.use("/api/leaveType",leaveTypeRoutes)
+app.use("/api/leavetype",leaveTypeRoutes)
 
 //updated body-parser for ts node
 app.use(express.json());
