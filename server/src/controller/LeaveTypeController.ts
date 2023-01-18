@@ -9,7 +9,7 @@ export const create = async (req: Request, res: Response) => {
     const { leavetype,numberOfDays} = req.body;
     const leaveTypes = await LeaveType.create({
         leavetype,
-       numberOfDays
+      
       
     });
     await leaveTypes.save();
@@ -53,12 +53,12 @@ export const updateLeaveTypesTypes = async (req: Request, res: Response) => {
     try{
 
     
-        const { leavetype,numberOfDays} = req.body;
+        const { leavetype} = req.body;
     const leave= await LeaveType.findById(req.params.id)
     if(!leave) return res.status(500).json({ msg: "There is no LeaveType" })
     const result = await LeaveType.findOneAndUpdate(
         {_id:leave._id},
-        {$set:{leavetype,numberOfDays}},
+        {$set:{leavetype}},
          { returnOriginal: false }
         )
         if(result){

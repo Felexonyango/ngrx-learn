@@ -1,21 +1,22 @@
 import { Request, Response } from "express";
 import { Leave } from "../model/leave";
 import {  User as UserTypes } from "../types/user";
-import {LeaveType as LeaveTypes} from '../types/leaveType'
+//import {LeaveType as LeaveTypess} from '../types/leaveType'
 
 // const { ObjectId } = mongoose.Types;
 
 export const create = async (req: Request, res: Response) => {
   try {
-    const leavetype = req.leavetype as LeaveTypes;
+  // const leavt  = req.leavetype as LeaveTypess;
     const user = req.user as UserTypes;
-    const {comment, startDate, endDate } = req.body;
+    const {leavetype, comment, startDate, endDate } = req.body;
     const leave = await Leave.create({
+      leavetype,
       comment,
       startDate,
       endDate,
       user: user._id,
-      leavetype:leavetype._id,
+      // leavetype:leavt._id,
     });
     await leave.save();
     return res.status(200).json({ msg: "created", leave });

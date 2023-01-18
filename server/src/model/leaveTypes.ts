@@ -3,13 +3,13 @@ import { Schema, model, Document } from "mongoose";
 
 export interface LeaveTypeDocument extends Document {
   leavetype: string;
-  numberOfDays: number;
+  
 }
 
 const leavetypeSchema = new Schema(
   {
     leavetype: String,
-    numberOfDays: Number,
+
   },
   {
     timestamps: true,

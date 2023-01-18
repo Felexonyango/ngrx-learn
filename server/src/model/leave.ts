@@ -7,6 +7,7 @@ export enum Status {
   APPROVED = "APPROVED",
 }
 export interface LeaveDocument extends Document {
+  leavetype:string;
   comment: string;
   startDate: string;
   endDate: string;
@@ -15,6 +16,7 @@ const { ObjectId } = Schema.Types;
 
 const leaveSchema = new Schema(
   {
+    leavetype:String,
     comment: String,
     startDate: String,
     endDate: String,
@@ -22,10 +24,10 @@ const leaveSchema = new Schema(
       type: ObjectId,
       ref: "User",
     },
-    leavetype: {
-      type: ObjectId,
-      ref: "LeaveType",
-    },
+    // leavetype: {
+    //   type: ObjectId,
+    //   ref: "LeaveType",
+    // },
   },
 
   {
