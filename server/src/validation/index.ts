@@ -8,29 +8,16 @@ export const loginValidation = () => {
       .withMessage("Email is not a valid email")
       .trim()
       .escape(),
-    body("password")
-      .isLength({ min: 6 })
-      .trim()
-      .escape()
-      .withMessage("Must be at least 6 chars long"),
+    
   ];
 };
 
 export const signUpValidation = () => {
   return [
-    body("name")
-      .isLength({ min: 6 })
-      .withMessage("Name must be at least 6 chars long")
-      .trim()
-      .escape(),
-    body("email")
-      .isEmail()
-      .withMessage("Email is not a valid email")
-      .trim()
-      .escape(),
+   
     body("password")
-      .isLength({ min: 6 })
-      .withMessage("Password must be at least 6 chars long")
+      .isLength({ min: 4 })
+      .withMessage("Password must be at least 4 chars long")
       .trim()
       .escape(),
   ];
@@ -38,11 +25,7 @@ export const signUpValidation = () => {
 
 export const updateProfileValidation = () => {
   return [
-    body("name")
-      .isLength({ min: 6 })
-      .withMessage("Name must be at least 6 chars long")
-      .trim()
-      .escape(),
+  
     body("email")
       .isEmail()
       .withMessage("Email is not a valid email")

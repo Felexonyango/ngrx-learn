@@ -8,7 +8,7 @@ export const createEmployeeFormlyFields: FormlyFieldConfig[] = [
         fieldGroup: [
             {
                 className: "col-6",
-                key: "firstName",
+                key: "firstname",
                 type: "input",
                 templateOptions: {
                     label: "First Name",
@@ -19,7 +19,7 @@ export const createEmployeeFormlyFields: FormlyFieldConfig[] = [
 
             {
                 className: "col-6",
-                key: "lastName",
+                key: "lastname",
                 type: "input",
                 templateOptions: {
                     label: "Last Name",
@@ -138,8 +138,9 @@ export const createEmployeeFormlyFields: FormlyFieldConfig[] = [
           fieldGroupClassName: "row",
           fieldGroup: [
               {
+            
                   className: "col-12",
-                  key: "bankAccNumber",
+                  key: "bankAccountNumber",
                   type: "input",
                   templateOptions: {
                       label: "Account Number",
@@ -189,6 +190,16 @@ export const createEmployeeFormlyFields: FormlyFieldConfig[] = [
                       required: true,
                   },
               },
+              {
+                className: " col-12",
+                key: "password",
+                type: "input",
+                templateOptions: {
+                    label: "Password",
+                    type: "password",
+                    required: true,
+                },
+            },
           ],
       },
         ]

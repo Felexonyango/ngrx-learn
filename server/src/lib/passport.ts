@@ -6,6 +6,7 @@ import { JWT_SECRET_KEY } from "../config";
 import { Department as DepartmentTypes } from "../types/department";
 
 //This verifies that the token sent by the user is valid
+
 module.exports = function (passport: any) {
   passport.use(
     new JWTstrategy(

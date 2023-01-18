@@ -30,7 +30,8 @@ export class AllEmployeesComponent implements OnInit {
   @ViewChild('paginator', { static: true }) paginator: Paginator;
 
   EmployeesTableColumns: string[] = [
-    'name',
+    'firstName',
+    'lastName',
     'email',
     'phoneNumber',
     'startDate',
