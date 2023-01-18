@@ -2,7 +2,8 @@ import { Role } from './role';
 
 export type User = {
   _id?: string;
-  name: string;
+  firstname: string;
+  lastname:string;
   email: string;
   password: string;
   startDate:String

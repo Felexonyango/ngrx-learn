@@ -34,7 +34,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
 connectDb();
 
-// destroyData()
+destroyData()
 
 app.use(cors());
 

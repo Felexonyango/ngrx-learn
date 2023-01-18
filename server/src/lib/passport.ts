@@ -4,9 +4,8 @@ import { User } from "../model/user";
 import { Role } from "../types/role";
 import { JWT_SECRET_KEY } from "../config";
 import { Department as DepartmentTypes } from "../types/department";
-import { HttpResponse } from "../model/Response";
+
 //This verifies that the token sent by the user is valid
-HttpResponse
 module.exports = function (passport: any) {
   passport.use(
     new JWTstrategy(
@@ -42,7 +41,8 @@ module.exports = function (passport: any) {
         const department = req.department as DepartmentTypes;
 
           const {
-            name,
+            firstname,
+            lastname,
             startDate,
             nextOfKin,
             idNumber,
@@ -65,7 +65,8 @@ module.exports = function (passport: any) {
           user = await User.create({
             email,
             password,
-            name,
+            firstname,
+            lastname,
             role: Role.User,
             startDate,
             nextOfKin,

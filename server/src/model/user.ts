@@ -2,10 +2,10 @@ import mongoose, { Model, Schema, Document, Types } from "mongoose";
 import bcrypt from "bcryptjs";
 import { Role } from "../types/role";
 export interface Iuser extends Document {
-  name: string;
+  firstname: string;
+  lastname:string
   email: string;
   password: string;
-
   startDate: String;
   nextOfKin: String;
   idNumber: Number;
@@ -30,9 +30,13 @@ const { ObjectId } = Schema.Types;
 
 const UserSchema: Schema = new Schema(
   {
-    name: {
+    firstname: {
       type: String,
-      required: [true, "Please enter a full name"],
+      required:true
+    },
+    lastname:{
+      type:String,
+      required:true
     },
     email: {
       type: String,

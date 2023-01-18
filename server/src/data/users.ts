@@ -3,7 +3,8 @@ import { Role } from "../types";
 import { User } from "../types/user";
 const Users:User[]=[
   {
-    name: "Human Resource manager",
+    firstname: "John",
+    lastname:'Doe',
     email: "humanresource@gmail.com",
     startDate: "13/11/2022",
     nextOfKin: "Onyango",
