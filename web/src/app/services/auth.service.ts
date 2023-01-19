@@ -18,7 +18,7 @@ export class AuthService {
 
   token_KEY = 'token';
   redirectUrl: string;
-  
+  roleAs:any
   setAuthToken(token: string): void {
     localStorage.setItem(this.token_KEY, token);
   }
@@ -38,6 +38,10 @@ export class AuthService {
     }
     return false;
   }
+  getRole() {
+    this.roleAs = localStorage.getItem('role');
+    return this.roleAs;
+  }
 
 
   login(user:User): Observable<HTTPResponse<{token:string}>> {
@@ -54,5 +58,9 @@ export class AuthService {
     localStorage.clear();
     this.redirectUrl = '/';
     this.navigateByUrl('/auth/login');
+  }
+  decodedToken(): any {
+    const token = this.getAuthToken();
+    return token ? this.tokenDecoder.decodeToken(token) : {};
   }
 }
