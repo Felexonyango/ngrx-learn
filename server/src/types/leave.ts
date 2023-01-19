@@ -5,6 +5,7 @@ export type Leave = {
     startDate?: Date;
     endDate?: Date;
     duration?:number
+    
    
   };
   

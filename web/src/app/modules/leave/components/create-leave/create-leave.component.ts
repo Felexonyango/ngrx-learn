@@ -67,9 +67,7 @@ export class CreateLeaveComponent implements OnInit {
 
   submitApplication() {
     this.application = this.applyLeaveForm.value
-    this.endDate =this.addBusinessDays2(this.startDate, this.application.requested).toDate()
-    this.application = { ...this.application, endDate:this.endDate, startDate:this.startDate};
-    this.leaveEnd = this.endDate
+ 
     const id = this.activatedRoute.snapshot.paramMap.get("id")
     
  

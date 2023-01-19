@@ -11,33 +11,6 @@
       </form>
      
   
-      <div class="col-12 md:col-4">
-        <div class="flex ">
-          <div class="col-6 ">
-              <label>Start Date: </label>
-              <p-calendar
-                (onSelect)="selectedDate()"
-                placeholder="Select Date"
-                [(ngModel)]="startDate"
-                [minDate]="minimumDate"
-                [disabledDays]="[0, 6]"
-              ></p-calendar>
-            
-          </div>
-          <div class="col-6">
-            <label>End Date: </label>
-            <p-calendar
-              [showTime]="true"
-              placeholder="Select Date"
-              [(ngModel)]="endDate"
-              [minDate]="minimumDate"
-              [disabledDays]="[0, 6]"
-            ></p-calendar>
-          </div>
-        </div>
-  
-        <!-- </form> -->
-      </div>
     </div>
     <div class="button-container">
       <button

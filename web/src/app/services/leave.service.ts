@@ -134,7 +134,7 @@ getAllNewLeaveRequests(): Observable<HTTPResponse<ILeaves[]>> {
 
   createLeaveRequest(leave: ILeaves): Observable<HTTPResponse<ILeaves>> {
     return this.http.post<HTTPResponse<ILeaves>>(
-      `${environment.server_Url}leave/create`,
+      `${environment.server_Url}leave`,
       leave
     )
   }
