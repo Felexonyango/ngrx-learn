@@ -6,8 +6,9 @@ export interface ILeaveType {
   export interface IHoliday {
     _id?: string
     name?: string
-    startDate?: string
-    endDate?: string
+    startDate?: Date
+    duration?:number
+    endDate?: Date
     comment?: string
   }
 
@@ -23,11 +24,11 @@ export interface ILeaveType {
     status: Status
     checked: false
     reportDate: Date
-    requested: number
-    appliedBy: {
+    duration: number
+    user: {
       _id?:string
-      firstName: string
-      lastName: string
+      firstname: string
+      lastname: string
       department: string
       status: boolean
     }

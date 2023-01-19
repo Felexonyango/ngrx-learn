@@ -1,4 +1,3 @@
-
 import { Schema, model, Document } from "mongoose";
 const { ObjectId } = Schema.Types;
 export enum Status {
@@ -7,27 +6,27 @@ export enum Status {
   APPROVED = "APPROVED",
 }
 export interface LeaveDocument extends Document {
-  leavetype:string;
+  leavetype: string;
   comment: string;
-  startDate: string;
-  endDate: string;
+  startDate: Date;
+  endDate: Date;
 }
-
 
 const leaveSchema = new Schema(
   {
-    leavetype:String,
+    leavetype: String,
     comment: String,
-    startDate: String,
-    endDate: String,
+    startDate: Date,
+    endDate: Date,
+    duration: Number,
     user: {
       type: ObjectId,
       ref: "User",
     },
-    leavetypes: {
-      type: ObjectId,
-      ref: "LeaveType",
-    },
+    // leavetypes: {
+    //   type: ObjectId,
+    //   ref: "LeaveType",
+    // },
   },
 
   {

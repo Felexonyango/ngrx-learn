@@ -32,9 +32,9 @@
             </ng-template>
             <ng-template pTemplate="body" let-leave>
               <tr class="p-selectable-row">
-                <td>{{leave?.appliedBy?.firstName}} {{leave?.appliedBy?.lastName}}</td>
-                <td>{{ leave?.typeOfLeave?.leaveType }} </td>
-                <td>{{leave?.requested}} days</td>
+                <td>{{leave?.user?.firstname}} {{leave?.user?.lastname}}</td>
+                <td>{{ leave?.leavetype }} </td>
+                <td>{{leave?.duration}} days</td>
                 <td>{{ leave?.startDate | date }}</td>
                 <td>{{ leave?.endDate | date }}</td>
                 <td>{{leave?.status}} </td>

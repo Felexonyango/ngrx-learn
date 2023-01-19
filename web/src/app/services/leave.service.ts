@@ -120,7 +120,7 @@ getAllNewLeaveRequests(): Observable<HTTPResponse<ILeaves[]>> {
   getAllLeaves(): Observable<HTTPResponse<ILeaves[]>> {
     return this.http
       .get<HTTPResponse<ILeaves[]>>(
-        `${environment.server_Url}supervisor/allleaves`
+        `${environment.server_Url}leave/admin/all`
       )
      
   }

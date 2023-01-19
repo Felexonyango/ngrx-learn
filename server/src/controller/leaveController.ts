@@ -84,7 +84,7 @@ export const leaveHistory = async (req: Request, res: Response) => {
     const result = await Leave.find({}).populate("user")
    
     if (!result) return res.status(500).json({ msg: " There is no leaves " });
-    return res.status(200).json({ msg:"successfully retrieved all leave history",result });
+    return res.status(200).json({ msg:"successfully retrieved all leave history by admin",result });
   } catch (err) {
     console.log(err);
     res.status(500).json({ msg: err });
