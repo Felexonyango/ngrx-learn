@@ -20,6 +20,6 @@ export type User = {
   branchName:String  
   bankCode:String
   department?:String
-  role: Role;
+  role: Role[];
  
 };

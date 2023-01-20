@@ -19,7 +19,7 @@ export interface Iuser extends Document {
   swiftCode: String;
   branchName: String;
   bankCode: String;
-  role: Role;
+  role: Role[];
 
   comparePassword(candidatepassword: string): Promise<boolean>;
 }
@@ -116,7 +116,9 @@ const UserSchema: Schema = new Schema(
       required: true,
     },
     role: {
-      type: String,
+      type: [String],
+      enum: ['user', 'admin'],
+      default: 'user'
     },
   },
   {

@@ -9,3 +9,10 @@ export class User {
     SUCCESS = 'SUCCESS',
     ERROR = 'ERROR'
   }
+  export enum UserRoles {
+   
+    USER = 'user',
+    ADMIN = 'admin',
+ 
+  }
+  

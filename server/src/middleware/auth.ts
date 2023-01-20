@@ -1,6 +1,7 @@
 import { Response, Request, NextFunction } from 'express';
 import passport from 'passport';
 import { User } from '../types/user'
+import { Role } from '../types';
 
 export const protect = (req: Request, res: Response, next: NextFunction) => {
   return passport.authenticate('jwt', { session: false }, function (err,user,info) {
@@ -20,14 +21,16 @@ export const protect = (req: Request, res: Response, next: NextFunction) => {
   })(req, res, next);
 };
 
-export const authorize = (roles: string) => {
+
+
+export const authorize = (roles: string[]) => {
   return (req: Request, res: Response, next: NextFunction) => {
-    const user = req.user as User;
-    if (!roles.includes(user.role)) {
+    const user = req.user as User; // assuming user object has been added to request object by authentication middleware
+    if (!user.role || !user.role.some(role => roles.includes(role))) {
       return res.status(403).json({
         error: {
           name: 'Unauthorized',
-          message: 'You are not authorize to perform this action',
+          message: 'You are not authorized to perform this action',
         },
         success: false,
       });
@@ -35,3 +38,5 @@ export const authorize = (roles: string) => {
     next();
   };
 };
+
+

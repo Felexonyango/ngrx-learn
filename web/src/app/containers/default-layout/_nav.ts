@@ -1,73 +1,64 @@
 import { INavData } from '@coreui/angular';
+import { UserRoles } from 'src/app/model/auth';
 
-export const navItems: INavData[] = [
+
+
+interface IId {
+  id?: string;
+  _id?: string;
+  isAllowAllAuthenticatedUsers?: boolean;
+  role?: UserRoles[];
+}
+
+export interface INav extends INavData, IId {}
+
+
+
+
+export const navItems: INav[] = [
   {
-    name: 'Dashboards',
-  
-    iconComponent: { name: 'cil-home' },
-    children:[
-      {
-        name:'Employee',
-        url:'dashboard/employee-dashboard'
-
-      },
-      {
-        name:'Admin',
-        url:'dashboard/admin-dashboard'
-
-      }
-    ]
-  
-  },
-
-  {
-    name: 'Leave',
-    iconComponent: { name: 'cil-Save'},
-    children:[
-      {
-        name: 'Apply Leave',
-        url: 'leave/apply-leave',
-    },
-    {
-      name:'leave history',
-      url:'leave/request/history',
-    },
-    // {
-    //   name:'New leave Requests',
-    //   url:'leave/all-leave-requests',
-    // },
-    {
-      name:'All leave history',
-      url:'leave/all-request/history',
-    },
+    name: 'Employee',
+    url: 'dashboard/employee-dashboard',
+    role: [UserRoles.USER, UserRoles.USER],
     
-  ]
-  
   },
   {
-    name: 'Employees',
-    iconComponent: { name: 'cil-user' },
-    children:[
-      {
-        name: 'Create Employee',
-        url: 'employees/create',
-      },
-      {
-        name: 'All Employees',
-        url: 'employees/all-employees',
-      }
-    ]
-    
-  
+    name: 'Admin',
+    url: 'dashboard/admin-dashboard',
+    role: [UserRoles.ADMIN],
+  },
+
+  {
+    name: 'Apply Leave',
+    url: 'leave/apply-leave',
+    role: [UserRoles.ADMIN, UserRoles.USER],
   },
   {
-    name:'settings',
-    iconComponent: { name: 'cil-settings' },
-    url: 'leave/leave-setting'
-  }
+    name: 'leave history',
+    url: 'leave/request/history',
+    role: [UserRoles.ADMIN, UserRoles.USER],
+  },
 
+  {
+    name: 'All leave history',
+    url: 'leave/all-request/history',
+    role: [UserRoles.ADMIN],
+  },
 
+  {
+    name: 'Create Employee',
+    url: 'employees/create',
+    role: [UserRoles.ADMIN],
+  },
+  {
+    name: 'All Employees',
+    url: 'employees/all-employees',
+    role: [UserRoles.ADMIN],
+  },
 
- 
-  
+  {
+    name: 'settings',
+    url: 'leave/leave-setting',
+    role: [UserRoles.ADMIN],
+  },
 ];
