@@ -63,4 +63,12 @@ export class AuthService {
     const token = this.getAuthToken();
     return token ? this.tokenDecoder.decodeToken(token) : {};
   }
+  doesHaveRole(userRole: string[]) {
+    const decodedToken = this.decodedToken();
+    const userRoles = decodedToken.roles;
+    if (userRoles.some((r) => userRole.includes(r))) {
+      return true;
+    }
+    return false;
+  }
 }
