@@ -1,3 +1,5 @@
+import { Status } from "../model/leave";
+
 export type Leave = {
     _id?: string;
     leavetype?:string
@@ -5,6 +7,7 @@ export type Leave = {
     startDate?: Date;
     endDate?: Date;
     duration?:number
+    status:Status;
     
    
   };

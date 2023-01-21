@@ -13,10 +13,10 @@ connectDb()
  export const importData = async () => {
     try {
        
-       await User.deleteMany()
-        // await Menu.deleteMany()
-        await User.insertMany(users)
-        //  await Menu.insertMany(MenuData)
+    //    await User.deleteMany()
+        await Menu.deleteMany()
+        // await User.insertMany(users)
+          await Menu.insertMany(MenuData)
 
         console.log('Data Imported')
     } catch (error) {
@@ -28,8 +28,8 @@ connectDb()
     try {
         // empty all models 
      
-       await User.deleteMany()
-    //    await Menu.deleteMany()
+       //await User.deleteMany()
+       await Menu.deleteMany()
     
         console.log(`Data Destroyed !`)
     } catch (error) {

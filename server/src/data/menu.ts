@@ -1,17 +1,18 @@
 import { Menu, Role } from "../types";
 
  const MenuData:Menu[] = [
+  {
+    name: 'Admin',
+    url: 'dashboard/admin-dashboard',
+    role: [Role.Admin]
+  },
     {
         name: 'Employee',
         url: 'dashboard/employee-dashboard',
         role: [Role.User,Role.Admin]
         
       },
-      {
-        name: 'Admin',
-        url: 'dashboard/admin-dashboard',
-        role: [Role.Admin,Role.User]
-      },
+   
     
       {
         name: 'Apply Leave',
@@ -19,9 +20,9 @@ import { Menu, Role } from "../types";
         role: [Role.Admin,Role.User]
       },
       {
-        name: 'leave history',
+        name: 'Leave history',
         url: 'leave/request/history',
-        role: [Role.Admin,Role.User]
+        role: [Role.User]
       },
     
       {

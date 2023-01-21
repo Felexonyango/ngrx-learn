@@ -11,7 +11,7 @@ export interface LeaveDocument extends Document {
   comment: string;
   startDate: Date;
   endDate: Date;
-  
+  status:Status;
 
 }
 
@@ -20,17 +20,15 @@ const leaveSchema = new Schema(
   {
     leavetype:String,
     comment: String,
-    startDate: Date,
-    endDate: Date,
+    startDate: String,
+    endDate: String,
     duration:Number,
+    status:String,
     user: {
       type: ObjectId,
       ref: "User",
     },
-    // leavetypes: {
-    //   type: ObjectId,
-    //   ref: "LeaveType",
-    // },
+ 
   },
 
   {

@@ -50,4 +50,4 @@ app.use("/api/menus",MenuRoutes)
 
 //updated body-parser for ts node
 app.use(express.json());
-app.listen(PORT, () => console.log(`server is listnening at port ${PORT}`))
+app.listen(PORT, () => console.log(`server is listening at port ${PORT}`))
