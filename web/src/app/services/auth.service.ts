@@ -3,7 +3,7 @@ import { Observable, map, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { User } from '../model/auth';
+import { Imenu, User } from '../model/auth';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { HTTPResponse } from '../model/HTTPResponse';
 @Injectable({
@@ -25,6 +25,7 @@ export class AuthService {
 
   getAuthToken(): string {
     const token = localStorage.getItem(this.token_KEY);
+
     return token;
   }
 
@@ -37,10 +38,6 @@ export class AuthService {
       return isTokenExpired ? false : true;
     }
     return false;
-  }
-  getRole() {
-    this.roleAs = localStorage.getItem('role');
-    return this.roleAs;
   }
 
 
@@ -61,14 +58,20 @@ export class AuthService {
   }
   decodedToken(): any {
     const token = this.getAuthToken();
-    return token ? this.tokenDecoder.decodeToken(token) : {};
+    const decodedToken =token ? this.tokenDecoder.decodeToken(token) : {};
+    return decodedToken
   }
-  doesHaveRole(userRole: string[]) {
-    const decodedToken = this.decodedToken();
-    const userRoles = decodedToken.roles;
-    if (userRoles.some((r) => userRole.includes(r))) {
-      return true;
+ 
+
+  getRole() {
+    const decodedToken =this.decodedToken()
+   const userRoles =decodedToken.role
+    
+    return userRoles;
+  }
+  GetAllMenus(): Observable<HTTPResponse<Imenu[]>> {
+    return this.httpClient.get<HTTPResponse<Imenu[]>>(
+      `${environment.server_Url}menus/all`)
     }
-    return false;
-  }
+
 }
