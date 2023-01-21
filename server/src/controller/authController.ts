@@ -13,7 +13,13 @@ export const sendResponseToken = ({user,res,statusCode,}: {
   user: UserType | Iuser
   statusCode: number;
   res: Response;
-}) => {const payload = {user_id: user._id};
+}) => {
+  const payload = {
+  user_id: user._id,
+  role:user.role
+
+
+};
 
   const token = jwt.sign(payload, JWT_SECRET_KEY, {
     expiresIn: 36000

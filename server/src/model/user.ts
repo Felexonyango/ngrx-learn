@@ -57,7 +57,7 @@ const UserSchema: Schema = new Schema(
       type: ObjectId,
       ref: "Department"
     },
-
+   
     nextOfKin: {
       type: String,
     },

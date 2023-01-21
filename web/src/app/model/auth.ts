@@ -15,4 +15,13 @@ export class User {
     ADMIN = 'admin',
  
   }
+
+   export  interface Imenu{
+    
+      name: string
+      url: string
+      role: string[]
+      
+  
+  }
   

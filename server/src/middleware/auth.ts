@@ -3,12 +3,34 @@ import passport from 'passport';
 import { User } from '../types/user'
 import { Role } from '../types';
 
+// export const protect = (req: Request, res: Response, next: NextFunction) => {
+//   return passport.authenticate('jwt', { session: false }, function (err,user,info) {
+//     if (err) {
+//       return next(info);
+//     }
+//     if (!user)
+//       return res.status(401).json({
+//         error: {
+//           message: 'Not Authorized',
+//           name: 'AUTHENTICATION_FAILURE',
+//         },
+//         success: false,
+//       });
+//     req.user = user;
+//     return next();
+//   })(req, res, next);
+// };
+
+
+
+// import { Request, Response, NextFunction } from 'express';
+
 export const protect = (req: Request, res: Response, next: NextFunction) => {
-  return passport.authenticate('jwt', { session: false }, function (err,user,info) {
+  passport.authenticate('jwt', { session: false }, (err, user, info) => {
     if (err) {
-      return next(info);
+      return next(err);
     }
-    if (!user)
+    if (!user) {
       return res.status(401).json({
         error: {
           message: 'Not Authorized',
@@ -16,12 +38,11 @@ export const protect = (req: Request, res: Response, next: NextFunction) => {
         },
         success: false,
       });
+    }
     req.user = user;
     return next();
   })(req, res, next);
 };
-
-
 
 export const authorize = (roles: string[]) => {
   return (req: Request, res: Response, next: NextFunction) => {

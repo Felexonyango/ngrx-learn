@@ -19,6 +19,7 @@ const Users:User[]=[
     swiftCode: "2E22E23423424",
     branchName: "Teslas",
     bankCode: "23444",
+  
     department:'63bf70dc9c486634908abcfe',
     password: bcrypt.hashSync("humanresource2023", 12), 
     role: [Role.Admin]

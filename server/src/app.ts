@@ -16,6 +16,7 @@ import { leaveTypeRoutes } from "./routes/leaveType";
 
 
 import { connectDb } from "./database";
+import { MenuRoutes } from "./routes/MenuRoute";
 const app: Application = express();
 app.use(express.json());
 
@@ -34,7 +35,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
 connectDb();
 
-destroyData()
+//destroyData()
 
 app.use(cors());
 
@@ -45,6 +46,7 @@ app.use("/api/user", userRoutes);
 app.use("/api/leave",leaveRoutes)
 app.use("/api/department",departmentRoutes)
 app.use("/api/leavetype",leaveTypeRoutes)
+app.use("/api/menus",MenuRoutes)
 
 //updated body-parser for ts node
 app.use(express.json());
