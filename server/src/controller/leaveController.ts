@@ -111,37 +111,40 @@ export const approveLeave = async(req: Request, res: Response) => {
   }
 };
 
-export const  getAllapprovedLeaves=async(req:Request,res:Response)=>{
- try {
-    const result = await Leave.find({ status: Status.APPROVED }).populate("user");
-    console.log(result)
-    if (!result) {
-      return res.status(404).json({ msg: "There are no leaves approved " });
-    }
-   
-    return res
-      .status(200)
-      .json({ msg: "Succesfully retrived approved leaves" });
+
+
+
+export const Approvedleaves = async (req: Request, res: Response) => {
+  try {
+    const result = await Leave.find({status:Status.APPROVED}).populate("user");
+
+    if (!result) return res.status(500).json({ msg: " There is no leaves " });
+    return res.status(200).json({
+      msg: "successfully retrieved all approved leaves",
+      result,
+    });
   } catch (err) {
-    return res.status(500).json({ msg: err });
+    console.log(err);
+    res.status(500).json({ msg: err });
   }
+};
 
-  
-}
+export const ApprovedleavesByUser = async (req: Request, res: Response) => {
+  try {
+    const user = req.user as UserTypes;
+    const result = await Leave.find({user:user._id, status:Status.APPROVED}).populate("user");
 
-  // try {
-  //   // const result = await Leave.find({ status: Status.APPROVED }).populate("user");
-  //   // console.log(result)
-  //   // if (!result) {
-  //   //   return res.status(404).json({ msg: "There are no leaves approved " });
-  //   // }
-  //   console.log('okay')
-  //   return res
-  //     .status(200)
-  //     .json({ msg: "Succesfully retrived approved leaves" });
-  // } catch (err) {
-  //   return res.status(500).json({ msg: err });
-  // }
+    if (!result) return res.status(500).json({ msg: " There is no leaves " });
+    return res.status(200).json({
+      msg: "successfully retrieved user's approved leaves",
+      result,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ msg: err });
+  }
+};
+
 
 
 export const getApprovedLeaveById = async (req: Request, res: Response) => {
@@ -201,18 +204,32 @@ export const deleteApprovedLeaveById = async (req: Request, res: Response) => {
 
 
  // pending leaves 
-
- export const getPendinLeaves = async (req: Request, res: Response) => {
+ 
+ export  const PendinLeavesByUser = async (req: Request, res: Response) => {
   try {
-    const result = await Leave.find({ status: Status.PENDING }).populate(
-      "user"
-    );
+    const user = req.user as UserTypes;
+    const result = await Leave.find({user:user._id, status:Status.PENDING}).populate("user");
+
     if (!result) {
       return res.status(404).json({ msg: "There are no leaves approved " });
     }
     return res
       .status(200)
-      .json({ msg: "Succesfully retrived pending leaves", result });
+      .json({ msg: "Succesfully retrived  user's pending leaves", result });
+  } catch (err) {
+    return res.status(500).json({ msg: err });
+  }
+};
+
+ export  const PendinLeaves = async (req: Request, res: Response) => {
+  try {
+    const result = await Leave.find({ status: Status.PENDING }).populate( "user");
+    if (!result) {
+      return res.status(404).json({ msg: "There are no leaves approved " });
+    }
+    return res
+      .status(200)
+      .json({ msg: "Succesfully retrived  all pending leaves", result });
   } catch (err) {
     return res.status(500).json({ msg: err });
   }
