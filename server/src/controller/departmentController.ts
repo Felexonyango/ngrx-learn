@@ -1,5 +1,8 @@
 import { Request, Response } from "express";
 import { Department } from "../model/department";
+import { User } from "../model/user";
+import { User as UserTypes } from "../types/user";
+import { Leave, Status } from "../model/leave";
 //import { Department as DepartmentTypes } from "../types";
 //import mongoose from "mongoose";
 
@@ -73,3 +76,44 @@ export const getdepartments = async (req: Request, res: Response) => {
         console.log(err)    }
 
 };
+
+export const getAdminTotals =async()=>{
+  try{
+    const totaldepartments = await Department.countDocuments()
+    const totalUser = await User.countDocuments()
+    const totalLeaves =await Leave.countDocuments()
+
+    return {
+      totalLeaves,totaldepartments,totalUser
+    }
+ 
+
+
+  }
+  catch(err){
+    console.log(err)
+
+  }
+
+}
+
+export const getUserTotals =async(req:Request)=>{
+  try{
+    const user = req.user as UserTypes;
+    const approvedleaves = await Leave.find({user:user._id, status:Status.APPROVED}).countDocuments()
+    const pendingLeaves =await Leave.find({user:user._id, status:Status.PENDING}).countDocuments()
+  const appliedLeaves =await Leave.find({}).countDocuments()
+   
+    return {
+      appliedLeaves,pendingLeaves,approvedleaves
+    }
+ 
+
+
+  }
+  catch(err){
+    console.log(err)
+
+  }
+
+}
