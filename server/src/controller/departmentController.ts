@@ -27,7 +27,7 @@ export const getdepartments = async (req: Request, res: Response) => {
       const result = await Department.find({})
       if (!result) return res.status(500).json({ msg: "There are no department " });
      
-      return res.status(200).json({ msg: 'All departments retrived', result });
+      return res.status(200).json({ msg: 'All departments retrieved', result });
     } catch (err) {
       console.log(err);
       res.status(500).json({ msg: err });

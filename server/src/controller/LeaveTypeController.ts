@@ -1,8 +1,5 @@
 import { Request, Response } from "express";
 import { LeaveType } from "../model/leaveTypes";
-import { User as UserTypes } from "../types";
-
-// const { ObjectId } = mongoose.Types;
 
 export const create = async (req: Request, res: Response) => {
   try {

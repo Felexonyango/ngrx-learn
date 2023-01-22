@@ -2,14 +2,14 @@ import { Menu, Role } from "../types";
 
  const MenuData:Menu[] = [
   {
-    name: 'Admin',
+    name: 'Dashboard',
     url: 'dashboard/admin-dashboard',
     role: [Role.Admin]
   },
     {
-        name: 'Employee',
+        name: 'Dashboard',
         url: 'dashboard/employee-dashboard',
-        role: [Role.User,Role.Admin]
+        role: [Role.User]
         
       },
    

@@ -18,7 +18,10 @@ export interface LeaveDocument extends Document {
 
 const leaveSchema = new Schema(
   {
-    leavetype:String,
+    leavetype:{
+      type:ObjectId,
+      ref:"LeaveType"
+    },
     comment: String,
     startDate: String,
     endDate: String,

@@ -20,7 +20,7 @@ export const getAllUsers = async (req: Request, res: Response) => {
 export const getUserById = async (req: Request, res: Response) => {
   try{
     const {id} = req.params;   
-    const user = await User.findById({_id:id});
+    const user = await User.findById({_id:id}).populate('department').populate('leave')
 
     if(!user) return res.status(404).json({ message: " User not found"})
     res.status(200).json({data: user});

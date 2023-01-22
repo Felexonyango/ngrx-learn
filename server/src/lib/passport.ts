@@ -4,6 +4,7 @@ import { User } from "../model/user";
 import { Role } from "../types/role";
 import { JWT_SECRET_KEY } from "../config";
 import { Department as DepartmentTypes } from "../types/department";
+import { Department } from "../model/department";
 
 //This verifies that the token sent by the user is valid
 
@@ -38,55 +39,47 @@ module.exports = function (passport: any) {
       },
       async (req, email, password, done) => {
         try {
-         
-        const department = req.department as DepartmentTypes;
+          // check if the department field exists in the request body
+          if (!req.body.department) {
+            return done(null, false, { message: "Department field is required" });
+          }
 
-          const {
-            firstname,
-            lastname,
-            startDate,
-            nextOfKin,
-            idNumber,
-            kraPin,
-            bankAccountNumber,
-            bankName,
-            phoneNumber,
-            employeeIdNumber,
-            taxRegNO,
-            swiftCode,
-            branchName,
-            bankCode,
-          } = req.body;
+          // find the department by its name
+          
+          const department = await Department.findById(req.body.department);
+          if (!department) {
+            return done(null, false, { message: "Invalid department" });
+          }
 
-          let user = await User.findOne({ email: email.toLowerCase() });
-
-          if (user)
+          // check if the email is already taken
+          const user = await User.findOne({ email: email.toLowerCase() });
+          if (user) {
             return done(null, false, { message: "Email is already taken" });
+          }
 
-          user = await User.create({
+          // create the user
+          const newUser = await User.create({
             email,
             password,
-            firstname,
-            lastname,
+            firstname: req.body.firstname,
+            lastname: req.body.lastname,
             role: Role.User,
-            startDate,
-            nextOfKin,
-            idNumber,
-            kraPin,
-            bankAccountNumber,
-            bankName,
-            phoneNumber,
-            employeeIdNumber,
-            taxRegNO,
-            swiftCode,
-            branchName,
-            bankCode,
-            // department:department._id
+            startDate: req.body.startDate,
+            nextOfKin: req.body.nextOfKin,
+            idNumber: req.body.idNumber,
+            kraPin: req.body.kraPin,
+            bankAccountNumber: req.body.bankAccountNumber,
+            bankName: req.body.bankName,
+            phoneNumber: req.body.phoneNumber,
+            employeeIdNumber: req.body.employeeIdNumber,
+            taxRegNO: req.body.taxRegNO,
+            swiftCode: req.body.swiftCode,
+            branchName: req.body.branchName,
+            bankCode: req.body.bankCode,
+            department: department._id
           });
-          //Send the user information to the next middleware
 
-          
-          return done(null, user);
+          return done(null, newUser);
 
         } catch (error) {
           done(error);
@@ -95,6 +88,7 @@ module.exports = function (passport: any) {
     )
   );
 
+  
   passport.use(
     "login",
     new localStrategy(
@@ -102,6 +96,7 @@ module.exports = function (passport: any) {
         usernameField: "email",
         passwordField: "password",
       },
+
       async (email, password, done) => {
         try {
           const user = await User.findOne({ email });

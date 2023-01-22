@@ -2,20 +2,27 @@ import { Request, Response } from "express";
 import { Leave, Status } from "../model/leave";
 import { User as UserTypes } from "../types/user";
 import { User } from "../model/user";
+import { LeaveType } from "../model/leaveTypes";
 
 export const create = async (req: Request, res: Response) => {
   try {
-    // const leavt  = req.leavetype as LeaveTypess;
+    if (!req.body.leavetype) {
+      return  res.status(404).json({ message: "Leavetype field is required" });
+    }
+
+    const leavetyp = await LeaveType.findById(req.body.leavetype);
+    if (!leavetyp) {
+      return  res.status(404).json({ message: "Leavetype is invalid" });
+    }
     const user = req.user as UserTypes;
-    const { leavetype, comment, startDate, endDate } = req.body;
+    const {comment, startDate, endDate } = req.body;
     const leave = await Leave.create({
-      leavetype,
       comment,
       startDate,
       endDate,
       status:Status.PENDING,
       user: user._id,
-      // leavetype:leavt._id,
+      leavetype:leavetyp._id,
     });
     await leave.save();
     return res.status(200).json({ msg: "created", leave });
@@ -28,7 +35,7 @@ export const create = async (req: Request, res: Response) => {
 export const userleaves = async (req: Request, res: Response) => {
   try {
     const user = req.user as UserTypes;
-    const result =  await Leave.find({}).where('user').equals(user._id).populate('user');
+    const result =  await Leave.find({}).where('user').equals(user._id).populate('user').populate('leavetype');
    
     //.populate('leavetype')
     if (!result) return res.status(500).json({ msg: "You don't have leaves " });
@@ -44,7 +51,7 @@ export const userleaves = async (req: Request, res: Response) => {
 export const getleaveById = async (req: Request, res: Response) => {
   try {
     const {id}=req.params
-    const result = await Leave.findById(id).populate("user");
+    const result = await Leave.findById(id).populate("user").populate('leavetype');
     if (!result) return res.status(500).json({ msg: "You don't have leave" });
     return res
       .status(200)
@@ -80,7 +87,7 @@ export const updateleave = async (req: Request, res: Response) => {
 
 export const leaveHistory = async (req: Request, res: Response) => {
   try {
-    const result = await Leave.find({}).populate("user");
+    const result = await Leave.find({}).populate("user").populate('leavetype');
 
     if (!result) return res.status(500).json({ msg: " There is no leaves " });
     return res.status(200).json({
@@ -97,7 +104,7 @@ export const leaveHistory = async (req: Request, res: Response) => {
 export const approveLeave = async(req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const leave = await Leave.findById(id).populate("user");
+    const leave = await Leave.findById(id).populate("user").populate('leavetype');
     if (!leave) {
       return res.status(404).json({ message: "Leave request not found" });
     }
@@ -116,7 +123,7 @@ export const approveLeave = async(req: Request, res: Response) => {
 
 export const Approvedleaves = async (req: Request, res: Response) => {
   try {
-    const result = await Leave.find({status:Status.APPROVED}).populate("user");
+    const result = await Leave.find({status:Status.APPROVED}).populate("user").populate('leavetype');
 
     if (!result) return res.status(500).json({ msg: " There is no leaves " });
     return res.status(200).json({
@@ -132,7 +139,7 @@ export const Approvedleaves = async (req: Request, res: Response) => {
 export const ApprovedleavesByUser = async (req: Request, res: Response) => {
   try {
     const user = req.user as UserTypes;
-    const result = await Leave.find({user:user._id, status:Status.APPROVED}).populate("user");
+    const result = await Leave.find({user:user._id, status:Status.APPROVED}).populate("user").populate('leavetype');
 
     if (!result) return res.status(500).json({ msg: " There is no leaves " });
     return res.status(200).json({
@@ -151,7 +158,7 @@ export const getApprovedLeaveById = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const status = Status.APPROVED;
-    const result = await Leave.findById(id, { status }).populate("user");
+    const result = await Leave.findById(id, { status }).populate("user").populate('leavetype');
 
     if (!result) {
       return res.status(404).json({ msg: "No  such leave exist in database" });
@@ -184,7 +191,7 @@ export const deleteApprovedLeaveById = async (req: Request, res: Response) => {
     const { leavetype, comment, startDate, endDate } = req.body;
      const {id}=req.params
 
-    const leave = await Leave.findById(id,{status:Status.APPROVED}).populate("user");
+    const leave = await Leave.findById(id,{status:Status.APPROVED}).populate("user").populate('leavetype');
     if (!leave) return res.status(500).json({ msg: "There is no leave approved" });
     const result = await Leave.findOneAndUpdate(
       { _id: leave._id },
@@ -208,7 +215,7 @@ export const deleteApprovedLeaveById = async (req: Request, res: Response) => {
  export  const PendinLeavesByUser = async (req: Request, res: Response) => {
   try {
     const user = req.user as UserTypes;
-    const result = await Leave.find({user:user._id, status:Status.PENDING}).populate("user");
+    const result = await Leave.find({user:user._id, status:Status.PENDING}).populate("user").populate('leavetype');
 
     if (!result) {
       return res.status(404).json({ msg: "There are no leaves approved " });
@@ -223,7 +230,7 @@ export const deleteApprovedLeaveById = async (req: Request, res: Response) => {
 
  export  const PendinLeaves = async (req: Request, res: Response) => {
   try {
-    const result = await Leave.find({ status: Status.PENDING }).populate( "user");
+    const result = await Leave.find({ status: Status.PENDING }).populate( "user").populate('leavetype');
     if (!result) {
       return res.status(404).json({ msg: "There are no leaves approved " });
     }
@@ -239,7 +246,7 @@ export const getPendingLeaveById = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const status = Status.PENDING
-    const result = await Leave.findById(id, { status }).populate("user");
+    const result = await Leave.findById(id, { status }).populate("user").populate('leavetype');
 
     if (!result) {
       return res.status(404).json({ msg: "No  such leave exist in database" });
@@ -272,7 +279,7 @@ export const deletePendingLeaveById = async (req: Request, res: Response) => {
     const { leavetype, comment, startDate, endDate } = req.body;
      const {id}=req.params
 
-    const leave = await Leave.findById(id,{status:Status.PENDING}).populate("user");
+    const leave = await Leave.findById(id,{status:Status.PENDING}).populate("user").populate('leavetype');
     if (!leave) return res.status(500).json({ msg: "There is no pending leave" });
     const result = await Leave.findOneAndUpdate(
       { _id: leave._id },
