@@ -26,12 +26,12 @@ export class LeaveService {
         })
       )
   }
-  approveLeaveRequest(leaveId: any): Observable<HTTPResponse<ILeaves>> {
-    return this.http.post<HTTPResponse<ILeaves>>(
-      `${environment.server_Url}supervisor/approveleave/${leaveId}`,
-      leaveId
-    )
-  }
+  // approveLeaveRequest(leaveId: any): Observable<HTTPResponse<ILeaves>> {
+  //   return this.http.post<HTTPResponse<ILeaves>>(
+  //     `${environment.server_Url}supervisor/approveleave/${leaveId}`,
+  //     leaveId
+  //   )
+  // }
   declineLeaveRequest(leaveId: any): Observable<HTTPResponse<ILeaves>> {
     return this.http.post<HTTPResponse<ILeaves>>(
       `${environment.server_Url}supervisor/CANCELLEAVE/${leaveId}`,
@@ -67,13 +67,13 @@ export class LeaveService {
   AdminApprovedLeaveRequest(): Observable<HTTPResponse<ILeaves[]>> {
     return this.http
       .get<HTTPResponse<ILeaves[]>>(
-        `${environment.server_Url}supervisor/leaves/upcoming`
+        `${environment.server_Url}leave/admin/approved`
       )
     
   }
   EmployeeApprovedLeaveRequest(): Observable<HTTPResponse<ILeaves[]>> {
     return this.http.get<HTTPResponse<ILeaves[]>>(
-      `${environment.server_Url}leave/upcoming`
+      `${environment.server_Url}leave/user/approved`
     )
   }
 
@@ -87,7 +87,7 @@ export class LeaveService {
   pendingLeaveRequests(): Observable<HTTPResponse<ILeaves[]>> {
     return this.http
       .get<HTTPResponse<ILeaves[]>>(
-        `${environment.server_Url}leave/pending`
+        `${environment.server_Url}leave/admin/pending`
       )
       
   }
@@ -114,6 +114,11 @@ getAllNewLeaveRequests(): Observable<HTTPResponse<ILeaves[]>> {
       )
   }
 
+  approveLeave(leaveId: string, leavedetails: Partial<ILeaves>): Observable<HTTPResponse<ILeaves>> {
+    return this.http.post<HTTPResponse<ILeaves>>(
+      `${environment.server_Url}${leaveId}`, leavedetails
+    );
+  }
 
 
 
