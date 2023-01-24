@@ -77,11 +77,12 @@ export const getdepartments = async (req: Request, res: Response) => {
 
 };
 
-export const getAdminTotals =async()=>{
+export const getAdminTotals =async(req:Request)=>{
   try{
+    const user = req.user as UserTypes;
     const totaldepartments = await Department.countDocuments()
     const totalUser = await User.countDocuments()
-    const totalLeaves =await Leave.countDocuments()
+    const totalLeaves =await Leave.find({user:user._id, status:Status.PENDING}).countDocuments()
 
     return {
       totalLeaves,totaldepartments,totalUser
@@ -102,7 +103,7 @@ export const getUserTotals =async(req:Request)=>{
     const user = req.user as UserTypes;
     const approvedleaves = await Leave.find({user:user._id, status:Status.APPROVED}).countDocuments()
     const pendingLeaves =await Leave.find({user:user._id, status:Status.PENDING}).countDocuments()
-  const appliedLeaves =await Leave.find({}).countDocuments()
+  const appliedLeaves =await Leave.find({user:user._id}).countDocuments()
    
     return {
       appliedLeaves,pendingLeaves,approvedleaves

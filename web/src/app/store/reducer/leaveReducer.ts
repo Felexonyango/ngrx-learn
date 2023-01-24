@@ -34,7 +34,7 @@ export const leaveReducer = createReducer(
   on(leaveActionType.createleaveSuccess, (state, { leaves }) => {
     return adapter.addOne(leaves, state);
   }),
-  on(leaveActionType.loadnewleavesSuccess, (state, { leaves }) => {
+  on(leaveActionType.loadapprovedleavesByUserSuccess, (state, { leaves }) => {
     return adapter.setAll(leaves, state);
   }),
 

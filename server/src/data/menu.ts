@@ -41,6 +41,11 @@ import { Menu, Role } from "../types";
         url: 'employees/all-employees',
         role: [Role.Admin]
       },
+      {
+        name: 'Approved Leaves',
+        url: 'leave/all-approved-leaves',
+        role: [Role.Admin]
+      },
     
       {
         name: 'Settings',

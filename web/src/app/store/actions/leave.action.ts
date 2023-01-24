@@ -84,14 +84,14 @@ export const loadleavesByuserFailure = createAction(
   props<{ error: unknown }>()
 );
 
-export const loadnewleaves = createAction(
+export const loadapprovedleavesByUser = createAction(
   '[new leaves] get new leaves'
 )
-export const loadnewleavesSuccess = createAction(
+export const loadapprovedleavesByUserSuccess = createAction(
   '[new leaves] get new leaves success',
   props<{leaves: ILeaves[]}>()
 );
-export const loadnewleavesFailure = createAction(
+export const loadapprovedleavesByUserFailure = createAction(
   '[new leaves] get new leaves failure',
   props<{error:unknown}>()
 )
@@ -162,9 +162,9 @@ export const leaveActionType = {
   updateleaveFailure,
   loadleavesByuser,
   loadleavesByuserSuccess,
-  loadnewleaves,
-  loadnewleavesFailure,
-  loadnewleavesSuccess,
+  loadapprovedleavesByUser,
+  loadapprovedleavesByUserFailure,
+  loadapprovedleavesByUserSuccess,
   loadadminleavehistory,
   loadadminleavehistoryFailure,
   loadadminleavehistorySucces,

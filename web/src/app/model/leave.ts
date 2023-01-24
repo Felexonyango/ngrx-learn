@@ -14,28 +14,20 @@ export interface ILeaveType {
 
   export interface ILeaves {
     _id: string
-    typeOfLeave: {
-      leaveType: string
-      id: string
+    leavetype: {
+      leavetype: string
+      _id: string
     }
     comment: string
     startDate: Date
     endDate: Date
     status: Status
-    checked: false
-    reportDate: Date
-    duration: number
     user: {
       _id?:string
       firstname: string
       lastname: string
-      department: string
-      status: boolean
     }
-    leavesConsumed: number
-    leaveBalance: number
-    yearsToDate: number
-    carryOverDays: number
+  
   }
   export enum Status {
     PENDING = 'PENDING',

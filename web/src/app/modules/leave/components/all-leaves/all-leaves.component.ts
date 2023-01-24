@@ -31,7 +31,6 @@ export class AllLeavesComponent implements OnInit {
   leaveTableColumns: string[] = [
     'Employee Name',
     'leaveType',
-    'leaveDuration',
     'startDate',
     'EndDate',
     'status',

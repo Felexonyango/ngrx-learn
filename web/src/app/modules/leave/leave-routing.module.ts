@@ -6,6 +6,7 @@ import { CreateLeaveComponent } from './components/create-leave/create-leave.com
 import { LeaveDetailsComponent } from './components/leave-details/leave-details.component';
 import { LeaveHistoryComponent } from './components/leave-history/leave-history.component';
 import { LeaveSettingsComponent } from './components/leave-settings/leave-settings.component';
+import { ApprovedLeavesComponent } from './components/approved-leaves/approved-leaves.component';
 
 const routes: Routes = [
 
@@ -25,8 +26,8 @@ const routes: Routes = [
     component:LeaveDetailsComponent
   },
   {
-    path: 'all-leave-requests',
-    component: AllLeaveRequestsComponent
+    path: 'all-approved-leaves',
+    component: ApprovedLeavesComponent
   },
   {
     path:'all-request/history',

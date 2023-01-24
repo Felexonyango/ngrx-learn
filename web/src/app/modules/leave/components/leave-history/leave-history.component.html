@@ -31,10 +31,9 @@
           </ng-template>
           <ng-template pTemplate="body" let-leave>
             <tr class="p-selectable-row">
-              <td>{{ leave?.leavetype }} </td>
-              <td>{{leave?.duration}} days</td>
-              <td>{{ leave?.startDate | date }}</td>
-              <td>{{ leave?.endDate | date }}</td>
+              <td>{{ leave?.leavetype.leavetype }} </td>
+              <td>{{ leave?.startDate }}</td>
+              <td>{{ leave?.endDate  }}</td>
               <td>{{leave?.status}} </td>
              
               <td class=" ">

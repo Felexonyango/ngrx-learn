@@ -1,57 +1,58 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { select, Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { Paginator } from 'primeng/paginator';
 import { Observable } from 'rxjs';
 import { ILeaves } from 'src/app/model/leave';
-import { LeaveService } from 'src/app/services/leave.service';
 import { leaveActionType } from 'src/app/store/actions/leave.action';
 import { LeaveState } from 'src/app/store/reducer/leaveReducer';
 import { getleaves } from 'src/app/store/selector/leave.selector';
 
 @Component({
-  selector: 'app-all-leave-requests',
-  templateUrl: './all-leave-requests.component.html',
-  styleUrls: ['./all-leave-requests.component.scss']
+  selector: 'app-approved-leaves',
+  templateUrl: './approved-leaves.component.html',
+  styleUrls: ['./approved-leaves.component.scss']
 })
-export class AllLeaveRequestsComponent implements OnInit {
-leaves:Observable<ILeaves[]>
+export class ApprovedLeavesComponent implements OnInit {
+  approvedleaves$:Observable<ILeaves[]>
   constructor(
-    private leaveService: LeaveService,
     private store: Store<LeaveState>,
-    private router: Router
-  ) { }
-
-
+    private router: Router,
+  ) { 
+  
+  }
   @ViewChild('paginator', { static: true }) paginator: Paginator;
 
   leaveTableColumns: string[] = [
     'Employee Name',
     'leaveType',
-    'leaveDuration',
     'startDate',
     'EndDate',
     'status',
     'Action'
     
   ];
+
   ngOnInit(): void {
-
-    this.getNewLeaveRequests()
+    this.getApprovedleaves();
   }
 
-  getNewLeaveRequests(){
-    this.leaves = this.store.pipe(select(getleaves));
-    //this.store.dispatch( leaveActionType.loadnewleaves() )
+  getApprovedleaves() {
+    this.approvedleaves$ = this.store.pipe(select(getleaves));
+    this.store.dispatch(leaveActionType.loadapprovedleaves());
   }
-  onView(id: any) {
+  handleSelect(id: string) {
+    this.router.navigate([`/leave/leave-details/${id}`])
+  }
+  onView(id:string){
     this.router.navigate([`/leave/leave-details/${id}`]);
   }
   onEditBtnClick(id:string){
-
-
+    
   }
-  onDeleteleave(id: any) {
+  onDeleteleave(id:string){
     this.store.dispatch(leaveActionType.deleteleave({ id}))
   }
+
+
 }

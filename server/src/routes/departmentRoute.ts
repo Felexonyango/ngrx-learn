@@ -15,7 +15,7 @@ router.route('/:id').patch(protect,authorize(['admin']),updateDepartment)
 
 router.get("/department/total", protect, authorize(['admin']), async (req, res) => {
     try {
-      const result = await getAdminTotals();
+      const result = await getAdminTotals(req);
       res.status(200).json({ msg:"successfully retrieved dashboard summary", result });
     } catch (error) {
       res.status(500).json({ msg:error });

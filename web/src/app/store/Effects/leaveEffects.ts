@@ -55,11 +55,11 @@ export class LeaveEFfect {
   );
   loadallRequest$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(leaveActionType.loadnewleaves),
+      ofType(leaveActionType.loadapprovedleavesByUser),
       mergeMap((action) =>
-        this.leaveService.getAllNewLeaveRequests().pipe(
+        this.leaveService. EmployeeApprovedLeaveRequest().pipe(
           map((res) =>
-            leaveActionType.loadnewleavesSuccess({
+            leaveActionType.loadapprovedleavesByUserSuccess({
               leaves: res.result,
             })
           )

@@ -28,10 +28,18 @@ export interface IEmployee {
     }
   }
 
-  export interface IEmployeeSummary {
+  export interface IAdminSummary {
     _id?: string
-    numOfEmployees: number
-    employeesInOffice: number
-    employeesOnLeave: number
+    totalLeaves: number
+    totalUser: number
+    totaldepartments: number
   }
+  export interface IEmployeeSummary {
   
+    _id?: string
+    appliedLeaves: number
+    pendingLeaves: number
+    approvedleaves: number
+  }
+ 
+ 
