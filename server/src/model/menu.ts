@@ -5,6 +5,7 @@ export interface IMenu extends Document {
   name: string;
   url: string;
   role: [string];
+  icon:string
 }
 
 export interface MenuModel extends Model<IMenu> {}
@@ -14,6 +15,7 @@ const menuSchema = new Schema(
     name: String,
     url: String,
     role: [String],
+    icon:String
  
    
   },
