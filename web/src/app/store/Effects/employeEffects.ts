@@ -24,7 +24,7 @@ export class EmployeeEffect {
       ofType(EmployeeActionTypes.LoadEmployees),
       mergeMap(() => this.EmployeeService.getAllEmployees()
       .pipe(
-        tap((obj)=>console.log(obj)),
+       
         map((res)=>EmployeeActionTypes.loadEmployeesSuccess({
           employees:res.result
         })),

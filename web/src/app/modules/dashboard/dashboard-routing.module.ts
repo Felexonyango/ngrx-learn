@@ -1,19 +1,25 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
-import { EmployeeDashboardComponent } from '../EmployeeDashboard/component/employee-dashboard/employee-dashboard.component';
+import { EmployeeDashboardComponent } from './components/employee-dashboard/employee-dashboard.component';
 
 const routes: Routes = [
 
   {
     path: '',
-    redirectTo: 'admin-dashboard',
+    redirectTo: 'all',
     pathMatch: 'full',
+  },
+  {
+    path:'employee-dashboard',
+    component:EmployeeDashboardComponent
+
   },
   {
     path:'admin-dashboard',
     component:AdminDashboardComponent
   },
+
 
 ];
 

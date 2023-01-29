@@ -10,11 +10,13 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CardModule } from '@coreui/angular';
 import { FormlyModule } from '@ngx-formly/core';
 import { PaginatorModule } from 'primeng/paginator';
+import { EmployeeDashboardComponent } from './components/employee-dashboard/employee-dashboard.component';
 
 
 @NgModule({
   declarations: [
     AdminDashboardComponent,
+    EmployeeDashboardComponent
    
   ],
   imports: [

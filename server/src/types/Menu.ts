@@ -6,4 +6,5 @@ export type Menu = {
   url: string;
   icon:string
   role: Role[];
+
 };

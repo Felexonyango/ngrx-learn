@@ -86,7 +86,7 @@ export class CreateLeaveComponent implements OnInit {
   }
   getLeaveTypes() {
     this.subscription.add(this.leaveService.getLeaveTypes().subscribe((res) => {
-      console.log(res)
+      
     }))
   }
 

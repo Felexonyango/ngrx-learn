@@ -22,7 +22,7 @@ const Users:User[]=[
   
     department:'63bf70dc9c486634908abcfe',
     password: bcrypt.hashSync("humanresource2023", 12), 
-    role: [Role.Admin]
+    role: [Role.Admin,Role.User]
   },
   
 ]
