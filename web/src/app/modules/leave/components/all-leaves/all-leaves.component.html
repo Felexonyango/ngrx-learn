@@ -1,92 +1,77 @@
-
 <div class="animated fadeIn">
-    <div class="card">
-      <div class="card-body">
-        <div class="row m-0">
-          <div class="col-auto">
-            <i class="fas fa-hospital-user fa-2x sibasi-primary"></i>
-            <b class="h5 font-weight-bold"> All leave history</b>
-          </div>
-      
-     <div class="mt-1">
-      
-      </div>
-       <div class="card-body"> 
-        <div class="table-responsive">
-         
-      
-          <p-table [value]="leaves | async"
-          [paginator]="true"
-          [rows]="10"
-          >
-            <ng-template pTemplate="header">
-              <tr>
-                <th
-                  *ngFor="let column of leaveTableColumns"
-                  [pSortableColumn]="column">
-                  {{ column }}
-                  <p-sortIcon [field]="column"></p-sortIcon>
-                </th>
-                <th></th>
-              </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-leave>
-              <tr class="p-selectable-row">
-                <td>{{leave?.user?.firstname}} {{leave?.user?.lastname}}</td>
-                <td>{{ leave?.leavetype.leavetype }} </td>
-                <td>{{ leave?.startDate }}</td>
-                <td>{{ leave?.endDate  }}</td>
-                <td>{{leave?.status}} </td>
-               
-                <td class=" ">
-  
-                  <div *ngIf="leave?.status == 'PENDING'">
-               <div class="d-flex  pt-1">
-                    <button
-                      pButton
-                      type="button"
-                      label="View"
-                      class="mr-1"
-                      (click)="onView(leave?._id)"
-                    
-                    ></button>
-    
-                    <button
-                      pButton
-                      type="button"
-                      label="Edit"
-                      class="p-button-success mr-1" 
-                      (click)="onEditBtnClick(leave?._id) "
+  <div class="card">
+    <div class="card-body">
+      <div class="row m-0">
+        <div class="col-auto">
+          <i class="fas fa-hospital-user fa-2x sibasi-primary"></i>
+          <b class="h5 font-weight-bold"> All leave history</b>
+        </div>
+
+        <div class="mt-1"></div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <p-table [value]="leaves | async" [paginator]="true" [rows]="10">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th
+                    *ngFor="let column of leaveTableColumns"
+                    [pSortableColumn]="column"
+                  >
+                    {{ column }}
+                    <p-sortIcon [field]="column"></p-sortIcon>
+                  </th>
+                  <th></th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-leave>
+                <tr class="p-selectable-row">
+                  <td>
+                    {{ leave?.user?.firstname }} {{ leave?.user?.lastname }}
+                  </td>
+                  <td>{{ leave?.leavetype.leavetype }}</td>
+                  <td>{{ leave?.startDate }}</td>
+                  <td>{{ leave?.endDate }}</td>
+                  <td>{{ leave?.status }}</td>
+
+                  <td>
+                    <div class="btn-group">
+                      <button
+                        type="button"
+                        class="btn btn-danger dropdown-toggle"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
                       >
-                      
-                    </button>
-    
-                    <button
-                      pButton
-                      type="button"
-                      pRipple
-                      label="Delete"
-                      class="p-button-danger mr-1"
-                      (click)="onDeleteleave(leave?._id)"
-                   
-                    ></button>
-                   
-                  </div>
-                  </div> 
-                </td>
-               
-              </tr></ng-template
-            >
-          </p-table>
+                        Action
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li>
+                          <a class="dropdown-item" (click)="onView(leave?._id)"
+                            >View</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            class="dropdown-item"
+                            (click)="onEditBtnClick(leave?._id)"
+                            >Edit
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            class="dropdown-item"
+                            (click)="onDeleteleave(leave?._id)"
+                            >Delete</a
+                          >
+                        </li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr></ng-template
+              >
+            </p-table>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  
-  
-  
-  
-  
-  
-  
-    
+</div>

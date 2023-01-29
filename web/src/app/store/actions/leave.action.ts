@@ -118,6 +118,23 @@ export const loadpendingleavesFailure = createAction(
   '[pending leaves] get pending leaves failure',
   props<{error:unknown}>()
 )
+
+
+export const ApproveLeave=createAction(
+  '[approve leave] Approve leave' ,
+  props<{leave: ILeaves }>()
+  
+)
+export const ApproveLeaveSuccess=createAction(
+  '[approve leave] Approve leave success',
+  props<{leave:ILeaves}>() 
+)
+export const ApproveleaveFailure = createAction(
+  '[Approve leave] Approve leave failure',
+  props<{error:unknown}>()
+)
+
+
 export const loadapprovedleaves = createAction(
   '[approved leaves] get approved leaves'
 )
@@ -176,6 +193,9 @@ export const leaveActionType = {
   loadapprovedleavesFailure,
   loadEndingleaves,
   loadEndingleavesSuccess,
-  loadEndingleavesFailure
+  loadEndingleavesFailure,
+  ApproveLeave,
+  ApproveLeaveSuccess,
+  ApproveleaveFailure
 };
 export const dummyAction = createAction('[dummy action]');

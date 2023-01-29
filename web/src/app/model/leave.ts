@@ -13,7 +13,7 @@ export interface ILeaveType {
   }
 
   export interface ILeaves {
-    _id: string
+    _id?: string
     leavetype: {
       leavetype: string
       _id: string
@@ -27,6 +27,7 @@ export interface ILeaveType {
       firstname: string
       lastname: string
     }
+    menuItems?:any
   
   }
   export enum Status {

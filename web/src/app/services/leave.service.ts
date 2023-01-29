@@ -1,107 +1,78 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http'
+import { HttpClient } from '@angular/common/http';
 
-import {Observable, of} from 'rxjs'
+import { Observable, of } from 'rxjs';
 
-
-import {map} from 'rxjs/operators'
+import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { IDepartment } from '../model/department';
 import { HTTPResponse } from '../model/HTTPResponse';
-import { ILeaves, ILeaveType, INote, IHoliday, ILeavesummary } from '../model/leave';
+import {
+  ILeaves,
+  ILeaveType,
+  INote,
+  IHoliday,
+  ILeavesummary,
+} from '../model/leave';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LeaveService {
-
-  constructor(private http: HttpClient) { }
-
+  constructor(private http: HttpClient) {}
 
   getLeaveTypes(): Observable<ILeaveType[]> {
     return this.http
       .get<HTTPResponse<any>>(`${environment.server_Url}leavetype`)
       .pipe(
         map((res) => {
-          return res.result
+          return res.result;
         })
-      )
-  }
-  // approveLeaveRequest(leaveId: any): Observable<HTTPResponse<ILeaves>> {
-  //   return this.http.post<HTTPResponse<ILeaves>>(
-  //     `${environment.server_Url}supervisor/approveleave/${leaveId}`,
-  //     leaveId
-  //   )
-  // }
-  declineLeaveRequest(leaveId: any): Observable<HTTPResponse<ILeaves>> {
-    return this.http.post<HTTPResponse<ILeaves>>(
-      `${environment.server_Url}supervisor/CANCELLEAVE/${leaveId}`,
-      leaveId
-    )
+      );
   }
 
-  getRemainingDays(): Observable<HTTPResponse<any>> {
-    return this.http.get<HTTPResponse<any>>(
-      `${environment.server_Url}leave/leavetypes`
-    )
-  }
   getLeaveRequestsByUser(): Observable<HTTPResponse<ILeaves[]>> {
-    return this.http.get<HTTPResponse<ILeaves[]>>(`${environment.server_Url}leave`)
-     
+    return this.http.get<HTTPResponse<ILeaves[]>>(
+      `${environment.server_Url}leave`
+    );
   }
-
-
-
 
   getLeaveRequestDetail(leaveId: any): Observable<HTTPResponse<ILeaves>> {
     return this.http
-      .get<HTTPResponse<ILeaves>>(
-        `${environment.server_Url}leave/${leaveId}`
-      )
+      .get<HTTPResponse<ILeaves>>(`${environment.server_Url}leave/${leaveId}`)
       .pipe<HTTPResponse<ILeaves>>(
         map((res) => {
-          return res
+          return res;
         })
-      )
+      );
   }
 
   AdminApprovedLeaveRequest(): Observable<HTTPResponse<ILeaves[]>> {
-    return this.http
-      .get<HTTPResponse<ILeaves[]>>(
-        `${environment.server_Url}leave/admin/approved`
-      )
-    
+    return this.http.get<HTTPResponse<ILeaves[]>>(
+      `${environment.server_Url}leave/admin/approved`
+    );
   }
   EmployeeApprovedLeaveRequest(): Observable<HTTPResponse<ILeaves[]>> {
     return this.http.get<HTTPResponse<ILeaves[]>>(
       `${environment.server_Url}leave/user/approved`
-    )
+    );
   }
 
-  getUpcomingLeaveRequestById(
-    id: string
-  ): Observable<HTTPResponse<ILeaves>> {
-    return this.http.get<HTTPResponse<ILeaves>>(
-      `${environment.server_Url}leave/${id}`
-    )
-  }
   pendingLeaveRequests(): Observable<HTTPResponse<ILeaves[]>> {
-    return this.http
-      .get<HTTPResponse<ILeaves[]>>(
-        `${environment.server_Url}leave/admin/pending`
-      )
-      
+    return this.http.get<HTTPResponse<ILeaves[]>>(
+      `${environment.server_Url}leave/admin/pending`
+    );
   }
 
   deleteLeaveRequest(id: string): Observable<HTTPResponse<ILeaves>> {
     return this.http.delete<HTTPResponse<ILeaves>>(
       `${environment.server_Url}leave/${id}`
-    )
+    );
   }
 
- 
-getAllNewLeaveRequests(): Observable<HTTPResponse<ILeaves[]>> {
-    return this.http.get<HTTPResponse<ILeaves[]>>(`${environment.server_Url}leave/admin/all`)
-   
+  getAllNewLeaveRequests(): Observable<HTTPResponse<ILeaves[]>> {
+    return this.http.get<HTTPResponse<ILeaves[]>>(
+      `${environment.server_Url}leave/admin/all`
+    );
   }
 
   getDepartmentLeaveRequests(): Observable<HTTPResponse<ILeaves[]>> {
@@ -109,39 +80,37 @@ getAllNewLeaveRequests(): Observable<HTTPResponse<ILeaves[]>> {
       .get<HTTPResponse<ILeaves[]>>(`${environment.server_Url}supervisor`)
       .pipe<HTTPResponse<ILeaves[]>>(
         map((res) => {
-          return res
+          return res;
         })
-      )
+      );
   }
 
-  approveLeave(leaveId: string, leavedetails: Partial<ILeaves>): Observable<HTTPResponse<ILeaves>> {
-    return this.http.post<HTTPResponse<ILeaves>>(
-      `${environment.server_Url}${leaveId}`, leavedetails
+  approveLeave(
+    leaveId: string,
+    leave: Partial<ILeaves>
+  ): Observable<HTTPResponse<Partial<ILeaves>>> {
+    return this.http.post<HTTPResponse<Partial<ILeaves>>>(
+      `${environment.server_Url}leave/${leaveId}`,
+      leave
     );
   }
 
-
-
   getAllLeaves(): Observable<HTTPResponse<ILeaves[]>> {
-    return this.http
-      .get<HTTPResponse<ILeaves[]>>(
-        `${environment.server_Url}leave/admin/all`
-      )
-     
+    return this.http.get<HTTPResponse<ILeaves[]>>(
+      `${environment.server_Url}leave/admin/all`
+    );
   }
-  getleaveRequests(
-    employeeId: string
-  ): Observable<HTTPResponse<ILeaves[]>> {
+  getleaveRequests(employeeId: string): Observable<HTTPResponse<ILeaves[]>> {
     return this.http.get<HTTPResponse<ILeaves[]>>(
       `${environment.server_Url}supervisor/${employeeId}`
-    )
+    );
   }
 
   createLeaveRequest(leave: ILeaves): Observable<HTTPResponse<ILeaves>> {
     return this.http.post<HTTPResponse<ILeaves>>(
       `${environment.server_Url}leave`,
       leave
-    )
+    );
   }
   updateLeaveRequest(
     leaveId: any,
@@ -150,30 +119,25 @@ getAllNewLeaveRequests(): Observable<HTTPResponse<ILeaves[]>> {
     return this.http.post<HTTPResponse<any>>(
       `${environment.server_Url}leave/${leaveId}`,
       ileavetype
-    )
+    );
   }
 
- 
   getLeaveSummary(): Observable<HTTPResponse<ILeaves>> {
     return this.http.get<HTTPResponse<ILeaves>>(
       `${environment.server_Url}leave/summary`
-    )
+    );
   }
   employeeleavesummary(
     employeeId: string
   ): Observable<HTTPResponse<ILeavesummary>> {
     return this.http.get<HTTPResponse<ILeavesummary>>(
       `${environment.server_Url}supervisor/usersummary/${employeeId}`
-    )
+    );
   }
-
 
   EndingLeaveRequest(): Observable<HTTPResponse<ILeaves[]>> {
-    return this.http
-      .get<HTTPResponse<ILeaves[]>>(
-        `${environment.server_Url}supervisor/leaves/ending`)
-     
+    return this.http.get<HTTPResponse<ILeaves[]>>(
+      `${environment.server_Url}supervisor/leaves/ending`
+    );
   }
-
-
 }

@@ -2,7 +2,6 @@
     <h6>Approved Requests</h6>
     <p-table 
     [value]="approvedleaves$| async"
-    responsiveLayout="scroll"
     [paginator]="true"
     [rows]="50"
     >
@@ -27,9 +26,41 @@
                         <td>{{leave?.startDate}}</td>
                         <td>{{leave?.endDate}}</td>
                         <td>{{leave?.status}}</td>
-                        <td class=" ">
-
-                          <div *ngIf="leave?.status === 'APPROVED'">
+                        <td >
+                          <div class="btn-group">
+                            <button
+                              type="button"
+                              class="btn btn-danger dropdown-toggle"
+                              data-bs-toggle="dropdown"
+                              aria-expanded="false"
+                            >
+                              Action
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li>
+                                <a class="dropdown-item"   (click)="onView(leave?._id)"
+                                  >View</a
+                                >
+                              </li>
+                              <li>
+                                <a
+                                  class="dropdown-item"
+                                  (click)="onEditBtnClick(leave?._id) "
+                                  >Edit
+                                </a>
+                              </li>
+                              <li>
+                                <a
+                                  class="dropdown-item"
+                                  (click)="onDeleteleave(leave?._id)"
+                                  >Delete</a
+                                >
+                              </li>
+                            </ul>
+                          </div>
+           
+        
+                          <!-- <div *ngIf="leave?.status === 'APPROVED'">
                        <div class="d-flex  pt-1">
                             <button
                               pButton
@@ -61,7 +92,7 @@
                             ></button>
                            
                           </div>
-                          </div> 
+                          </div>  -->
                         </td>
                         
                     </tr>

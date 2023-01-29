@@ -7,7 +7,7 @@ import { LeaveTypeComponent } from './components/leave-type/leave-type.component
 import {TableModule} from 'primeng/table'
 import {CardModule} from 'primeng/card'
 import {DialogModule} from 'primeng/dialog'
-import { ButtonModule } from 'primeng/button';
+
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
@@ -21,6 +21,7 @@ import { LeaveHistoryComponent } from './components/leave-history/leave-history.
 import { AllLeaveRequestsComponent } from './components/all-leave-requests/all-leave-requests.component';
 import { LeaveDetailsComponent } from './components/leave-details/leave-details.component';
 import { ApprovedLeavesComponent } from './components/approved-leaves/approved-leaves.component';
+
 @NgModule({
   declarations: [
     LeaveSettingsComponent,
@@ -32,20 +33,24 @@ import { ApprovedLeavesComponent } from './components/approved-leaves/approved-l
     AllLeaveRequestsComponent,
     LeaveDetailsComponent,
     ApprovedLeavesComponent
+  
+
   ],
   imports: [
     CommonModule,
     LeaveRoutingModule,
     TableModule,
     CardModule,
-    ButtonModule,
+    
     DialogModule,
     FormlyModule,
     ReactiveFormsModule,
     FormsModule,
+  
     PaginatorModule,
     CalendarModule,
     FormlyBootstrapModule ,
+  
  
     FormlyModule.forRoot({
       validationMessages: [

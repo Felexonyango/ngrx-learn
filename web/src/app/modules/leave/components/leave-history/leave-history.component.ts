@@ -40,7 +40,7 @@ export class LeaveHistoryComponent implements OnInit {
 
   leaveTableColumns: string[] = [
     'leaveType',
-    'leaveDuration',
+    
     'startDate',
     'EndDate',
     'status',

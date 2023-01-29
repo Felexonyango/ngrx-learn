@@ -56,7 +56,7 @@ export class CreateLeaveComponent implements OnInit {
 
     this.updateOptions();
     this.isEdit= false
-    this.getRemainingDays();
+  
     this.fields[1].templateOptions['days'] = this.requested
     this.getLeaveTypes();
     this.getLeaveIdFromParam();
@@ -94,12 +94,7 @@ export class CreateLeaveComponent implements OnInit {
     this.subscription.add(this.leaveService.getLeaveTypes().subscribe((res) => {
     }))
   }
-  getRemainingDays() {
-    this.subscription.add(this.leaveService.getRemainingDays().subscribe((res) => {
-      this.remainingDays = res.result
-      this.remainingDays= Object.entries(this.remainingDays)
-    }))
-  }
+
   getLeaveIdFromParam() {
     let leaveId = this.activatedRoute.snapshot.paramMap.get("id")
     if (leaveId) {

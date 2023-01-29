@@ -10,6 +10,7 @@ import {
   switchMap,
   filter,
   withLatestFrom,
+  tap,
 } from 'rxjs/operators';
 import { LeaveTypeService } from '../../services/leave-type.service';
 import { LeaveTypeState } from '../reducer/leavetype.reducer';
@@ -140,4 +141,25 @@ export class LeaveEFfect {
       )
     )
   );
+
+
+  ApproveLeave$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(leaveActionType.ApproveLeave),
+    mergeMap(({ leave, }) =>
+      this.leaveService
+        .approveLeave(leave._id,leave)
+        .pipe(
+          map((res) =>
+          
+            leaveActionType.ApproveLeaveSuccess({ 
+              leave
+            }),
+            tap(res => console.log(res))
+          )
+        )
+    ),
+    catchError((error) => of(leaveActionType.ApproveleaveFailure({ error })))
+  )
+);
 }
