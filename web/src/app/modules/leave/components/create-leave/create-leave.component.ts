@@ -19,7 +19,7 @@ import { LeaveTypeService } from 'src/app/services/leave-type.service';
 })
 export class CreateLeaveComponent implements OnInit {
   subscription = new Subscription;
-  
+  leave:ILeaveType
   remainingDays: any;
   minimumDate = new Date();
   minimumEndDate = new Date()
@@ -34,14 +34,12 @@ export class CreateLeaveComponent implements OnInit {
   options: FormlyFormOptions = {};
   fields: FormlyFieldConfig[] = [];
   application: any
-  isEdit: boolean
+  isEdit: false
   objectKeys = Object.keys
   objectValue = Object.values
-  WEEKEND = [moment().day("Saturday").weekday(), moment().day("Sunday").weekday()]
+ 
   response: string
-  // moment = require('moment-business-days')
-  // require: any
-  // testEndDate: Date = new Date()
+
     startDate: any;
     endDate: any
   constructor(
@@ -55,9 +53,6 @@ export class CreateLeaveComponent implements OnInit {
   ngOnInit(): void {
 
     this.updateOptions();
-    this.isEdit= false
-  
-    this.fields[1].templateOptions['days'] = this.requested
     this.getLeaveTypes();
     this.getLeaveIdFromParam();
   }
@@ -69,15 +64,14 @@ export class CreateLeaveComponent implements OnInit {
     this.application = this.applyLeaveForm.value
  
     const id = this.activatedRoute.snapshot.paramMap.get("id")
-    
- 
+  
     const submitUrl = this.isEdit ? this.leaveService.updateLeaveRequest(id, this.application) :
       this.leaveService.createLeaveRequest(this.application)
     this.subscription.add(submitUrl.subscribe({
       next: (res) => {
         this.applyLeaveForm.reset() 
         this.response = res.message
-        this.router.navigate(['/leave/request/history'])
+        // this.router.navigate(['/leave/request/history'])
         
       }
     }))
@@ -87,18 +81,19 @@ export class CreateLeaveComponent implements OnInit {
  
   updateOptions() {
     this.fields = applyLeaveFormlyFields;
-    this.fields[0].fieldGroup[0].templateOptions.options = this.leaveService.getLeaveTypes()
+    this.fields[0].fieldGroup[0].props.options = this.leaveService.getLeaveTypes()
    
   }
   getLeaveTypes() {
     this.subscription.add(this.leaveService.getLeaveTypes().subscribe((res) => {
+      console.log(res)
     }))
   }
 
   getLeaveIdFromParam() {
     let leaveId = this.activatedRoute.snapshot.paramMap.get("id")
     if (leaveId) {
-      this.isEdit = true
+    
       this.getLeaveDetails(leaveId)
     }
   }
@@ -120,11 +115,7 @@ export class CreateLeaveComponent implements OnInit {
       
     }
     
-    // if(this.endDate){
-    //   console.log("test")
-    //   this.application.requested =  (this.endDate - this.startDate)
-    //   console.log(this.application.requested)
-    // }
+   
   }
   addBusinessDays2 (date, days)  {
     var d = moment(new Date(date)).add(Math.floor(days / 5) * 7, 'd');

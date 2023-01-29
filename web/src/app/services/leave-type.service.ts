@@ -52,23 +52,18 @@ export class LeaveTypeService {
 
   //department
 
-  // getAllDepartments(): Observable<HTTPResponse <IDepartment[]>> {
-  //   return this.http
-  //     .get<HTTPResponse<IDepartment[]>>(`${environment.server_Url}department`)
-  
-  // }
+ 
 
-  // getAllDepartments(): Observable<IDepartment[]> {
-  //   return this.http
-  //     .get<HTTPResponse<IDepartment[]>>(
-  //       `${environment.server_Url}department`)
-      
-  // }
-
-  getAllDepartments(): Observable<HTTPResponse<IDepartment[]>> {
-    return this.http.get<HTTPResponse<IDepartment[]>>(`${environment.server_Url}department`)
+  getAllDepartments(): Observable<IDepartment[]>{
+    return this.http.get<HTTPResponse<any>>(`${environment.server_Url}department`).pipe(
+            map((res) => {
+              return res.result;
+            })
     
-  }
+  )}
+  
+
+
   createDepartments(
     department: IDepartment
   ): Observable<HTTPResponse<IDepartment>> {

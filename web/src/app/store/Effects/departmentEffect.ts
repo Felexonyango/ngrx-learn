@@ -36,7 +36,7 @@ export class DepartmentEFfect {
           tap((obj)=>console.log(obj)),
           map((res) =>
             DepartmentActionTypes.loadDepartmentsSuccess({
-              departments: res.result
+              departments: res
             })
           ),
           catchError((error) => of(DepartmentActionTypes.loadDepartmentsFailure({ error })))

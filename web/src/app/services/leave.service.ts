@@ -20,7 +20,7 @@ import {
 export class LeaveService {
   constructor(private http: HttpClient) {}
 
-  getLeaveTypes(): Observable<ILeaveType[]> {
+  getLeaveTypes(): Observable< ILeaveType[]> {
     return this.http
       .get<HTTPResponse<any>>(`${environment.server_Url}leavetype`)
       .pipe(
@@ -29,6 +29,7 @@ export class LeaveService {
         })
       );
   }
+  
 
   getLeaveRequestsByUser(): Observable<HTTPResponse<ILeaves[]>> {
     return this.http.get<HTTPResponse<ILeaves[]>>(

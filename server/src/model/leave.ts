@@ -23,8 +23,8 @@ const leaveSchema = new Schema(
       ref:"LeaveType"
     },
     comment: String,
-    startDate: String,
-    endDate: String,
+    startDate: Date,
+    endDate: Date,
     duration:Number,
     status:String,
     user: {

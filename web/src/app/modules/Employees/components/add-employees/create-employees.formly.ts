@@ -46,11 +46,11 @@ export const createEmployeeFormlyFields: FormlyFieldConfig[] = [
                 className: " col-12",
                 key: "department",
                 type: "select",
-                templateOptions: {
+                 props: {
                     label: "Department",
                     type: "input",
                     valueProp: '_id',
-                    labelProp: 'departmentName',
+                    labelProp: 'department',
 
                 },
             },

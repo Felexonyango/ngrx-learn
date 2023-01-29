@@ -49,7 +49,7 @@ const UserSchema: Schema = new Schema(
     },
 
     startDate: {
-      type: String,
+      type:Date,
       required: true,
     },
 

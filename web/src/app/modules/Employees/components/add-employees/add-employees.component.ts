@@ -8,7 +8,7 @@ import { IEmployee } from '../../../../model/employees';
 import { IDepartment } from '../../../../model/department';
 import { State } from 'src/app/store/reducer/employeeReducer';
 import { Store } from '@ngrx/store';
-import {EmployeeActionTypes} from '../../../../store/actions/employee.action'
+import { EmployeeActionTypes } from '../../../../store/actions/employee.action';
 import { LeaveTypeService } from 'src/app/services/leave-type.service';
 @Component({
   selector: 'app-add-employees',
@@ -32,39 +32,39 @@ export class AddEmployeesComponent implements OnInit {
     private store: Store<State>,
     private route: ActivatedRoute,
     private router: Router,
-    private  leaveService: LeaveTypeService
-    
-    ) {}
+    private leaveService: LeaveTypeService
+  ) {}
 
   ngOnInit(): void {
     this.fields = createEmployeeFormlyFields;
-    
-    // this.updateOptions()
+
+    this.updateOptions();
+    this.getDepartments();
   }
 
   ngOnDestroy() {
-   this.subscription.unsubscribe();
-    
+    this.subscription.unsubscribe();
   }
 
-
-  createEmployee(){
-    this.employee=this.addEmployeeForm.value
-    const employee:IEmployee={...this.addEmployeeForm.value}
-    // this.isEdit ?  this.store.dispatch(EmployeeActionTypes.updateEmployee({employee}))
-
-    this.store.dispatch(EmployeeActionTypes.createEmployee({employee}))
-     this.router.navigateByUrl('/employees/all-employees')
-    this.addEmployeeForm.reset()
-    
-  }
-  // updateOptions() {
-  //   this.fields = createEmployeeFormlyFields
-  //   this.fields[1].fieldGroup[1].templateOptions.options=this.leaveService.getAllDepartments()
-    
-  //   console.log(this.fields[1].fieldGroup[1])
-  // }
+  createEmployee() {
+    this.employee = this.addEmployeeForm.value;
+    const employee: IEmployee = { ...this.addEmployeeForm.value };
   
+    this.store.dispatch(EmployeeActionTypes.createEmployee({ employee }));
+    this.router.navigateByUrl('/employees/all-employees');
+    this.addEmployeeForm.reset();
+  }
+  updateOptions() {
+    this.fields = createEmployeeFormlyFields;
+    this.fields[1].fieldGroup[1].props.options =
+      this.leaveService.getAllDepartments();
+  }
+
+  getDepartments() {
+    this.subscription.add(
+      this.leaveService.getAllDepartments().subscribe({
+        next: (res) => {},
+      })
+    );
+  }
 }
-
-

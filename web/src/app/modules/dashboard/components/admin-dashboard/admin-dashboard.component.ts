@@ -83,14 +83,13 @@ export class AdminDashboardComponent implements OnInit {
    
    
     ))
-
   }
 
    approveStatus(leaveId,leaveStatus:Status){
     this.subscription.add(
       this.leaveService.approveLeave(leaveId,{status: leaveStatus }).subscribe({
-        next:()=>{
-
+        next:(res)=>{ 
+           
         }
       })
     )
