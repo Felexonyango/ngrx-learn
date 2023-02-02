@@ -1,24 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EmployeeDashboardComponent } from './components/employee-dashboard/employee-dashboard.component';
+import { AdminDashboardComponent } from './components/admin-dashboard.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'employee',
+    redirectTo: 'admin',
     pathMatch: 'full',
   },
   {
-    path:'employee',
-    component:EmployeeDashboardComponent
-
-  },
-
-
+    path:'admin',
+    component:AdminDashboardComponent
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class DashboardRoutingModule { }
+export class AdminDashboardRoutingModule { }

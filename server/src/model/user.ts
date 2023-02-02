@@ -20,6 +20,7 @@ export interface Iuser extends Document {
   branchName: String;
   bankCode: String;
   role: Role[];
+ 
 
   comparePassword(candidatepassword: string): Promise<boolean>;
 }
@@ -58,6 +59,7 @@ const UserSchema: Schema = new Schema(
       ref: "Department"
     },
    
+  
     nextOfKin: {
       type: String,
     },
@@ -120,7 +122,15 @@ const UserSchema: Schema = new Schema(
       enum: ['user', 'admin'],
       default: 'user'
     },
+    leaves:[{
+      type: ObjectId,
+      ref:"Leave",
+      require:true
+
+    }
+  ],
   },
+  
   {
     timestamps: true,
   }

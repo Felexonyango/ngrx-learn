@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { select, Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { Paginator } from 'primeng/paginator';
-import { Observable, Subscription } from 'rxjs';
-import {  IAdminSummary } from 'src/app/model/employees';
+import { Subscription, Observable } from 'rxjs';
+import { IAdminSummary } from 'src/app/model/employees';
 import { ILeaves, Status } from 'src/app/model/leave';
 import { EmployeeService } from 'src/app/services/employees.service';
 import { LeaveService } from 'src/app/services/leave.service';
@@ -14,7 +14,7 @@ import { getleaves } from 'src/app/store/selector/leave.selector';
 @Component({
   selector: 'app-admin-dashboard',
   templateUrl: './admin-dashboard.component.html',
-  styleUrls: ['./admin-dashboard.component.scss'],
+  styleUrls: ['./admin-dashboard.component.scss']
 })
 export class AdminDashboardComponent implements OnInit {
   subscription = new Subscription()

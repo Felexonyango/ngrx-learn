@@ -1,10 +1,12 @@
 import { Request, Response } from "express";
 import {User}  from "../model/user"
+import { Leave } from "../model/leave";
 
 
 export const getAllUsers = async (req: Request, res: Response) => {
   try{
-    const result =await User.find({}).populate('department').populate('leave').sort('-date')
+    const result =await User.find({}).populate('department').populate('leaves').sort({createdAt:-1})
+  
   if(!result) return res.status(404).json({ message: " Users not found"})
 
   return res.status(200).json({message:"succesfully retrived user", result})
@@ -20,8 +22,9 @@ export const getAllUsers = async (req: Request, res: Response) => {
 export const getUserById = async (req: Request, res: Response) => {
   try{
     const {id} = req.params;   
-    const user = await User.findById({_id:id}).populate('department').populate('leave')
 
+    const user = await User.findById(id).populate('leaves').populate('department')
+    
     if(!user) return res.status(404).json({ message: " User not found"})
     res.status(200).json({data: user});
   

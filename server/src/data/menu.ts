@@ -3,21 +3,21 @@ import { Menu, Role } from "../types";
 const MenuData: Menu[] = [
   {
     name: "Dashboard",
-    url: "dashboard/admin-dashboard",
+    url: "dashboard/admin",
     icon: "fa fa-home",
     role: [Role.Admin],
   },
   {
     name: "Dashboard",
-    url: "dashboard/employee-dashboard",
+    url: "dashboard/employee",
     icon: "fa fa-home",
     role: [Role.User],
-  },
+  },  
 
   {
     name: "Apply Leave",
     url: "leave/apply-leave",
-    role: [Role.Admin, Role.User],
+    role: [Role.User],
     icon: "fa fa-calendar",
   },
   {

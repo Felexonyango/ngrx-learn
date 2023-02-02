@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <div class="summary-section">
     <div class="row">
       <div class="col-sm-6 col-md-4">
@@ -93,8 +93,7 @@
             <h6>Pending Leaves</h6>
             <p-table
              [value]="pendingleaves$| async"
-             [paginator]="true"
-            responsiveLayout="scroll"
+          
             [rows]="50"
             >
             <ng-template pTemplate="header">
@@ -128,6 +127,15 @@
                                     </button>
                                     <ul class="dropdown-menu">
                                       <li>
+                                        <a 
+                                        class="dropdown-item"
+                                        (click)="approveStatus(leave?._id, leaveStatus?.APPROVED)"
+                                        
+                                        >
+                                        Approve
+                                      </a>
+                                      </li>
+                                      <li>
                                         <a class="dropdown-item" (click)="onView(leave?._id)"
                                           >View</a
                                         >
@@ -147,15 +155,7 @@
                                         >
 
                                       </li>
-                                      <li>
-                                        <a 
-                                        class="dropdown-item"
-                                        (click)="approveStatus(leave?._id, leaveStatus?.APPROVED)"
-                                        
-                                        >
-                                        Approve
-                                      </a>
-                                      </li>
+                                  
                                     </ul>
                                   </div>
                    
@@ -171,4 +171,4 @@
   </div>
      
 </div>
-
+ -->

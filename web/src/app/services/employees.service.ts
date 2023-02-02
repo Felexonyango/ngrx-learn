@@ -40,7 +40,7 @@ export class EmployeeService {
   }
 
 
-  getEmployeeByID(employeeId: any): Observable<IEmployee>{
+  getEmployeeByID(employeeId: string): Observable<IEmployee>{
     return this.http.get<IEmployee>(
       `${environment.server_Url}user/${employeeId}`
     )

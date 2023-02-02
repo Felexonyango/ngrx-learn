@@ -13,9 +13,9 @@ connectDb()
  export const importData = async () => {
     try {
        
-    //    await User.deleteMany()
+      //await User.deleteMany()
         await Menu.deleteMany()
-        // await User.insertMany(users)
+         //await User.insertMany(users)
           await Menu.insertMany(MenuData)
 
         console.log('Data Imported')

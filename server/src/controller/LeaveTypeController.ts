@@ -30,17 +30,17 @@ export const getLeaveTypes= async (req: Request, res: Response) => {
   }
 };
 
-export const getLeaveTypeById = async (req: Request, res: Response) => {
-  try {
-  const {id}=req.params
-    const result= await LeaveType.findById(id)
-    if (!result) return res.status(500).json({ msg: "There is no leavetype" });
-    return res.status(200).json({ msg: "Leave type fetched succesfully",result });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ msg: err });
-  }
-};
+// export const getLeaveTypeById = async (req: Request, res: Response) => {
+//   try {
+//   const {id}=req.params
+//     const result= await LeaveType.findById(id)
+//     if (!result) return res.status(500).json({ msg: "There is no leavetype" });
+//     return res.status(200).json({ msg: "Leave type fetched successfully",result });
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).json({ msg: err });
+//   }
+// };
 export const deleteLeaveType = async (req: Request, res: Response) => {
   const leaveTypesType = await LeaveType.findById(req.params.id)
   if (!leaveTypesType) return res.status(500).json({ msg: "There is no LeaveType" });
@@ -69,16 +69,16 @@ export const updateLeaveTypesTypes = async (req: Request, res: Response) => {
 };
 
 //user route
-export const getLeaveTypesUser= async (req: Request, res: Response) => {
-    try {
+// export const getLeaveTypesUser= async (req: Request, res: Response) => {
+//     try {
       
-      const result = await LeaveType.find({})
-      if (!result) return res.status(500).json({ msg: "There is no leavetypes " });
-      return res.status(200).json({ msg:'retrived leavetype by user',result });
-    } catch (err) {
-      console.log(err);
-      res.status(500).json({ msg: err });
-    }
-  };
+//       const result = await LeaveType.find({})
+//       if (!result) return res.status(500).json({ msg: "There is no leavetypes " });
+//       return res.status(200).json({ msg:'retrived leavetype by user',result });
+//     } catch (err) {
+//       console.log(err);
+//       res.status(500).json({ msg: err });
+//     }
+//   };
   
 

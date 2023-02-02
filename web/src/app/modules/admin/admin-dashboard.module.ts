@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { DashboardRoutingModule } from './dashboard-routing.module';
-
+import {AdminDashboardComponent} from '../admin/components/admin-dashboard.component'
+import { AdminDashboardRoutingModule } from './admin-dashboard-routing.module';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
@@ -10,18 +9,14 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CardModule } from '@coreui/angular';
 import { FormlyModule } from '@ngx-formly/core';
 import { PaginatorModule } from 'primeng/paginator';
-import { EmployeeDashboardComponent } from './components/employee-dashboard/employee-dashboard.component';
-
 
 @NgModule({
   declarations: [
-   
-    EmployeeDashboardComponent
-   
+    AdminDashboardComponent
   ],
   imports: [
     CommonModule,
-    DashboardRoutingModule,
+    AdminDashboardRoutingModule,
     TableModule,
     CardModule,
     ButtonModule,
@@ -32,4 +27,4 @@ import { EmployeeDashboardComponent } from './components/employee-dashboard/empl
     PaginatorModule,
   ]
 })
-export class DashboardModule { }
+export class AdminDashboardModule { }

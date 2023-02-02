@@ -21,6 +21,7 @@ export type User = {
   bankCode:String
   department?:String
   role: Role[];
-  menu?:[string]
+  menu?:[string];
+  leave?:string
  
 };

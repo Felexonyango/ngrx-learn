@@ -83,6 +83,7 @@ export class EmployeeEffect {
         if (!employees.length) {
           return this.EmployeeService.getEmployeeByID(id).pipe(
             map((employee) => {
+              tap((obj)=>console.log(obj,'dedhehdjh'))
               const employeeData = [{ ...employee, id }];
             return EmployeeActionTypes.loadEmployeesSuccess({employees: employeeData});
             }),

@@ -76,15 +76,7 @@ export class LeaveService {
     );
   }
 
-  getDepartmentLeaveRequests(): Observable<HTTPResponse<ILeaves[]>> {
-    return this.http
-      .get<HTTPResponse<ILeaves[]>>(`${environment.server_Url}supervisor`)
-      .pipe<HTTPResponse<ILeaves[]>>(
-        map((res) => {
-          return res;
-        })
-      );
-  }
+
 
   approveLeave(
     leaveId: string,
