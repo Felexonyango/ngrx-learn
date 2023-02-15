@@ -82,7 +82,7 @@ export const getAdminTotals =async(req:Request)=>{
     const user = req.user as UserTypes;
     const totaldepartments = await Department.countDocuments()
     const totalUser = await User.countDocuments()
-    const totalLeaves =await Leave.find({user:user._id, status:Status.PENDING}).countDocuments()
+    const totalLeaves =await Leave.countDocuments()
 
     return {
       totalLeaves,totaldepartments,totalUser
