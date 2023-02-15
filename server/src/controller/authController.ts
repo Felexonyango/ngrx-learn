@@ -50,6 +50,7 @@ export const login = async (
     }
 
     sendResponseToken({ user, res, statusCode: 200 });
+ 
   })(req, res, next);
 };
 

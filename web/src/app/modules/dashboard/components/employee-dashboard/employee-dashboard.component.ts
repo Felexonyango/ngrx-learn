@@ -5,6 +5,7 @@ import { Paginator } from 'primeng/paginator';
 import { Observable, Subscription } from 'rxjs';
 import { IEmployeeSummary } from 'src/app/model/employees';
 import { ILeaves } from 'src/app/model/leave';
+import { AuthService } from 'src/app/services/auth.service';
 import { EmployeeService } from 'src/app/services/employees.service';
 import { leaveActionType } from 'src/app/store/actions/leave.action';
 import { LeaveState } from 'src/app/store/reducer/leaveReducer';
@@ -17,14 +18,17 @@ import { getleaves } from 'src/app/store/selector/leave.selector';
 })
 export class EmployeeDashboardComponent implements OnInit {
   subscription = new Subscription()
-  employeeSummary:IEmployeeSummary
 
+  role:boolean
+  employeeSummary:IEmployeeSummary
+  
 
   approvedleaves$:Observable<ILeaves[]>
   constructor(
     private store: Store<LeaveState>,
     private router: Router,
     private employeeservice:EmployeeService,
+    private authservice:AuthService
   ) { 
   
   }
@@ -43,7 +47,18 @@ export class EmployeeDashboardComponent implements OnInit {
   ngOnInit(): void {
     this.getApprovedleaves();
     this.getEmployeeSummarys()
+    this.getUserRole()
   }
+
+   
+getUserRole() {
+   const result= this.authservice.getRole()
+   console.log(result)
+  result=='admin' ? this.router.navigate(["/dashboard/admin"])
+  : this.router.navigate(["/dashboard/employee"]);
+
+
+}
 
   getApprovedleaves() {
     this.approvedleaves$ = this.store.pipe(select(getleaves));

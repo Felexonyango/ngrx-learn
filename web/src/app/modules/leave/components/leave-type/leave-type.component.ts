@@ -65,12 +65,10 @@ export class LeaveTypeComponent implements OnInit {
     this.leaveType = this.form.value;
     const leaveType: ILeaveType = { ...this.form.value };
     this.store.dispatch(LeaveTypes.createLeaveType({ leaveType }));
-    this.display = false
+    this.display = false;
     this.form.reset();
-    this.getLeaveTypes()
-
+    this.getLeaveTypes();
   }
-
 
   getLeaveTypes() {
     this.leaveTypes$ = this.store.pipe(select(getleaveTypes));
@@ -78,10 +76,7 @@ export class LeaveTypeComponent implements OnInit {
 
     console.log(this.leaveTypes$);
   }
-  UpdateLeaveType() {
-
-
-  }
+  UpdateLeaveType() {}
   updateLeavetypeModal(leave_id: string) {
     this.display = true;
     this.isEdit = true;
@@ -95,6 +90,6 @@ export class LeaveTypeComponent implements OnInit {
 
   getLeavetypeById() {
     this.selectleavetype = this.store.select(getleaveTypeById);
-    console.log(this.selectleavetype)
+    console.log(this.selectleavetype);
   }
 }
