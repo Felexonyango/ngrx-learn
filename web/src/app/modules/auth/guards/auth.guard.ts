@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivate,CanLoad {
       return this.checkUserLogin(route, state);
     }
   
-    this.auth.logout();
+    // this.auth.logout();
     return of(false);
   }
   

@@ -3,7 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Router, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable,of } from 'rxjs';
 import { HttpClientTestingModule, HttpTestingController, } from '@angular/common/http/testing';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { AuthGuard } from '../guards/auth.guard'
 
 
@@ -51,7 +51,7 @@ const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
     const state = {} as RouterStateSnapshot;
   
     const result = guard.canActivate(route, state);
-  
+``  
     expect(result).toBeInstanceOf(Observable);
     result.subscribe((value) => expect(value).toBeFalse());
   });
@@ -67,8 +67,8 @@ const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
     } as unknown as ActivatedRouteSnapshot;
     const state = {} as RouterStateSnapshot;
   
+    
     const result = guard.canActivate(route, state);
-  
     expect(result).toBeInstanceOf(Observable);
     result.subscribe((value) => expect(value).toBeFalse());
     expect(routerSpy.navigate).toHaveBeenCalledWith(['/dashboard']);
