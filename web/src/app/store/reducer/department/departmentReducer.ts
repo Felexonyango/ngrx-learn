@@ -1,8 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
 import { EntityState, createEntityAdapter, EntityAdapter } from '@ngrx/entity';
 
-import { IDepartment } from '../../model/department';
-import { DepartmentActionTypes } from '../actions/department.actions';
+import { IDepartment } from '../../../model/department';
+import { DepartmentActionTypes } from '../../actions/department/department.actions';
 
 export interface DepartmentState extends EntityState<IDepartment> {
   loaded: boolean;

@@ -1,5 +1,5 @@
 
-import { IEmployee } from '../../model/employees';
+import { IEmployee } from '../../../model/employees';
 import { Update } from '@ngrx/entity';
 
 import { createAction, props } from '@ngrx/store';

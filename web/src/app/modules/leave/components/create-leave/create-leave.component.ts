@@ -4,13 +4,13 @@ import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { Observable, Subscription } from 'rxjs';
 import { ILeaveType } from 'src/app/model/leave';
 import { select, Store } from '@ngrx/store';
-import { LeaveState } from 'src/app/store/reducer/leaveReducer';
+import { LeaveState } from 'src/app/store/reducer/leave/leaveReducer';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 
 import {applyLeaveFormlyFields} from './apply-leave-formly'
-import { LeaveTypes } from 'src/app/store/actions/leavetype.actions';
-import { getleaveTypes } from 'src/app/store/selector/leavetype.selector';
+import { LeaveTypes } from 'src/app/store/actions/leave/leavetype.actions';
+import { getleaveTypes } from 'src/app/store/selector/leave/leavetype.selector';
 import { LeaveService } from 'src/app/services/leave/leave.service';
 
  @Component({

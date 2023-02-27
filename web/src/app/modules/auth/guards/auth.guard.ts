@@ -45,8 +45,6 @@ export class AuthGuard implements CanActivate,CanLoad {
     return of(false);
   }
   
-  logout(){
-    
-  }
+
 
 }

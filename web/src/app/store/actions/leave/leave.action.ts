@@ -1,4 +1,4 @@
-import { ILeaves } from '../../model/leave';
+import { ILeaves } from '../../../model/leave';
 import { Update } from '@ngrx/entity';
 
 import { createAction, props } from '@ngrx/store';

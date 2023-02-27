@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { ILeaves } from 'src/app/model/leave';
-import { LeaveState } from 'src/app/store/reducer/leaveReducer';
-import { getleaveById } from 'src/app/store/selector/leave.selector';
+import { LeaveState } from 'src/app/store/reducer/leave/leaveReducer';
+import { getleaveById } from 'src/app/store/selector/leave/leave.selector';
 
 @Component({
   selector: 'app-leave-details',

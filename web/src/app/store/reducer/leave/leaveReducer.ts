@@ -1,8 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
 import { EntityState, createEntityAdapter, EntityAdapter } from '@ngrx/entity';
 
-import { ILeaves } from '../../model/leave';
-import { leaveActionType } from '../actions/leave.action';
+import { ILeaves } from '../../../model/leave';
+import { leaveActionType } from '../../actions/leave/leave.action';
 
 export interface LeaveState extends EntityState<ILeaves> {
   loaded: boolean;

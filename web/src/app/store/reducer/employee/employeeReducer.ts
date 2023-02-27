@@ -1,6 +1,6 @@
 import {  createReducer, on } from '@ngrx/store';
 import { EntityState, createEntityAdapter, EntityAdapter } from '@ngrx/entity';
-import {EmployeeActionTypes } from '../actions/employee.action';
+import {EmployeeActionTypes } from '../../actions/employee/employee.action';
 
 import { IEmployee } from 'src/app/model/employees';
  

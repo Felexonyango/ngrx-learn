@@ -13,12 +13,12 @@ import {
   tap,
  
 } from 'rxjs/operators';
-import { LeaveTypeService } from '../../services/leave/leave-type.service';
-import { LeaveTypeState } from '../reducer/leavetype.reducer';
-import { dummyAction } from '../actions/leavetype.actions';
+import { LeaveTypeService } from '../../../services/leave/leave-type.service';
+import { LeaveTypeState } from '../../reducer/leave/leavetype.reducer';
+import { dummyAction } from '../../actions/leave/leavetype.actions';
 import { Update } from '@ngrx/entity';
-import { DepartmentActionTypes } from '../actions/department.actions';
-import {IDepartment} from  './../../../app/model/department'
+import { DepartmentActionTypes } from '../../actions/department/department.actions';
+import {IDepartment} from  '../../../model/department'
 
 @Injectable()
 export class DepartmentEFfect {

@@ -1,11 +1,11 @@
 import { ActionReducerMap } from '@ngrx/store';
 import { routerReducer, RouterState, RouterStateSerializer } from '@ngrx/router-store';
-import { employeeReducer, State } from '../reducer/employeeReducer';
-import { AuthReducer, AuthState } from '../reducer/authReducer';
+import { employeeReducer, State } from '../reducer/employee/employeeReducer';
+import { AuthReducer, AuthState } from '../reducer/auth/authReducer';
 import { ROUTER_STATE_NAME } from '../router/router.selector';
-import {leaveTypeReducer, LeaveTypeState} from 'src/app/store/reducer/leavetype.reducer'
-import {departmentReducer,DepartmentState} from 'src/app/store/reducer/departmentReducer'
-import {leaveReducer,LeaveState} from 'src/app/store/reducer/leaveReducer'
+import {leaveTypeReducer, LeaveTypeState} from 'src/app/store/reducer/leave/leavetype.reducer'
+import {departmentReducer,DepartmentState} from 'src/app/store/reducer/department/departmentReducer'
+import {leaveReducer,LeaveState} from 'src/app/store/reducer/leave/leaveReducer'
 export interface AppState {
   [ROUTER_STATE_NAME ]: RouterStateSerializer
   employee: State,

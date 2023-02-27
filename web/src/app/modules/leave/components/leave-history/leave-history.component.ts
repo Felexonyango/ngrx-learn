@@ -8,9 +8,9 @@ import { Observable, Subscription } from 'rxjs';
 import { IEmployee } from 'src/app/model/employees';
 import { ILeaves } from 'src/app/model/leave';
 import { LeaveService } from 'src/app/services/leave/leave.service';
-import { leaveActionType } from 'src/app/store/actions/leave.action';
-import { LeaveState } from 'src/app/store/reducer/leaveReducer';
-import { getleaves } from 'src/app/store/selector/leave.selector';
+import { leaveActionType } from 'src/app/store/actions/leave/leave.action';
+import { LeaveState } from 'src/app/store/reducer/leave/leaveReducer';
+import { getleaves } from 'src/app/store/selector/leave/leave.selector';
 @Component({
   selector: 'app-leave-history',
   templateUrl: './leave-history.component.html',

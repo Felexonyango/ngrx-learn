@@ -6,7 +6,6 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth/auth.service';
 //import { AuthService } from 'src/app/services/auth.service';
-import { AuthActionTypes } from 'src/app/store/actions/auth.action';
 
 @Component({
   selector: 'app-default-header',

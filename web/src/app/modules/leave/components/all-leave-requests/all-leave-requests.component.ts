@@ -5,9 +5,9 @@ import { Paginator } from 'primeng/paginator';
 import { Observable } from 'rxjs';
 import { ILeaves } from 'src/app/model/leave';
 import { LeaveService } from 'src/app/services/leave/leave.service';
-import { leaveActionType } from 'src/app/store/actions/leave.action';
-import { LeaveState } from 'src/app/store/reducer/leaveReducer';
-import { getleaves } from 'src/app/store/selector/leave.selector';
+import { leaveActionType } from 'src/app/store/actions/leave/leave.action';
+import { LeaveState } from 'src/app/store/reducer/leave/leaveReducer';
+import { getleaves } from 'src/app/store/selector/leave/leave.selector';
 
 @Component({
   selector: 'app-all-leave-requests',

@@ -1,7 +1,7 @@
 import {createFeatureSelector, createSelector} from '@ngrx/store';
-import {adapter,  LeaveState} from '../reducer/leaveReducer'
-import { RouterStateUrl } from '../router/custom-serializer'
-import { getCurrentRoute } from '../router/router.selector'
+import {adapter,  LeaveState} from '../../reducer/leave/leaveReducer'
+import { RouterStateUrl } from '../../router/custom-serializer'
+import { getCurrentRoute } from '../../router/router.selector'
 
 const getLeaveFeatureState =createFeatureSelector<LeaveState>('leave');
 

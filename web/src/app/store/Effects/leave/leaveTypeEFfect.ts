@@ -12,14 +12,14 @@ import {
   withLatestFrom,
  
 } from 'rxjs/operators';
-import { LeaveTypeService } from '../../services/leave/leave-type.service';
-import { LeaveTypeState } from '../reducer/leavetype.reducer';
-import { dummyAction } from '../actions/leavetype.actions';
+import { LeaveTypeService } from '../../../services/leave/leave-type.service';
+import { LeaveTypeState } from '../../reducer/leave/leavetype.reducer';
+import { dummyAction } from '../../actions/leave/leavetype.actions';
 import { Update } from '@ngrx/entity';
-import { LeaveTypes } from '../actions/leavetype.actions';
+import { LeaveTypes } from '../../actions/leave/leavetype.actions';
 import { ILeaveType } from 'src/app/model/leave';
-import { updateEmployee } from '../actions/employee.action';
-import { getleaveTypes } from '../selector/leavetype.selector';
+import { updateEmployee } from '../../actions/employee/employee.action';
+import { getleaveTypes } from '../../selector/leave/leavetype.selector';
 
 @Injectable()
 export class LeaveTypeEFfect {

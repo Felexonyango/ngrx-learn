@@ -5,10 +5,10 @@ import { FormlyFormOptions, FormlyFieldConfig } from '@ngx-formly/core';
 import { Subscription, takeWhile } from 'rxjs';
 import { IDepartment } from 'src/app/model/department';
 import { IEmployee } from 'src/app/model/employees';
-import { State } from 'src/app/store/reducer/employeeReducer';
+import { State } from 'src/app/store/reducer/employee/employeeReducer';
 import { createEmployeeFormlyFields } from '../add-employees/create-employees.formly';
-import { getEmployeeById } from 'src/app/store/selector/employee.selector';
-import {EmployeeActionTypes} from '../../../../store/actions/employee.action'
+import { getEmployeeById } from 'src/app/store/selector/employee/employee.selector';
+import {EmployeeActionTypes} from '../../../../store/actions/employee/employee.action'
 import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-edit-employee',

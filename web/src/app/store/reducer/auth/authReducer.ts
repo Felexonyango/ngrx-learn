@@ -1,6 +1,6 @@
 
 import { User } from 'src/app/model/auth';
-import { All, AuthActionTypes } from '../actions/auth.action';
+import { All, AuthActionTypes } from '../../actions/auth/auth.action';
 export interface AuthState {
   isAuthenticated: boolean;
   user: User | null;

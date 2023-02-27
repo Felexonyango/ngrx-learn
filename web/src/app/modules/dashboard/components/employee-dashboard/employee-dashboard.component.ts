@@ -7,9 +7,9 @@ import { IEmployeeSummary } from 'src/app/model/employees';
 import { ILeaves } from 'src/app/model/leave';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { EmployeeService } from 'src/app/services/employee/employees.service';
-import { leaveActionType } from 'src/app/store/actions/leave.action';
-import { LeaveState } from 'src/app/store/reducer/leaveReducer';
-import { getleaves } from 'src/app/store/selector/leave.selector';
+import { leaveActionType } from 'src/app/store/actions/leave/leave.action';
+import { LeaveState } from 'src/app/store/reducer/leave/leaveReducer';
+import { getleaves } from 'src/app/store/selector/leave/leave.selector';
 
 @Component({
   selector: 'app-employee-dashboard',

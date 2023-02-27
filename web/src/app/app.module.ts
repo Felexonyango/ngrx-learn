@@ -14,7 +14,7 @@ import {LeaveTypeService } from 'src/app/services/leave/leave-type.service'
   PerfectScrollbarModule,
 } from 'ngx-perfect-scrollbar';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import {DepartmentEFfect} from 'src/app/store/Effects/departmentEffect'
+import {DepartmentEFfect} from 'src/app/store/Effects/department/departmentEffect'
 
 // Import routing module
 import { AppRoutingModule } from './app-routing.module';
@@ -52,11 +52,11 @@ import {
 import {DialogModule} from 'primeng/dialog'
 import { IconModule, IconSetService } from '@coreui/icons-angular';
 import { StoreModule } from '@ngrx/store';
-import {AuthEffects} from './store/Effects/authEffects'
-import  {EmployeeEffect } from './store/Effects/employeEffects'
-import {LeaveEFfect} from './store/Effects/leaveEffects'
+import {AuthEffects} from './store/Effects/auth/authEffects'
+import  {EmployeeEffect } from './store/Effects/employee/employeEffects'
+import {LeaveEFfect} from './store/Effects/leave/leaveEffects'
 import { HttpClientModule } from '@angular/common/http';
-import {LeaveTypeEFfect} from './store/Effects/leaveTypeEFfect'
+import {LeaveTypeEFfect} from './store/Effects/leave/leaveTypeEFfect'
 import { AuthGuard } from './modules/auth/guards/auth.guard';
 import { AuthService } from './services/auth/auth.service';
 import {EmployeeService} from './services/employee/employees.service'

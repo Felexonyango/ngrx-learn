@@ -1,7 +1,7 @@
 import {createFeatureSelector, createSelector} from '@ngrx/store';
-import {adapter,  departmentReducer, DepartmentState} from '../reducer/departmentReducer'
-import { RouterStateUrl } from '../router/custom-serializer'
-import { getCurrentRoute } from '../router/router.selector'
+import {adapter,  departmentReducer, DepartmentState} from '../../reducer/department/departmentReducer'
+import { RouterStateUrl } from '../../router/custom-serializer'
+import { getCurrentRoute } from '../../router/router.selector'
 
 const getdepartmentFeatureState =createFeatureSelector<DepartmentState>('department');
 

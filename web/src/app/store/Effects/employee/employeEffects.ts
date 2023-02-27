@@ -4,11 +4,11 @@ import { ROUTER_NAVIGATION, RouterNavigatedAction } from '@ngrx/router-store';
 import { Store } from '@ngrx/store';
 import { concat, of } from 'rxjs';
 import { mergeMap, map, catchError, switchMap, tap, filter, withLatestFrom, concatMap } from 'rxjs/operators';
-import { EmployeeService } from '../../services/employee/employees.service';
-import {  State } from 'src/app/store/reducer/employeeReducer'
-import { EmployeeActionTypes, updateEmployeeSuccess } from '../actions/employee.action';
-import { getEmployees } from '../selector/employee.selector';
-import { dummyAction } from '../actions/employee.action';
+import { EmployeeService } from '../../../services/employee/employees.service';
+import {  State } from 'src/app/store/reducer/employee/employeeReducer'
+import { EmployeeActionTypes, updateEmployeeSuccess } from '../../actions/employee/employee.action';
+import { getEmployees } from '../../selector/employee/employee.selector';
+import { dummyAction } from '../../actions/employee/employee.action';
 import { Update } from '@ngrx/entity';
 import { IEmployee } from 'src/app/model/employees';
 @Injectable()

@@ -5,12 +5,12 @@ import { select, Store } from '@ngrx/store';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { Observable, Subscription } from 'rxjs';
 import { ILeaveType } from 'src/app/model/leave';
-import { LeaveTypes } from 'src/app/store/actions/leavetype.actions';
-import { LeaveTypeState } from 'src/app/store/reducer/leavetype.reducer';
+import { LeaveTypes } from 'src/app/store/actions/leave/leavetype.actions';
+import { LeaveTypeState } from 'src/app/store/reducer/leave/leavetype.reducer';
 import {
   getleaveTypeById,
   getleaveTypes,
-} from 'src/app/store/selector/leavetype.selector';
+} from 'src/app/store/selector/leave/leavetype.selector';
 @Component({
   selector: 'app-leave-type',
   templateUrl: './leave-type.component.html',

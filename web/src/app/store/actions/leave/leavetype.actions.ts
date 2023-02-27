@@ -1,5 +1,5 @@
 
-import { ILeaveType} from '../../model/leave';
+import { ILeaveType} from '../../../model/leave';
 import { Update } from '@ngrx/entity';
 
 import { createAction, props } from '@ngrx/store';

@@ -1,5 +1,5 @@
 
-import { IDepartment } from '../../model/department';
+import { IDepartment } from '../../../model/department';
 import { Update } from '@ngrx/entity';
 import { createAction, props } from '@ngrx/store';
 

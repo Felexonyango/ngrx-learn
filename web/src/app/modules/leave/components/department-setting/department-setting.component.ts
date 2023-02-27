@@ -4,9 +4,9 @@ import { select, Store } from '@ngrx/store';
 import { FormlyFormOptions, FormlyFieldConfig } from '@ngx-formly/core';
 import { Observable, Subscription } from 'rxjs';
 import { IDepartment } from 'src/app/model/department';
-import { DepartmentActionTypes } from 'src/app/store/actions/department.actions';
-import { DepartmentState } from 'src/app/store/reducer/departmentReducer';
-import {getdepartments} from 'src/app/store/selector/department.selector'
+import { DepartmentActionTypes } from 'src/app/store/actions/department/department.actions';
+import { DepartmentState } from 'src/app/store/reducer/department/departmentReducer';
+import {getdepartments} from 'src/app/store/selector/department/department.selector'
 @Component({
   selector: 'app-department-setting',
   templateUrl: './department-setting.component.html',

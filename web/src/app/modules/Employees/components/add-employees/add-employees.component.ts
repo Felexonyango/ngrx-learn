@@ -6,9 +6,9 @@ import { Subscription } from 'rxjs';
 import { createEmployeeFormlyFields } from './create-employees.formly';
 import { IEmployee } from '../../../../model/employees';
 import { IDepartment } from '../../../../model/department';
-import { State } from 'src/app/store/reducer/employeeReducer';
+import { State } from 'src/app/store/reducer/employee/employeeReducer';
 import { Store } from '@ngrx/store';
-import { EmployeeActionTypes } from '../../../../store/actions/employee.action';
+import { EmployeeActionTypes } from '../../../../store/actions/employee/employee.action';
 import { LeaveTypeService } from 'src/app/services/leave/leave-type.service';
 @Component({
   selector: 'app-add-employees',
