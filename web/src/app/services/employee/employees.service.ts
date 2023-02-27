@@ -3,10 +3,10 @@ import {Injectable} from '@angular/core'
 import {map, Observable, of} from 'rxjs'
 
 
-import {environment} from '../../environments/environment'
+import {environment} from '../../../environments/environment'
 
-import {IAdminSummary, IEmployee, IEmployeeSummary} from '../model/employees'
-import { HTTPResponse } from '../model/HTTPResponse'
+import {IAdminSummary, IEmployee, IEmployeeSummary} from '../../model/employees'
+import { HTTPResponse } from '../../model/HTTPResponse'
 
 @Injectable({
   providedIn: 'root',

@@ -9,7 +9,7 @@ import { IDepartment } from '../../../../model/department';
 import { State } from 'src/app/store/reducer/employeeReducer';
 import { Store } from '@ngrx/store';
 import { EmployeeActionTypes } from '../../../../store/actions/employee.action';
-import { LeaveTypeService } from 'src/app/services/leave-type.service';
+import { LeaveTypeService } from 'src/app/services/leave/leave-type.service';
 @Component({
   selector: 'app-add-employees',
   templateUrl: './add-employees.component.html',

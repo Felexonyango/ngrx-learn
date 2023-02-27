@@ -118,7 +118,10 @@
               "src/scss/styles.scss"
             ],
             "scripts": []
-          }
+          },
+          "files": [
+            "src/**/*.spec.ts" 
+          ]
         }
       }
     }

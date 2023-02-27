@@ -13,7 +13,7 @@ import {
   tap,
  
 } from 'rxjs/operators';
-import { LeaveTypeService } from '../../services/leave-type.service';
+import { LeaveTypeService } from '../../services/leave/leave-type.service';
 import { LeaveTypeState } from '../reducer/leavetype.reducer';
 import { dummyAction } from '../actions/leavetype.actions';
 import { Update } from '@ngrx/entity';

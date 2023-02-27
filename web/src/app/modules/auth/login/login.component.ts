@@ -11,7 +11,7 @@ import {
 } from 'src/app/store/selector/auth.selector';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-login',

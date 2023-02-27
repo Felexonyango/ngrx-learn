@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Route, UrlSegment, CanLoad } from '@angular/router';
-import { Observable } from 'rxjs';
-import { AuthService } from 'src/app/services/auth.service';
+import { Observable, of } from 'rxjs';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 
 @Injectable()
@@ -13,36 +13,40 @@ export class AuthGuard implements CanActivate,CanLoad {
 
   canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-
+    state: RouterStateSnapshot
+  ): Observable<boolean | UrlTree> {
     const isLoggedIn = this.auth.isLoggedIn();
-
+  
     if (isLoggedIn) {
       this.auth.redirectUrl = state.url;
-      return this.checkUserLogin(route,state)
+      return this.checkUserLogin(route, state);
     }
-
+  
     this.auth.logout();
-    return false;
-
+    return of(false);
   }
+  
   canLoad(
     route: Route,
     segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {
     return true;
   }
-  checkUserLogin(route: ActivatedRouteSnapshot, url: any): boolean {
+  checkUserLogin(route: ActivatedRouteSnapshot, url: any): Observable<boolean | UrlTree> {
     if (this.auth.isLoggedIn()) {
       const userRole = this.auth.getRole();
       if (route.data['role'] && route.data['role'].indexOf(userRole) === -1) {
         this.router.navigate(['/dashboard']);
-        return false;
+        return of(false);
       }
-      return true;
+      return of(true);
     }
-
+  
     this.router.navigate(['/dashboard']);
-    return false;
+    return of(false);
+  }
+  
+  logout(){
+    
   }
 
 }

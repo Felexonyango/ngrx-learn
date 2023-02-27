@@ -3,13 +3,14 @@ import { Observable, map, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Imenu, User } from '../model/auth';
+import { Imenu, User } from '../../model/auth';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { HTTPResponse } from '../model/HTTPResponse';
+import { HTTPResponse } from 'src/app/model/HTTPResponse';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  static getRole: () => string;
   constructor(
     private httpClient: HttpClient,
     private router: Router,

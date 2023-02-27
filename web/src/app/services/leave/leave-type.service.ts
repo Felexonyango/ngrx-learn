@@ -1,10 +1,10 @@
 import { HttpClient, HttpResponseBase } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable, of } from 'rxjs';
-import { environment } from '../../environments/environment';
-import { IDepartment } from '../model/department';
-import { HTTPResponse } from '../model/HTTPResponse';
-import { ILeaveType } from '../model/leave';
+import { environment } from '../../../environments/environment';
+import { IDepartment } from '../../model/department';
+import { HTTPResponse } from '../../model/HTTPResponse';
+import { ILeaveType } from '../../model/leave';
 @Injectable({
   providedIn: 'root',
 })

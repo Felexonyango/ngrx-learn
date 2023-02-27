@@ -7,7 +7,7 @@ import {reducers} from './store/state/appState'
 import {metaReducers} from './store/reducer/metaReducer'
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './modules/auth/Interceptors/Interceptor';
-import {LeaveTypeService } from 'src/app/services/leave-type.service'
+import {LeaveTypeService } from 'src/app/services/leave/leave-type.service'
  import {
   PERFECT_SCROLLBAR_CONFIG,
   PerfectScrollbarConfigInterface,
@@ -58,8 +58,8 @@ import {LeaveEFfect} from './store/Effects/leaveEffects'
 import { HttpClientModule } from '@angular/common/http';
 import {LeaveTypeEFfect} from './store/Effects/leaveTypeEFfect'
 import { AuthGuard } from './modules/auth/guards/auth.guard';
-import { AuthService } from './services/auth.service';
-import {EmployeeService} from './services/employees.service'
+import { AuthService } from './services/auth/auth.service';
+import {EmployeeService} from './services/employee/employees.service'
 import { JwtModule } from '@auth0/angular-jwt';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';

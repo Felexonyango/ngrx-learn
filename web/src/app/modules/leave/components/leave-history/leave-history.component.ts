@@ -7,7 +7,7 @@ import { Paginator } from 'primeng/paginator';
 import { Observable, Subscription } from 'rxjs';
 import { IEmployee } from 'src/app/model/employees';
 import { ILeaves } from 'src/app/model/leave';
-import { LeaveService } from 'src/app/services/leave.service';
+import { LeaveService } from 'src/app/services/leave/leave.service';
 import { leaveActionType } from 'src/app/store/actions/leave.action';
 import { LeaveState } from 'src/app/store/reducer/leaveReducer';
 import { getleaves } from 'src/app/store/selector/leave.selector';

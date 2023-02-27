@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { Subscription } from 'rxjs';
 import { Imenu } from 'src/app/model/auth';
 

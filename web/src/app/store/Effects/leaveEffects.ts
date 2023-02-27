@@ -12,13 +12,13 @@ import {
   withLatestFrom,
   tap,
 } from 'rxjs/operators';
-import { LeaveTypeService } from '../../services/leave-type.service';
+import { LeaveTypeService } from '../../services/leave/leave-type.service';
 import { LeaveTypeState } from '../reducer/leavetype.reducer';
 import { dummyAction } from '../actions/leavetype.actions';
 import { Update } from '@ngrx/entity';
 import { leaveActionType } from '../actions/leave.action';
 import { ILeaves } from '../../model/leave';
-import { LeaveService } from '../../services/leave.service';
+import { LeaveService } from '../../services/leave/leave.service';
 
 @Injectable()
 export class LeaveEFfect {

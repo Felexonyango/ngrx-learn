@@ -8,8 +8,8 @@ import { getEmployees } from '../../../../store/selector/employee.selector';
 import { State } from 'src/app/store/reducer/employeeReducer';
 import { routerCancelAction } from '@ngrx/router-store';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
-import { EmployeeService } from 'src/app/services/employees.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { EmployeeService } from 'src/app/services/employee/employees.service';
 
 @Component({
   selector: 'app-all-employees',

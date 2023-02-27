@@ -7,11 +7,12 @@ import { select, Store } from '@ngrx/store';
 import { LeaveState } from 'src/app/store/reducer/leaveReducer';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
-import { LeaveService } from 'src/app/services/leave.service';
+
 import {applyLeaveFormlyFields} from './apply-leave-formly'
 import { LeaveTypes } from 'src/app/store/actions/leavetype.actions';
 import { getleaveTypes } from 'src/app/store/selector/leavetype.selector';
-import { LeaveTypeService } from 'src/app/services/leave-type.service';
+import { LeaveService } from 'src/app/services/leave/leave.service';
+
  @Component({
   selector: 'app-create-leave',
   templateUrl: './create-leave.component.html',

@@ -5,15 +5,15 @@ import { Observable, of } from 'rxjs';
 
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { IDepartment } from '../model/department';
-import { HTTPResponse } from '../model/HTTPResponse';
+
 import {
   ILeaves,
   ILeaveType,
   INote,
   IHoliday,
   ILeavesummary,
-} from '../model/leave';
+} from '../../model/leave';
+import { HTTPResponse } from 'src/app/model/HTTPResponse';
 @Injectable({
   providedIn: 'root',
 })

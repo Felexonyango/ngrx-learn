@@ -3,7 +3,7 @@ import { select, Store} from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { IEmployee } from 'src/app/model/employees';
 import { ILeaves } from 'src/app/model/leave';
-import { LeaveService } from 'src/app/services/leave.service';
+import { LeaveService } from 'src/app/services/leave/leave.service';
 
 import {  State } from 'src/app/store/reducer/employeeReducer';
 import { getEmployeeById } from 'src/app/store/selector/employee.selector';
