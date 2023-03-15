@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { Observable, Subscription } from 'rxjs';
@@ -16,7 +16,8 @@ import { LeaveService } from 'src/app/services/leave/leave.service';
  @Component({
   selector: 'app-create-leave',
   templateUrl: './create-leave.component.html',
-  styleUrls: ['./create-leave.component.scss']
+  styleUrls: ['./create-leave.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CreateLeaveComponent implements OnInit {
   subscription = new Subscription;

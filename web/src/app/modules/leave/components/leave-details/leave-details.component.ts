@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { ILeaves } from 'src/app/model/leave';
@@ -8,7 +8,8 @@ import { getleaveById } from 'src/app/store/selector/leave/leave.selector';
 @Component({
   selector: 'app-leave-details',
   templateUrl: './leave-details.component.html',
-  styleUrls: ['./leave-details.component.scss']
+  styleUrls: ['./leave-details.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LeaveDetailsComponent implements OnInit {
 

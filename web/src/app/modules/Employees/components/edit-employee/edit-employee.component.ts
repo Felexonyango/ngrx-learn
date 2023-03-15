@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { FormlyFormOptions, FormlyFieldConfig } from '@ngx-formly/core';
@@ -13,7 +13,8 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-edit-employee',
   templateUrl: './edit-employee.component.html',
-  styleUrls: ['./edit-employee.component.scss']
+  styleUrls: ['./edit-employee.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EditEmployeeComponent implements OnInit {
 

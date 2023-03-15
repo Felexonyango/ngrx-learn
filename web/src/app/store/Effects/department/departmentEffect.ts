@@ -33,7 +33,6 @@ export class DepartmentEFfect {
       ofType(DepartmentActionTypes.LoadDepartments),
       mergeMap((action) =>
         this.leaveTypeService.getAllDepartments().pipe(
-          tap((obj)=>console.log(obj)),
           map((res) =>
             DepartmentActionTypes.loadDepartmentsSuccess({
               departments: res

@@ -1,27 +1,24 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs';
-import {LeaveEFfect} from './leaveEffects'
+
+import { DepartmentEFfect } from './departmentEffect';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { StoreModule } from '@ngrx/store';
-import { provideMockStore } from '@ngrx/store/testing';
-describe('Leave Effect', () => {
+
+describe('Department Effects', () => {
   let actions$: Observable<any>;
-  let effects: LeaveEFfect;
+  let effects: DepartmentEFfect;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-        imports:[
-            HttpClientTestingModule,
-            StoreModule.forRoot(provideMockStore),
-],
       providers: [
-        LeaveEFfect,
+        DepartmentEFfect,
         provideMockActions(() => actions$)
-      ]
+      ],
+      imports:[HttpClientTestingModule]
     });
 
-    effects = TestBed.inject(LeaveEFfect)
+    effects = TestBed.inject(DepartmentEFfect)
   });
 
   it('should be created', () => {

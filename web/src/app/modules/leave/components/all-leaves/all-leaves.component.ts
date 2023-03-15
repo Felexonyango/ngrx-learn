@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Paginator } from 'primeng/paginator';
@@ -12,7 +12,8 @@ import { getleaves } from 'src/app/store/selector/leave/leave.selector';
 @Component({
   selector: 'app-all-leaves',
   templateUrl: './all-leaves.component.html',
-  styleUrls: ['./all-leaves.component.scss']
+  styleUrls: ['./all-leaves.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AllLeavesComponent implements OnInit {
   leaves:Observable<ILeaves[]>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { FormlyFormOptions, FormlyFieldConfig } from '@ngx-formly/core';
@@ -14,6 +14,7 @@ import { LeaveTypeService } from 'src/app/services/leave/leave-type.service';
   selector: 'app-add-employees',
   templateUrl: './add-employees.component.html',
   styleUrls: ['./add-employees.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AddEmployeesComponent implements OnInit {
   subscription = new Subscription();

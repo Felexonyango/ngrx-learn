@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { Paginator } from 'primeng/paginator';
@@ -11,7 +11,8 @@ import { getleaves } from 'src/app/store/selector/leave/leave.selector';
 @Component({
   selector: 'app-approved-leaves',
   templateUrl: './approved-leaves.component.html',
-  styleUrls: ['./approved-leaves.component.scss']
+  styleUrls: ['./approved-leaves.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ApprovedLeavesComponent implements OnInit {
   approvedleaves$:Observable<ILeaves[]>

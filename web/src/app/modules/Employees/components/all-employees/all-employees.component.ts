@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Paginator } from 'primeng/paginator';
 import { Observable, Subscription } from 'rxjs';
@@ -15,6 +15,7 @@ import { EmployeeService } from 'src/app/services/employee/employees.service';
   selector: 'app-all-employees',
   templateUrl: './all-employees.component.html',
   styleUrls: ['./all-employees.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AllEmployeesComponent implements OnInit {
   employees$: Observable<IEmployee[]>;

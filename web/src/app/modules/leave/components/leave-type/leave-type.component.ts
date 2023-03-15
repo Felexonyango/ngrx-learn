@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { select, Store } from '@ngrx/store';
@@ -15,6 +15,7 @@ import {
   selector: 'app-leave-type',
   templateUrl: './leave-type.component.html',
   styleUrls: ['./leave-type.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LeaveTypeComponent implements OnInit {
   subscription: Subscription = new Subscription();

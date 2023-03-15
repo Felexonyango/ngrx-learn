@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
 import { select, Store } from '@ngrx/store';
@@ -15,6 +15,7 @@ import { getleaves } from 'src/app/store/selector/leave/leave.selector';
   selector: 'app-leave-history',
   templateUrl: './leave-history.component.html',
   styleUrls: ['./leave-history.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LeaveHistoryComponent implements OnInit {
   Ileaves: Observable<ILeaves[]>;

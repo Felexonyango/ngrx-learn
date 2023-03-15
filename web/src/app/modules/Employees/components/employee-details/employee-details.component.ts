@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { select, Store} from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { IEmployee } from 'src/app/model/employees';
@@ -10,7 +10,8 @@ import { getEmployeeById } from 'src/app/store/selector/employee/employee.select
 @Component({
   selector: 'app-employee-details',
   templateUrl: './employee-details.component.html',
-  styleUrls: ['./employee-details.component.scss']
+  styleUrls: ['./employee-details.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EmployeeDetailsComponent implements OnInit {
 subscription=new Subscription()

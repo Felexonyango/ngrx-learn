@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { FormlyFormOptions, FormlyFieldConfig } from '@ngx-formly/core';
@@ -10,7 +10,8 @@ import {getdepartments} from 'src/app/store/selector/department/department.selec
 @Component({
   selector: 'app-department-setting',
   templateUrl: './department-setting.component.html',
-  styleUrls: ['./department-setting.component.scss']
+  styleUrls: ['./department-setting.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DepartmentSettingComponent implements OnInit {
 
