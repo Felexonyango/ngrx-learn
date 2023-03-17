@@ -73,7 +73,7 @@ export class CreateLeaveComponent implements OnInit {
       next: (res) => {
         this.applyLeaveForm.reset() 
         this.response = res.message
-        // this.router.navigate(['/leave/request/history'])
+        this.router.navigate(['/leave/request/history'])
         
       }
     }))

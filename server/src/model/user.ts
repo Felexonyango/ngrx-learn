@@ -51,7 +51,7 @@ const UserSchema: Schema = new Schema(
 
     startDate: {
       type:Date,
-      required: true,
+      required: false,
     },
 
     department: {

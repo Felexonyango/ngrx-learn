@@ -36,13 +36,11 @@ export class EmployeeDashboardComponent implements OnInit {
   @ViewChild('paginator', { static: true }) paginator: Paginator;
 
   leaveTableColumns: string[] = [
- 
     'leaveType',
     'startDate',
     'EndDate',
     'status',
     'Action'
-    
   ];
 
   ngOnInit(): void {
@@ -83,7 +81,7 @@ getUserRole() {
   getEmployeeSummarys(){
     this.subscription.add(this.employeeservice.getEmployeeSummary().subscribe((res)=>{
       this.employeeSummary=res.result
-        console.log(this.employeeSummary, "hello")
+        console.log(this.employeeSummary,"test result")
     }
      
      
