@@ -6,19 +6,14 @@ export interface Iuser extends Document {
   lastname:string
   email: string;
   password: string;
-  startDate: String;
+  startDate: Date;
   nextOfKin: String;
   idNumber: Number;
-  kraPin: String;
   bankAccountNumber: String;
   bankName: String;
   phoneNumber: Number;
   employeeIdNumber: String;
   status: Boolean;
-  taxRegNO: String;
-  swiftCode: String;
-  branchName: String;
-  bankCode: String;
   role: Role[];
  
 
@@ -43,6 +38,7 @@ const UserSchema: Schema = new Schema(
       type: String,
       required: true,
     },
+  
 
     password: {
       type: String,
@@ -51,7 +47,7 @@ const UserSchema: Schema = new Schema(
 
     startDate: {
       type:Date,
-      required: false,
+      required: true,
     },
 
     department: {
@@ -70,20 +66,6 @@ const UserSchema: Schema = new Schema(
       required: true,
     },
 
-    kraPin: {
-      type: String,
-      required: true,
-    },
-
-    bankAccountNumber: {
-      type: String,
-      required: true,
-    },
-
-    bankName: {
-      type: String,
-      required: true,
-    },
 
     phoneNumber: {
       type: Number,
@@ -99,30 +81,12 @@ const UserSchema: Schema = new Schema(
       type: Boolean,
     },
 
-    taxRegNO: {
-      type: String,
-      required: true,
-    },
-    swiftCode: {
-      type: String,
-      required: true,
-    },
-
-    branchName: {
-      type: String,
-      required: true,
-    },
-
-    bankCode: {
-      type: String,
-      required: true,
-    },
-    role: {
+   role: {
       type: [String],
       enum: ['user', 'admin'],
       default: 'user'
     },
-    leaves:[{
+    leave:[{
       type: ObjectId,
       ref:"Leave",
       require:true

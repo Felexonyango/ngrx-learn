@@ -22,7 +22,7 @@ export class LeaveHistoryComponent implements OnInit {
 
   employee: IEmployee;
 
-  id: any;
+  id
   imageToShow: any;
   subscription = new Subscription();
   display: boolean;
@@ -45,7 +45,7 @@ export class LeaveHistoryComponent implements OnInit {
     'startDate',
     'EndDate',
     'status',
-    'Action',
+    
   ];
 
   ngOnInit() {
@@ -53,7 +53,7 @@ export class LeaveHistoryComponent implements OnInit {
     this.getLeaveHistroy();
   }
 
-  getLeaveDetails(id) {
+  getLeaveDetails <T>(id:T){
     this.subscription.add(
       this.leavService.getLeaveRequestDetail(id).subscribe((res) => {})
     );

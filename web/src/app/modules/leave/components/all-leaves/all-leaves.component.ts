@@ -35,19 +35,19 @@ export class AllLeavesComponent implements OnInit {
     'startDate',
     'EndDate',
     'status',
-    'Action'
+    
     
   ];
   getadminleaveshistory(){
     this.leaves = this.store.pipe(select(getleaves));
     this.store.dispatch( leaveActionType.loadadminleavehistory() )
   }
-  onView(id: any) {
+  onView<T>(id:T) {
     this.router.navigate([`/leave/leave-details/${id}`]);
   }
   onEditBtnClick(id:string){}
   
-  onDeleteleave(id: any) {
+  onDeleteleave<T extends string >(id:T) {
     this.store.dispatch(leaveActionType.deleteleave({ id}))
   }
 }

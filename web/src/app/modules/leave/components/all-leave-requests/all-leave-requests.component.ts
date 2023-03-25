@@ -33,7 +33,7 @@ leaves:Observable<ILeaves[]>
     'startDate',
     'EndDate',
     'status',
-    'Action'
+   
     
   ];
   ngOnInit(): void {
@@ -45,14 +45,14 @@ leaves:Observable<ILeaves[]>
     this.leaves = this.store.pipe(select(getleaves));
     //this.store.dispatch( leaveActionType.loadnewleaves() )
   }
-  onView(id: any) {
+  onView <T>(id: T) {
     this.router.navigate([`/leave/leave-details/${id}`]);
   }
   onEditBtnClick(id:string){
 
 
   }
-  onDeleteleave(id: any) {
+  onDeleteleave<T extends string>(id: T) {
     this.store.dispatch(leaveActionType.deleteleave({ id}))
   }
 }

@@ -2,7 +2,7 @@ class APIFeatures {
   query: any;
   queryString: any;
   total: number;
-  model: any;
+  model:any
 
   constructor(query: any, model: any, queryString: any) {
     this.query = query;

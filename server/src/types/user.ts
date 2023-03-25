@@ -1,27 +1,19 @@
-import { Role } from './role';
+import { Role } from "./role";
 
 export type User = {
   _id?: string;
   firstname: string;
-  lastname:string;
+  lastname: string;
   email: string;
+  startDate?:Date
   password: string;
-  startDate:String
-    nextOfKin:String
- idNumber:Number
-  kraPin:String
-  bankAccountNumber:String
-  bankName:String,
-  phoneNumber:Number
-  employeeIdNumber:String  
-  status:Boolean
-  taxRegNO:String
-  swiftCode:String
-  branchName:String  
-  bankCode:String
-  department?:String
+  nextOfKin: String;
+  idNumber: Number;
+  bankAccountNumber: String;
+  bankName: String;
+  phoneNumber: Number;
+  employeeIdNumber: String;
+  status: Boolean;
+  department?: String;
   role: Role[];
-  menu?:[string];
-  leave?:string
- 
 };

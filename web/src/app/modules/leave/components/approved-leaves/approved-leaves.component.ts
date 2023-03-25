@@ -30,7 +30,7 @@ export class ApprovedLeavesComponent implements OnInit {
     'startDate',
     'EndDate',
     'status',
-    'Action'
+
     
   ];
 

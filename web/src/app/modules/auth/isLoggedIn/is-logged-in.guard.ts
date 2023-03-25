@@ -20,7 +20,7 @@ export class IsLoggedInGuard implements CanActivate {
       const isLoggedIn = this.authService.isLoggedIn();
 
       if (isLoggedIn) {
-        const redirectUrl = (state?.url && !state?.url?.includes('auth')) ? state?.url : '/';
+        const redirectUrl = (state?.url && !state?.url?.includes('auth')) ? state?.url : '/dashboard';
         this.authService.navigateByUrl(redirectUrl);
         return false;
       }

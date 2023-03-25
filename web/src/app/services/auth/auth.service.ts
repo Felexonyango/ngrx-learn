@@ -19,7 +19,7 @@ export class AuthService {
 
   token_KEY = 'token';
   redirectUrl: string;
-  roleAs:any
+
   setAuthToken(token: string): void {
     localStorage.setItem(this.token_KEY, token);
   }

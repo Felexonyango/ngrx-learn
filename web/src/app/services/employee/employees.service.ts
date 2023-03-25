@@ -12,7 +12,6 @@ import { HTTPResponse } from '../../model/HTTPResponse'
   providedIn: 'root',
 })
 export class EmployeeService {
-  // employee = Employees
 
   constructor(private http: HttpClient) {}
 

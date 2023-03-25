@@ -10,14 +10,13 @@ import { Leave, Status } from "../model/leave";
 
 export const create = async (req: Request, res: Response) => {
   try {
- 
-    const { department } = req.body;
+    const { department, numOfEmployees } = req.body;
     const depart = await Department.create({
-    department
-     
+      department,
+      numOfEmployees,
     });
     await depart.save();
-    return res.status(200).json({ msg: "created department", depart});
+    return res.status(200).json({ msg: "created department", depart });
   } catch (err) {
     console.log(err);
     res.status(500).json({ msg: "Error while creating department" });
@@ -25,96 +24,94 @@ export const create = async (req: Request, res: Response) => {
 };
 
 export const getdepartments = async (req: Request, res: Response) => {
-    try {
+  try {
+    const result = await Department.find({});
+    if (!result)
+      return res.status(500).json({ msg: "There are no department " });
 
-      const result = await Department.find({})
-      if (!result) return res.status(500).json({ msg: "There are no department " });
-     
-      return res.status(200).json({ msg: 'All departments retrieved', result });
-    } catch (err) {
-      console.log(err);
-      res.status(500).json({ msg: err });
-    }
-  };
-  export const getdepartmentById = async (req: Request, res: Response) => {
-    try {
-      const {id}=req.params
-
-      const department = await Department.findById(id)
-      if (!department) return res.status(500).json({ msg: "There is no department " });
-      return res.status(200).json({ msg: department });
-    } catch (err) {
-      console.log(err);
-      res.status(500).json({ msg: err });
-    }
-  };
-  export  const deleteDepartment =async(req:Request,res:Response)=>{
-
-    const department = await Department.findById(req.params.id)
-    if (!department) return res.status(500).json({ msg: "There is no department" });
-     await Department.findByIdAndDelete(req.params.id);
-    return res.status(200).json({ msg: "succesfully deleted" });
+    return res.status(200).json({ msg: "All departments retrieved", result });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ msg: err });
   }
+};
+export const getdepartmentById = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
 
-  export const updateDepartment = async (req: Request, res: Response) => {
-    try{
-
-    
-    const { department } = req.body;
-    const dep = await Department.findById(req.params.id).populate('user')
-    if(!dep) return res.status(500).json({ msg: "There is no department" })
-    const result = await Department.findOneAndUpdate(
-        {_id:dep._id},
-        {$set:{department}},
-         { returnOriginal: false }
-        )
-        if(result){
-            return res.status(200).json({msg:'department updated succesfully',result})
-        }
-    }
-    catch(err){
-        console.log(err)    }
-
+    const department = await Department.findById(id);
+    if (!department)
+      return res.status(500).json({ msg: "There is no department " });
+    return res.status(200).json({ msg: department });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ msg: err });
+  }
+};
+export const deleteDepartment = async (req: Request, res: Response) => {
+  const department = await Department.findById(req.params.id);
+  if (!department)
+    return res.status(500).json({ msg: "There is no department" });
+  await Department.findByIdAndDelete(req.params.id);
+  return res.status(200).json({ msg: "succesfully deleted" });
 };
 
-export const getAdminTotals =async(req:Request)=>{
-  try{
+export const updateDepartment = async (req: Request, res: Response) => {
+  try {
+    const { department, numOfEmployees } = req.body;
+    const dep = await Department.findById(req.params.id).populate("user");
+    if (!dep) return res.status(500).json({ msg: "There is no department" });
+    const result = await Department.findOneAndUpdate(
+      { _id: dep._id },
+      { $set: { department,numOfEmployees } },
+      { returnOriginal: false }
+    );
+    if (result) {
+      return res
+        .status(200)
+        .json({ msg: "department updated succesfully", result });
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const getAdminTotals = async (req: Request) => {
+  try {
     const user = req.user as UserTypes;
-    const totaldepartments = await Department.countDocuments()
-    const totalUser = await User.countDocuments()
-    const totalLeaves =await Leave.countDocuments()
+    const totaldepartments = await Department.countDocuments();
+    const totalUser = await User.countDocuments();
+    const totalLeaves = await Leave.countDocuments();
 
     return {
-      totalLeaves,totaldepartments,totalUser
-    }
- 
-
-
+      totalLeaves,
+      totaldepartments,
+      totalUser,
+    };
+  } catch (err) {
+    console.log(err);
   }
-  catch(err){
-    console.log(err)
+};
 
-  }
-
-}
-
-export const getUserTotals =async(req:Request)=>{
-  try{
+export const getUserTotals = async (req: Request) => {
+  try {
     const user = req.user as UserTypes;
-    const approvedleaves = await Leave.find({user:user._id, status:Status.APPROVED}).countDocuments()
-    const pendingLeaves =await Leave.find({user:user._id, status:Status.PENDING}).countDocuments()
-  const appliedLeaves =await Leave.find({user:user._id}).countDocuments()
-   
+    const approvedleaves = await Leave.find({
+      user: user._id,
+      status: Status.APPROVED,
+    }).countDocuments();
+    const pendingLeaves = await Leave.find({
+      user: user._id,
+      status: Status.PENDING,
+    }).countDocuments();
+    const appliedLeaves = await Leave.find({ user: user._id }).countDocuments();
+
     return {
-      appliedLeaves,pendingLeaves,approvedleaves
-    }
- 
-
-
+      appliedLeaves,
+      pendingLeaves,
+      approvedleaves,
+    };
+  } catch (err) {
+    console.log(err);
   }
-  catch(err){
-    console.log(err)
-
-  }
-
-}
+};

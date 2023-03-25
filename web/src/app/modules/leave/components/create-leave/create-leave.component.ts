@@ -22,28 +22,27 @@ import { LeaveService } from 'src/app/services/leave/leave.service';
 export class CreateLeaveComponent implements OnInit {
   subscription = new Subscription;
   leave:ILeaveType
-  remainingDays: any;
   minimumDate = new Date();
   minimumEndDate = new Date()
   dates = new FormGroup({
     startDate: new FormControl(''),
     endDate: new FormControl('')
   });
-  requested: any;
+  
   leaveEnd = "";
   applyLeaveForm = new FormGroup({});
-  model: any = {};
+  model= {};
   options: FormlyFormOptions = {};
   fields: FormlyFieldConfig[] = [];
-  application: any
+  application
   isEdit: false
   objectKeys = Object.keys
   objectValue = Object.values
  
   response: string
 
-    startDate: any;
-    endDate: any
+    startDate
+    endDate
   constructor(
     private leaveService: LeaveService,
     // private messageService:MessageService

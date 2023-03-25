@@ -11,7 +11,7 @@
           >
             <ng-template pTemplate="header">
               <p>{{ errorMessage }}</p>
-              <p>Add a department</p>
+              
             </ng-template>
             <form [formGroup]="departmentForm" (ngSubmit)="addDepartment()">
               <formly-form
@@ -64,6 +64,7 @@
                 <ng-template pTemplate="header">
                   <tr>
                     <th>Department</th>
+                    <th>Number of Employees</th>
                
                     <th>Action</th>
                   </tr>
@@ -73,27 +74,43 @@
                     <td
                       (click)="handleSelect(department?._id)"
                     >
-                      {{ department.department }}
+                      {{ department?.department }}
                     </td>
-                  
-                    <td class="flex">
-                      <button
-                        pButton
-                        type="button"
-                        icon="pi pi-pencil"
-                        class="mr-2 text-xs"
-                        (click)="updateDepartmentModal(department?._id)"
-                      ></button>
-                      <button
-                        pButton
-                        type="button"
-                        pRipple
-                        iconPos="left"
-                        icon="pi pi-trash"
-                        class="p-button-danger"
-                        (click)="deleteDepartment(department._id)"
-                      ></button>
+                    <td>{{department?.numOfEmployees}}</td>
+                    <td>
+                      <div class="btn-group">
+                        <button
+                          type="button"
+                          class="btn btn-danger dropdown-toggle"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                        >
+                          Action
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li>
+                            <a class="dropdown-item" (click)="onViewDepartment(department?._id)"
+                              >View</a
+                            >
+                          </li>
+                          <li>
+                            <a
+                              class="dropdown-item"
+                            (click)="updateDepartmentModal(department?._id)"
+                              >Edit
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              class="dropdown-item"
+                              (click)="deleteDepartment(department._id)"
+                              >Delete</a
+                            >
+                          </li>
+                        </ul>
+                      </div>
                     </td>
+                   
                   </tr>
                 </ng-template>
               </p-table>

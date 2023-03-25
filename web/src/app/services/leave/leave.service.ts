@@ -20,9 +20,9 @@ import { HTTPResponse } from 'src/app/model/HTTPResponse';
 export class LeaveService {
   constructor(private http: HttpClient) {}
 
-  getLeaveTypes(): Observable< ILeaveType[]> {
+  getLeaveTypes<T>(): Observable< T[]> {
     return this.http
-      .get<HTTPResponse<any>>(`${environment.server_Url}leavetype`)
+      .get<HTTPResponse<T[]>>(`${environment.server_Url}leavetype`)
       .pipe(
         map((res) => {
           return res.result;
@@ -37,7 +37,7 @@ export class LeaveService {
     );
   }
 
-  getLeaveRequestDetail(leaveId: any): Observable<HTTPResponse<ILeaves>> {
+  getLeaveRequestDetail<T>(leaveId: T): Observable<HTTPResponse<ILeaves>> {
     return this.http
       .get<HTTPResponse<ILeaves>>(`${environment.server_Url}leave/${leaveId}`)
       .pipe<HTTPResponse<ILeaves>>(
@@ -105,11 +105,11 @@ export class LeaveService {
       leave
     );
   }
-  updateLeaveRequest(
-    leaveId: any,
-    ileavetype: ILeaveType
-  ): Observable<HTTPResponse<any>> {
-    return this.http.post<HTTPResponse<any>>(
+  updateLeaveRequest<T>(
+    leaveId: T,
+    ileavetype: T
+  ): Observable<HTTPResponse<T>> {
+    return this.http.post<HTTPResponse<T>>(
       `${environment.server_Url}leave/${leaveId}`,
       ileavetype
     );

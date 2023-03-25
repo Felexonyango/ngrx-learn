@@ -5,14 +5,20 @@ import { DefaultLayoutComponent } from './containers';
 import { Page404Component } from './pages/page404/page404.component';
 import { Page500Component } from './pages/page500/page500.component';
 import { IsLoggedInGuard } from './modules/auth/isLoggedIn/is-logged-in.guard';
-
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full',
-  },
+{
+  path:'',
+  redirectTo:'dashboard',
+  pathMatch:'full'
+},
 
+
+{
+  path: 'auth',
+  loadChildren: () =>
+    import('./modules/auth/auth.module').then((m) => m.AuthModule),
+  canActivate: [IsLoggedInGuard],
+},
   {
     path: '404',
     component: Page404Component,
@@ -28,17 +34,11 @@ const routes: Routes = [
     },
   },
 
-  {
-    path: 'auth',
-    loadChildren: () =>
-      import('./modules/auth/auth.module').then((m) => m.AuthModule),
-    canActivate: [IsLoggedInGuard],
-  },
-  {
-    path:'',
-    component: DefaultLayoutComponent,
 
- canActivate: [AuthGuard],
+  {
+    path: '',
+    component: DefaultLayoutComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'dashboard',
@@ -54,7 +54,7 @@ const routes: Routes = [
             (m) => m.AdminDashboardModule
           ),
       },
-   
+
       {
         path: 'employees',
         loadChildren: () =>

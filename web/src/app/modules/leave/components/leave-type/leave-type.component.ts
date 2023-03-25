@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { select, Store } from '@ngrx/store';
@@ -15,7 +20,7 @@ import {
   selector: 'app-leave-type',
   templateUrl: './leave-type.component.html',
   styleUrls: ['./leave-type.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LeaveTypeComponent implements OnInit {
   subscription: Subscription = new Subscription();
@@ -26,7 +31,7 @@ export class LeaveTypeComponent implements OnInit {
   display: boolean = false;
   errorMessage: string = '';
   form = new FormGroup({});
-  model: any = {};
+  model= {};
   id: string;
   fields: FormlyFieldConfig[] = [
     {
@@ -67,6 +72,7 @@ export class LeaveTypeComponent implements OnInit {
     const leaveType: ILeaveType = { ...this.form.value };
     this.store.dispatch(LeaveTypes.createLeaveType({ leaveType }));
     this.display = false;
+    this.isEdit=false;  
     this.form.reset();
     this.getLeaveTypes();
   }
@@ -77,7 +83,14 @@ export class LeaveTypeComponent implements OnInit {
 
     console.log(this.leaveTypes$);
   }
-  UpdateLeaveType() {}
+  UpdateLeaveType() {
+    console.log('test')
+    
+    
+    this.isEdit=true
+    this.display = true;
+  
+  }
   updateLeavetypeModal(leave_id: string) {
     this.display = true;
     this.isEdit = true;

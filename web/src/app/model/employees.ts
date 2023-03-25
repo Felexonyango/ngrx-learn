@@ -13,7 +13,7 @@ export interface IEmployee {
     name?: string
     nextOfKin?: string
     phoneNumber?: number
-    startDate?: string
+    startDate?: Date
     status?: string
     role?: any[]
     branchName?: string

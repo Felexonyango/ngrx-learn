@@ -40,7 +40,7 @@ export class EmployeeDashboardComponent implements OnInit {
     'startDate',
     'EndDate',
     'status',
-    'Action'
+  
   ];
 
   ngOnInit(): void {

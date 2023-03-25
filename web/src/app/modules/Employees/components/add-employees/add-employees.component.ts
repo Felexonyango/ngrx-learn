@@ -21,8 +21,8 @@ export class AddEmployeesComponent implements OnInit {
   employee: IEmployee;
   departments: IDepartment[] = [];
   addEmployeeForm = new FormGroup({});
-  model: any = {};
-  employeeModel: any = {};
+  model={};
+  employeeModel= {};
   subscriptions = new Subscription();
   options: FormlyFormOptions = {};
   fields: FormlyFieldConfig[] = [];

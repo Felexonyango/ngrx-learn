@@ -37,7 +37,7 @@ export class AdminDashboardComponent implements OnInit {
     'startDate',
     'EndDate',
     'status',
-    'Action'
+    
     
   ];
   leaveStatus = Status;
@@ -80,7 +80,7 @@ export class AdminDashboardComponent implements OnInit {
   getEmployeeSummarys(){
   this.subscription.add(this.employeeservice.getAdminSummary().subscribe((res)=>{
     this.employeeSummary=res.result
-      console.log(this.employeeSummary, "hello")
+      
   }
    
    

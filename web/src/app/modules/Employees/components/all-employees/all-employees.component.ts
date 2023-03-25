@@ -36,7 +36,7 @@ export class AllEmployeesComponent implements OnInit {
     'email',
     'phoneNumber',
     'startDate',
-    'Action',
+  
   ];
 
   ngOnInit(): void {

@@ -1,4 +1,4 @@
-export interface IDepartment {
+export interface IDepartment{
     _id?: string;
     departmentName?: string;
     numOfEmployees?: number;
@@ -14,7 +14,7 @@ export interface IDepartment {
       firstName:string
       lastName:string
       status:string
-      role:any[]
+      role?:any[]
     
      }  
    

@@ -22,6 +22,8 @@ export const loginFormlyFields: FormlyFieldConfig[] = [
                 key: "password",
                 type: "input",
                 templateOptions: {
+                    type:"password",
+
                     label: "Password",
                     placeholder:"Enter password",
                     required: true,

@@ -5,10 +5,12 @@ import { Role } from "../types/role";
 import { JWT_SECRET_KEY } from "../config";
 import { Department as DepartmentTypes } from "../types/department";
 import { Department } from "../model/department";
-
+import { PassportStatic } from "passport";
 //This verifies that the token sent by the user is valid
 
-module.exports = function (passport: any) {
+
+
+module.exports = function(passport:PassportStatic) {
   passport.use(
     new JWTstrategy(
       {
@@ -67,15 +69,10 @@ module.exports = function (passport: any) {
             startDate: req.body.startDate,
             nextOfKin: req.body.nextOfKin,
             idNumber: req.body.idNumber,
-            kraPin: req.body.kraPin,
             bankAccountNumber: req.body.bankAccountNumber,
             bankName: req.body.bankName,
             phoneNumber: req.body.phoneNumber,
             employeeIdNumber: req.body.employeeIdNumber,
-            taxRegNO: req.body.taxRegNO,
-            swiftCode: req.body.swiftCode,
-            branchName: req.body.branchName,
-            bankCode: req.body.bankCode,
             department: department._id
           });
 
