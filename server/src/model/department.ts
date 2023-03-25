@@ -1,14 +1,34 @@
-import { Schema, model, Document } from "mongoose";
+import mongoose,{ Schema, model, Document } from "mongoose";
+const { ObjectId } = Schema.Types;
 
 export interface DepartmentDocument extends Document {
-  department: string;
+  
+  departmentName: string;
+  numOfEmployees:number
+  user: mongoose.Types.ObjectId 
 }
 
 const departmentSchema = new Schema(
   {
-    numOfEmployees: Number,
-    department: String,
+    numOfEmployees:{
+      type:Number,
+      required: true,
+    },
+    departmentName:{
+      type:String,
+      required: true
+      
+     },
+     user: [{
+      type: ObjectId,
+      ref: "User",
+      required: true
+    }],
+
+    
+ 
   },
+  
 
   {
     timestamps: true,

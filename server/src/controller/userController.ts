@@ -25,14 +25,9 @@ export const getUserById = async (req: Request, res: Response) => {
     const { id } = req.params;
 
     const user = await User.findById(id)
-      .populate({
-        path: "leave",
-        select: "startDate endDate status",
-        model: "Leave",
-      })
+      .populate('leave')
       .populate("department");
 
-  
     if (!user) return res.status(404).json({ message: " User not found" });
     res.status(200).json({ data: user });
   } catch (err) {

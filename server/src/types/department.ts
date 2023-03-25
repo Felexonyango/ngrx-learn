@@ -1,6 +1,7 @@
 export type Department = {
     _id: string;
-    department: string;
+    departmentName: string;
+    numOfEmployees:number
   };
 
   

@@ -35,6 +35,7 @@ export class AllEmployeesComponent implements OnInit {
     'lastName',
     'email',
     'phoneNumber',
+    'department',
     'startDate',
   
   ];

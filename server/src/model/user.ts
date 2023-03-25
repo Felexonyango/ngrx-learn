@@ -15,7 +15,7 @@ export interface Iuser extends Document {
   employeeIdNumber: String;
   status: Boolean;
   role: Role[];
- 
+  
 
   comparePassword(candidatepassword: string): Promise<boolean>;
 }
@@ -87,9 +87,9 @@ const UserSchema: Schema = new Schema(
       default: 'user'
     },
     leave:[{
-      type: ObjectId,
-      ref:"Leave",
-      require:true
+      type: mongoose.Schema.Types.ObjectId,
+      ref:'Leave',
+
 
     }
   ],

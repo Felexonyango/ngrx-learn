@@ -26,7 +26,7 @@ export class DepartmentSettingComponent implements OnInit {
 
   departmentFields: FormlyFieldConfig[] = [
     {
-      key: 'department',
+      key: 'departmentName',
       type: 'input',
       templateOptions: {
         label: 'Company Department',

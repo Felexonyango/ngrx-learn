@@ -10,13 +10,16 @@ import { Leave, Status } from "../model/leave";
 
 export const create = async (req: Request, res: Response) => {
   try {
-    const { department, numOfEmployees } = req.body;
-    const depart = await Department.create({
-      department,
+    const { departmentName, numOfEmployees } = req.body;
+   
+    const department = await Department.create({
+      departmentName,
       numOfEmployees,
     });
-    await depart.save();
-    return res.status(200).json({ msg: "created department", depart });
+   await department.save();
+
+    
+    return res.status(200).json({ msg: "created department", department });
   } catch (err) {
     console.log(err);
     res.status(500).json({ msg: "Error while creating department" });
@@ -38,8 +41,8 @@ export const getdepartments = async (req: Request, res: Response) => {
 export const getdepartmentById = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-
-    const department = await Department.findById(id);
+    const department = await Department.findById(id).populate("user");
+    console.log(department)
     if (!department)
       return res.status(500).json({ msg: "There is no department " });
     return res.status(200).json({ msg: department });
@@ -58,12 +61,12 @@ export const deleteDepartment = async (req: Request, res: Response) => {
 
 export const updateDepartment = async (req: Request, res: Response) => {
   try {
-    const { department, numOfEmployees } = req.body;
+    const { departmentName, numOfEmployees } = req.body;
     const dep = await Department.findById(req.params.id).populate("user");
     if (!dep) return res.status(500).json({ msg: "There is no department" });
     const result = await Department.findOneAndUpdate(
       { _id: dep._id },
-      { $set: { department,numOfEmployees } },
+      { $set: { departmentName, numOfEmployees } },
       { returnOriginal: false }
     );
     if (result) {

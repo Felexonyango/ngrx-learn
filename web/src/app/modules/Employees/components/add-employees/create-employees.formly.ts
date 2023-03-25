@@ -50,7 +50,7 @@ export const createEmployeeFormlyFields: FormlyFieldConfig[] = [
                     label: "Department",
                     type: "input",
                     valueProp: '_id',
-                    labelProp: 'department',
+                    labelProp: 'departmentName',
 
                 },
             },

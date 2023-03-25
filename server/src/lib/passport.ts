@@ -48,7 +48,7 @@ module.exports = function(passport:PassportStatic) {
 
           // find the department by its name
           
-          const department = await Department.findById(req.body.department);
+          let department = await Department.findById(req.body.department);
           if (!department) {
             return done(null, false, { message: "Invalid department" });
           }
@@ -69,13 +69,20 @@ module.exports = function(passport:PassportStatic) {
             startDate: req.body.startDate,
             nextOfKin: req.body.nextOfKin,
             idNumber: req.body.idNumber,
-            bankAccountNumber: req.body.bankAccountNumber,
-            bankName: req.body.bankName,
             phoneNumber: req.body.phoneNumber,
             employeeIdNumber: req.body.employeeIdNumber,
             department: department._id
           });
 
+         
+          const result =  await newUser.save()
+          if(result){
+            await Department.findByIdAndUpdate(department.id,{
+              $push: { newUser: newUser._id },
+             });
+           
+          }
+        
           return done(null, newUser);
 
         } catch (error) {
