@@ -41,7 +41,7 @@ export const getdepartments = async (req: Request, res: Response) => {
 export const getdepartmentById = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const department = await Department.findById(id).populate("user");
+    const department = await Department.findById(id).populate("user","-password");
     console.log(department)
     if (!department)
       return res.status(500).json({ msg: "There is no department " });

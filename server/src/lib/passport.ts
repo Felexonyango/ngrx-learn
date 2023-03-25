@@ -77,8 +77,8 @@ module.exports = function(passport:PassportStatic) {
          
           const result =  await newUser.save()
           if(result){
-            await Department.findByIdAndUpdate(department.id,{
-              $push: { newUser: newUser._id },
+            await Department.findByIdAndUpdate(department._id,{
+              $push: { user: newUser._id },
              });
            
           }

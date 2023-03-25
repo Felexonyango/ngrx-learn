@@ -45,7 +45,7 @@ export const userleaves = async (req: Request, res: Response) => {
     const result = await Leave.find({})
       .where("user")
       .equals(user._id)
-      .populate("user")
+      .populate("user","-password")
       .populate("leavetype")
       .sort({ createdAt: -1 });
 
@@ -64,7 +64,7 @@ export const getleaveById = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const result = await Leave.findById(id)
-      .populate("user")
+      .populate("user","-password")
       .populate("leavetype");
     if (!result) return res.status(500).json({ msg: "You don't have leave" });
     return res
@@ -84,7 +84,7 @@ export const deleteleave = async (req: Request, res: Response) => {
 export const updateleave = async (req: Request, res: Response) => {
   try {
     const { leavetype, comment, startDate, endDate } = req.body;
-    const leave = await Leave.findById(req.params.id).populate("user");
+    const leave = await Leave.findById(req.params.id).populate("user","-password");
     if (!leave) return res.status(500).json({ msg: "There is no leave" });
     const result = await Leave.findOneAndUpdate(
       { _id: leave._id },
@@ -102,7 +102,7 @@ export const updateleave = async (req: Request, res: Response) => {
 export const leaveHistory = async (req: Request, res: Response) => {
   try {
     const result = await Leave.find({})
-      .populate("user")
+      .populate("user","-password")
       .populate("leavetype")
       .sort({ createdAt: -1 });
 
@@ -121,7 +121,7 @@ export const approveLeave = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const leave = await Leave.findById(id)
-      .populate("user")
+      .populate("user","-password")
       .populate("leavetype");
     if (!leave) {
       return res.status(404).json({ message: "Leave request not found" });
@@ -139,7 +139,7 @@ export const approveLeave = async (req: Request, res: Response) => {
 export const Approvedleaves = async (req: Request, res: Response) => {
   try {
     const result = await Leave.find({ status: Status.APPROVED })
-      .populate("user")
+      .populate("user","-password")
       .populate("leavetype")
       .sort({ createdAt: -1 });
 
@@ -158,7 +158,7 @@ export const ApprovedleavesByUser = async (req: Request, res: Response) => {
   try {
     const user = req.user as UserTypes;
     const result = await Leave.find({ user: user._id, status: Status.APPROVED })
-      .populate("user")
+      .populate("user","-password")
       .populate("leavetype")
       .sort({ createdAt: -1 });
 
@@ -178,7 +178,7 @@ export const getApprovedLeaveById = async (req: Request, res: Response) => {
     const { id } = req.params;
     const status = Status.APPROVED;
     const result = await Leave.findById(id, { status })
-      .populate("user")
+      .populate("user","-password")
       .populate("leavetype");
 
     if (!result) {
@@ -196,7 +196,7 @@ export const deleteApprovedLeaveById = async (req: Request, res: Response) => {
     const { id } = req.params;
     const result = await Leave.findById(id, {
       status: Status.APPROVED,
-    }).populate("user");
+    }).populate("user","-password");
 
     if (result) {
       return res.status(404).json({ msg: "No approved leave  available" });
@@ -213,7 +213,7 @@ export const updateApprovedLeave = async (req: Request, res: Response) => {
     const { id } = req.params;
 
     const leave = await Leave.findById(id, { status: Status.APPROVED })
-      .populate("user")
+      .populate("user","-password")
       .populate("leavetype");
     if (!leave)
       return res.status(500).json({ msg: "There is no leave approved" });
@@ -236,7 +236,7 @@ export const PendinLeavesByUser = async (req: Request, res: Response) => {
   try {
     const user = req.user as UserTypes;
     const result = await Leave.find({ user: user._id, status: Status.PENDING })
-      .populate("user")
+      .populate("user","-password")
       .populate("leavetype")
       .sort({ createdAt: -1 });
 
@@ -254,7 +254,7 @@ export const PendinLeavesByUser = async (req: Request, res: Response) => {
 export const PendinLeaves = async (req: Request, res: Response) => {
   try {
     const result = await Leave.find({ status: Status.PENDING })
-      .populate("user")
+      .populate("user","-password")
       .populate("leavetype")
       .sort({ createdAt: -1 });
     if (!result) {
@@ -273,7 +273,7 @@ export const getPendingLeaveById = async (req: Request, res: Response) => {
     const { id } = req.params;
     const status = Status.PENDING;
     const result = await Leave.findById(id, { status })
-      .populate("user")
+      .populate("user","-password")
       .populate("leavetype");
 
     if (!result) {
@@ -291,7 +291,7 @@ export const deletePendingLeaveById = async (req: Request, res: Response) => {
     const { id } = req.params;
     const result = await Leave.findById(id, {
       status: Status.PENDING,
-    }).populate("user");
+    }).populate("user","-password");
 
     if (result) {
       return res.status(404).json({ msg: "No Pending  leave  available" });
@@ -308,7 +308,7 @@ export const updatePendingLeave = async (req: Request, res: Response) => {
     const { id } = req.params;
 
     const leave = await Leave.findById(id, { status: Status.PENDING })
-      .populate("user")
+      .populate("user","-password")
       .populate("leavetype");
     if (!leave)
       return res.status(500).json({ msg: "There is no pending leave" });
