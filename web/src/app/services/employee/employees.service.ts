@@ -7,6 +7,7 @@ import {environment} from '../../../environments/environment'
 
 import {IAdminSummary, IEmployee, IEmployeeSummary} from '../../model/employees'
 import { HTTPResponse } from '../../model/HTTPResponse'
+import { ILeaves } from 'src/app/model/leave'
 
 @Injectable({
   providedIn: 'root',
@@ -39,8 +40,8 @@ export class EmployeeService {
   }
 
 
-  getEmployeeByID(employeeId: string): Observable<IEmployee>{
-    return this.http.get<IEmployee>(
+  getEmployeeByID(employeeId: string): Observable<HTTPResponse<IEmployee>>{
+    return this.http.get<HTTPResponse<IEmployee>>(
       `${environment.server_Url}user/${employeeId}`
     )
   }

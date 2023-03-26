@@ -41,6 +41,7 @@
     "@ngrx/store-devtools": "^14.3.2",
     "@ngx-formly/bootstrap": "^6.0.1",
     "@ngx-formly/core": "^6.0.1",
+    "@ngx-formly/primeng": "^6.1.3",
     "@popperjs/core": "^2.10.2",
     "bootstrap": "^5.2.3",
     "chart.js": "^3.9.1",

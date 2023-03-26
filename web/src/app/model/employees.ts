@@ -2,8 +2,8 @@ import { ILeaves } from "./leave"
 
 export interface IEmployee {
     _id?:string,
-    bankAccNumber?: number
-    bankName?: string
+    firstname?:string
+    lastname?:string
     department?: {
       _id?: string
       departmentName?: string
@@ -12,14 +12,13 @@ export interface IEmployee {
     employeeIdNumber?: string
     idNumber?: number
     taxRegNO?: string
+    gender?:string
     name?: string
     nextOfKin?: string
     phoneNumber?: number
     startDate?: Date
     status?: string
     role?: any[]
-    isDarkTheme?: boolean
-    authItems?: any
     leave?:ILeaves[]
  
   }

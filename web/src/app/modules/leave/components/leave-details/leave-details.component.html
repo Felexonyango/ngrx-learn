@@ -1,2 +1,67 @@
+<div class="animated fadeIn">
+    <div class="d-flex">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex mt-2">
+              <div class="col-6">
+                <div class="d-flex">
+                  <div class="col-6">
+                    <strong>Leave Type:</strong>
+                  </div>
+                  <div class="col-6 text-mute">
+                    {{ leave?.leavetype.leavetype ||'...'| titlecase}}
+                    
+                  </div>
+                </div>
+  
+                <div class="d-flex">
+                  <div class="col-6">
+                    <strong> Applied By: </strong>
+                  </div>
+                  <div class="col-6 text-mute">
+                    {{ leave?.user.firstname ||'...'  |titlecase }} {{ leave?.user?.lastname ||'...' | titlecase }}
+                    <!-- {{ project?.members?.length || '--' }} -->
+                  </div>
+                </div>
+                <div class="d-flex">
+                    <div class="col-6">
+                      <strong>Start Date: </strong>
+                    </div>
+                    <div class="col-6 text-mute">
+                      {{ leave?.startDate | date }}
+                    </div>
+                  </div>
+                  <div class="d-flex">
+                    <div class="col-6">
+                      <strong>End Date: </strong>
+                    </div>
+                    <div class="col-6 text-mute">
+                      {{ leave?.endDate || "--" }}
+                    </div>
+                  </div>
+                <div class="d-flex">
+                  <div class="col-6">
+                    <strong>Status: </strong>
+                  </div>
+                  <div class="col-6 text-mute">
+                    {{ leave?.status || "--" }}
+                  </div>
+                </div>
+                <div class="d-flex">
+                  <div class="col-6">
+                    <strong> Reason: </strong>
+                  </div>
+                  <div class="col-6 d-flex align-items-center">
+                    {{ leave?.comment || "--" }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<p>{{leave$ | async  |json}}</p>
+

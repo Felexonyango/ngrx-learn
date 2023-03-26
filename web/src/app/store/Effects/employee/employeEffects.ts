@@ -68,34 +68,34 @@ export class EmployeeEffect {
     );
   });
 
-
-  getSingleEmployee$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(ROUTER_NAVIGATION),
-      filter((r: RouterNavigatedAction) => {
-        return r.payload.routerState.url.startsWith('/employees/employee');
-      }),
-      map((r: RouterNavigatedAction) => {
-        return r.payload.routerState['params']['id'];
-      }),
-      withLatestFrom(this.store.select(getEmployees)),
-      switchMap(([id, employees]) => {
-        if (!employees.length) {
-          return this.EmployeeService.getEmployeeByID(id).pipe(
-            map((employee) => {
-              const employeeData = [{ ...employee, id }];
-              tap((obj)=>console.log(obj,'dedhehdjh'))
-              return EmployeeActionTypes.loadEmployeesSuccess({employees: employeeData});
-            }),
-            catchError((error) =>
-            of(EmployeeActionTypes.loadEmployeeFailure({ error }))
-          )
-          );
-        }
-        return of(dummyAction());
-      })
-    );
-  });
+//to get employeeById
+  // getSingleEmployee$ = createEffect(() => {
+  //   return this.actions$.pipe(
+  //     ofType(ROUTER_NAVIGATION),
+  //     filter((r: RouterNavigatedAction) => {
+  //       return r.payload.routerState.url.startsWith('/employees/employee');
+  //     }),
+  //     map((r: RouterNavigatedAction) => {
+  //       return r.payload.routerState['params']['id'];
+  //     }),
+  //     withLatestFrom(this.store.select(getEmployees)),
+  //     switchMap(([id, employees]) => {
+  //       if (!employees.length) {
+  //         return this.EmployeeService.getEmployeeByID(id).pipe(
+  //           map((employee) => {
+  //             const employeeData = [{ ...employee, id }];
+  //             tap((obj)=>console.log(obj,'dedhehdjh'))
+  //             return EmployeeActionTypes.loadEmployeesSuccess({employees: employeeData});
+  //           }),
+  //           catchError((error) =>
+  //           of(EmployeeActionTypes.loadEmployeeFailure({ error }))
+  //         )
+  //         );
+  //       }
+  //       return of(dummyAction());
+  //     })
+  //   );
+  // });
 
 
   updatePost$ = createEffect(() => {

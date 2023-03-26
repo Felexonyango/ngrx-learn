@@ -26,9 +26,17 @@ export const create = async (req: Request, res: Response) => {
     });
     const result = await leave.save();
     if (result) {
-      await User.findByIdAndUpdate(user._id, {
-        $push: { leave: leave },
-      }).populate("leave");
+      const updatedUser = await User.findByIdAndUpdate(user._id, {
+        $push: { leave: leave._id },
+      });
+      if(updatedUser){
+        await updatedUser.populate({
+          path: "leave",
+          model: "Leave",
+          populate: { path: "leavetype", model: "LeaveType" }
+        }).execPopulate();
+
+      }
     }
     
 

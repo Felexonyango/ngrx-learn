@@ -77,7 +77,6 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     AvatarGeneratorComponent,
     FileUploadComponent,
     FileListComponent,
-
     AvatarGeneratorComponent,
   ],
 })

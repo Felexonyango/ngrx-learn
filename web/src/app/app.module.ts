@@ -149,9 +149,11 @@ const APP_CONTAINERS = [
       useClass: AuthInterceptor,
       multi: true,
     },
-   
+    { provide: History, useValue: window.history },
+
     {
       provide: LocationStrategy,
+
       useClass: HashLocationStrategy,
     },
     {

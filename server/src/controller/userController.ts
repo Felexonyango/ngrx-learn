@@ -24,14 +24,12 @@ export const getUserById = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
-    const user = await User.findById(id)
+    const result = await User.findById(id)
       .populate('leave')
       .populate("department");
-
-      console.log(`Found user: ${user}`);
       
-    if (!user) return res.status(404).json({ message: " User not found" });
-    res.status(200).json({ result:"successfully retrived user ",  user: user });
+    if (!result) return res.status(404).json({ message: " User not found" });
+    res.status(200).json({ msg:"successfully retrived user ",result });
   } catch (err) {
     res.status(500).json({ error: err });
   }

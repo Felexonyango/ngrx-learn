@@ -7,7 +7,7 @@ import { LeaveTypeComponent } from './components/leave-type/leave-type.component
 import {TableModule} from 'primeng/table'
 import {CardModule} from 'primeng/card'
 import {DialogModule} from 'primeng/dialog'
-
+import { SharedModule } from 'src/app/shared/shared.module';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
@@ -46,6 +46,7 @@ import { ApprovedLeavesComponent } from './components/approved-leaves/approved-l
     FormlyModule,
     ReactiveFormsModule,
     FormsModule,
+    SharedModule,
   
     PaginatorModule,
     CalendarModule,

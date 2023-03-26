@@ -6,6 +6,7 @@ import { Paginator } from 'primeng/paginator';
 import { Observable, Subscription } from 'rxjs';
 import { IEmployee } from 'src/app/model/employees';
 import { ILeaves } from 'src/app/model/leave';
+import { EmployeeService } from 'src/app/services/employee/employees.service';
 import { LeaveService } from 'src/app/services/leave/leave.service';
 import { leaveActionType } from 'src/app/store/actions/leave/leave.action';
 
@@ -22,8 +23,8 @@ import { getleaves } from 'src/app/store/selector/leave/leave.selector';
 export class EmployeeDetailsComponent implements OnInit {
 subscription=new Subscription()
 leaves:ILeaves[]=[]
-   employee:Observable<IEmployee>
-   Ileaves: Observable<ILeaves[]>;
+   employee:IEmployee
+   Ileaves: ILeaves[];
 
   
    id:any
@@ -36,7 +37,6 @@ leaves:ILeaves[]=[]
 
   leaveTableColumns: string[] = [
     'leaveType',
-    
     'startDate',
     'EndDate',
     'status',
@@ -44,23 +44,50 @@ leaves:ILeaves[]=[]
   constructor(
     private leavService: LeaveService,
     private router: Router,
-    private route: ActivatedRoute,
+    private  employeeService: EmployeeService,
     private primengConfig: PrimeNGConfig,
     private leavestore: Store<LeaveState>,
     private  leaveService:LeaveService,
     private store: Store<State>,
+    private ActivatedRoute: ActivatedRoute
     ) { }
 
   ngOnInit(): void {
     
-    this.employee = this.store.select(getEmployeeById);
+    // this.employee = this.store.select(getEmployeeById);
     this.primengConfig.ripple = true;
-    this.getLeaveHistroy();
+
+   this.getEmployeeFromParam()
 }
 
 
 ngOnDestroy(): void {
   this.subscription.unsubscribe();
+}
+
+getEmployeeFromParam(): void {
+  this.subscription.add(
+      this.ActivatedRoute.params.subscribe({
+          next: (params) => {
+              const employeeById = params['employeeId'];
+              this.getEmployeeId(employeeById)
+              console.log(employeeById)
+              
+          },
+      })
+  );
+}
+getEmployeeId(employeeById:string){
+  this.subscription.add(
+     this.employeeService.getEmployeeByID(employeeById).subscribe({
+      next:(res)=>{
+  
+        this.employee=res.result
+        console.log(this.employee.leave)
+        
+      }
+     })
+  )
 }
  
 getLeaveDetails <T>(id:T){
@@ -69,10 +96,10 @@ getLeaveDetails <T>(id:T){
   );
 }
 
- getLeaveHistroy() {
-  this.Ileaves = this.leavestore.pipe(select(getleaves));
-  this.leavestore.dispatch(leaveActionType.loadleavesByuser());
-}
+//  getLeaveHistroy() {
+//   this.Ileaves = this.leavestore.pipe(select(getleaves));
+//   this.leavestore.dispatch(leaveActionType.loadleavesByuser());
+// }
 
 handleSelect(id: string) {
   this.router.navigate([`/leave/leaves/details/${id}`]);
