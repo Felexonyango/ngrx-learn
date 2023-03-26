@@ -11,7 +11,7 @@ export const LoadEmployees = createAction(
 
 export const loadEmployeesSuccess = createAction(
   '[Employees] Load All employees Success',
-  props<{ employees:IEmployee[]}>()
+  props<{  employees:IEmployee[]}>()
 );
 
 export const loadEmployeesFailure = createAction(

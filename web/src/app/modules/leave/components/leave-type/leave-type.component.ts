@@ -23,7 +23,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LeaveTypeComponent implements OnInit {
-  subscription: Subscription = new Subscription();
+  subscription = new Subscription();
   leaveTypes$: Observable<ILeaveType[]>;
   leaveType: ILeaveType;
   selectleavetype: Observable<ILeaveType>;
@@ -62,6 +62,9 @@ export class LeaveTypeComponent implements OnInit {
     this.getLeaveTypes();
   }
 
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
   showDialog() {
     this.display = true;
     this.errorMessage = '';

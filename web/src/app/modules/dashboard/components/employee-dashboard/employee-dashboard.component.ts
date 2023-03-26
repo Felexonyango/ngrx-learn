@@ -49,6 +49,9 @@ export class EmployeeDashboardComponent implements OnInit {
     this.getUserRole()
   }
 
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
    
 getUserRole() {
    const result= this.authservice.getRole()

@@ -41,6 +41,7 @@ leaves:Observable<ILeaves[]>
     this.getNewLeaveRequests()
   }
 
+  
   getNewLeaveRequests(){
     this.leaves = this.store.pipe(select(getleaves));
     //this.store.dispatch( leaveActionType.loadnewleaves() )

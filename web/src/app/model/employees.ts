@@ -1,3 +1,5 @@
+import { ILeaves } from "./leave"
+
 export interface IEmployee {
     _id?:string,
     bankAccNumber?: number
@@ -16,16 +18,10 @@ export interface IEmployee {
     startDate?: Date
     status?: string
     role?: any[]
-    branchName?: string
-    bankCode?: string
-    swiftCode?: string
     isDarkTheme?: boolean
     authItems?: any
-    employeeType?: {
-      _id?: string
-      typeName: string
-      workingHours: string
-    }
+    leave?:ILeaves[]
+ 
   }
 
   export interface IAdminSummary {

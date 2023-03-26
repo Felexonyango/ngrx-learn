@@ -17,7 +17,7 @@ export class DepartmentSettingComponent implements OnInit {
   departments$: Observable<IDepartment[]>;
   department: IDepartment;
   errorMessage: string;
-  subscription: Subscription = new Subscription();
+  subscription = new Subscription();
   displayDepartment: boolean = false;
   isEdit: boolean = false;
   options: FormlyFormOptions = {};
@@ -50,6 +50,9 @@ export class DepartmentSettingComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDepartments();
+  }
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   addDepartment() {

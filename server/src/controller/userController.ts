@@ -28,8 +28,10 @@ export const getUserById = async (req: Request, res: Response) => {
       .populate('leave')
       .populate("department");
 
+      console.log(`Found user: ${user}`);
+      
     if (!user) return res.status(404).json({ message: " User not found" });
-    res.status(200).json({ data: user });
+    res.status(200).json({ result:"successfully retrived user ",  user: user });
   } catch (err) {
     res.status(500).json({ error: err });
   }

@@ -83,9 +83,9 @@ export class EmployeeEffect {
         if (!employees.length) {
           return this.EmployeeService.getEmployeeByID(id).pipe(
             map((employee) => {
-              tap((obj)=>console.log(obj,'dedhehdjh'))
               const employeeData = [{ ...employee, id }];
-            return EmployeeActionTypes.loadEmployeesSuccess({employees: employeeData});
+              tap((obj)=>console.log(obj,'dedhehdjh'))
+              return EmployeeActionTypes.loadEmployeesSuccess({employees: employeeData});
             }),
             catchError((error) =>
             of(EmployeeActionTypes.loadEmployeeFailure({ error }))

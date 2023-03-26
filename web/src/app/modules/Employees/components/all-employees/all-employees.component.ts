@@ -44,6 +44,9 @@ export class AllEmployeesComponent implements OnInit {
     this.employees$ = this.store.pipe(select(getEmployees));
     this.store.dispatch(EmployeeActionTypes.LoadEmployees());
   }
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 
   onView(id: string) {
     this.router.navigate(['/employees/employee', id]);
