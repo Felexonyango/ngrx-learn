@@ -1,0 +1,120 @@
+<div class="animated fadeIn">
+  <div class="modal-header">
+    <!-- <h4 class="modal-title">Upload Files</h4> -->
+    <h4 class="modal-title">
+      {{
+        utilService.doesURLHaveText("user-profile")
+          ? "Upload Photo"
+          : "Upload Files"
+      }}
+    </h4>
+  </div>
+  <div class="modal-body">
+
+
+    <div class="grid">
+      <div class="col-8 d-flex justify-content-end align-items-center">
+        <label class="btn btn-default p-0 file-input">
+         
+          <input
+            type="file"
+            multiple
+            (change)="selectFiles($event)"
+            #fileUpload
+          />
+        </label>
+        <button
+        pButton
+          class="btn btn-lg btn-sibasi-secondary"
+          (click)="fileUpload.click()"
+        >
+          {{
+            selectedFiles?.length
+              ? selectedFiles?.length + " files selected"
+              : "No file selected yet"
+          }}
+          <i class="fas fa-paperclip"></i>
+        </button>
+      </div>
+      <div class="col-4 d-flex justify-content-start align-items-center">
+        <button
+        pButton
+        label="Upload"
+          class="btn btn-sibasi-primary btn-sm"
+          *ngIf="!utilService.doesURLHaveText('dashboard')"
+          [disabled]="!selectedFiles || uploaded"
+          (click)="uploadFiles()"
+        >
+        
+        </button>
+        <button
+        pButton
+        label="Import"
+          class="btn btn-sibasi-primary btn-sm"
+          *ngIf="utilService.doesURLHaveText('dashboard')"
+          [disabled]="!selectedFiles || uploaded"
+          (click)="readAsJson()"
+        >
+        
+        </button>
+      </div>
+    </div>
+    <div *ngFor="let progressInfo of progressInfos" class="mb-2">
+      <span>{{ progressInfo.fileName }}</span>
+      <div class="progress">
+        <div
+          class="progress-bar progress-bar-striped bg-sibasi-primary"
+          role="progressbar"
+          attr.aria-valuenow="{{ progressInfo.value }}"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          [ngStyle]="{ width: progressInfo.value + '%' }"
+        >
+          {{ progressInfo.value }}%
+        </div>
+      </div>
+    </div>
+    <div *ngIf="message.length" class="alert alert-secondary my-3" role="alert">
+      <ul *ngFor="let msg of message; let i = index">
+        <li>{{ msg }}</li>
+      </ul>
+    </div>
+    <div
+      class="progress mt-4"
+      *ngIf="utilService.doesURLHaveText('dashboard') && isLoaded"
+    >
+      <div
+        class="progress-bar progress-bar-striped progress-bar-animated"
+        role="progressbar"
+        aria-valuenow="75"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        [style.width]="value + '%'"
+      >
+        {{ value }}%
+      </div>
+    </div>
+    <div
+      role="alert"
+      class="alert alert-secondary my-3"
+      *ngIf="
+        utilService.doesURLHaveText('dashboard') && isLoaded && value === 100
+      "
+    >
+      <ul>
+        <li>Imported the file successfully</li>
+      </ul>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+    pButton
+    label="Close"
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="ref.close('Close click')"
+    >
+      
+    </button>
+  </div>
+</div>

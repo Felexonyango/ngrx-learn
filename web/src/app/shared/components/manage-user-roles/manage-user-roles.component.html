@@ -1,0 +1,30 @@
+<div class="mt-4">
+    <p-table [value]="userRolesArray">
+        <ng-template pTemplate="body" let-role>
+            <tr class="p-selectable-row">
+                <td>
+                    {{ role?.roleName }}
+                </td>
+                <td>
+                    <button
+                        pButton
+                        icon="pi pi-user-plus"
+                        label="Assign"
+                        *ngIf="!checkIfModuleHasRole(role)"
+                        (click)="updateModuleRoles(role)"
+                        class="p-button-outlined mb-2 mr-2"
+                    ></button>
+                    <button
+                        pButton
+                        icon="pi pi-user-plus"
+                        label="Assigned"
+                        *ngIf="checkIfModuleHasRole(role)"
+                        class="p-button mb-2 mr-2"
+                        disabled
+                    ></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+
+</div>

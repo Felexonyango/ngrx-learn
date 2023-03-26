@@ -44,7 +44,7 @@ import {
   ListGroupModule,
   NavModule,
   ProgressModule,
-  SharedModule,
+
   SidebarModule,
   TabsModule,
   UtilitiesModule,
@@ -63,7 +63,7 @@ import {EmployeeService} from './services/employee/employees.service'
 import { JwtModule } from '@auth0/angular-jwt';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
-
+import {SharedModule} from './shared/shared.module'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterSerializer } from './store/router/custom-serializer';
 
@@ -94,6 +94,7 @@ const APP_CONTAINERS = [
     DropdownModule,
     GridModule,
     HeaderModule,
+    SharedModule,
     SidebarModule,
     IconModule,
     PerfectScrollbarModule,
@@ -104,7 +105,6 @@ const APP_CONTAINERS = [
     ButtonGroupModule,
     ReactiveFormsModule,
     SidebarModule,
-    SharedModule,
     TabsModule,
     ListGroupModule,
     ProgressModule,

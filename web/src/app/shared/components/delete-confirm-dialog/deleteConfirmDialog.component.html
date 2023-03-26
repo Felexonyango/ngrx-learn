@@ -1,0 +1,24 @@
+<div class="grid mt-2">
+    <i class="pi pi-info-circle" style="font-size: 2rem"></i>
+    <p class="ml-2">Are you sure you want to delete this record?</p>
+</div>
+<div class="flex justify-content-end mt-4">
+    <button
+        pButton
+        icon="pi pi-times"
+        label="No"
+        (click)="deleteConfirmation(false)"
+        class="p-button-text mb-2"
+    ></button>
+    <button
+        pButton
+        icon="pi pi-check"
+        label="Yes"
+        (click)="deleteConfirmation(true)"
+        class="p-button-primary mb-2"
+    ></button>
+</div>
+
+<!-- <app-confirm-dialog
+    [message]="'Are you sure you want to delete this record?'"
+></app-confirm-dialog> -->

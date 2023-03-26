@@ -1,0 +1,24 @@
+<!-- <div class="row">
+    <div class="col-auto pr-1">
+        <div
+            class="circle"
+            [ngStyle]="{'background-color':  circleColor, 'width': (circleSize + 'px'), 'height': (circleSize + 'px') }"
+        >
+            <img *ngIf="!showInitials" [src]="photoUrl">
+
+            <div
+                *ngIf="showInitials"
+                class="initials"
+                [ngStyle]="{'font-size': (initialsSize + 'em')}"
+            >
+                {{ initials }}
+            </div>
+        </div>
+    </div>
+    <div class="col pl-0" *ngIf="showName && name">
+        {{name.split(' ')[0]}}
+    </div>
+</div> -->
+
+
+<p-avatar [label]="initials" styleClass="mr-2" [size]="circleSize" [style]="{'background-color':'#7382a1', 'color': '#ffffff'}" shape="circle"></p-avatar>
