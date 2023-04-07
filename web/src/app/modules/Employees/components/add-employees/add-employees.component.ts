@@ -58,7 +58,8 @@ export class AddEmployeesComponent implements OnInit {
   }
   updateOptions() {
     this.fields = createEmployeeFormlyFields;
-    this.fields[1].fieldGroup[1].props.options =
+    console.log(this.fields)
+    this.fields[0].fieldGroup[4].props.options =
       this.leaveService.getAllDepartments();
   }
 
@@ -68,5 +69,5 @@ export class AddEmployeesComponent implements OnInit {
         next: (res) => {},
       })
     );
-  }
+  } 
 }
