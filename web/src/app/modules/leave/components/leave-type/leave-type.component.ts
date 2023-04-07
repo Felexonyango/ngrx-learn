@@ -8,8 +8,11 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { FormlyFieldConfig } from '@ngx-formly/core';
+import { MessageService } from 'primeng/api';
+import { DialogService } from 'primeng/dynamicdialog';
 import { Observable, Subscription } from 'rxjs';
 import { ILeaveType } from 'src/app/model/leave';
+import { DeleteConfirmDialogComponent } from 'src/app/shared/components/delete-confirm-dialog/deleteConfirmDialog.component';
 import { LeaveTypes } from 'src/app/store/actions/leave/leavetype.actions';
 import { LeaveTypeState } from 'src/app/store/reducer/leave/leavetype.reducer';
 import {
@@ -20,6 +23,7 @@ import {
   selector: 'app-leave-type',
   templateUrl: './leave-type.component.html',
   styleUrls: ['./leave-type.component.scss'],
+  providers:[DialogService,MessageService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LeaveTypeComponent implements OnInit {
@@ -56,7 +60,10 @@ export class LeaveTypeComponent implements OnInit {
       },
     },
   ];
-  constructor(private store: Store<LeaveTypeState>) {}
+  constructor(
+    private store: Store<LeaveTypeState>,
+    private dialogService:DialogService
+    ) {}
 
   ngOnInit(): void {
     this.getLeaveTypes();
@@ -74,10 +81,10 @@ export class LeaveTypeComponent implements OnInit {
     this.leaveType = this.form.value;
     const leaveType: ILeaveType = { ...this.form.value };
     this.store.dispatch(LeaveTypes.createLeaveType({ leaveType }));
+    this.getLeaveTypes();
     this.display = false;
     this.isEdit=false;  
     this.form.reset();
-    this.getLeaveTypes();
   }
 
   getLeaveTypes() {
@@ -105,6 +112,20 @@ export class LeaveTypeComponent implements OnInit {
     this.store.dispatch(LeaveTypes.deleteLeaveType({ id: id }));
   }
 
+  
+  public openDeleteDialog(leaveType: ILeaveType): void {
+    const ref = this.dialogService.open(DeleteConfirmDialogComponent, {
+      width: '30%',
+      height: '40%',
+      header: 'Delete Confirmation',
+    });
+
+    ref.onClose.subscribe((confirm) => {
+      if (confirm) {
+        this.deleteLeaveType(leaveType?._id);
+      }
+    });
+  }
   getLeavetypeById() {
     this.selectleavetype = this.store.select(getleaveTypeById);
     console.log(this.selectleavetype);

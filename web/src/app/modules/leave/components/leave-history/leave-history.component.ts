@@ -2,12 +2,14 @@ import { ChangeDetectionStrategy, Component, Input, OnInit, ViewChild } from '@a
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { PrimeNGConfig } from 'primeng/api';
+import { MessageService, PrimeNGConfig } from 'primeng/api';
+import { DialogService } from 'primeng/dynamicdialog';
 import { Paginator } from 'primeng/paginator';
 import { Observable, Subscription } from 'rxjs';
 import { IEmployee } from 'src/app/model/employees';
 import { ILeaves } from 'src/app/model/leave';
 import { LeaveService } from 'src/app/services/leave/leave.service';
+import { DeleteConfirmDialogComponent } from 'src/app/shared/components/delete-confirm-dialog/deleteConfirmDialog.component';
 import { leaveActionType } from 'src/app/store/actions/leave/leave.action';
 import { LeaveState } from 'src/app/store/reducer/leave/leaveReducer';
 import { getleaves } from 'src/app/store/selector/leave/leave.selector';
@@ -15,6 +17,7 @@ import { getleaves } from 'src/app/store/selector/leave/leave.selector';
   selector: 'app-leave-history',
   templateUrl: './leave-history.component.html',
   styleUrls: ['./leave-history.component.scss'],
+  providers:[DialogService,MessageService],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LeaveHistoryComponent implements OnInit {
@@ -30,7 +33,7 @@ export class LeaveHistoryComponent implements OnInit {
 
   constructor(
     private leavService: LeaveService,
-
+     private dialogService:DialogService,
     private router: Router,
     private route: ActivatedRoute,
     private primengConfig: PrimeNGConfig,
@@ -86,5 +89,18 @@ export class LeaveHistoryComponent implements OnInit {
 
   onView(id: any) {
     this.router.navigate([`/leave/leave-details/${id}`]);
+  }
+  public openDeleteDialog(approvedleaves: ILeaves): void {
+    const ref = this.dialogService.open(DeleteConfirmDialogComponent, {
+      width: '30%',
+      height: '35%',
+      header: 'Delete Confirmation',
+    });
+
+    ref.onClose.subscribe((confirm) => {
+      if (confirm) {
+        this.onDeleteleave(approvedleaves?._id);
+      }
+    });
   }
 }

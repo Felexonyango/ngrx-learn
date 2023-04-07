@@ -1,12 +1,15 @@
 import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
+import { MessageService } from 'primeng/api';
+import { DialogService } from 'primeng/dynamicdialog';
 import { Paginator } from 'primeng/paginator';
 import { Subscription, Observable } from 'rxjs';
 import { IAdminSummary } from 'src/app/model/employees';
 import { ILeaves, Status } from 'src/app/model/leave';
 import { EmployeeService } from 'src/app/services/employee/employees.service';
 import { LeaveService } from 'src/app/services/leave/leave.service';
+import { DeleteConfirmDialogComponent } from 'src/app/shared/components/delete-confirm-dialog/deleteConfirmDialog.component';
 import { leaveActionType } from 'src/app/store/actions/leave/leave.action';
 import { LeaveState } from 'src/app/store/reducer/leave/leaveReducer';
 import { getleaves } from 'src/app/store/selector/leave/leave.selector';
@@ -15,6 +18,7 @@ import { getleaves } from 'src/app/store/selector/leave/leave.selector';
   selector: 'app-admin-dashboard',
   templateUrl: './admin-dashboard.component.html',
   styleUrls: ['./admin-dashboard.component.scss'],
+  providers:[MessageService,DialogService],
   changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class AdminDashboardComponent implements OnInit {
@@ -45,7 +49,8 @@ export class AdminDashboardComponent implements OnInit {
     private store: Store<LeaveState>,
     private router: Router,
     private employeeservice:EmployeeService,
-    private leaveService:LeaveService
+    private leaveService:LeaveService,
+    public dialogService: DialogService,
     
     ) {}
 
@@ -100,6 +105,21 @@ export class AdminDashboardComponent implements OnInit {
 
    }
 
+
+
+   public openDeleteDialog(pendingleaves:ILeaves): void {
+    const ref = this.dialogService.open(DeleteConfirmDialogComponent, {
+      width: "30%",
+      height: "35%",
+        header: "Delete Confirmation",
+    });
+
+    ref.onClose.subscribe((confirm) => {
+        if (confirm) {
+            this.onDeleteleave(pendingleaves?._id);
+        }
+    });
+}
 
    
   }

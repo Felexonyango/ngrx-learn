@@ -40,6 +40,7 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     ImageDisplayComponent,
     AvatarGeneratorComponent,
     ConfirmDialogComponent,
+    DeleteConfirmDialogComponent
    
   ],
   imports: [
@@ -78,6 +79,8 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     FileUploadComponent,
     FileListComponent,
     AvatarGeneratorComponent,
+    DeleteConfirmDialogComponent
+
   ],
 })
 export class SharedModule {}

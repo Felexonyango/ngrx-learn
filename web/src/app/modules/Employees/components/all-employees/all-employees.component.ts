@@ -10,11 +10,15 @@ import { routerCancelAction } from '@ngrx/router-store';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { EmployeeService } from 'src/app/services/employee/employees.service';
+import { DeleteConfirmDialogComponent } from 'src/app/shared/components/delete-confirm-dialog/deleteConfirmDialog.component';
+import { DialogService } from 'primeng/dynamicdialog';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-all-employees',
   templateUrl: './all-employees.component.html',
   styleUrls: ['./all-employees.component.scss'],
+  providers:[DialogService,MessageService],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AllEmployeesComponent implements OnInit {
@@ -25,7 +29,8 @@ export class AllEmployeesComponent implements OnInit {
   constructor(
     private store: Store<State>, 
     private router: Router,
-    private employeeservice:EmployeeService
+    private employeeservice:EmployeeService,
+    private dialogService:DialogService
     ) {}
 
   @ViewChild('paginator', { static: true }) paginator: Paginator;
@@ -58,6 +63,20 @@ export class AllEmployeesComponent implements OnInit {
   onEditBtnClick(id: string) {
     this.router.navigate(['/employees/employee-edit', id]);
   }
+
+  public openDeleteDialog(employees:IEmployee): void {
+    const ref = this.dialogService.open(DeleteConfirmDialogComponent, {
+        width: "40%",
+        height: "40%",
+        header: "Delete Confirmation",
+    });
+
+    ref.onClose.subscribe((confirm) => {
+        if (confirm) {
+            this.onDeleteEmployee(employees?._id);
+        }
+    });
+}
 
 
 }
