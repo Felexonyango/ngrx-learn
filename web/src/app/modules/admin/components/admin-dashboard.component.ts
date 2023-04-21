@@ -30,7 +30,7 @@ export class AdminDashboardComponent implements OnInit {
   leaveRequests$: Observable<ILeaves[]>
   pendingleaves$: Observable<ILeaves[]>
 
-
+leave:ILeaves
 
   @ViewChild('paginator', { static: true }) paginator: Paginator;
 
@@ -96,6 +96,8 @@ export class AdminDashboardComponent implements OnInit {
     this.subscription.add(
       this.leaveService.approveLeave(leaveId,{status: leaveStatus }).subscribe({
         next:(res)=>{ 
+          this.leave=res.result
+          console.log(this.leave)
           this.getPendingleaves()
         }
       

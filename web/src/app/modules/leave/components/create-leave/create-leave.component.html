@@ -1,3 +1,5 @@
+
+<p-toast></p-toast>
 <div class="grid">
     <div class="col-12">
       <form [formGroup]="applyLeaveForm">
@@ -12,17 +14,7 @@
      
   
     </div>
-    
-    <!-- <div class="mr-2">
-      <button
-        type="button"
-        pButton
-        label="Save"
-        class="md-raised md-success "
-        (click)="submitApplication()"
-      ></button>
-    </div>
-  </div> -->
+  
   <div class="text-end">
     <button type="button" class="btn btn-primary"
    (click)="submitApplication()"
@@ -35,8 +27,5 @@
   
   
   
-  <div class="gridpt-5 text-red-700" *ngIf="response">
-    {{ response }}
-  </div>
-
+  
   

@@ -61,7 +61,7 @@ export class AllEmployeesComponent implements OnInit {
   }
 
   onEditBtnClick(id: string) {
-    this.router.navigate(['/employees/employee-edit', id]);
+    this.router.navigate(['/employees/edit-employee', id]);
   }
 
   public openDeleteDialog(employees:IEmployee): void {

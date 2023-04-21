@@ -21,6 +21,8 @@ import { LeaveHistoryComponent } from './components/leave-history/leave-history.
 import { AllLeaveRequestsComponent } from './components/all-leave-requests/all-leave-requests.component';
 import { LeaveDetailsComponent } from './components/leave-details/leave-details.component';
 import { ApprovedLeavesComponent } from './components/approved-leaves/approved-leaves.component';
+import { ToastModule } from "primeng/toast";
+import { MessagesModule } from 'primeng/messages';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,8 @@ import { ApprovedLeavesComponent } from './components/approved-leaves/approved-l
     ReactiveFormsModule,
     FormsModule,
     SharedModule,
-  
+    ToastModule,    
+    MessagesModule ,
     PaginatorModule,
     CalendarModule,
     FormlyBootstrapModule ,

@@ -14,18 +14,18 @@ export interface ILeaveType {
 
   export interface ILeaves {
     _id?: string
-    leavetype: {
-      leavetype: string
+    leavetype?: {
+      leavetype?: string
       _id: string
     }
-    comment: string
-    startDate: Date
-    endDate: Date
-    status: Status
-    user: {
+    comment?: string
+    startDate?: Date
+    endDate?: Date
+    status?: Status
+    user?: {
       _id?:string
-      firstname: string
-      lastname: string
+      firstname?: string
+      lastname?: string
     }
     menuItems?:any
   

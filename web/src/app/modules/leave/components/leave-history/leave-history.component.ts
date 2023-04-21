@@ -85,7 +85,9 @@ export class LeaveHistoryComponent implements OnInit {
   onDeleteleave(id: any) {
     this.store.dispatch(leaveActionType.deleteleave({ id}))
   }
-  onEditBtnClick(id: any) {}
+  onEditBtnClick(id:string) {
+    this.router.navigate([`/leave/edit-leaveId/${id}`]);
+  }
 
   onView(id: any) {
     this.router.navigate([`/leave/leave-details/${id}`]);

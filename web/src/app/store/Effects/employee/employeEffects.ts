@@ -98,27 +98,23 @@ export class EmployeeEffect {
   // });
 
 
-  updatePost$ = createEffect(() => {
+  update$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(EmployeeActionTypes.updateEmployee),
-      switchMap(({employee}) => {
-        return this.EmployeeService.updateEmployee(employee).pipe(
+      switchMap(({ update }) => {
+        return this.EmployeeService.updateEmployee(String(update.id), update.changes).pipe(
           map((data) => {
-            const updateEmployee: Update<IEmployee> = {
-              id: employee._id,
-              changes: {
-                ...employee,
-              },
-            };
-            return updateEmployeeSuccess({ update: updateEmployee});
+            return updateEmployeeSuccess({ update });
+          }),
+          tap((action) => {
+            console.log(action.update.id);
           })
         );
       }),
-      catchError((error) =>
-      of(EmployeeActionTypes.updateEmployeeFailure({ error }))
-    )
+      catchError((error) => of(EmployeeActionTypes.updateEmployeeFailure({ error })))
     );
   });
+  
 
 }
 

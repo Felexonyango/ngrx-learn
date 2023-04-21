@@ -47,6 +47,7 @@ import {
 
   SidebarModule,
   TabsModule,
+  ToastModule,
   UtilitiesModule,
 } from '@coreui/angular';
 import {DialogModule} from 'primeng/dialog'
@@ -110,6 +111,7 @@ const APP_CONTAINERS = [
     ProgressModule,
     BadgeModule,
     ListGroupModule,
+    ToastModule,
     CardModule,
     HttpClientModule,
     DialogModule,

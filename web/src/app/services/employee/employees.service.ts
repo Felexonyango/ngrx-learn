@@ -1,6 +1,6 @@
 import {HttpClient, HttpEvent, HttpRequest} from '@angular/common/http'
 import {Injectable} from '@angular/core'
-import {map, Observable, of} from 'rxjs'
+import {catchError, map, Observable, of, throwError} from 'rxjs'
 
 
 import {environment} from '../../../environments/environment'
@@ -34,10 +34,12 @@ export class EmployeeService {
       `${environment.server_Url}user`
     )
   }
-  updateEmployee(employee: IEmployee):Observable<HTTPResponse<IEmployee>> {
-    const url = `${environment.server_Url}user/${employee._id}`
-    return this.http.post<HTTPResponse<IEmployee>>(url,employee)
+  updateEmployee(employeeId: string, changes: Partial<IEmployee>): Observable<HTTPResponse<IEmployee>> {
+    console.log(employeeId)
+    const url = `${environment.server_Url}user/${employeeId}`;
+    return this.http.patch<HTTPResponse<IEmployee>>(url, changes);
   }
+  
 
 
   getEmployeeByID(employeeId: string): Observable<HTTPResponse<IEmployee>>{

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
 
-import { map } from 'rxjs/operators';
+import { map, retry } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 import {
@@ -20,16 +20,36 @@ import { HTTPResponse } from 'src/app/model/HTTPResponse';
 export class LeaveService {
   constructor(private http: HttpClient) {}
 
-  getLeaveTypes<T>(): Observable< T[]> {
+  getLeaveTypes(): Observable<ILeaveType[]> {
     return this.http
-      .get<HTTPResponse<T[]>>(`${environment.server_Url}leavetype`)
+      .get<HTTPResponse<ILeaveType[]>>(`${environment.server_Url}leavetype`)
       .pipe(
         map((res) => {
           return res.result;
         })
       );
   }
-  
+
+  getLeaveType(): Observable<HTTPResponse<ILeaveType[]>> {
+    return this.http.get<HTTPResponse<ILeaveType[]>>(
+      `${environment.server_Url}leavetype`
+    );
+  }
+  getLeaveTypeById(leaveTypeId: string): Observable<HTTPResponse<ILeaveType>> {
+    return this.http.get<HTTPResponse<ILeaveType>>(
+      `${environment.server_Url}leavetype${leaveTypeId}`
+    );
+  }
+
+  updateLeavetype(
+    leaveTypeId: string,
+    leaveType: {}
+  ): Observable<HTTPResponse<ILeaveType>> {
+    return this.http.post<HTTPResponse<ILeaveType>>(
+      `${environment.server_Url}leavetype${leaveTypeId}`,
+      leaveType
+    );
+  }
 
   getLeaveRequestsByUser(): Observable<HTTPResponse<ILeaves[]>> {
     return this.http.get<HTTPResponse<ILeaves[]>>(
@@ -76,8 +96,6 @@ export class LeaveService {
     );
   }
 
-
-
   approveLeave(
     leaveId: string,
     leave: Partial<ILeaves>
@@ -99,19 +117,19 @@ export class LeaveService {
     );
   }
 
-  createLeaveRequest(leave: ILeaves): Observable<HTTPResponse<ILeaves>> {
+  createLeaveRequest(leave: {}): Observable<HTTPResponse<ILeaves>> {
     return this.http.post<HTTPResponse<ILeaves>>(
       `${environment.server_Url}leave`,
       leave
     );
   }
-  updateLeaveRequest<T>(
-    leaveId: T,
-    ileavetype: T
-  ): Observable<HTTPResponse<T>> {
-    return this.http.post<HTTPResponse<T>>(
+  updateLeaveRequest(
+    leaveId: string,
+    leaves: {}
+  ): Observable<HTTPResponse<ILeaves>> {
+    return this.http.post<HTTPResponse<ILeaves>>(
       `${environment.server_Url}leave/${leaveId}`,
-      ileavetype
+      leaves
     );
   }
 

@@ -12,6 +12,7 @@ import { MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Observable, Subscription } from 'rxjs';
 import { ILeaveType } from 'src/app/model/leave';
+import { LeaveService } from 'src/app/services/leave/leave.service';
 import { DeleteConfirmDialogComponent } from 'src/app/shared/components/delete-confirm-dialog/deleteConfirmDialog.component';
 import { LeaveTypes } from 'src/app/store/actions/leave/leavetype.actions';
 import { LeaveTypeState } from 'src/app/store/reducer/leave/leavetype.reducer';
@@ -62,7 +63,8 @@ export class LeaveTypeComponent implements OnInit {
   ];
   constructor(
     private store: Store<LeaveTypeState>,
-    private dialogService:DialogService
+    private dialogService:DialogService,
+    private leaveService: LeaveService
     ) {}
 
   ngOnInit(): void {
@@ -87,20 +89,25 @@ export class LeaveTypeComponent implements OnInit {
     this.form.reset();
   }
 
+  UpdateLeaveType(){
+    const leavetypeModel ={...this.model}
+    this.subscription.add(
+      this.leaveService.updateLeavetype(this.leaveType?._id,leavetypeModel).subscribe({
+        next:(res)=>{
+          this.isEdit=true
+          this.display = true;
+          this.model=res.result
+        }
+      })
+    )
+  }
   getLeaveTypes() {
     this.leaveTypes$ = this.store.pipe(select(getleaveTypes));
     this.store.dispatch(LeaveTypes.LoadleaveTypes());
 
     console.log(this.leaveTypes$);
   }
-  UpdateLeaveType() {
-    console.log('test')
-    
-    
-    this.isEdit=true
-    this.display = true;
-  
-  }
+
   updateLeavetypeModal(leave_id: string) {
     this.display = true;
     this.isEdit = true;

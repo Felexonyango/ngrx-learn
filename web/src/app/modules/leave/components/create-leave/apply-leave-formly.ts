@@ -20,10 +20,10 @@ export const applyLeaveFormlyFields: FormlyFieldConfig[] = [
   },
 
   {
-    fieldGroupClassName: 'grid',
+    fieldGroupClassName: 'row',
     fieldGroup: [
       {
-        className: ' col-6',
+        className: 'col-6',
         key: 'startDate',
         type: 'input',
         templateOptions: {
@@ -36,7 +36,7 @@ export const applyLeaveFormlyFields: FormlyFieldConfig[] = [
         },
       },
       {
-        className: ' col-6',
+        className: 'col-6',
         key: 'endDate',
         type: 'input',
         templateOptions: {
@@ -47,17 +47,17 @@ export const applyLeaveFormlyFields: FormlyFieldConfig[] = [
       },
     ],
   },
-
   {
-    className: 'col-12',
-    key: 'comment',
-    type: 'input',
+    className:'col-12',
+    key: "comment",
+    type: "textarea",
     templateOptions: {
-      label: 'Comments',
-      type: 'text',
-      placeholder: 'comment',
-
-      required: true,
+        placeholder: "Comment",
+        type: "text",
+        label: "Comment",
+        required: true,
+        rows: 5,
     },
-  },
+},
+
 ];

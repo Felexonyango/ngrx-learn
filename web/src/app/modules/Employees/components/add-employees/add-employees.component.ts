@@ -10,6 +10,8 @@ import { State } from 'src/app/store/reducer/employee/employeeReducer';
 import { Store } from '@ngrx/store';
 import { EmployeeActionTypes } from '../../../../store/actions/employee/employee.action';
 import { LeaveTypeService } from 'src/app/services/leave/leave-type.service';
+import { EmployeeService } from 'src/app/services/employee/employees.service';
+import { Update } from '@ngrx/entity';
 @Component({
   selector: 'app-add-employees',
   templateUrl: './add-employees.component.html',
@@ -21,19 +23,19 @@ export class AddEmployeesComponent implements OnInit {
   employee: IEmployee;
   departments: IDepartment[] = [];
   addEmployeeForm = new FormGroup({});
-  model={};
   employeeModel= {};
   subscriptions = new Subscription();
   options: FormlyFormOptions = {};
   fields: FormlyFieldConfig[] = [];
-
+  employeeId: string; 
   isEdit: boolean;
 
   constructor(
     private store: Store<State>,
-    private route: ActivatedRoute,
     private router: Router,
-    private leaveService: LeaveTypeService
+    private leaveService: LeaveTypeService,
+    private activatedRoute:ActivatedRoute,
+    private employeeService: EmployeeService
   ) {}
 
   ngOnInit(): void {
@@ -41,18 +43,26 @@ export class AddEmployeesComponent implements OnInit {
 
     this.updateOptions();
     this.getDepartments();
+    this.getEmployeeFromParam()
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
   
-
-  createEmployee() {
+  createOrUpdateEmployee() {
     this.employee = this.addEmployeeForm.value;
-    const employee: IEmployee = { ...this.addEmployeeForm.value };
-  
-    this.store.dispatch(EmployeeActionTypes.createEmployee({ employee }));
+    const employee: IEmployee = { 
+      ...this.addEmployeeForm.value,
+    
+    };
+    const update: Update<IEmployee> = {
+      id: this.employeeId, 
+      changes: employee
+    };
+    this.isEdit
+      ? this.store.dispatch(EmployeeActionTypes.updateEmployee({ update }))
+      : this.store.dispatch(EmployeeActionTypes.createEmployee({ employee }));
     this.router.navigateByUrl('/employees/all-employees');
     this.addEmployeeForm.reset();
   }
@@ -66,8 +76,38 @@ export class AddEmployeesComponent implements OnInit {
   getDepartments() {
     this.subscription.add(
       this.leaveService.getAllDepartments().subscribe({
-        next: (res) => {},
+        next: (res) => {
+          console.log("ddh")
+        },
       })
     );
   } 
+  getEmployeeFromParam(): void {
+    
+    this.subscription.add(
+      this.activatedRoute.params.subscribe({
+        next: (param) => {
+           this.employeeId = param['employeeId'];
+          this.getEmployeeById(this.employeeId);
+          console.log(this.employeeId);
+        },
+      })
+    );
+  }
+  getEmployeeById(employeeId: string) {
+    this.subscription.add(
+      this.employeeService.getEmployeeByID(employeeId).subscribe({
+        next: (res) => {
+          this.employee = res.result;
+          console.log(this.employee);
+          this.employee._id = employeeId; 
+          // Set the employee ID from the parameter
+          console.log(this.employee._id)
+          this.employeeModel = res.result;
+          this.isEdit=true;
+        },
+      })
+    );
+  }
+  
 }

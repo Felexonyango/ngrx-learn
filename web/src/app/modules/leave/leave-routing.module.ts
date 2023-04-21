@@ -38,6 +38,10 @@ const routes: Routes = [
     component: CreateLeaveComponent
   },
   {
+    path: 'edit-leaveId/:leaveId',
+    component: CreateLeaveComponent
+  },
+  {
     path:'leave-setting',
     component:LeaveSettingsComponent
   }

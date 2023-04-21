@@ -40,7 +40,7 @@ export const create = async (req: Request, res: Response) => {
     }
     
 
-    return res.status(200).json({ msg: "created", leave });
+    return res.status(200).json({ msg: "Succesfully created leave", leave });
   } catch (err) {
     console.log(err);
     res.status(500).json({ msg: "Error while creating leave" });
