@@ -63,8 +63,8 @@ export const leaveReducer = createReducer(
     loaded: true,
   })),
 
-  on(leaveActionType.updateleaveSuccess, (state, { leaves }) => {
-    return adapter.updateOne(leaves, state);
+  on(leaveActionType.updateleaveSuccess, (state, { update }) => {
+    return adapter.updateOne(update, state);
   }),
 
   on(leaveActionType.updateleaveFailure, (state, { error }) => ({

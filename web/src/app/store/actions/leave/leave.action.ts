@@ -43,12 +43,13 @@ export const createleaveFailure = createAction(
 
 export const updateleave = createAction(
   '[leave] Update leave',
-  props<{ leaves: ILeaves }>()
+  props<{ update: Update<ILeaves> }>()
 );
+
 
 export const updateleaveSuccess = createAction(
   '[leave] Update  leave Success',
-  props<{ leaves: Update<ILeaves> }>()
+  props<{ update: Update<ILeaves> }>()
 );
 
 export const updateleaveFailure = createAction(

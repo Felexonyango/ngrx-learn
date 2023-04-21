@@ -13,6 +13,8 @@ import { LeaveTypes } from 'src/app/store/actions/leave/leavetype.actions';
 import { getleaveTypes } from 'src/app/store/selector/leave/leavetype.selector';
 import { LeaveService } from 'src/app/services/leave/leave.service';
 import { MessageService } from 'primeng/api';
+import { leaveActionType } from 'src/app/store/actions/leave/leave.action';
+import { Update } from '@ngrx/entity';
 
 @Component({
   selector: 'app-create-leave',
@@ -36,6 +38,7 @@ export class CreateLeaveComponent implements OnInit {
   options: FormlyFormOptions = {};
   fields: FormlyFieldConfig[] = [];
   application;
+  leaveId:string
   isEdit = false;
   leaveType: ILeaveType[] = [];
 
@@ -43,7 +46,8 @@ export class CreateLeaveComponent implements OnInit {
     private leaveService: LeaveService,
     private messageService: MessageService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private store: Store<LeaveState>,
   ) {}
 
   ngOnInit(): void {
@@ -55,36 +59,53 @@ export class CreateLeaveComponent implements OnInit {
     this.subscription.unsubscribe();
   }
 
-  submitApplication() {
-    const leaveModel = this.applyLeaveForm.value;
-    const submitUrl = this.isEdit
-      ? this.leaveService.updateLeaveRequest(this.leave?._id, leaveModel)
-      : this.leaveService.createLeaveRequest(leaveModel);
-    this.subscription.add(
-      submitUrl.subscribe({
-        next: (res) => {
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Success',
-            detail: ' successfully created leave',
-          });
-          this.applyLeaveForm.reset();
-        },
-        complete: () => {
-          this.router.navigate(['/leave/request/history']);
-        },
-        error: (err) => {
-          this.messageService.add({
-            severity: 'warn',
-            summary: "Couldn't Add a leave",
-            detail: err?.error?.errors?.message
-              ? err?.error?.errors?.message
-              : '',
-          });
-        },
-      })
-    );
+  createOrUpdateleave(){
+    this.leave = this.applyLeaveForm.value;
+    const leaves: ILeaves = { 
+      ...this.applyLeaveForm.value,
+    };
+    const update: Update<ILeaves> = {
+      id: this.leaveId, 
+      changes: leaves
+    };
+    console.log(update);
+
+     this.isEdit
+    ? this.store.dispatch(leaveActionType.updateleave({ update }))
+    : this.store.dispatch(leaveActionType.createleave({ leaves }))
+  this.applyLeaveForm.reset();
+  this.router.navigate(['/leave/request/history']);
   }
+  // submitApplication() {
+  //   const leaveModel = this.applyLeaveForm.value;
+  //   const submitUrl = this.isEdit
+  //     ? this.leaveService.updateLeaveRequest(this.leave?._id, leaveModel)
+  //     : this.leaveService.createLeaveRequest(leaveModel);
+  //   this.subscription.add(
+  //     submitUrl.subscribe({
+  //       next: (res) => {
+  //         this.messageService.add({
+  //           severity: 'success',
+  //           summary: 'Success',
+  //           detail: ' successfully created leave',
+  //         });
+  //         this.applyLeaveForm.reset();
+  //       },
+  //       complete: () => {
+  //         this.router.navigate(['/leave/request/history']);
+  //       },
+  //       error: (err) => {
+  //         this.messageService.add({
+  //           severity: 'warn',
+  //           summary: "Couldn't Add a leave",
+  //           detail: err?.error?.errors?.message
+  //             ? err?.error?.errors?.message
+  //             : '',
+  //         });
+  //       },
+  //     })
+  //   );
+  // }
 
   updateOptions() {
     this.fields = applyLeaveFormlyFields;
@@ -107,6 +128,9 @@ export class CreateLeaveComponent implements OnInit {
         next: (param) => {
           const leaveId = param['leaveId'];
           this.getLeaveById(leaveId);
+          this.leaveId=leaveId
+          console.log(this.leaveId);
+
         },
       })
     );
@@ -117,6 +141,7 @@ export class CreateLeaveComponent implements OnInit {
         next: (res) => {
           this.leave = res.result;
           this.model = res.result;
+          this.leaveId=leaveId
           this.isEdit=true
         },
       })

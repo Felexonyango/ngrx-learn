@@ -16,7 +16,7 @@ import { LeaveTypeService } from '../../../services/leave/leave-type.service';
 import { LeaveTypeState } from '../../reducer/leave/leavetype.reducer';
 import { dummyAction } from '../../actions/leave/leavetype.actions';
 import { Update } from '@ngrx/entity';
-import { leaveActionType } from '../../actions/leave/leave.action';
+import { leaveActionType, updateleaveSuccess } from '../../actions/leave/leave.action';
 import { ILeaves } from '../../../model/leave';
 import { LeaveService } from '../../../services/leave/leave.service';
 
@@ -162,4 +162,23 @@ export class LeaveEFfect {
     catchError((error) => of(leaveActionType.ApproveleaveFailure({ error })))
   )
 );
+
+
+update$ = createEffect(() => {
+  return this.actions$.pipe(
+    ofType(leaveActionType.updateleave),
+    switchMap(({ update }) => {
+      return this.leaveService.updateLeaveRequest(String(update.id), update.changes).pipe(
+        map((data) => {
+          return updateleaveSuccess({ update });
+        }),
+        tap((action) => {
+          console.log(action.update.id);
+        })
+      );
+    }),
+    catchError((error) => of(leaveActionType.updateleaveFailure({ error })))
+  );
+});
+
 }

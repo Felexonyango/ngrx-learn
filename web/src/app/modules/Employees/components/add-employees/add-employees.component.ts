@@ -77,7 +77,7 @@ export class AddEmployeesComponent implements OnInit {
     this.subscription.add(
       this.leaveService.getAllDepartments().subscribe({
         next: (res) => {
-          console.log("ddh")
+          
         },
       })
     );
@@ -89,7 +89,7 @@ export class AddEmployeesComponent implements OnInit {
         next: (param) => {
            this.employeeId = param['employeeId'];
           this.getEmployeeById(this.employeeId);
-          console.log(this.employeeId);
+         
         },
       })
     );
