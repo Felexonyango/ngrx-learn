@@ -1,73 +1,33 @@
-   <div class="grid">
+
     <div class="col-12">
-      <div class="card widget-visitor-graph">
-        <div class="card-header">
-          <h5>Leave Types</h5>
-          <p-dialog
-            header="Title"
-            [(visible)]="display"  
-            [modal]="true"
-            [style]="{width: '50vw'}"
-          >
-            <ng-template pTemplate="header">
-              <p>{{ errorMessage }}</p>
-              
-            </ng-template>
-            <form [formGroup]="form" (ngSubmit)="createLeaveType()">
-              <formly-form
-                [model]="model"
-                [fields]="fields"
-                [form]="form"
-              ></formly-form>
-            </form>
-            <ng-template pTemplate="footer">
-              <button
-              pButton
-              *ngIf="!isEdit"
-              type="button"
-              class="p-button-raised"
-              label="Add Leave Type"
-              (click)="createLeaveType()"
-              [disabled]="form.invalid"
-            ></button>
-              <button
-                pButton
-                *ngIf="isEdit"
-                type="button"
-                class="p-button-raised"
-                (click)="UpdateLeaveType()"
-                [disabled]="form.invalid"
-                label="Edit department"
-              ></button>
-            </ng-template>
-          </p-dialog>
-          <button
-            pButton
-            type="button"
-            icon="pi pi-plus"
-            (click)="showDialog()"
-            class="p-button-raised p-button-rounded"
-            *ngIf="(leaveTypes$|async)?.length!== 0"
-          ></button>
-        </div>
+    
         <div class="graph-content grid" *ngIf="(leaveTypes$ |async)?.length !== 0">
           <div class="col-12 col-md-12">
             <div class="card">
               <p-table
                 [value]="leaveTypes$ | async"
-                [paginator]="true"
-                [rows]="5"
-                [rowHover]="true"
-                styleClass="p-datatable-gridlines"
-                [rows]="10"
+
+             
               >
-                <ng-template pTemplate="header">
-                  <tr>
-                    <th>Type of Leave</th>
-                    <th>Number of Days</th>
-                    <th>Action</th>
-                  </tr>
-                </ng-template>
+              <ng-template pTemplate="caption">
+                <div class="flex  ">
+                  <button pButton type="button" label="Add"  style="height: 40px;" class="p-button-outlined me-2" icon="pi pi-plus"  [routerLink]="['/leave/create-leaveType']"></button>
+                  <button pButton label="Export"  style="height: 40px;" class="p-button-outlined " icon="pi pi-file-excel" ></button> 
+                    
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+              <tr>
+                <th
+                  *ngFor="let column of tableColumns"
+                  [pSortableColumn]="column?.fieldName"
+                >
+                  {{ column?.displayName }}
+                  <p-sortIcon [field]="column?.fieldName"></p-sortIcon>
+                </th>
+                <th></th>
+              </tr>
+            </ng-template>
                 <ng-template pTemplate="body" let-leavetype>
                   <tr>
                     <td>{{ leavetype?.leavetype }}</td>
@@ -87,7 +47,7 @@
                           <li>
                             <a
                               class="dropdown-item"
-                              (click)="UpdateLeaveType()"
+                              (click)="edit(leavetype._id)"
                               >Edit
                             </a>
                           </li>
@@ -114,17 +74,10 @@
         >
           <div class="col-12">
             <h5>No departments currently</h5>
-            <button
-              pButton
-              type="button"
-              [label]="isEdit ? 'Edit leavetype' : 'New leavetype'"
-              icon="pi pi-plus"
-              (click)="showDialog()"
-              class="p-button-raised"
-            ></button>
+          
           </div>
         </div>
-      </div>
+      
     </div>
-  </div>
+
   

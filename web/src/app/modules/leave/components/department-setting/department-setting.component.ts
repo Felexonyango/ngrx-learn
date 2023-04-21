@@ -1,59 +1,55 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Update } from '@ngrx/entity';
 import { select, Store } from '@ngrx/store';
 import { FormlyFormOptions, FormlyFieldConfig } from '@ngx-formly/core';
 import { MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Observable, Subscription } from 'rxjs';
 import { IDepartment } from 'src/app/model/department';
+import { UtilService } from 'src/app/services/util/util.service';
 import { DeleteConfirmDialogComponent } from 'src/app/shared/components/delete-confirm-dialog/deleteConfirmDialog.component';
 import { DepartmentActionTypes } from 'src/app/store/actions/department/department.actions';
 import { DepartmentState } from 'src/app/store/reducer/department/departmentReducer';
-import { getdepartments } from 'src/app/store/selector/department/department.selector';
+import {
+  getdepartments,
+  selectDepartmentById,
+} from 'src/app/store/selector/department/department.selector';
 @Component({
   selector: 'app-department-setting',
   templateUrl: './department-setting.component.html',
   styleUrls: ['./department-setting.component.scss'],
-  providers:[DialogService,MessageService],
+  providers: [DialogService, MessageService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DepartmentSettingComponent implements OnInit {
   departments$: Observable<IDepartment[]>;
-  department: IDepartment;
-  errorMessage: string;
+  department: IDepartment[] = [];
   subscription = new Subscription();
-  displayDepartment: boolean = false;
-  isEdit: boolean = false;
-  options: FormlyFormOptions = {};
-  departmentForm = new FormGroup({});
-  departmentModel= {};
 
-  departmentFields: FormlyFieldConfig[] = [
+  tableColumns: {
+    fieldName: string;
+    displayName: string;
+  }[] = [
     {
-      key: 'departmentName',
-      type: 'input',
-      templateOptions: {
-        label: 'Company Department',
-        placeholder: 'department',
-        required: true,
-      },
+      fieldName: 'Department',
+      displayName: 'Department',
     },
     {
-      key: 'numOfEmployees',
-      type: 'input',
-      templateOptions: {
-        label: 'Enter number of   employees ', 
-        placeholder: 'Enter the number of employees',
-        required: true,
-      },
+      fieldName: 'Number of Employees',
+      displayName: 'Number of Employees',
     },
+   
+    
   ];
-  departmentId: string = '';
 
   constructor(
     private store: Store<DepartmentState>,
-    private dialogService:DialogService,
-    ) {}
+    private dialogService: DialogService,
+    private router: Router,
+    public utiliservice: UtilService
+  ) {}
 
   ngOnInit(): void {
     this.getDepartments();
@@ -62,43 +58,21 @@ export class DepartmentSettingComponent implements OnInit {
     this.subscription.unsubscribe();
   }
 
-  addDepartment() {
-    this.department = this.departmentForm.value;
-    const department: IDepartment = {
-      ...this.departmentForm.value,
-    };
-    this.store.dispatch(DepartmentActionTypes.createDepartment({ department }));
-
-    this.displayDepartment = false;
-    this.isEdit=false
-    this.departmentForm.reset();
-  }
-
   getDepartments() {
     this.departments$ = this.store.pipe(select(getdepartments));
     this.store.dispatch(DepartmentActionTypes.LoadDepartments());
   }
-  updateDepartment() {
-    this.isEdit=true
-  }
-  departmentDialogue() {
-    this.displayDepartment = true;
-  }
 
   handleSelect(id: string) {}
-  updateDepartmentModal(id: string) {
-    this.displayDepartment = true;
-    // this.departmentId=department_Id
-    this.isEdit = true;
-    // this.getDepartmentById(this.departmentId)
-  }
+
   deleteDepartment(id: string) {
     this.store.dispatch(DepartmentActionTypes.deleteDepartment({ id: id }));
   }
-  onViewDepartment(id:string){
+  onViewDepartment(id: string) {}
 
+  edit(id: string) {
+    this.router.navigate([`/leave/edit-department/${id}`]);
   }
-
   public openDeleteDialog(department: IDepartment): void {
     const ref = this.dialogService.open(DeleteConfirmDialogComponent, {
       width: '30%',
@@ -111,5 +85,10 @@ export class DepartmentSettingComponent implements OnInit {
         this.deleteDepartment(department?._id);
       }
     });
+  }
+  clear($event) {}
+
+  exportData() {
+    this.utiliservice.exportAsExcelFile(this.department, 'department');
   }
 }

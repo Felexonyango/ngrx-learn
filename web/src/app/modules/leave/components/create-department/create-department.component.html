@@ -1,0 +1,41 @@
+
+
+<div class="animated fadeIn">
+  <div class="card">
+    <div class="card-body">
+      <div class="container">
+        <div class="mt-4">
+          <form [formGroup]="departmentForm">
+            <formly-form
+              [model]="departmentModel"
+              [fields]="departmentFields"
+              [form]="departmentForm"
+            ></formly-form>
+          </form>
+        </div>
+
+        <div class="text-end mt-4">
+          <button
+            pButton
+            pRipple
+            type="button"
+            label="Cancel"
+            icon="pi pi-times"
+            class="p-button-danger me-2 "
+            style="height: 40px;"
+            (click)="utilService.goBack()"
+          ></button>
+          <button
+            [label]="isEdit?'Update': 'Save'"
+            pButton
+            type="button"
+            style="height: 40px;"
+            icon="pi pi-plus"
+            [disabled]="!departmentForm.valid"
+            (click)="CreateOrUpdateDepartment()"
+          ></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

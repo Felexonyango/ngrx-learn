@@ -6,11 +6,15 @@
           <i class="fas fa-hospital-user fa-2x sibasi-primary"></i>
           <b class="h5 font-weight-bold"> All leave history</b>
         </div>
-
-        <div class="mt-1"></div>
         <div class="card-body">
           <div class="table-responsive">
-            <p-table [value]="leaves | async" [paginator]="true" [rows]="10">
+            <p-table [value]="leaves | async">
+              <ng-template pTemplate="caption">
+                <div class="flex  ">
+                  <button pButton label="Export"  style="height: 40px;" class="p-button-outlined " icon="pi pi-file-excel" ></button> 
+                    
+                </div>
+            </ng-template>
               <ng-template pTemplate="header">
                 <tr>
                   <th

@@ -8,7 +8,7 @@ import {TableModule} from 'primeng/table'
 import {CardModule} from 'primeng/card'
 import {DialogModule} from 'primeng/dialog'
 import { SharedModule } from 'src/app/shared/shared.module';
-
+import {TabViewModule} from 'primeng/tabview';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
 import { CreateLeaveComponent } from './components/create-leave/create-leave.component';
@@ -23,6 +23,9 @@ import { LeaveDetailsComponent } from './components/leave-details/leave-details.
 import { ApprovedLeavesComponent } from './components/approved-leaves/approved-leaves.component';
 import { ToastModule } from "primeng/toast";
 import { MessagesModule } from 'primeng/messages';
+import { CreateDepartmentComponent } from './components/create-department/create-department.component';
+import { CreateLeaveTypeComponent } from './components/create-leave-type/create-leave-type.component';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,9 @@ import { MessagesModule } from 'primeng/messages';
     LeaveHistoryComponent,
     AllLeaveRequestsComponent,
     LeaveDetailsComponent,
-    ApprovedLeavesComponent
+    ApprovedLeavesComponent,
+    CreateDepartmentComponent,
+    CreateLeaveTypeComponent
   
 
   ],
@@ -43,13 +48,14 @@ import { MessagesModule } from 'primeng/messages';
     LeaveRoutingModule,
     TableModule,
     CardModule,
-    
+    TabViewModule,
     DialogModule,
     FormlyModule,
     ReactiveFormsModule,
     FormsModule,
     SharedModule,
     ToastModule,    
+    ButtonModule,
     MessagesModule ,
     PaginatorModule,
     CalendarModule,

@@ -5,7 +5,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { MessageService } from 'primeng/api';
@@ -32,40 +32,32 @@ export class LeaveTypeComponent implements OnInit {
   leaveTypes$: Observable<ILeaveType[]>;
   leaveType: ILeaveType;
   selectleavetype: Observable<ILeaveType>;
-  isEdit: boolean = false;
-  display: boolean = false;
-  errorMessage: string = '';
-  form = new FormGroup({});
-  model= {};
-  id: string;
-  fields: FormlyFieldConfig[] = [
+
+  tableColumns: {
+    fieldName: string;
+    displayName: string;
+  }[] = [
     {
-      className: 'col-6',
-      key: 'leavetype',
-      type: 'input',
-      templateOptions: {
-        label: 'Leave Type Name',
-        placeholder: 'Casual Leave',
-        required: true,
-      },
+      fieldName: 'Department',
+      displayName: 'Department',
     },
     {
-      key: 'numberOfDays',
-      type: 'input',
-      templateOptions: {
-        label: 'Number of leave days',
-        placeholder: '10',
-        required: true,
-        type: 'number',
-        min: 1,
-      },
+      fieldName: 'Number of Employees',
+      displayName: 'Number of Employees',
     },
+   
+    
   ];
+
   constructor(
     private store: Store<LeaveTypeState>,
     private dialogService:DialogService,
-    private leaveService: LeaveService
+  
+    private leaveService: LeaveService,
+    private router:Router
     ) {}
+
+
 
   ngOnInit(): void {
     this.getLeaveTypes();
@@ -74,33 +66,8 @@ export class LeaveTypeComponent implements OnInit {
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
-  showDialog() {
-    this.display = true;
-    this.errorMessage = '';
-    this.form.reset();
-  }
-  createLeaveType() {
-    this.leaveType = this.form.value;
-    const leaveType: ILeaveType = { ...this.form.value };
-    this.store.dispatch(LeaveTypes.createLeaveType({ leaveType }));
-    this.getLeaveTypes();
-    this.display = false;
-    this.isEdit=false;  
-    this.form.reset();
-  }
 
-  UpdateLeaveType(){
-    const leavetypeModel ={...this.model}
-    this.subscription.add(
-      this.leaveService.updateLeavetype(this.leaveType?._id,leavetypeModel).subscribe({
-        next:(res)=>{
-          this.isEdit=true
-          this.display = true;
-          this.model=res.result
-        }
-      })
-    )
-  }
+  
   getLeaveTypes() {
     this.leaveTypes$ = this.store.pipe(select(getleaveTypes));
     this.store.dispatch(LeaveTypes.LoadleaveTypes());
@@ -108,12 +75,7 @@ export class LeaveTypeComponent implements OnInit {
     console.log(this.leaveTypes$);
   }
 
-  updateLeavetypeModal(leave_id: string) {
-    this.display = true;
-    this.isEdit = true;
-    this.id = leave_id;
-    this.getLeavetypeById();
-  }
+
 
   deleteLeaveType(id: string) {
     this.store.dispatch(LeaveTypes.deleteLeaveType({ id: id }));
@@ -136,5 +98,8 @@ export class LeaveTypeComponent implements OnInit {
   getLeavetypeById() {
     this.selectleavetype = this.store.select(getleaveTypeById);
     console.log(this.selectleavetype);
+  }
+  edit(id: string) {
+    this.router.navigate([`/leave/edit-leaveType/${id}`]);
   }
 }

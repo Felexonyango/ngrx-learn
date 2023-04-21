@@ -9,6 +9,7 @@ import { Observable, Subscription } from 'rxjs';
 import { IEmployee } from 'src/app/model/employees';
 import { ILeaves } from 'src/app/model/leave';
 import { LeaveService } from 'src/app/services/leave/leave.service';
+import { UtilService } from 'src/app/services/util/util.service';
 import { DeleteConfirmDialogComponent } from 'src/app/shared/components/delete-confirm-dialog/deleteConfirmDialog.component';
 import { leaveActionType } from 'src/app/store/actions/leave/leave.action';
 import { LeaveState } from 'src/app/store/reducer/leave/leaveReducer';
@@ -35,6 +36,7 @@ export class LeaveHistoryComponent implements OnInit {
     private leavService: LeaveService,
      private dialogService:DialogService,
     private router: Router,
+    public utilservice:UtilService,
     private route: ActivatedRoute,
     private primengConfig: PrimeNGConfig,
     private store: Store<LeaveState>
@@ -105,4 +107,5 @@ export class LeaveHistoryComponent implements OnInit {
       }
     });
   }
+
 }

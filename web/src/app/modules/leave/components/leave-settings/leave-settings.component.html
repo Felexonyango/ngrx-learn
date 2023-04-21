@@ -1,15 +1,16 @@
 
  
-  
-  <div class="grid mt-3">
-    <div class="col-12 md:col-6">
-      <app-department-setting></app-department-setting>
-    </div>
-    <div class="col-12 md:col-6">
-      <app-leave-type></app-leave-type>
-    </div>
-  </div>
-  <div>
+
+    <p-tabView>
+      <p-tabPanel header="Department">
+          <app-department-setting></app-department-setting>
+      </p-tabPanel>
+      <p-tabPanel header="Leave Type">
+          <div class="col-12">
+             <app-leave-type></app-leave-type>
+          </div>
+      </p-tabPanel>
+  </p-tabView>
    
   
 

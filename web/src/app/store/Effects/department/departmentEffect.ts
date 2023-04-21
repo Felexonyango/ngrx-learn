@@ -43,6 +43,22 @@ export class DepartmentEFfect {
       )
     )
   );
+  loadDepartment$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(DepartmentActionTypes.loadDepartment),
+    switchMap((action) =>
+      this.leaveTypeService.getDepartment(action.id).pipe(
+        map((response) =>
+          DepartmentActionTypes.loadDepartmentSuccess({department:response.result} )
+        ),
+        catchError((error) =>
+          of(DepartmentActionTypes.loadDepartmentFailure({ error }))
+        )
+      )
+    )
+  )
+);
+
 
   createDepartment$ = createEffect(() =>
     this.actions$.pipe(
@@ -74,55 +90,21 @@ export class DepartmentEFfect {
     );
   });
 
-//   updateDepartment$ = createEffect(() => {
-//     return this.actions$.pipe(
-//       ofType(DepartmentActionTypes.updateDepartment),
-//       mergeMap(({ department }) =>
-//         this.leaveTypeService.updateDepartment(department).pipe(
-//           map((data) => {
-//             const updateDepartment: Update<IDepartment> = {
-//               id: department?._id,
-//               changes: {
-//                 ...department,
-//               },
-//             };
-//             return DepartmentActionTypes.updateDepartmentSuccess({
-//               department: updateDepartment,
-//             });
-//           }),
-//           catchError((error) =>
-//             of(LeaveTypes.updateLeaveTypeFailure({ error }))
-//           )
-//         )
-//       )
-//     );
-//   });
-
-    // getSingleEmployee$ = createEffect(() => {
-    //   return this.actions$.pipe(
-    //     ofType(ROUTER_NAVIGATION),
-    //     filter((r: RouterNavigatedAction) => {
-    //       return r.payload.routerState.url.startsWith('/employees/employee');
-    //     }),
-    //     map((r: RouterNavigatedAction) => {
-    //       return r.payload.routerState['params']['id'];
-    //     }),
-    //     withLatestFrom(this.store.select(getleaveTypes)),
-    //     switchMap(([id, leaveType]) => {
-    //       if (!leaveType.length) {
-    //         return this.leaveTypeService.getLeavetypeByID(id).pipe(
-    //           map((ileaveType) => {
-    //             const leaveTypeData = [{ ...ileaveType, id }];
-    //           return LeaveTypes.loadLeaveTypesSuccess({leaveType:leaveTypeData});
-    //           }),
-    //           catchError((error) =>
-    //           of(LeaveTypes.loadLeaveTypesFailure({ error }))
-    //         )
-    //         );
-    //       }
-    //       return of(dummyAction());
-    //     })
-    //   );
-    // });
+  updateDepartment$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(DepartmentActionTypes.updateDepartment),
+      mergeMap(({ update }) =>
+        this.leaveTypeService.updateDepartment(String(update.id), update.changes).pipe(
+          map((data) => {
+      
+            return DepartmentActionTypes.updateDepartmentSuccess({ update });
+          }),
+          catchError((error) =>
+            of(DepartmentActionTypes.updateDepartmentFailure({ error }))
+          )
+        )
+      )
+    );
+  });
 
 }

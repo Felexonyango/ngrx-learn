@@ -20,15 +20,28 @@
                   [form]="addEmployeeForm"
                 ></formly-form>
               </form>
-          <div class="text-end">
-              <button type="button" class="btn btn-primary"
-             (click)="createOrUpdateEmployee()"
-              [disabled]="!addEmployeeForm.valid"
-              >
-                
-                {{ isEdit ? "Update" : "Create" }}
-              </button>
+              <div class="text-end mt-4">
+                <button
+                  pButton
+                  pRipple
+                  type="button"
+                  label="Cancel"
+                  icon="pi pi-times"
+                  class="p-button-danger me-2 "
+                  style="height: 40px;"
+                  (click)="utilService.goBack()"
+                ></button>
+                <button
+                  [label]="isEdit?'Update': 'Save'"
+                  pButton
+                  type="button"
+                  style="height: 40px;"
+                  icon="pi pi-plus"
+                  [disabled]="!addEmployeeForm.valid"
+                  (click)="createOrUpdateEmployee()"
+                ></button>
               </div>
+        
            
           </div>
         </div>

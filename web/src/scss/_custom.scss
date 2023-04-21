@@ -442,3 +442,108 @@ body {
 
 
 }
+
+
+.app-body {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  overflow-x: hidden;
+}
+
+.app-body .main {
+  flex: 1;
+  min-width: 0;
+}
+
+body {
+  .p-inputtext {
+      width: 100% !important;
+      padding: 10px;
+      border: 1px solid var(--unnamed-color-e7e7e7);
+      opacity: 1;
+  }
+
+  .p-dropdown {
+      width: 100% !important;
+  }
+
+  .p-table {
+      width: 100% !important;
+  }
+
+
+
+  #circle {
+      background: lightblue;
+      border-radius: 50%;
+      width: fit-content;
+      height: fit-content;
+  }
+
+  // **********************avatar*****************************
+  .p-avatar.p-avatar-xl {
+      width: 10rem !important;
+      height: 10rem !important;
+  }
+
+  .p-multiselect {
+      width: 100%;
+  }
+
+  .icon-dashboard-container {
+      display: flex;
+      justify-content: end;
+
+      .icon-dashboard {
+          color: #fff;
+          width: 50px;
+          height: 50px;
+          // padding: 12px;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+
+      .logo img {
+          height: 50px !important;
+      }
+
+      .layout-menu-wrapper .menu-logo .app-name img {
+          height: 50px !important;
+      }
+  }
+
+  /******************* INPUT FIELD CSS *******************/
+
+  .field-space-btwn {
+      .p-inputtext {
+          &:not(.p-dropdown-label) {
+              width: 100%;
+              margin-top: 1em;
+              margin-bottom: 1em;
+          }
+      }
+
+      .p-dropdown {
+          width: 100% !important;
+          margin-top: 1em;
+          margin-bottom: 1em;
+      }
+  }
+
+  .p-inputtext {
+      width: 100%;
+  }
+
+  .inputfield {
+      font-size: 1rem;
+      color: var(--text-color);
+      background: var(--surface-overlay);
+      padding: 0.5rem 0.5rem;
+      border: 1px solid var(--surface-border);
+      appearance: none;
+      border-radius: 3px;
+  }
+}

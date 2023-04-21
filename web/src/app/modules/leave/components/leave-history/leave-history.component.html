@@ -8,17 +8,19 @@
           <b class="h5 font-weight-bold"> Leave history</b>
         </div>
     
-   <div class="mt-1">
+   <div class="mt-0">
     
     </div>
      <div class="card-body"> 
       <div class="table-responsive">
-       
-        <p-paginator
-          #paginator>
-        </p-paginator>
-
         <p-table [value]="Ileaves | async ">
+          <ng-template pTemplate="caption">
+            <div class="flex  ">
+              <button pButton type="button" label="Add"  style="height: 40px;" class="p-button-outlined me-2" icon="pi pi-plus"  [routerLink]="['/leave/apply-leave']"></button>
+              <button pButton label="Export"  style="height: 40px;" class="p-button-outlined " icon="pi pi-file-excel" ></button> 
+                
+            </div>
+        </ng-template>
           <ng-template pTemplate="header">
             <tr>
               <th
@@ -52,13 +54,6 @@
                       <a class="dropdown-item"   (click)="onView(leave?._id)"
                         >View</a
                       >
-                    </li>
-                    <li>
-                      <a
-                        class="dropdown-item"
-                        (click)="onEditBtnClick(leave?._id) "
-                        >Edit
-                      </a>
                     </li>
                     <li>
                       <a

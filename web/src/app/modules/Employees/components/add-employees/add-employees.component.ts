@@ -12,6 +12,7 @@ import { EmployeeActionTypes } from '../../../../store/actions/employee/employee
 import { LeaveTypeService } from 'src/app/services/leave/leave-type.service';
 import { EmployeeService } from 'src/app/services/employee/employees.service';
 import { Update } from '@ngrx/entity';
+import { UtilService } from 'src/app/services/util/util.service';
 @Component({
   selector: 'app-add-employees',
   templateUrl: './add-employees.component.html',
@@ -35,7 +36,8 @@ export class AddEmployeesComponent implements OnInit {
     private router: Router,
     private leaveService: LeaveTypeService,
     private activatedRoute:ActivatedRoute,
-    private employeeService: EmployeeService
+    private employeeService: EmployeeService,
+    public utilService:UtilService
   ) {}
 
   ngOnInit(): void {

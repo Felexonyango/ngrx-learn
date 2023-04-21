@@ -7,6 +7,9 @@ import { LeaveDetailsComponent } from './components/leave-details/leave-details.
 import { LeaveHistoryComponent } from './components/leave-history/leave-history.component';
 import { LeaveSettingsComponent } from './components/leave-settings/leave-settings.component';
 import { ApprovedLeavesComponent } from './components/approved-leaves/approved-leaves.component';
+import { DepartmentSettingComponent } from './components/department-setting/department-setting.component';
+import { CreateDepartmentComponent } from './components/create-department/create-department.component';
+import { CreateLeaveTypeComponent } from './components/create-leave-type/create-leave-type.component';
 
 const routes: Routes = [
 
@@ -44,6 +47,22 @@ const routes: Routes = [
   {
     path:'leave-setting',
     component:LeaveSettingsComponent
+  },
+  {
+    path:"create-department",
+    component: CreateDepartmentComponent
+  },
+  {
+    path:"edit-department/:departmentId",
+    component: CreateDepartmentComponent
+  },
+  {
+    path:'create-leaveType',
+    component:CreateLeaveTypeComponent
+  },
+  {
+    path:'edit-leaveType/:leaveTypeId',
+    component:CreateLeaveTypeComponent
   }
 ];
 

@@ -11,8 +11,8 @@ import { ILeaveType } from '../../model/leave';
 export class LeaveTypeService {
   constructor(private http: HttpClient) {}
 
-  createLeavetype<T>(leavetype: T): Observable<HTTPResponse<T|undefined>> {
-    return this.http.post<HTTPResponse<T>>(
+  createLeavetype(leavetype: ILeaveType): Observable<HTTPResponse<ILeaveType>> {
+    return this.http.post<HTTPResponse<ILeaveType>>(
       `${environment.server_Url}leavetype/create`,
       leavetype
     );
@@ -32,8 +32,8 @@ export class LeaveTypeService {
     );
   }
 
-  getLeavetypeByID(id: string): Observable<ILeaveType> {
-    return this.http.get<ILeaveType>(
+  getLeavetypeByID(id: string): Observable<HTTPResponse<ILeaveType>> {
+    return this.http.get<HTTPResponse<ILeaveType>>(
       `${environment.server_Url}leavetype/${id}`
     );
   }
@@ -42,12 +42,11 @@ export class LeaveTypeService {
       `${environment.server_Url}leavetype/${id}`
     );
   }
-  updateLeavetype(leaveType: ILeaveType): Observable<HTTPResponse<ILeaveType>> {
-    const url = `${environment.server_Url}leavetype/${leaveType._id}`;
-    return this.http.post<HTTPResponse<ILeaveType>>(url, leaveType);
+  updateLeavetype(leaveTypeId:string,
+    leaveType:ILeaveType): Observable<HTTPResponse<ILeaveType>> {
+    const url = `${environment.server_Url}leavetype/${leaveTypeId}`;
+    return this.http.patch<HTTPResponse<ILeaveType>>(url, leaveType);
   }
-
-  //department
 
   getAllDepartments<T>(): Observable<T[]> {
     return this.http
@@ -67,8 +66,8 @@ export class LeaveTypeService {
       department
     );
   }
-  updateDepartment(department: IDepartment) {
-    const url = `${environment.server_Url}department/${department._id}`;
+  updateDepartment(departmentId:string, department:{}) {
+    const url = `${environment.server_Url}department/${departmentId}`;
     return this.http.patch<HTTPResponse<IDepartment>>(url, department);
   }
   deleteDepartment<T>(departmentId: T): Observable<HTTPResponse<IDepartment>> {
@@ -77,19 +76,7 @@ export class LeaveTypeService {
     );
   }
 
-  getDepartmentById<T>(departmentId: T): Observable<
-    HTTPResponse<{
-      department: IDepartment;
-      users: T;
-      head: T;
-    }>
-  > {
-    return this.http.get<
-      HTTPResponse<{
-        department: IDepartment;
-        users: T;
-        head: T;
-      }>
-    >(`${environment.server_Url}department/${departmentId}`);
+  getDepartment(departmentId:string): Observable<HTTPResponse<IDepartment>> {
+    return this.http.get<HTTPResponse<IDepartment>>(`${environment.server_Url}department/${departmentId}`);
   }
 }

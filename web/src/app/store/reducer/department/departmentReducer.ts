@@ -38,8 +38,8 @@ export const departmentReducer = createReducer(
 
   on(DepartmentActionTypes.updateDepartment, (state) => ({ ...state, loaded: true })),
   
-  on(DepartmentActionTypes.updateDepartmentSuccess, (state, { department }) => {
-    return adapter.updateOne(department, state);
+  on(DepartmentActionTypes.updateDepartmentSuccess, (state, { update }) => {
+    return adapter.updateOne(update, state);
   }),
 
   on(DepartmentActionTypes.updateDepartmentFailure, (state, { error }) => ({

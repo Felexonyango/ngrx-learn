@@ -23,7 +23,7 @@ export const loadDepartment = createAction(
 
 export const loadDepartmentSuccess = createAction(
   '[Department] Load  department Success',
-  props<{ departments: IDepartment[] }>()
+  props<{ department: IDepartment }>()
 );
 
 export const loadDepartmentFailure = createAction(
@@ -48,12 +48,11 @@ export const createDepartmentFailure = createAction(
 
 export const updateDepartment = createAction(
   '[Department] Update department',
-  props<{ department:IDepartment}>());
-
-
+  props<{ update: Update<IDepartment> }>()
+)
 export const updateDepartmentSuccess = createAction(
   '[Department] Update  department Success',
-  props<{department:Update<IDepartment>}>());
+  props<{update:Update<IDepartment>}>());
 
 export const updateDepartmentFailure = createAction(
   '[Department] Update department Failure',

@@ -113,7 +113,7 @@ export class LeaveEFfect {
     );
   });
 
-  loadpending$ = createEffect(() =>
+  getPendingleaves$ = createEffect(() =>
     this.actions$.pipe(
       ofType(leaveActionType.loadpendingleaves),
       mergeMap((action) =>
@@ -127,7 +127,7 @@ export class LeaveEFfect {
       )
     )
   );
-  loadapprovedleaves$ = createEffect(() =>
+  getApprovedleaves$ = createEffect(() =>
     this.actions$.pipe(
       ofType(leaveActionType.loadapprovedleaves),
       mergeMap((action) =>
