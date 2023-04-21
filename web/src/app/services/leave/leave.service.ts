@@ -101,7 +101,7 @@ export class LeaveService {
     leave: Partial<ILeaves>
   ): Observable<HTTPResponse<Partial<ILeaves>>> {
     return this.http.post<HTTPResponse<Partial<ILeaves>>>(
-      `${environment.server_Url}leave/${leaveId}`,
+      `${environment.server_Url}leave/approve/${leaveId}`,
       leave
     );
   }

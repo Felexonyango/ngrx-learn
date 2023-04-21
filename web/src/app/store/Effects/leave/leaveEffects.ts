@@ -146,22 +146,15 @@ export class LeaveEFfect {
   ApproveLeave$ = createEffect(() =>
   this.actions$.pipe(
     ofType(leaveActionType.ApproveLeave),
-    mergeMap(({ leave, }) =>
-      this.leaveService
-        .approveLeave(leave._id,leave)
-        .pipe(
-          map((res) =>
-          
-            leaveActionType.ApproveLeaveSuccess({ 
-              leave
-            }),
-            tap(res => console.log(res))
-          )
-        )
-    ),
-    catchError((error) => of(leaveActionType.ApproveleaveFailure({ error })))
+    mergeMap(({ update }) =>
+      this.leaveService.approveLeave(String(update.id), update.changes).pipe(
+        map(() => leaveActionType.ApproveLeaveSuccess({ update })),
+        catchError((error) => of(leaveActionType.ApproveleaveFailure({ error })))
+      )
+    )
   )
 );
+
 
 
 update$ = createEffect(() => {

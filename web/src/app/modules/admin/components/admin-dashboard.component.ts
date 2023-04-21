@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { Update } from '@ngrx/entity';
 import { Store, select } from '@ngrx/store';
 import { MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
@@ -88,21 +89,29 @@ leave:ILeaves
       
   }
    
-   
-    ))
+   ))
   }
-
-   approveStatus(leaveId,leaveStatus:Status){
-    this.subscription.add(
-      this.leaveService.approveLeave(leaveId,{status: leaveStatus }).subscribe({
-        next:(res)=>{ 
-          this.leave=res.result
-          this.getPendingleaves()
-        }
+  approveStatus(leaveId:string,leaveStatus:Status){
+  const update: Update<ILeaves> = {
+    id: leaveId, 
+    changes: { status: leaveStatus } 
+  };
+  
+  this.store.dispatch(leaveActionType.ApproveLeave({ update }));
+  this.getPendingleaves()
+  
+}
+  //  approveStatus(leaveId,leaveStatus:Status){
+  //   this.subscription.add(
+  //     this.leaveService.approveLeave(leaveId,{status: leaveStatus }).subscribe({
+  //       next:(res)=>{ 
+  //         this.leave=res.result
+  //         this.getPendingleaves()
+  //       }
       
-      })
-    )
-   }
+  //     })
+  //   )
+   //}
 
 
 

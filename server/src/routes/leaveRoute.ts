@@ -31,7 +31,7 @@ router.route("/:id").post(protect,authorize(['user','admin']), updateleave);
 router.route("/admin/all").get(protect, authorize(["admin"]), leaveHistory);
 router.route("/admin/approved").get(protect, authorize(["admin"]),Approvedleaves);
 router.route("/user/approved").get(protect, authorize(["user"]),ApprovedleavesByUser);
-router.route("/:id").post(protect, authorize(["admin"]), approveLeave);
+router.route("/approve/:id").post(protect, authorize(["admin"]), approveLeave);
 
 router.route("/approved/:id").get(protect,authorize(['admin','user']),getApprovedLeaveById)
 router.route('/approved/:id').delete(protect,authorize(['admin','user']),deleteApprovedLeaveById)

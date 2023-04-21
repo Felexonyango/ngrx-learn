@@ -123,12 +123,13 @@ export const loadpendingleavesFailure = createAction(
 
 export const ApproveLeave=createAction(
   '[approve leave] Approve leave' ,
-  props<{leave: ILeaves }>()
+  props<{ update: Update<ILeaves> }>()
   
 )
 export const ApproveLeaveSuccess=createAction(
   '[approve leave] Approve leave success',
-  props<{leave:ILeaves}>() 
+  props<{ update: Update<ILeaves> }>()
+
 )
 export const ApproveleaveFailure = createAction(
   '[Approve leave] Approve leave failure',
