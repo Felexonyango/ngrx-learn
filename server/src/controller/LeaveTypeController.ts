@@ -49,14 +49,15 @@ export const deleteLeaveType = async (req: Request, res: Response) => {
 };
 export const updateLeaveTypesTypes = async (req: Request, res: Response) => {
     try{
-
-    
-        const { leavetype} = req.body;
-    const leave= await LeaveType.findById(req.params.id)
+      let {id}=req.params
+    const { leavetype,numberOfDays} = req.body;
+    const leave= await LeaveType.findById(id)
     if(!leave) return res.status(500).json({ msg: "There is no LeaveType" })
     const result = await LeaveType.findOneAndUpdate(
         {_id:leave._id},
-        {$set:{leavetype}},
+        {
+          $set:{leavetype,numberOfDays}
+      },
          { returnOriginal: false }
         )
         if(result){
@@ -64,7 +65,9 @@ export const updateLeaveTypesTypes = async (req: Request, res: Response) => {
         }
     }
     catch(err){
-        console.log(err)    }
+       res.status(500).json({msg:'Error updating leave type',err}) 
+    
+    }
 
 };
 

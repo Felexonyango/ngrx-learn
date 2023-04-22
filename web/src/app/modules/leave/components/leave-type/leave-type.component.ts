@@ -42,8 +42,8 @@ export class LeaveTypeComponent implements OnInit {
       displayName: 'Department',
     },
     {
-      fieldName: 'Number of Employees',
-      displayName: 'Number of Employees',
+      fieldName: 'Number of Leave  Days',
+      displayName: 'Number of Leave  Days',
     },
    
     
