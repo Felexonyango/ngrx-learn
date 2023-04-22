@@ -28,4 +28,8 @@ export class LeaveDetailsComponent implements OnInit {
       console.log(leave);
     });
   }
+
+
+
+  
 }

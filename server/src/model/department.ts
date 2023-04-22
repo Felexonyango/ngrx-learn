@@ -13,6 +13,7 @@ const departmentSchema = new Schema(
     numOfEmployees:{
       type:Number,
       required: true,
+      unique: true
     },
     departmentName:{
       type:String,

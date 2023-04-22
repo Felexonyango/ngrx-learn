@@ -76,7 +76,7 @@ leave:ILeaves
     this.router.navigate([`/leave/leave-details/${id}`]);
   }
   onEditBtnClick(id:string){
-    
+    this.router.navigate([`/leave/edit-leaveId/${id}`]);
   }
   onDeleteleave(id:string){
     this.store.dispatch(leaveActionType.deleteleave({ id}))

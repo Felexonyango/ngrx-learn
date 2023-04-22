@@ -50,7 +50,9 @@ export class AllLeavesComponent implements OnInit {
   onView<T>(id:T) {
     this.router.navigate([`/leave/leave-details/${id}`]);
   }
-  onEditBtnClick(id:string){}
+  onEditBtnClick(id:string){
+    this.router.navigate([`/leave/edit-leaveId/${id}`]);
+  }
   
   onDeleteleave<T extends string >(id:T) {
     this.store.dispatch(leaveActionType.deleteleave({ id}))

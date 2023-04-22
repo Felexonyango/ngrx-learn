@@ -3,15 +3,14 @@ import { Department } from "../model/department";
 import { User } from "../model/user";
 import { User as UserTypes } from "../types/user";
 import { Leave, Status } from "../model/leave";
-//import { Department as DepartmentTypes } from "../types";
-//import mongoose from "mongoose";
-
-// const { ObjectId } = mongoose.Types;
 
 export const create = async (req: Request, res: Response) => {
   try {
     const { departmentName, numOfEmployees } = req.body;
-   
+    const departmentExists = await Department.findOne({"departmentName":departmentName});
+    if (departmentExists) {
+     return res.status(500).json({ msg: "Department with that name already exists" });
+    }
     const department = await Department.create({
       departmentName,
       numOfEmployees,

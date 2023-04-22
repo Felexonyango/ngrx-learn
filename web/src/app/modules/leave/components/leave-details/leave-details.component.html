@@ -6,53 +6,53 @@
             <div class="d-flex mt-2">
               <div class="col-6">
                 <div class="d-flex">
-                  <div class="col-6">
-                    <strong>Leave Type:</strong>
+                  <div class="col-8 ">
+                    <h6>Leave Type:</h6>
                   </div>
-                  <div class="col-6 text-mute">
-                    {{ leave?.leavetype.leavetype ||'...'| titlecase}}
+                  <div class="col-8 text-mute">
+                    {{ leave?.leavetype?.leavetype ||'...'| titlecase}}
                     
                   </div>
                 </div>
   
-                <div class="d-flex">
-                  <div class="col-6">
-                    <strong> Applied By: </strong>
+                <div class="d-flex mt-4">
+                  <div class="col-8">
+                    <h6> Applied By: </h6>
                   </div>
-                  <div class="col-6 text-mute">
+                  <div class="col-8 text-mute">
                     {{ leave?.user.firstname ||'...'  |titlecase }} {{ leave?.user?.lastname ||'...' | titlecase }}
                     <!-- {{ project?.members?.length || '--' }} -->
                   </div>
                 </div>
-                <div class="d-flex">
-                    <div class="col-6">
-                      <strong>Start Date: </strong>
+                <div class="d-flex mt-4">
+                    <div class="col-8">
+                      <h6>Start Date: </h6>
                     </div>
-                    <div class="col-6 text-mute">
+                    <div class="col-8 text-mute">
                       {{ leave?.startDate | date }}
                     </div>
                   </div>
-                  <div class="d-flex">
-                    <div class="col-6">
-                      <strong>End Date: </strong>
+                  <div class="d-flex mt-4">
+                    <div class="col-8">
+                      <h6>End Date: </h6>
                     </div>
-                    <div class="col-6 text-mute">
+                    <div class="col-8 text-mute">
                       {{ leave?.endDate || "--" }}
                     </div>
                   </div>
-                <div class="d-flex">
-                  <div class="col-6">
-                    <strong>Status: </strong>
+                <div class="d-flex mt-4">
+                  <div class="col-8">
+                    <h6>Status: </h6>
                   </div>
-                  <div class="col-6 text-mute">
+                  <div class="col-8 text-mute">
                     {{ leave?.status || "--" }}
                   </div>
                 </div>
-                <div class="d-flex">
-                  <div class="col-6">
-                    <strong> Reason: </strong>
+                <div class="d-flex mt-4">
+                  <div class="col-8">
+                    <h6> Reason: </h6>
                   </div>
-                  <div class="col-6 d-flex align-items-center">
+                  <div class="col-8 d-flex align-items-center">
                     {{ leave?.comment || "--" }}
                   </div>
                 </div>

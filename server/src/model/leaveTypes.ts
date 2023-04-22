@@ -8,11 +8,27 @@ export interface LeaveTypeDocument extends Document {
 
 const leavetypeSchema = new Schema(
   {
-    leavetype: String,
-    numberOfDays:Number
-  },
-  {
-    timestamps: true,
-  }
+    
+      leavetype: {
+        type :String,
+        required: true,
+        unique:true
+
+      },
+      
+    
+      numberOfDays:{
+        type :Number,
+        required:true
+
+      },
+
+
+    },
+    {
+      timestamps: true,
+    }
+  
+
 );
 export const LeaveType = model<LeaveTypeDocument>("LeaveType", leavetypeSchema);
