@@ -1,8 +1,8 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { User } from "../model/user";
 import { Leave } from "../model/leave";
 
-export const getAllUsers = async (req: Request, res: Response) => {
+export const getAllUsers = async (req: Request, res: Response,next:NextFunction) => {
   try {
     const result = await User.find({})
       .populate("department")
@@ -16,11 +16,12 @@ export const getAllUsers = async (req: Request, res: Response) => {
       .json({ message: "succesfully retrived user", result });
   } catch (err) {
     res.status(500).json({ error: err });
-    console.log(err);
+    
   }
+  next()
 };
 
-export const getUserById = async (req: Request, res: Response) => {
+export const getUserById = async (req: Request, res: Response,next:NextFunction) => {
   try {
     const { id } = req.params;
 
@@ -33,9 +34,10 @@ export const getUserById = async (req: Request, res: Response) => {
   } catch (err) {
     res.status(500).json({ error: err });
   }
+  next()
 };
 
-export const deleteUserById = async (req: Request, res: Response) => {
+export const deleteUserById = async (req: Request, res: Response,next:NextFunction) => {
   try {
     const { id } = req.params;
     const user = await User.findByIdAndRemove({ _id: id });
@@ -43,9 +45,10 @@ export const deleteUserById = async (req: Request, res: Response) => {
   } catch (err) {
     res.status(500).json({ error: err });
   }
+  next()
 };
 
-export const UpdateUser = async (req: Request, res: Response) => {
+export const UpdateUser = async (req: Request, res: Response,next:NextFunction) => {
   try {
     const { id } = req.params;
 
@@ -58,4 +61,5 @@ export const UpdateUser = async (req: Request, res: Response) => {
   } catch (error) {
     res.status(500).json({ message: "Error in updating user product" });
   }
+  next()
 };

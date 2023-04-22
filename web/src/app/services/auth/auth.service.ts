@@ -32,14 +32,18 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     const token = this.getAuthToken();
-  
     if (token) {
-      const isTokenExpired = this.tokenDecoder.isTokenExpired(token);
-     
-      return isTokenExpired ? false : true;
+        const isTokenExpired = this.tokenDecoder.isTokenExpired(token);
+        return isTokenExpired ? false : true;
     }
     return false;
-  }
+}
+
+  handleLoginRedirect(): void {
+        const redirectUrl = '/app';
+        this.navigateByUrl(redirectUrl);
+    
+}
 
 
   login(user:User): Observable<HTTPResponse<{token:string}>> {

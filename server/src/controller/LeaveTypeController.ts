@@ -1,7 +1,7 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { LeaveType } from "../model/leaveTypes";
 
-export const create = async (req: Request, res: Response) => {
+export const create = async (req: Request, res: Response,next:NextFunction) => {
   try {
     const { leavetype, numberOfDays } = req.body;
     const leaveTypeExists = await LeaveType.findOne({"leavetype":leavetype});
@@ -16,12 +16,13 @@ export const create = async (req: Request, res: Response) => {
       return res.status(200).json({ msg: "created leaveType ", leaveTypes });
     
   } catch (err) {
-    console.log(err);
+   
     res.status(500).json({ msg: "Error while creating LeaveTypes" });
   }
+  next()
 };
 
-export const getLeaveTypes = async (req: Request, res: Response) => {
+export const getLeaveTypes = async (req: Request, res: Response,next:NextFunction) => {
   try {
     const result = await LeaveType.find({});
     if (!result)
@@ -33,9 +34,10 @@ export const getLeaveTypes = async (req: Request, res: Response) => {
     console.log(err);
     res.status(500).json({ msg: err });
   }
+  next()
 };
 
-export const getLeaveTypeById = async (req: Request, res: Response) => {
+export const getLeaveTypeById = async (req: Request, res: Response,next:NextFunction) => {
   try {
     const { id } = req.params;
     const result = await LeaveType.findById(id);
@@ -46,15 +48,23 @@ export const getLeaveTypeById = async (req: Request, res: Response) => {
   } catch (err) {
     res.status(500).json({ msg: err });
   }
+  next()
 };
-export const deleteLeaveType = async (req: Request, res: Response) => {
-  const leaveTypesType = await LeaveType.findById(req.params.id);
-  if (!leaveTypesType)
-    return res.status(500).json({ msg: "There is no LeaveType" });
-  await LeaveType.findByIdAndDelete(req.params.id);
-  return res.status(200).json({ msg: "succesfully deleted" });
+export const deleteLeaveType = async (req: Request, res: Response,next:NextFunction) => {
+  try{
+    const leaveTypesType = await LeaveType.findById(req.params.id);
+    if (!leaveTypesType)
+      return res.status(400).json({ msg: "There is no LeaveType" });
+    await LeaveType.findByIdAndDelete(req.params.id);
+    return res.status(200).json({ msg: "succesfully deleted" });
+
+  }
+  catch(err){
+  res.status(500).json({ msg:"Server error" });
+  }
+  next()
 };
-export const updateLeaveTypesTypes = async (req: Request, res: Response) => {
+export const updateLeaveTypesTypes = async (req: Request, res: Response,next:NextFunction) => {
   try {
     let { id } = req.params;
     const { leavetype, numberOfDays } = req.body;
@@ -75,6 +85,7 @@ export const updateLeaveTypesTypes = async (req: Request, res: Response) => {
   } catch (err) {
     res.status(500).json({ msg: "Error updating leave type", err });
   }
+  next()
 };
 
 //user route

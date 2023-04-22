@@ -1,23 +1,24 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './modules/auth/guards/auth.guard';
+import {ReverseGuard} from '../app/modules/auth/guard/reverse-guard/reverse.guard'
 import { DefaultLayoutComponent } from './containers';
 import { Page404Component } from './pages/page404/page404.component';
 import { Page500Component } from './pages/page500/page500.component';
-import { IsLoggedInGuard } from './modules/auth/isLoggedIn/is-logged-in.guard';
+import { AuthGuard } from './modules/auth/guard/auth-guard/auth.guard';
+
 const routes: Routes = [
 {
   path:'',
-  redirectTo:'dashboard',
+  redirectTo:'app',
   pathMatch:'full'
 },
 
-
 {
   path: 'auth',
+  canActivate: [ReverseGuard],
   loadChildren: () =>
     import('./modules/auth/auth.module').then((m) => m.AuthModule),
-  canActivate: [IsLoggedInGuard],
+  
 },
   {
     path: '404',
@@ -36,19 +37,19 @@ const routes: Routes = [
 
 
   {
-    path: '',
-    component: DefaultLayoutComponent,
+  path:'app',
     canActivate: [AuthGuard],
+    component: DefaultLayoutComponent,
     children: [
       {
-        path: 'dashboard',
+        path: 'app',
         loadChildren: () =>
           import('./modules/dashboard/dashboard.module').then(
             (m) => m.DashboardModule
           ),
       },
       {
-        path: 'dashboard',
+        path: 'app',
         loadChildren: () =>
           import('./modules/admin/admin-dashboard.module').then(
             (m) => m.AdminDashboardModule

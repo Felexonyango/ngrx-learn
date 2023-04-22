@@ -3,13 +3,13 @@ import { Menu, Role } from "../types";
 const MenuData: Menu[] = [
   {
     name: "Dashboard",
-    url: "dashboard/admin",
+    url: "app/admin",
     icon: "fa fa-home",
     role: [Role.Admin],
   },
   {
     name: "Dashboard",
-    url: "dashboard/employee",
+    url: "app/employee",
     icon: "fa fa-home",
     role: [Role.User],
   },  

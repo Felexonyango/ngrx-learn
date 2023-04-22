@@ -8,6 +8,7 @@ import { Paginator } from 'primeng/paginator';
 import { Subscription, Observable } from 'rxjs';
 import { IAdminSummary } from 'src/app/model/employees';
 import { ILeaves, Status } from 'src/app/model/leave';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { EmployeeService } from 'src/app/services/employee/employees.service';
 import { LeaveService } from 'src/app/services/leave/leave.service';
 import { DeleteConfirmDialogComponent } from 'src/app/shared/components/delete-confirm-dialog/deleteConfirmDialog.component';
@@ -52,17 +53,24 @@ leave:ILeaves
     private employeeservice:EmployeeService,
     private leaveService:LeaveService,
     public dialogService: DialogService,
+    private authservice: AuthService
     
     ) {}
 
   ngOnInit(): void {
     this.getEmployeeSummarys()
     this.getPendingleaves();
+    this.getUserRole()
  
     
     
   }
-
+  getUserRole() {
+    const result = this.authservice.getRole();
+    result == 'admin'
+      ? this.router.navigate(['/app/app/admin'])
+      : this.router.navigate(['/app/app/employee']);
+  }
   getPendingleaves() {
     this.pendingleaves$ = this.store.pipe(select(getleaves));
     this.store.dispatch(leaveActionType.loadpendingleaves());

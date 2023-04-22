@@ -1,10 +1,10 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { Department } from "../model/department";
 import { User } from "../model/user";
 import { User as UserTypes } from "../types/user";
 import { Leave, Status } from "../model/leave";
 
-export const create = async (req: Request, res: Response) => {
+export const create = async (req: Request, res: Response,next:NextFunction) => {
   try {
     const { departmentName, numOfEmployees } = req.body;
     const departmentExists = await Department.findOne({"departmentName":departmentName});
@@ -23,9 +23,10 @@ export const create = async (req: Request, res: Response) => {
     console.log(err);
     res.status(500).json({ msg: "Error while creating department" });
   }
+  next()
 };
 
-export const getdepartments = async (req: Request, res: Response) => {
+export const getdepartments = async (req: Request, res: Response,next:NextFunction) => {
   try {
     const result = await Department.find({});
     if (!result)
@@ -33,11 +34,12 @@ export const getdepartments = async (req: Request, res: Response) => {
 
     return res.status(200).json({ msg: "All departments retrieved", result });
   } catch (err) {
-    console.log(err);
+    
     res.status(500).json({ msg: err });
   }
+  next()
 };
-export const getdepartmentById = async (req: Request, res: Response) => {
+export const getdepartmentById = async (req: Request, res: Response,next:NextFunction) => {
   try {
     let {id} = req.params
 
@@ -50,16 +52,24 @@ export const getdepartmentById = async (req: Request, res: Response) => {
   
     res.status(500).json({ msg: err });
   }
+  next()
 };
-export const deleteDepartment = async (req: Request, res: Response) => {
-  const department = await Department.findById(req.params.id);
-  if (!department)
-    return res.status(500).json({ msg: "There is no department" });
-  await Department.findByIdAndDelete(req.params.id);
-  return res.status(200).json({ msg: "succesfully deleted" });
+export const deleteDepartment = async (req: Request, res: Response,next:NextFunction) => {
+  try{
+    const department = await Department.findById(req.params.id);
+    if (!department)
+      return res.status(500).json({ msg: "There is no department" });
+    await Department.findByIdAndDelete(req.params.id);
+  res.status(200).json({ msg: "succesfully deleted" });
+  }
+  catch(err){
+    res.status(500).json({ msg: "Server error" });
+  }
+  next()
+  
 };
 
-export const updateDepartment = async (req: Request, res: Response) => {
+export const updateDepartment = async (req: Request, res: Response,next:NextFunction) => {
   try {
     const { departmentName, numOfEmployees } = req.body;
     const dep = await Department.findById(req.params.id).populate("user");
@@ -75,8 +85,9 @@ export const updateDepartment = async (req: Request, res: Response) => {
         .json({ msg: "department updated succesfully", result });
     }
   } catch (err) {
-    console.log(err);
+  res.status(500).json({ msg: "server error", err });
   }
+  next()
 };
 
 export const getAdminTotals = async (req: Request) => {
@@ -94,6 +105,7 @@ export const getAdminTotals = async (req: Request) => {
   } catch (err) {
     console.log(err);
   }
+  
 };
 
 export const getUserTotals = async (req: Request) => {

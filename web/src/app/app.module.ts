@@ -58,7 +58,7 @@ import  {EmployeeEffect } from './store/Effects/employee/employeEffects'
 import {LeaveEFfect} from './store/Effects/leave/leaveEffects'
 import { HttpClientModule } from '@angular/common/http';
 import {LeaveTypeEFfect} from './store/Effects/leave/leaveTypeEFfect'
-import { AuthGuard } from './modules/auth/guards/auth.guard';
+import { AuthGuard } from './modules/auth/guard/auth-guard/auth.guard';
 import { AuthService } from './services/auth/auth.service';
 import {EmployeeService} from './services/employee/employees.service'
 import { JwtModule } from '@auth0/angular-jwt';
