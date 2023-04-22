@@ -47,11 +47,11 @@ export class AllLeavesComponent implements OnInit {
     this.leaves = this.store.pipe(select(getleaves));
     this.store.dispatch( leaveActionType.loadadminleavehistory() )
   }
-  onView<T>(id:T) {
-    this.router.navigate([`/leave/leave-details/${id}`]);
+  onView(id:string) {
+    this.router.navigate([`/app/leave/leave-details/${id}`]);
   }
   onEditBtnClick(id:string){
-    this.router.navigate([`/leave/edit-leaveId/${id}`]);
+    this.router.navigate([`/app/leave/edit-leaveId/${id}`]);
   }
   
   onDeleteleave<T extends string >(id:T) {

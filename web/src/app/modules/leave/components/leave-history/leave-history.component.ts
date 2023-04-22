@@ -70,10 +70,10 @@ export class LeaveHistoryComponent implements OnInit {
   }
 
   handleSelect(id: string) {
-    this.router.navigate([`/leave/leaves/details/${id}`]);
+    this.router.navigate([`/app/leave/leaves/details/${id}`]);
   }
   updateLeave(id: string) {
-    this.router.navigate([`/leave/leaves/apply/${id}`]);
+    this.router.navigate([`/app/leave/leaves/apply/${id}`]);
   }
 
 
@@ -88,11 +88,11 @@ export class LeaveHistoryComponent implements OnInit {
     this.store.dispatch(leaveActionType.deleteleave({ id}))
   }
   onEditBtnClick(id:string) {
-    this.router.navigate([`/leave/edit-leaveId/${id}`]);
+    this.router.navigate([`/app/leave/edit-leaveId/${id}`]);
   }
 
   onView(id: any) {
-    this.router.navigate([`/leave/leave-details/${id}`]);
+    this.router.navigate([`/app/leave/leave-details/${id}`]);
   }
   public openDeleteDialog(approvedleaves: ILeaves): void {
     const ref = this.dialogService.open(DeleteConfirmDialogComponent, {

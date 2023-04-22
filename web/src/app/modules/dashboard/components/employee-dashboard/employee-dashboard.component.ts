@@ -66,10 +66,10 @@ export class EmployeeDashboardComponent implements OnInit {
     this.store.dispatch(leaveActionType.loadapprovedleavesByUser());
   }
   handleSelect(id: string) {
-    this.router.navigate([`/leave/leave-details/${id}`]);
+    this.router.navigate([`/app/leave/leave-details/${id}`]);
   }
   onView(id: string) {
-    this.router.navigate([`/leave/leave-details/${id}`]);
+    this.router.navigate([`/app/leave/leave-details/${id}`]);
   }
   onEditBtnClick(id: string) {}
   onDeleteleave(id: string) {

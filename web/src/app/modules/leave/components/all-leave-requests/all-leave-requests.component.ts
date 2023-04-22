@@ -47,7 +47,7 @@ leaves:Observable<ILeaves[]>
     //this.store.dispatch( leaveActionType.loadnewleaves() )
   }
   onView <T>(id: T) {
-    this.router.navigate([`/leave/leave-details/${id}`]);
+    this.router.navigate([`/app/leave/leave-details/${id}`]);
   }
   onEditBtnClick(id:string){
 

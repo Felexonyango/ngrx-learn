@@ -76,7 +76,7 @@ export class CreateDepartmentComponent implements OnInit {
     this.isEdit? this.store.dispatch(DepartmentActionTypes.updateDepartment({update})):
     this.store.dispatch(DepartmentActionTypes.createDepartment({ department }));
     this.departmentForm.reset();
-    this.router.navigateByUrl('/leave/leave-setting')
+    this.router.navigateByUrl('/app/leave/leave-setting')
    
   }
 

@@ -100,6 +100,6 @@ export class LeaveTypeComponent implements OnInit {
     console.log(this.selectleavetype);
   }
   edit(id: string) {
-    this.router.navigate([`/leave/edit-leaveType/${id}`]);
+    this.router.navigate([`/app/leave/edit-leaveType/${id}`]);
   }
 }

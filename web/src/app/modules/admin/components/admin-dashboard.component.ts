@@ -78,13 +78,13 @@ leave:ILeaves
 
 
   handleSelect(id: string) {
-    this.router.navigate([`/leave/leave-details/${id}`])
+    this.router.navigate([`/app/leave/leave-details/${id}`])
   }
   onView(id:string){
-    this.router.navigate([`/leave/leave-details/${id}`]);
+    this.router.navigate([`/app/leave/leave-details/${id}`]);
   }
   onEditBtnClick(id:string){
-    this.router.navigate([`/leave/edit-leaveId/${id}`]);
+    this.router.navigate([`/app/leave/edit-leaveId/${id}`]);
   }
   onDeleteleave(id:string){
     this.store.dispatch(leaveActionType.deleteleave({ id}))
