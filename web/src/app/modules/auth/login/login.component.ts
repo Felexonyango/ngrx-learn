@@ -16,8 +16,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
   subscriptions = new Subscription();
@@ -33,8 +32,6 @@ export class LoginComponent implements OnInit {
   submitting: false;
   constructor(
      private store: Store<AuthState>,
-    private router: Router,
-    private authservice: AuthService
   ) {}
 
   ngOnInit() {

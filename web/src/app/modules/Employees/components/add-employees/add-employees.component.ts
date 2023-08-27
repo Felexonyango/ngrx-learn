@@ -65,7 +65,7 @@ export class AddEmployeesComponent implements OnInit {
     this.isEdit
       ? this.store.dispatch(EmployeeActionTypes.updateEmployee({ update }))
       : this.store.dispatch(EmployeeActionTypes.createEmployee({ employee }));
-    this.router.navigateByUrl('/employees/all-employees');
+    this.router.navigateByUrl('/app/employees/all-employees');
     this.addEmployeeForm.reset();
   }
   updateOptions() {

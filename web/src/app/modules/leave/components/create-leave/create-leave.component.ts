@@ -39,7 +39,7 @@ export class CreateLeaveComponent implements OnInit {
   options: FormlyFormOptions = {};
   fields: FormlyFieldConfig[] = [];
   application;
-  leaveId:string
+  leaveId: string;
   isEdit = false;
   leaveType: ILeaveType[] = [];
 
@@ -48,8 +48,8 @@ export class CreateLeaveComponent implements OnInit {
     private messageService: MessageService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    public utilService:UtilService,
-    private store: Store<LeaveState>,
+    public utilService: UtilService,
+    private store: Store<LeaveState>
   ) {}
 
   ngOnInit(): void {
@@ -61,22 +61,22 @@ export class CreateLeaveComponent implements OnInit {
     this.subscription.unsubscribe();
   }
 
-  createOrUpdateleave(){
+  createOrUpdateleave() {
     this.leave = this.applyLeaveForm.value;
-    const leaves: ILeaves = { 
+    const leaves: ILeaves = {
       ...this.applyLeaveForm.value,
     };
     const update: Update<ILeaves> = {
-      id: this.leaveId, 
-      changes: leaves
+      id: this.leaveId,
+      changes: leaves,
     };
     console.log(update);
 
-     this.isEdit
-    ? this.store.dispatch(leaveActionType.updateleave({ update }))
-    : this.store.dispatch(leaveActionType.createleave({ leaves }))
-  this.applyLeaveForm.reset();
-  this.router.navigate(['a/pp/leave/request/history']);
+    this.isEdit
+      ? this.store.dispatch(leaveActionType.updateleave({ update }))
+      : this.store.dispatch(leaveActionType.createleave({ leaves }));
+    this.applyLeaveForm.reset();
+    this.router.navigate(['/app/leave/request/history']);
   }
   // submitApplication() {
   //   const leaveModel = this.applyLeaveForm.value;
@@ -130,9 +130,8 @@ export class CreateLeaveComponent implements OnInit {
         next: (param) => {
           const leaveId = param['leaveId'];
           this.getLeaveById(leaveId);
-          this.leaveId=leaveId
+          this.leaveId = leaveId;
           console.log(this.leaveId);
-
         },
       })
     );
@@ -143,8 +142,8 @@ export class CreateLeaveComponent implements OnInit {
         next: (res) => {
           this.leave = res.result;
           this.model = res.result;
-          this.leaveId=leaveId
-          this.isEdit=true
+          this.leaveId = leaveId;
+          this.isEdit = true;
         },
       })
     );
