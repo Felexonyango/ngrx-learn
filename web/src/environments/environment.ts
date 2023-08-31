@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  server_Url:'http://localhost:3000/api/'
+  // server_Url:'http://localhost:3000/api/'
+  server_Url:'https://leave-managment-tau.vercel.app/api/'
 
 };
 

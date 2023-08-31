@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "tsc": "tsc",
     "dev": "nodemon src/app.ts",
+    "vercel-build": "echo hello",
     "start": "npm run build && node ./build/index.js",
     "seed": "ts-node temp/seed.ts"
   },

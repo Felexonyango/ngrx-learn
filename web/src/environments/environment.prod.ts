@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  server_Url:'https://leave-managment-tau.vercel.app/api/'
 };
