@@ -42,16 +42,14 @@ module.exports = function(passport:PassportStatic) {
       async (req, email, password, done) => {
         try {
           // check if the department field exists in the request body
-          if (!req.body.department) {
-            return done(null, false, { message: "Department field is required" });
-          }
+          // if (!req.body.department) {
+          //   return done(null, false, { message: "Department field is required" });
+          // }
 
           // find the department by its name
           
           let department = await Department.findById(req.body.department);
-          if (!department) {
-            return done(null, false, { message: "Invalid department" });
-          }
+          
 
           // check if the email is already taken
           const user = await User.findOne({ email: email.toLowerCase() });
@@ -71,14 +69,14 @@ module.exports = function(passport:PassportStatic) {
             idNumber: req.body.idNumber,
             phoneNumber: req.body.phoneNumber,
             employeeIdNumber: req.body.employeeIdNumber,
-            department: department._id
+            department: department?._id
           });
 
          
           const result =  await newUser.save()
-          if(result){
+          if(result && department?._id){
             await Department.findByIdAndUpdate(department._id,{
-              $push: { user: newUser._id },
+              $push: { user: newUser?._id },
              });
            
           }

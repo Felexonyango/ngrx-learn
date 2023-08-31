@@ -5,14 +5,14 @@ const MenuData: Menu[] = [
     name: "Dashboard",
     url: "",
     icon: "fa fa-home",
-    role: [Role.Admin],
+    role: [Role.Admin,Role.User],
   },
  
 
   {
     name: "Apply Leave",
     url: "leave/apply-leave",
-    role: [Role.Admin],
+    role: [Role.Admin,Role.User],
     icon: "fa fa-calendar",
   },
   // {

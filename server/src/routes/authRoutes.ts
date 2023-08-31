@@ -15,7 +15,7 @@ import {
 const router = Router();
 
 
-router.route('/create-user').post(signUpValidation(), validate, protect, authorize(["admin"]), signUp);
+router.route('/create-user').post(signUpValidation(), validate, signUp);
 router.route('/login').post(loginValidation(), validate, login);
 
 

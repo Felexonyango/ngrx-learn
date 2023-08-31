@@ -8,9 +8,11 @@ import { IconModule } from '@coreui/icons-angular';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { FormlyModule } from '@ngx-formly/core';
 import { ButtonModule } from 'primeng/button';
+import { RegisterComponentComponent } from './register/register-component.component';
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
+    RegisterComponentComponent
   ],
   imports: [
     CommonModule,

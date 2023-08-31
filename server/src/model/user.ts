@@ -48,38 +48,41 @@ const UserSchema: Schema = new Schema(
 
     startDate: {
       type:Date,
-      required: true,
+      required: false,
     },
 
     department: {
       type: ObjectId,
-      ref: "Department"
+      ref: "Department",
+      required: false,
     },
    
   
     nextOfKin: {
       type: String,
+      required: false,
     },
   
 
     idNumber: {
       type: Number,
-      required: true,
+      required: false,
     },
 
 
     phoneNumber: {
       type: Number,
-      required: true,
+      required: false,
     },
 
     employeeIdNumber: {
       type: String,
-      required: true,
+      required: false,
     },
 
     status: {
       type: Boolean,
+      required: false,
     },
 
    role: {
@@ -90,6 +93,7 @@ const UserSchema: Schema = new Schema(
     leave:[{
       type: mongoose.Schema.Types.ObjectId,
       ref:'Leave',
+      required: false,
 
 
     }

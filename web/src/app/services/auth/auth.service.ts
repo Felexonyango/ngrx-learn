@@ -51,6 +51,10 @@ export class AuthService {
       `${environment.server_Url}auth/login`,user)
       
   }
+  register(user:User):Observable<HTTPResponse<any>>{
+    return this.httpClient.post<HTTPResponse<any>>(`${environment.server_Url}`,user)
+
+  }
  
   navigateByUrl(url: string): void {
     this.router.navigateByUrl(url);
