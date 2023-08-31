@@ -76,7 +76,7 @@ export class CreateLeaveComponent implements OnInit {
       ? this.store.dispatch(leaveActionType.updateleave({ update }))
       : this.store.dispatch(leaveActionType.createleave({ leaves }));
     this.applyLeaveForm.reset();
-    this.router.navigate(['/app/leave/request/history']);
+    this.router.navigate(['/app/leave/all-request/history']);
   }
   // submitApplication() {
   //   const leaveModel = this.applyLeaveForm.value;

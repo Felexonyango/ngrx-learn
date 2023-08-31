@@ -1,76 +1,76 @@
-
-
-            <div class="card">
-              <p-table
-              #table
-                [value]="departments$ | async"
-               
-               
-              >
-              <ng-template pTemplate="caption">
-                <div class="flex  ">
-                  <button pButton type="button" label="Add"  style="height: 40px;" class="p-button-outlined me-2" icon="pi pi-plus"  [routerLink]="['../create-department']"></button>
-                  <button pButton label="Export"  style="height: 40px;" class="p-button-outlined " icon="pi pi-file-excel" (click)="exportData()"></button> 
-                    
-                </div>
-            </ng-template>
-            <ng-template pTemplate="header">
-              <tr>
-                <th
-                  *ngFor="let column of tableColumns"
-                  [pSortableColumn]="column?.fieldName"
+<div class="card">
+  <p-table #table [value]="departments$ | async">
+    <ng-template pTemplate="caption">
+      <div class="flex">
+        <button
+          pButton
+          type="button"
+          label="Add"
+          style="height: 40px"
+          class="p-button-outlined me-2"
+          icon="pi pi-plus"
+          [routerLink]="['../create-department']"
+        ></button>
+        <button
+          pButton
+          label="Export"
+          style="height: 40px"
+          class="p-button-outlined"
+          icon="pi pi-file-excel"
+          (click)="exportData()"
+        ></button>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th
+          *ngFor="let column of tableColumns"
+          [pSortableColumn]="column?.fieldName"
+        >
+          {{ column?.displayName }}
+          <p-sortIcon [field]="column?.fieldName"></p-sortIcon>
+        </th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-department>
+      <tr>
+        <td>
+          {{ department?.departmentName }}
+        </td>
+        <td>{{ department?.numOfEmployees }}</td>
+        <td>
+          <div class="btn-group">
+            <button
+              type="button"
+              class="btn btn-danger dropdown-toggle"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Action
+            </button>
+            <ul class="dropdown-menu">
+              <li>
+                <a
+                  class="dropdown-item"
+                  (click)="onViewDepartment(department?._id)"
+                  >View</a
                 >
-                  {{ column?.displayName }}
-                  <p-sortIcon [field]="column?.fieldName"></p-sortIcon>
-                </th>
-                <th></th>
-              </tr>
-            </ng-template>
-                <ng-template pTemplate="body" let-department>
-                  <tr>
-                    <td
-                      
-                    >
-                      {{ department?.departmentName }}
-                    </td>
-                    <td>{{department?.numOfEmployees}}</td>
-                    <td>
-                      <div class="btn-group">
-                        <button
-                          type="button"
-                          class="btn btn-danger dropdown-toggle"
-                          data-bs-toggle="dropdown"
-                          aria-expanded="false"
-                        >
-                          Action
-                        </button>
-                        <ul class="dropdown-menu">
-                          <li>
-                            <a class="dropdown-item" (click)="onViewDepartment(department?._id)"
-                              >View</a
-                            >
-                          </li>
-                          <li>
-                            <a
-                              class="dropdown-item"
-                            (click)="edit(department?._id)"
-                              >Edit
-                            </a>
-                          </li>
-                          <li>
-                            <a
-                              class="dropdown-item"
-                              (click)="openDeleteDialog(department)"
-                              >Delete</a
-                            >
-                          </li>
-                        </ul>
-                      </div>
-                    </td>
-                   
-                  </tr>
-                </ng-template>
-              </p-table>
-            </div>
-          
-  
+              </li>
+              <li>
+                <a class="dropdown-item" (click)="edit(department?._id)"
+                  >Edit
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" (click)="openDeleteDialog(department)"
+                  >Delete</a
+                >
+              </li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

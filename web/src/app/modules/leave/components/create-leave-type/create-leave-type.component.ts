@@ -12,7 +12,7 @@ import { LeaveTypes } from 'src/app/store/actions/leave/leavetype.actions';
 @Component({
   selector: 'app-create-leave-type',
   templateUrl: './create-leave-type.component.html',
-  styleUrls: ['./create-leave-type.component.scss']
+  styleUrls: ['./create-leave-type.component.scss'],
 })
 export class CreateLeaveTypeComponent implements OnInit {
   subscription = new Subscription();
@@ -23,7 +23,7 @@ export class CreateLeaveTypeComponent implements OnInit {
   display: boolean = false;
   errorMessage: string = '';
   form = new FormGroup({});
-  model= {};
+  model = {};
   id: string;
   fields: FormlyFieldConfig[] = [
     {
@@ -48,38 +48,36 @@ export class CreateLeaveTypeComponent implements OnInit {
       },
     },
   ];
-  leavetypeId:string
+  leavetypeId: string;
   constructor(
-    public utilService:UtilService,
+    public utilService: UtilService,
     private activatedRoute: ActivatedRoute,
-    private leaveService:LeaveTypeService,
-    private router:Router
-  ) { }
+    private leaveService: LeaveTypeService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.getLeaveTypeIdFromParam()
+    this.getLeaveTypeIdFromParam();
   }
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 
-
   CreateOrUpdateLeaveType() {
-    const leaveType={
-      ...this.model
-    }
-    const submitUrl= this.isEdit ? this.leaveService.updateLeavetype(this.leaveType?._id, leaveType):
-    this.leaveService.createLeavetype(leaveType)
-     this.subscription.add(
+    const leaveType = {
+      ...this.model,
+    };
+    const submitUrl = this.isEdit
+      ? this.leaveService.updateLeavetype(this.leaveType?._id, leaveType)
+      : this.leaveService.createLeavetype(leaveType);
+    this.subscription.add(
       submitUrl.subscribe({
-        next:(res)=>{
-          this.router.navigateByUrl('/leave/leave-setting')
-         this.form.reset();
-        
-        }
+        next: (res) => {
+          this.router.navigateByUrl('/app/leave/leave-setting');
+          this.form.reset();
+        },
       })
-     )
-   
+    );
   }
   getLeaveTypeIdFromParam(): void {
     this.subscription.add(
@@ -87,9 +85,8 @@ export class CreateLeaveTypeComponent implements OnInit {
         next: (param) => {
           const leaveTypeId = param['leaveTypeId'];
           this.getLeaveTypeById(leaveTypeId);
-          this.leavetypeId=leaveTypeId
+          this.leavetypeId = leaveTypeId;
           console.log(this.leavetypeId);
-
         },
       })
     );
@@ -100,12 +97,10 @@ export class CreateLeaveTypeComponent implements OnInit {
         next: (res) => {
           this.leaveType = res.result;
           this.model = res.result;
-          this.leavetypeId=leaveTypeId
-          this.isEdit=true
+          this.leavetypeId = leaveTypeId;
+          this.isEdit = true;
         },
       })
     );
   }
-
- 
 }

@@ -23,7 +23,7 @@ const MenuData: Menu[] = [
   // },
 
   {
-    name: "All leave history",
+    name: "leave history",
     url: "leave/all-request/history",
     role: [Role.Admin],
     icon: "fa fa-folder-open",

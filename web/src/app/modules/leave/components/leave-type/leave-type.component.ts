@@ -38,8 +38,8 @@ export class LeaveTypeComponent implements OnInit {
     displayName: string;
   }[] = [
     {
-      fieldName: 'Department',
-      displayName: 'Department',
+      fieldName: 'LeaveType',
+      displayName: 'Leave Type',
     },
     {
       fieldName: 'Number of Leave  Days',

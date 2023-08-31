@@ -5,10 +5,10 @@ const Users:User[]=[
   {
     firstname: "John",
     lastname:'Doe',
-    
     email: "humanresource@gmail.com",
     nextOfKin: "Onyango",
     idNumber: 23455667,
+   startDate:new Date(),
     bankAccountNumber: "3333333",
     bankName: "Equity Bank",
     phoneNumber: +258888999233,

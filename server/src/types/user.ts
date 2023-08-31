@@ -5,7 +5,7 @@ export type User = {
   firstname: string;
   lastname: string;
   email: string;
-  startDate?:Date
+  startDate:Date
   password: string;
   nextOfKin: String;
   idNumber: Number;

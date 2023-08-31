@@ -1,13 +1,11 @@
 
     <div class="col-12">
     
-        <div class="graph-content grid" *ngIf="(leaveTypes$ |async)?.length !== 0">
+        <div class="graph-content grid">
           <div class="col-12 col-md-12">
             <div class="card">
               <p-table
                 [value]="leaveTypes$ | async"
-
-             
               >
               <ng-template pTemplate="caption">
                 <div class="flex  ">
@@ -47,7 +45,7 @@
                           <li>
                             <a
                               class="dropdown-item"
-                              (click)="edit(leavetype._id)"
+                              (click)="edit(leavetype?._id)"
                               >Edit
                             </a>
                           </li>
@@ -68,15 +66,15 @@
             </div>
           </div>
         </div>
-        <div
+        <!-- <div
           class="graph-content grid text-center"
           *ngIf="(leaveTypes$ |async)?.length == 0"
         >
           <div class="col-12">
-            <h5>No departments currently</h5>
+            <h5>No LeaveTypes currently</h5>
           
           </div>
-        </div>
+        </div> -->
       
     </div>
 
