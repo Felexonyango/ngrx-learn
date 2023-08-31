@@ -33,29 +33,30 @@ export class AuthService {
   isLoggedIn(): boolean {
     const token = this.getAuthToken();
     if (token) {
-        const isTokenExpired = this.tokenDecoder.isTokenExpired(token);
-        return isTokenExpired ? false : true;
+      const isTokenExpired = this.tokenDecoder.isTokenExpired(token);
+      return isTokenExpired ? false : true;
     }
     return false;
-}
+  }
 
   handleLoginRedirect(): void {
-        const redirectUrl = '/app';
-        this.navigateByUrl(redirectUrl);
-    
-}
-
-
-  login(user:User): Observable<HTTPResponse<{token:string}>> {
-    return this.httpClient.post<HTTPResponse<{token:string}>>(
-      `${environment.server_Url}auth/login`,user)
-      
+    const redirectUrl = '/app';
+    this.navigateByUrl(redirectUrl);
   }
-  register(user:User):Observable<HTTPResponse<any>>{
-    return this.httpClient.post<HTTPResponse<any>>(`${environment.server_Url}`,user)
 
+  login(user: User): Observable<HTTPResponse<{ token: string }>> {
+    return this.httpClient.post<HTTPResponse<{ token: string }>>(
+      `${environment.server_Url}auth/login`,
+      user
+    );
   }
- 
+  register(user: User): Observable<HTTPResponse<any>> {
+    return this.httpClient.post<HTTPResponse<any>>(
+      `${environment.server_Url}auth/create-user`,
+      user
+    );
+  }
+
   navigateByUrl(url: string): void {
     this.router.navigateByUrl(url);
   }
@@ -67,22 +68,19 @@ export class AuthService {
   }
   decodedToken(): any {
     const token = this.getAuthToken();
-    const decodedToken =token ? this.tokenDecoder.decodeToken(token) : {};
-    return decodedToken
+    const decodedToken = token ? this.tokenDecoder.decodeToken(token) : {};
+    return decodedToken;
   }
- 
 
   getRole() {
-    const decodedToken =this.decodedToken()
-   const userRoles =decodedToken.role
-    
+    const decodedToken = this.decodedToken();
+    const userRoles = decodedToken.role;
+
     return userRoles;
   }
   GetAllMenus(): Observable<HTTPResponse<Imenu[]>> {
     return this.httpClient.get<HTTPResponse<Imenu[]>>(
-      `${environment.server_Url}menus/all`)
-    }
-
- 
-
+      `${environment.server_Url}menus/all`
+    );
+  }
 }

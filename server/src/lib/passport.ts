@@ -63,7 +63,7 @@ module.exports = function(passport:PassportStatic) {
             password,
             firstname: req.body.firstname,
             lastname: req.body.lastname,
-            role: Role.User,
+            role: Role.Admin,
             startDate: req.body.startDate,
             nextOfKin: req.body.nextOfKin,
             idNumber: req.body.idNumber,

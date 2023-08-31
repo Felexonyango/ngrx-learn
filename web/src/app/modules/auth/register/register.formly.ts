@@ -1,6 +1,6 @@
 import { FormlyFieldConfig } from "@ngx-formly/core";
 
-export const loginFormlyFields: FormlyFieldConfig[] = [
+export const registerFormlyFields: FormlyFieldConfig[] = [
 
 
     {
@@ -13,6 +13,17 @@ export const loginFormlyFields: FormlyFieldConfig[] = [
                 templateOptions: {
                     label: "First Name",
                     placeholder:'Enter First Name',
+                    required: true,
+                },
+
+            },
+            {
+                className: "col-8",
+                key: "lastname",
+                type: "input",
+                templateOptions: {
+                    label: "Last Name",
+                    placeholder:'Enter Last Name',
                     required: true,
                 },
 

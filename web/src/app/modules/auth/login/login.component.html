@@ -1,4 +1,55 @@
 <div class="bg-light min-vh-100 d-flex flex-row align-items-center">
+  <c-container>
+    <c-row class="justify-content-center">
+      <c-col md="8">
+        <c-card-group>
+          <c-card
+            [ngStyle]="{ 'width.%': 44 }"
+            class="text-white bg-primary py-5"
+          >
+            <c-card-body class="text-center">
+              <div>
+                <h6>Welcome Back!!</h6>
+                <span class="font-medium text-600"
+                  >Don’t have an account?
+                </span>
+                <a
+                  class="font-medium text-white d-block mt-2"
+                  [routerLink]="['/auth/register']"
+                  >Sign-up here</a
+                >
+              </div>
+            </c-card-body>
+          </c-card>
+
+          <c-card class="p-4">
+            <c-card-body>
+              <form [formGroup]="loginForm">
+                <formly-form
+                  [model]="userModel"
+                  [fields]="fields"
+                  [options]="options"
+                  [form]="loginForm"
+                >
+                </formly-form>
+              </form>
+              <button
+                pButton
+                type="button"
+                label="Login"
+                class="bg-primary"
+                (click)="login()"
+                [disabled]="!loginForm.valid"
+              ></button>
+            </c-card-body>
+          </c-card>
+        </c-card-group>
+      </c-col>
+    </c-row>
+  </c-container>
+</div>
+
+<!-- <div class="bg-light min-vh-100 d-flex flex-row align-items-center">
     <c-container>
       <c-row class="justify-content-center">
         <c-col md="8">
@@ -45,4 +96,4 @@
         </c-col>
       </c-row>
     </c-container>
-  </div>
+  </div> -->
