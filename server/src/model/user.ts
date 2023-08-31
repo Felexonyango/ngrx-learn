@@ -85,7 +85,7 @@ const UserSchema: Schema = new Schema(
    role: {
       type: [String],
       enum: ['user', 'admin'],
-      default: 'user'
+      default: 'admin'
     },
     leave:[{
       type: mongoose.Schema.Types.ObjectId,

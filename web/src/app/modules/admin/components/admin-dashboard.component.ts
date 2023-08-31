@@ -60,17 +60,17 @@ leave:ILeaves
   ngOnInit(): void {
     this.getEmployeeSummarys()
     this.getPendingleaves();
-    this.getUserRole()
+    // this.getUserRole()
  
     
     
   }
-  getUserRole() {
-    const result = this.authservice.getRole();
-    result == 'admin'
-      ? this.router.navigate(['/app/app/admin'])
-      : this.router.navigate(['/app/app/employee']);
-  }
+  // getUserRole() {
+  //   const result = this.authservice.getRole();
+  //   result == 'admin'
+  //     ? this.router.navigate(['/app/app/admin'])
+  //     : this.router.navigate(['/app/app/employee']);
+  // }
   getPendingleaves() {
     this.pendingleaves$ = this.store.pipe(select(getleaves));
     this.store.dispatch(leaveActionType.loadpendingleaves());

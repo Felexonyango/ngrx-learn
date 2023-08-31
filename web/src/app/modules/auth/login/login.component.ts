@@ -54,6 +54,6 @@ export class LoginComponent implements OnInit {
     const user = {...this.loginForm.value};
      this.store.dispatch(new LogIn(user));
     this.loginForm.reset();
-    console.log(user);
+   
   }
 }

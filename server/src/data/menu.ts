@@ -3,29 +3,24 @@ import { Menu, Role } from "../types";
 const MenuData: Menu[] = [
   {
     name: "Dashboard",
-    url: "app/admin",
+    url: "",
     icon: "fa fa-home",
     role: [Role.Admin],
   },
-  {
-    name: "Dashboard",
-    url: "app/employee",
-    icon: "fa fa-home",
-    role: [Role.User],
-  },  
+ 
 
   {
     name: "Apply Leave",
     url: "leave/apply-leave",
-    role: [Role.User],
+    role: [Role.Admin],
     icon: "fa fa-calendar",
   },
-  {
-    name: "Leave history",
-    url: "leave/request/history",
-    role: [Role.User],
-    icon: "fa fa-folder",
-  },
+  // {
+  //   name: "Leave history",
+  //   url: "leave/request/history",
+  //   role: [Role.User],
+  //   icon: "fa fa-folder",
+  // },
 
   {
     name: "All leave history",

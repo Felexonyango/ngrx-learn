@@ -41,15 +41,9 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     component: DefaultLayoutComponent,
     children: [
+   
       {
-        path: 'app',
-        loadChildren: () =>
-          import('./modules/dashboard/dashboard.module').then(
-            (m) => m.DashboardModule
-          ),
-      },
-      {
-        path: 'app',
+        path: '',
         loadChildren: () =>
           import('./modules/admin/admin-dashboard.module').then(
             (m) => m.AdminDashboardModule

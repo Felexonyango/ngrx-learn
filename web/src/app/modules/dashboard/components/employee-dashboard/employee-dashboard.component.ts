@@ -47,19 +47,19 @@ export class EmployeeDashboardComponent implements OnInit {
   ngOnInit(): void {
     this.getApprovedleaves();
     this.getEmployeeSummarys();
-    this.getUserRole();
+    // this.getUserRole();
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 
-  getUserRole() {
-    const result = this.authservice.getRole();
-    result == 'admin'
-      ? this.router.navigate(['/app/app/admin'])
-      : this.router.navigate(['/app/app/employee']);
-  }
+  // getUserRole() {
+  //   const result = this.authservice.getRole();
+  //   result == 'admin'
+  //     ? this.router.navigate(['/app/app/admin'])
+  //     : this.router.navigate(['/app/app/employee']);
+  // }
 
   getApprovedleaves() {
     this.approvedleaves$ = this.store.pipe(select(getleaves));
